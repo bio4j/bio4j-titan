@@ -8,7 +8,7 @@ name := "bio4j-titandb"
 
 description := "bio4j-titandb project"
 
-organization := "era7"
+organization := "ohnosequences"
 
 bucketSuffix := "era7.com"
 
@@ -16,21 +16,19 @@ scalaVersion := "2.10.2"
 
 libraryDependencies += "junit" % "junit" % "3.8.1" % "test"
 
-libraryDependencies += "ohnosequences" % "bioinfo-utils" % "1.1.0"
-
 libraryDependencies += "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0"
 
-libraryDependencies += "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.3.2"
+libraryDependencies += "ohnosequences" % "bioinfo-util" % "1.2.0"
 
-dependencyOverrides += "commons-logging" % "commons-logging" % "1.1.3"
+libraryDependencies += "ohnosequences" % "bio4j-model" % "0.2.0"
 
-dependencyOverrides += "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0"
-
-dependencyOverrides += "org.codehaus.jackson" % "jackson-core-asl" % "1.9.2"
+libraryDependencies += "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.0"
 
 dependencyOverrides += "commons-codec" % "commons-codec" % "1.7"
 
-dependencyOverrides += "org.apache.lucene" % "lucene-core" % "4.2.1"
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.1.2"
+
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.2"
 
 // fat jar merge settings
 mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
