@@ -22,9 +22,8 @@ import com.era7.bioinfo.bio4j.blueprints.model.relationships.ncbi.NCBITaxonParen
 import com.era7.bioinfo.bio4j.blueprints.model.relationships.ncbi.NCBITaxonRel;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.tinkerpop.blueprints.TransactionalGraph;
 import com.tinkerpop.blueprints.Vertex;
 import java.io.*;
 import java.util.ArrayList;
@@ -130,7 +129,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
                         taxonCounter++;
                         
                         if((taxonCounter % limitForTransaction) == 0){
-                            manager.getGraph().stopTransaction(TransactionalGraph.Conclusion.SUCCESS);
+                        	manager.getGraph().commit();
                         }
 
                     }

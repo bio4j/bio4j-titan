@@ -34,11 +34,13 @@ import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinMisc
 import com.era7.bioinfo.bio4j.model.enums.UniprotDBXref;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Vertex;
+
 import java.util.ArrayList;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 

@@ -20,20 +20,22 @@ import com.era7.bioinfo.bio4j.blueprints.model.nodes.GoTermNode;
 import com.era7.bioinfo.bio4j.blueprints.model.relationships.go.*;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.bioinfo.bioinfoutil.Executable;
+import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.thinkaurelius.titan.core.TitanVertex;
 import com.tinkerpop.blueprints.Vertex;
+
 import java.io.*;
 import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Imports the Gene Ontology into Bio4j

@@ -19,7 +19,7 @@ package com.era7.bioinfo.bio4j.titan.programs;
 import com.era7.bioinfo.bio4j.blueprints.model.nodes.IsoformNode;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfo.bioinfoutil.Executable;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;

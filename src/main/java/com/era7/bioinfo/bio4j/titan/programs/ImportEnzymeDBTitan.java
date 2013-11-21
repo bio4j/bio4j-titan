@@ -16,11 +16,12 @@
  */
 package com.era7.bioinfo.bio4j.titan.programs;
 
-import com.era7.bioinfo.bio4j.neo4j.model.nodes.EnzymeNode;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfo.bio4j.blueprints.model.nodes.EnzymeNode;
+import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,6 +30,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
@@ -201,6 +203,8 @@ public class ImportEnzymeDBTitan implements Executable {
                     }
 
                 }
+                
+                reader.close();
 
 
             } catch (Exception e) {

@@ -19,15 +19,17 @@ package com.era7.bioinfo.bio4j.titan.programs;
 import com.era7.bioinfo.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfo.bioinfoutil.Executable;
 import com.tinkerpop.blueprints.util.wrappers.batch.BatchGraph;
 import com.tinkerpop.blueprints.util.wrappers.batch.VertexIDType;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 

@@ -53,11 +53,11 @@ import com.era7.bioinfo.bio4j.model.enums.UniprotDBXref;
 import com.era7.bioinfo.bio4j.titan.model.ProteinNode;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
-import com.era7.lib.bioinfoxml.bio4j.UniprotDataXML;
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfoxml.bio4j.UniprotDataXML;
+import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.tinkerpop.blueprints.TransactionalGraph;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,9 +67,10 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * This class deals with the main part of Bio4j importing process.
@@ -1073,7 +1074,7 @@ public class ImportUniprotTitan implements Executable {
 
                         proteinCounter++;
                         if ((proteinCounter % limitForTransaction) == 0) { 
-                            manager.getGraph().stopTransaction(TransactionalGraph.Conclusion.SUCCESS);
+                            manager.getGraph().commit();
                         }
                         if((proteinCounter % limitForPrintingOut) == 0){
                             String countProteinsSt = proteinCounter + " proteins inserted!!";
@@ -1883,7 +1884,7 @@ public class ImportUniprotTitan implements Executable {
                 }
 
                 for (Element consortium : authorConsortiumElems) {
-                    long consortiumId = -1;
+                    //long consortiumId = -1;
 
                     ConsortiumNode consortiumNode = nodeRetriever.getConsortiumByName(consortium.getAttributeValue("name"));
 

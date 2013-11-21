@@ -22,10 +22,10 @@ import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinIsof
 import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinProteinInteractionRel;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
-import com.era7.lib.era7xmlapi.model.XMLElement;
+import com.era7.bioinfo.bioinfoutil.Executable;
+import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.tinkerpop.blueprints.TransactionalGraph;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +33,10 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Imports protein interactions: - protein <--> protein - protein <--> isoform -
@@ -197,7 +198,7 @@ public class ImportProteinInteractionsTitan implements Executable {
                         proteinCounter++;
                         
                         if((proteinCounter % limitForTransaction) == 0){
-                            manager.getGraph().stopTransaction(TransactionalGraph.Conclusion.SUCCESS);
+                            manager.getGraph().commit();
                         }
                         
                         if ((proteinCounter % limitForPrintingOut) == 0) {
@@ -206,6 +207,8 @@ public class ImportProteinInteractionsTitan implements Executable {
 
                     }
                 }
+                
+                reader.close();
 
 
             } catch (Exception e) {

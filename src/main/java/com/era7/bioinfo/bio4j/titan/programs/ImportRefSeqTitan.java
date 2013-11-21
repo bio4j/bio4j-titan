@@ -22,16 +22,17 @@ import com.era7.bioinfo.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
 import com.era7.bioinfo.bio4j.blueprints.model.nodes.refseq.rna.*;
 import com.era7.bioinfo.bio4j.blueprints.model.relationships.refseq.*;
 import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
-import com.era7.lib.bioinfo.bioinfoutil.Executable;
-import com.era7.lib.bioinfo.bioinfoutil.genbank.GBCommon;
+import com.era7.bioinfo.bioinfoutil.Executable;
+import com.era7.bioinfo.bioinfoutil.genbank.GBCommon;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.tinkerpop.blueprints.TransactionalGraph;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
@@ -122,7 +123,6 @@ public class ImportRefSeqTitan implements Executable {
                             ArrayList<String> tmRnaList = new ArrayList<>();
                             ArrayList<String> tRnaList = new ArrayList<>();
 
-                            boolean originFound = false;
 
                             //Now I get all the lines till I reach the string '//'
                             do {
@@ -286,8 +286,6 @@ public class ImportRefSeqTitan implements Executable {
 
                                 } else if (line.startsWith(GBCommon.ORIGIN_STR)) {
 
-                                    originFound = true;
-
                                     do {
                                         line = reader.readLine();
                                         String[] tempArray = line.trim().split(" ");
@@ -374,13 +372,15 @@ public class ImportRefSeqTitan implements Executable {
                             
                             
                             if(genomeElementCounter % limitForTransaction == 0){
-                                manager.getGraph().stopTransaction(TransactionalGraph.Conclusion.SUCCESS);
+                                manager.getGraph().commit();
                             }
                             if((genomeElementCounter % limitForPrintingOut) == 0){                                
                                 logger.log(Level.INFO, (genomeElementCounter + " genome elements stored..."));
                             }
 
                         }
+                        
+                        reader.close();
 
                     }
                 }
