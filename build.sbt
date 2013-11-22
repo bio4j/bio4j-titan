@@ -37,19 +37,19 @@ dependencyOverrides += "commons-beanutils" % "commons-beanutils" % "1.8.2"
 
 dependencyOverrides += "commons-beanutils" % "commons-beanutils-core" % "1.8.2"
 
-// dependencyOverrides += "commons-collections" % "commons-collections" % "3.1"
 
 // fat jar merge settings
 // see http://stackoverflow.com/questions/14402745/duplicate-classes-in-commons-collections-and-commons-beanutils
 mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
   {
-    case "META-INF/CHANGES.txt" => MergeStrategy.discard
-    case "META-INF/LICENSES.txt" => MergeStrategy.discard
-    case "log4j.properties" => MergeStrategy.filterDistinctLines
-    case PathList("org", "apache", "commons", "collections",  xs @ _*) => MergeStrategy.first
-    case PathList("index.html") => MergeStrategy.first
-    case x => old(x)
+    case PathList("META-INF", "CHANGES.txt")                            => MergeStrategy.discard
+    case PathList("META-INF", "LICENSES.txt")                           => MergeStrategy.discard
+    case "log4j.properties"                                             => MergeStrategy.filterDistinctLines
+    case PathList("org", "apache", "commons", "collections",  xs @ _*)  => MergeStrategy.first
+    case PathList("index.html")                                         => MergeStrategy.first
+    case x                                                              => old(x)
   }
 }
 
+// get rid of the Scala library
 assemblyOption in assembly ~= { _.copy(includeScala = false) }
