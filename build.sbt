@@ -14,6 +14,8 @@ bucketSuffix := "era7.com"
 
 scalaVersion := "2.10.2"
 
+mainClass in assembly := Some("com.era7.bioinfo.bio4j.titan.program.ImportTitanDB")
+
 libraryDependencies += "junit" % "junit" % "3.8.1" % "test"
 
 libraryDependencies += "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0"
