@@ -24,7 +24,7 @@ libraryDependencies += "ohnosequences" % "bioinfo-util" % "1.2.0"
 
 libraryDependencies += "ohnosequences" % "bio4j-model" % "0.3.1-SNAPSHOT"
 
-libraryDependencies += "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.0"
+libraryDependencies += "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.1"
 
 dependencyOverrides += "commons-codec" % "commons-codec" % "1.7"
 
