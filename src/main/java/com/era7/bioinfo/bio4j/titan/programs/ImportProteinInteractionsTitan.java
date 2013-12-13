@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.bioinfo.bio4j.titan.programs;
-import com.era7.bioinfo.bio4j.CommonData;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.IsoformNode;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.ProteinNode;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinIsoformInteractionRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinProteinInteractionRel;
-import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
-import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
+package com.ohnosequences.bio4j.titan.programs;
+import com.ohnosequences.bio4j.CommonData;
+import com.ohnosequences.bio4j.blueprints.model.nodes.IsoformNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.ProteinNode;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinIsoformInteractionRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinProteinInteractionRel;
+import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
+import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;

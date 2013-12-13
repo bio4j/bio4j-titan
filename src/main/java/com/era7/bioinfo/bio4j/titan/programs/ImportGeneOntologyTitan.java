@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.bioinfo.bio4j.titan.programs;
+package com.ohnosequences.bio4j.titan.programs;
 
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.GoTermNode;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.go.*;
-import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
-import com.era7.bioinfo.bio4j.titan.model.util.NodeRetrieverTitan;
+import com.ohnosequences.bio4j.blueprints.model.nodes.GoTermNode;
+import com.ohnosequences.bio4j.blueprints.model.relationships.go.*;
+import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
+import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;

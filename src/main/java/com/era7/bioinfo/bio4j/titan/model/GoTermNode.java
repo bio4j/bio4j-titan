@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.bioinfo.bio4j.titan.model;
+package com.ohnosequences.bio4j.titan.model;
 
 import com.thinkaurelius.titan.core.TitanProperty;
 import com.thinkaurelius.titan.core.TitanVertex;
@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @author Pablo Pareja Tobes <ppareja@era7.com>
  */
-public class GoTermNode extends com.era7.bioinfo.bio4j.blueprints.model.nodes.GoTermNode{
+public class GoTermNode extends com.ohnosequences.bio4j.blueprints.model.nodes.GoTermNode{
     
     public GoTermNode(Vertex v){
         super(v);

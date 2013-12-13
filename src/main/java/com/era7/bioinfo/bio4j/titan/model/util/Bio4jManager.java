@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.bioinfo.bio4j.titan.model.util;
+package com.ohnosequences.bio4j.titan.model.util;
 
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.BasicVertex;
+import com.ohnosequences.bio4j.blueprints.model.nodes.BasicVertex;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;

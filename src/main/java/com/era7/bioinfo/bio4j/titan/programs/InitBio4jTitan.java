@@ -14,25 +14,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.bioinfo.bio4j.titan.programs;
+package com.ohnosequences.bio4j.titan.programs;
 
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.*;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.citation.*;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductSplicingRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinErroneousGeneModelPredictionRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinErroneousInitiationRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinErroneousTerminationRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinErroneousTranslationRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinFrameshiftRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.ProteinMiscellaneousDiscrepancyRel;
-import com.era7.bioinfo.bio4j.model.enums.UniprotDBXref;
-import com.era7.bioinfo.bio4j.titan.model.util.Bio4jManager;
+import com.ohnosequences.bio4j.blueprints.model.nodes.*;
+import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
+import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductSplicingRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousGeneModelPredictionRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousInitiationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousTerminationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousTranslationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinFrameshiftRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinMiscellaneousDiscrepancyRel;
+import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
+import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;

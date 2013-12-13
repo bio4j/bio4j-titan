@@ -14,22 +14,22 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.era7.bioinfo.bio4j.titan.model.util;
+package com.ohnosequences.bio4j.titan.model.util;
 
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.*;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.citation.*;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
-import com.era7.bioinfo.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.aproducts.AlternativeProductSplicingRel;
-import com.era7.bioinfo.bio4j.blueprints.model.relationships.protein.*;
-import com.era7.bioinfo.bio4j.model.enums.UniprotDBXref;
-import com.era7.bioinfo.bio4j.model.nodes.Dataset;
-import com.era7.bioinfo.bio4j.model.nodes.GoTerm;
-import com.era7.bioinfo.bio4j.model.util.NodeRetriever;
+import com.ohnosequences.bio4j.blueprints.model.nodes.*;
+import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
+import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductSplicingRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.protein.*;
+import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
+import com.ohnosequences.bio4j.model.nodes.Dataset;
+import com.ohnosequences.bio4j.model.nodes.GoTerm;
+import com.ohnosequences.bio4j.model.util.NodeRetriever;
 import com.tinkerpop.blueprints.Vertex;
 import java.util.Iterator;
 import java.util.LinkedList;
