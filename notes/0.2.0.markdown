@@ -1,0 +1,4 @@
+* Updated to bio4j-model v0.3.0 with ohnosequences package
+* Updated to bio4j-utils v1.3.0
+* Updated to titan v0.4.1
+* Fixed fat jar assembly
