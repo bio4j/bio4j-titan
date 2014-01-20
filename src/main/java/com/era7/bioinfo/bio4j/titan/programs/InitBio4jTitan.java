@@ -290,8 +290,8 @@ public class InitBio4jTitan implements Executable {
         
         
         //---NCBI TAXON---                
-        graph.makeKey(NCBITaxonNode.GI_IDS_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
-        graph.makeKey(NCBITaxonNode.OLD_TAX_IDS_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeKey(NCBITaxonNode.GI_IDS_PROPERTY).dataType(String.class).list().unique().indexed(Vertex.class).make();
+        graph.makeKey(NCBITaxonNode.OLD_TAX_IDS_PROPERTY).dataType(String.class).list().unique().indexed(Vertex.class).make();
         
     }
 
