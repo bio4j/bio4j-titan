@@ -17,25 +17,30 @@
 package com.ohnosequences.bio4j.titan.programs;
 
 import com.ohnosequences.bio4j.blueprints.model.nodes.OrganismNode;
-import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonRel;
+import com.ohnosequences.bio4j.titan.model.NCBITaxonNode;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
+
 
 /**
  * Imports NCBI taxonomy into Bio4j
@@ -188,6 +193,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
                 logger.log(Level.INFO, "reading merged file...");
                 //------------reading merged file-----------------
+                HashMap<String,List<String>> oldTaxIdsMap = new HashMap<String, List<String>>();
                 reader = new BufferedReader(new FileReader(mergedDumpFile));
                 while ((line = reader.readLine()) != null) {
 
@@ -195,13 +201,23 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
                     String oldId = columns[0].trim();
                     String goodId = columns[1].trim();
-
-                    NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(goodId);
-                    goodNode.addOldTaxId(oldId);
+                    
+                    List<String> idList = oldTaxIdsMap.get(goodId);
+                    if(idList == null){
+                    	idList = new LinkedList<>();
+                    	oldTaxIdsMap.put(goodId, idList);
+                    }
+                    idList.add(oldId);     
                     
 
                 }
                 reader.close();
+                
+                for(String key : oldTaxIdsMap.keySet()){
+                	List<String> idList = oldTaxIdsMap.get(key);
+                	NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(key);
+                    goodNode.setOldTaxIds(idList.toArray(new String[idList.size()]));
+                }
                 logger.log(Level.INFO, "done!");
 
             } catch (Exception ex) {

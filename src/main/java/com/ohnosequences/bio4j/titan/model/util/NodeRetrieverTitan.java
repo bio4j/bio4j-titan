@@ -18,7 +18,6 @@ package com.ohnosequences.bio4j.titan.model.util;
 
 import com.ohnosequences.bio4j.blueprints.model.nodes.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
-import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
@@ -30,7 +29,9 @@ import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
 import com.ohnosequences.bio4j.model.nodes.Dataset;
 import com.ohnosequences.bio4j.model.nodes.GoTerm;
 import com.ohnosequences.bio4j.model.util.NodeRetriever;
+import com.ohnosequences.bio4j.titan.model.NCBITaxonNode;
 import com.tinkerpop.blueprints.Vertex;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
