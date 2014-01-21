@@ -21,6 +21,8 @@ import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
+import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
@@ -79,11 +81,11 @@ public class InitBio4jTitan implements Executable {
             TitanGraph graph = manager.getGraph();
 
 
-            System.out.println("Creating indices...");
-            createIndices(graph);
-            
             System.out.println("Creating non functiontal keys...");
             createNonFunctionalKeys(graph);    
+            
+            System.out.println("Creating indices...");
+            createIndices(graph);
             
             System.out.println("Creating utility nodes...");
             createAlternativeProductNodes(manager);
@@ -290,9 +292,19 @@ public class InitBio4jTitan implements Executable {
         
         
         //---NCBI TAXON---                
+        graph.makeKey(NCBITaxonNode.TAX_ID_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeKey(NCBITaxonNode.SCIENTIFIC_NAME_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeKey(NCBITaxonNode.EMBL_CODE_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeKey(NCBITaxonNode.RANK_PROPERTY).dataType(String.class).make();
+        graph.makeKey(NCBITaxonNode.COMMENTS_PROPERTY).dataType(String.class).make();
+        // multi-valued properties:
         graph.makeKey(NCBITaxonNode.GI_IDS_PROPERTY).dataType(String.class).list().unique().indexed(Vertex.class).make();
         graph.makeKey(NCBITaxonNode.OLD_TAX_IDS_PROPERTY).dataType(String.class).list().unique().indexed(Vertex.class).make();
         
+        // many sons to one parent
+        graph.makeLabel(NCBITaxonParentRel.NAME).manyToOne().make();
+        // FIXME: not sure about this label:
+        graph.makeLabel(NCBITaxonRel.NAME).oneToOne().make();
     }
 
     private static void createIndices(TitanGraph graph) {
@@ -338,7 +350,7 @@ public class InitBio4jTitan implements Executable {
 
         //---NCBI TAXON--
         graph.createKeyIndex(NCBITaxonNode.TAX_ID_PROPERTY, Vertex.class);
-        //gi index is temporarily missing
+        graph.createKeyIndex(NCBITaxonNode.GI_IDS_PROPERTY, Vertex.class);
 
         //---REACTOME TERM---
         graph.createKeyIndex(ReactomeTermNode.ID_PROPERTY, Vertex.class);

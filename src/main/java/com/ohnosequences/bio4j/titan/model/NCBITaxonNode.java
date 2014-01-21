@@ -25,34 +25,16 @@ import com.tinkerpop.blueprints.Vertex;
 
 public class NCBITaxonNode extends com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode{
 
-	public NCBITaxonNode(Vertex v) {
-		super(v);
-	}
-	
-	public String[] getGIIds(){        return getMultiValuedProperty(GI_IDS_PROPERTY); }
-	public String[] getOldTaxIds(){        return getMultiValuedProperty(OLD_TAX_IDS_PROPERTY); }	
-	
+    public NCBITaxonNode(Vertex v) {
+        super(v);
+    }
+    
+    protected TitanVertex titanVertex = (TitanVertex) vertex;
 
-    public void setGIIds(String[] list){    setMultiValuedProperty(GI_IDS_PROPERTY, list);}
-    public void setOldTaxIds(String[] list){    setMultiValuedProperty(OLD_TAX_IDS_PROPERTY, list);}
+    public String[] getGiIds(){ return titanVertex.getProperty(GI_IDS_PROPERTY); }
+    public String[] getOldTaxIds(){ return titanVertex.getProperty(OLD_TAX_IDS_PROPERTY); } 
     
-	
-	private void setMultiValuedProperty(String propertyName, String[] value){
-        TitanVertex tempVertex = (TitanVertex) vertex;
-        tempVertex.removeProperty(propertyName);
-        for (String string : value) {
-            tempVertex.addProperty(propertyName, string);
-        } 
-    }
-    
-    private String[] getMultiValuedProperty(String propertyName){
-        TitanVertex tempVertex = (TitanVertex) vertex;
-        Iterator<TitanProperty> iterator = tempVertex.getProperties(propertyName).iterator();
-        LinkedList<String> list = new LinkedList<>();
-        while(iterator.hasNext()){
-            list.add(String.valueOf(iterator.next().getValue()));
-        }
-        return list.toArray(new String[list.size()]);
-    }
+    public void addGiId(String value){ titanVertex.addProperty(GI_IDS_PROPERTY, value); }
+    public void addOldTaxId(String value){ titanVertex.addProperty(OLD_TAX_IDS_PROPERTY, value); }
 
 }

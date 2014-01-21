@@ -24,14 +24,14 @@ import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
+import com.tinkerpop.blueprints.util.wrappers.batch.BatchGraph;
+import com.tinkerpop.blueprints.util.wrappers.batch.VertexIDType;
 import com.tinkerpop.blueprints.Vertex;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -107,6 +107,10 @@ public class ImportNCBITaxonomyTitan implements Executable {
                 Configuration conf = new BaseConfiguration();
                 conf.setProperty("storage.directory", args[3]);
                 conf.setProperty("storage.backend", "local");
+                conf.setProperty("autotype", "none");
+                conf.setProperty("storage.batch-loading", "true");
+                conf.setProperty("storage.buffer-size", "10000");
+                conf.setProperty("storage.write-attempts", "10");
 
                 //-------creating graph handlers---------------------
                 manager = new Bio4jManager(conf);
@@ -193,7 +197,6 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
                 logger.log(Level.INFO, "reading merged file...");
                 //------------reading merged file-----------------
-                HashMap<String,List<String>> oldTaxIdsMap = new HashMap<String, List<String>>();
                 reader = new BufferedReader(new FileReader(mergedDumpFile));
                 while ((line = reader.readLine()) != null) {
 
@@ -202,22 +205,17 @@ public class ImportNCBITaxonomyTitan implements Executable {
                     String oldId = columns[0].trim();
                     String goodId = columns[1].trim();
                     
-                    List<String> idList = oldTaxIdsMap.get(goodId);
-                    if(idList == null){
-                    	idList = new LinkedList<>();
-                    	oldTaxIdsMap.put(goodId, idList);
+                    NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(goodId);
+                    if (goodNode != null) {
+                        goodNode.addOldTaxId(oldId);
+                    } else {
+                        logger.log(Level.WARNING, "Taxon ID " + goodId + 
+                                   " is not found. Old ID " + oldId + " is not mapped to it.");
                     }
-                    idList.add(oldId);     
-                    
 
                 }
                 reader.close();
                 
-                for(String key : oldTaxIdsMap.keySet()){
-                	List<String> idList = oldTaxIdsMap.get(key);
-                	NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(key);
-                    goodNode.setOldTaxIds(idList.toArray(new String[idList.size()]));
-                }
                 logger.log(Level.INFO, "done!");
 
             } catch (Exception ex) {

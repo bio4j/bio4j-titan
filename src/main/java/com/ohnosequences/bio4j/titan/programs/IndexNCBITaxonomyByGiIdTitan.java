@@ -16,12 +16,10 @@
  */
 package com.ohnosequences.bio4j.titan.programs;
 
-import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
+import com.ohnosequences.bio4j.titan.model.NCBITaxonNode;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
 import com.era7.bioinfo.bioinfoutil.Executable;
-import com.tinkerpop.blueprints.util.wrappers.batch.BatchGraph;
-import com.tinkerpop.blueprints.util.wrappers.batch.VertexIDType;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -72,10 +70,13 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
             Configuration conf = new BaseConfiguration();
             conf.setProperty("storage.directory", args[1]);
             conf.setProperty("storage.backend", "local");
+            conf.setProperty("autotype", "none");
+            conf.setProperty("storage.batch-loading", "true");
+            conf.setProperty("storage.buffer-size", "10000");
+            conf.setProperty("storage.write-attempts", "10");
 
             //-------creating graph handlers---------------------
             Bio4jManager manager = new Bio4jManager(conf);
-            BatchGraph bGraph = new BatchGraph(manager.getGraph(), VertexIDType.STRING, 1000);
             NodeRetrieverTitan nodeRetriever = new NodeRetrieverTitan(manager);
 
             int lineCounter = 0;
@@ -110,7 +111,6 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
                     if (nCBITaxonNode != null) {
                         nCBITaxonNode.addGiId(giId);
                     } else {
-
                         outBufferedWriter.write(giId + "\t" + taxId + "\n");
                     }
 
