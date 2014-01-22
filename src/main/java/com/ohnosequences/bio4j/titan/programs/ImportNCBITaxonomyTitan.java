@@ -74,7 +74,21 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
             long initTime = System.nanoTime();
 
-            Bio4jManager manager = null;
+            logger.log(Level.INFO, "creating manager...");
+            //----------DB configuration------------------
+            Configuration conf = new BaseConfiguration();
+            conf.setProperty("storage.directory", args[3]);
+            conf.setProperty("storage.backend", "local");
+            conf.setProperty("autotype", "none");
+            conf.setProperty("storage.batch-loading", "true");
+            conf.setProperty("storage.buffer-size", "1000");
+            conf.setProperty("storage.write-attempts", "10");
+
+            //-------creating graph handlers---------------------
+            Bio4jManager manager = new Bio4jManager(conf);
+            TitanGraph graph = manager.getGraph();
+            NodeRetrieverTitan nodeRetriever = new NodeRetrieverTitan(manager);
+
             int taxonCounter = 0;
             int limitForTransaction = 1000;
 
@@ -102,29 +116,13 @@ public class ImportNCBITaxonomyTitan implements Executable {
                 BufferedReader reader = new BufferedReader(new FileReader(nodesDumpFile));
                 String line;
 
-                logger.log(Level.INFO, "creating manager...");
-                //----------DB configuration------------------
-                Configuration conf = new BaseConfiguration();
-                conf.setProperty("storage.directory", args[3]);
-                conf.setProperty("storage.backend", "local");
-                conf.setProperty("autotype", "none");
-                conf.setProperty("storage.batch-loading", "true");
-                conf.setProperty("storage.buffer-size", "10000");
-                conf.setProperty("storage.write-attempts", "10");
-
-                //-------creating graph handlers---------------------
-                manager = new Bio4jManager(conf);
-                TitanGraph graph = manager.getGraph();
-                NodeRetrieverTitan nodeRetriever = new NodeRetrieverTitan(manager);
 
                 HashMap<String, String> nodeParentMap = new HashMap<>();
 
                 logger.log(Level.INFO, "reading nodes file...");
 
                 while ((line = reader.readLine()) != null) {
-
                     if (line.trim().length() > 0) {
-
                         String[] columns = line.split("\\|");
 
                         NCBITaxonNode node = new NCBITaxonNode(manager.createNode(NCBITaxonNode.NODE_TYPE));
@@ -138,19 +136,18 @@ public class ImportNCBITaxonomyTitan implements Executable {
                         taxonCounter++;
                         
                         if((taxonCounter % limitForTransaction) == 0){
-                        	manager.getGraph().commit();
+                        	graph.commit();
                         }
-
                     }
-
                 }
-
                 reader.close();
+                graph.commit();
                 logger.log(Level.INFO, "done!");
 
                 logger.log(Level.INFO, "reading names file...");
                 //------------reading names file-----------------
                 reader = new BufferedReader(new FileReader(namesDumpFile));
+                int linesCounter = 0;
                 while ((line = reader.readLine()) != null) {
 
                     String[] columns = line.split("\\|");
@@ -163,14 +160,21 @@ public class ImportNCBITaxonomyTitan implements Executable {
                         NCBITaxonNode node = nodeRetriever.getNCBITaxonByTaxId(taxId);
                         node.setScientificName(nameSt);
 
+                        linesCounter++;
+                        if((linesCounter % limitForTransaction) == 0){
+                            graph.commit();
+                        }
+
                     }
 
                 }
                 reader.close();
+                graph.commit();
                 logger.log(Level.INFO, "done!");
 
                 logger.log(Level.INFO, "storing relationships...");
 
+                linesCounter = 0;
                 Set<String> nodesSet = nodeParentMap.keySet();
                 for (String nodeTaxId : nodesSet) {
 
@@ -183,7 +187,13 @@ public class ImportNCBITaxonomyTitan implements Executable {
                         graph.addEdge(null, parentNode.getNode(), currentNode.getNode(), NCBITaxonParentRel.NAME);
                     } 
 
+                    linesCounter++;
+                    if((linesCounter % limitForTransaction) == 0){
+                        graph.commit();
+                    }
+
                 }
+                graph.commit();
                 
                 logger.log(Level.INFO, "Done!");
 
@@ -198,6 +208,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
                 logger.log(Level.INFO, "reading merged file...");
                 //------------reading merged file-----------------
                 reader = new BufferedReader(new FileReader(mergedDumpFile));
+                linesCounter = 0;
                 while ((line = reader.readLine()) != null) {
 
                     String[] columns = line.split("\\|");
@@ -208,6 +219,12 @@ public class ImportNCBITaxonomyTitan implements Executable {
                     NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(goodId);
                     if (goodNode != null) {
                         goodNode.addOldTaxId(oldId);
+
+                        linesCounter++;
+                        if((linesCounter % limitForTransaction) == 0){
+                            graph.commit();
+                        }
+
                     } else {
                         logger.log(Level.WARNING, "Taxon ID " + goodId + 
                                    " is not found. Old ID " + oldId + " is not mapped to it.");
@@ -215,6 +232,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
                 }
                 reader.close();
+                graph.commit();
                 
                 logger.log(Level.INFO, "done!");
 
@@ -224,7 +242,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
             } finally {
 
             	//committing last transaction
-            	manager.getGraph().commit();
+            	graph.commit();
                 //closing logger file handler
                 fh.close();
                 logger.log(Level.INFO, "Closing up inserter and index service....");

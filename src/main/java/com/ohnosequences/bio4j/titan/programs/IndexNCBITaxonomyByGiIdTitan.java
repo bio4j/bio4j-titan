@@ -72,7 +72,7 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
             conf.setProperty("storage.backend", "local");
             conf.setProperty("autotype", "none");
             conf.setProperty("storage.batch-loading", "true");
-            conf.setProperty("storage.buffer-size", "10000");
+            conf.setProperty("storage.buffer-size", "1000");
             conf.setProperty("storage.write-attempts", "10");
 
             //-------creating graph handlers---------------------
@@ -80,6 +80,7 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
             NodeRetrieverTitan nodeRetriever = new NodeRetrieverTitan(manager);
 
             int lineCounter = 0;
+            int limitForTransaction = 1000;
 
             File inFile = new File(args[0]);
 
@@ -106,29 +107,32 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
                     String giId = columns[0];
                     String taxId = columns[1];
                     
-                    NCBITaxonNode nCBITaxonNode = nodeRetriever.getNCBITaxonByTaxId(String.valueOf(taxId));
+                    NCBITaxonNode nCBITaxonNode = null;
+                    if (taxId != "0") nCBITaxonNode = nodeRetriever.getNCBITaxonByTaxId(String.valueOf(taxId));
 
                     if (nCBITaxonNode != null) {
                         nCBITaxonNode.addGiId(giId);
+
+                        lineCounter++;
+                        if (lineCounter % limitForTransaction == 0) {
+                            System.out.println("lineCounter = " + lineCounter);
+                            outBufferedWriter.flush();
+                            manager.getGraph().commit();
+                        }
                     } else {
                         outBufferedWriter.write(giId + "\t" + taxId + "\n");
                     }
 
-                    lineCounter++;
-
-                    if (lineCounter % 100000 == 0) {
-                        System.out.println("lineCounter = " + lineCounter);
-                        outBufferedWriter.flush();
-                    }
                 }
                 reader.close();
-
                 outBufferedWriter.close();
 
             } catch (Exception e) {
                 Logger.getLogger(ImportNCBITaxonomyTitan.class.getName()).log(Level.SEVERE, null, e);
             } finally {
 
+                //committing last transaction
+                manager.getGraph().commit();
                 //closing logger file handler
                 fh.close();
                 logger.log(Level.INFO, "Closing up inserter and index service....");
