@@ -223,6 +223,8 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
             } finally {
 
+            	//committing last transaction
+            	manager.getGraph().commit();
                 //closing logger file handler
                 fh.close();
                 logger.log(Level.INFO, "Closing up inserter and index service....");
