@@ -19,6 +19,7 @@ package com.ohnosequences.bio4j.titan.programs;
 import com.ohnosequences.bio4j.blueprints.model.nodes.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.GiIdNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
 import com.ohnosequences.bio4j.blueprints.model.relationships.InstituteCountryRel;
@@ -26,6 +27,7 @@ import com.ohnosequences.bio4j.blueprints.model.relationships.IsoformEventGenera
 import com.ohnosequences.bio4j.blueprints.model.relationships.SubcellularLocationParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.TaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.GiIdToNCBITaxonRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
@@ -374,6 +376,10 @@ public class InitBio4jTitan implements Executable {
         graph.makeLabel(NCBITaxonParentRel.NAME).manyToOne().make();
         // FIXME: not sure about this label:
         graph.makeLabel(NCBITaxonRel.NAME).oneToOne().make();
+
+        // GI
+        graph.makeKey(GiIdNode.GI_ID_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeLabel(GiIdToNCBITaxonRel.NAME).oneToOne().make();
     }
 
     private static void createIndices(TitanGraph graph) {

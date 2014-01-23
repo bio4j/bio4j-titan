@@ -31,10 +31,10 @@ public class NCBITaxonNode extends com.ohnosequences.bio4j.blueprints.model.node
     
     protected TitanVertex titanVertex = (TitanVertex) vertex;
 
-    public String[] getGiIds(){ return titanVertex.getProperty(GI_IDS_PROPERTY); }
+    // public String[] getGiIds(){ return titanVertex.getProperty(GI_IDS_PROPERTY); }
     public String[] getOldTaxIds(){ return titanVertex.getProperty(OLD_TAX_IDS_PROPERTY); } 
     
-    public void addGiId(String value){ titanVertex.addProperty(GI_IDS_PROPERTY, value); }
+    // public void addGiId(String value){ titanVertex.addProperty(GI_IDS_PROPERTY, value); }
     public void addOldTaxId(String value){ titanVertex.addProperty(OLD_TAX_IDS_PROPERTY, value); }
 
 }
