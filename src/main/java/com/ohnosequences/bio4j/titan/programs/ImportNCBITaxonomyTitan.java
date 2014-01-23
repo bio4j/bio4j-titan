@@ -24,8 +24,6 @@ import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.tinkerpop.blueprints.util.wrappers.batch.BatchGraph;
-import com.tinkerpop.blueprints.util.wrappers.batch.VertexIDType;
 import com.tinkerpop.blueprints.Vertex;
 
 import java.io.*;
