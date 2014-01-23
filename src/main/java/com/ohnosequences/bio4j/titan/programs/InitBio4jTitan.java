@@ -52,6 +52,30 @@ import com.ohnosequences.bio4j.blueprints.model.relationships.citation.thesis.Th
 import com.ohnosequences.bio4j.blueprints.model.relationships.citation.thesis.ThesisProteinCitationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.citation.uo.UnpublishedObservationAuthorRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.citation.uo.UnpublishedObservationProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.AllergenCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.BioPhysicoChemicalPropertiesCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.BiotechnologyCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.CatalyticActivityCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.CautionCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.CofactorCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.DevelopmentalStageCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.DiseaseCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.DisruptionPhenotypeCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.DomainCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.EnzymeRegulationCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.FunctionCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.MassSpectrometryCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.MiscellaneousCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.OnlineInformationCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.PathwayCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.PharmaceuticalCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.PolymorphismCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.PostTranslationalModificationCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.RnaEditingCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.SimilarityCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.SubunitCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.TissueSpecificityCommentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.comment.ToxicDoseCommentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousGeneModelPredictionRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousTerminationRel;
@@ -59,6 +83,7 @@ import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErr
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinFrameshiftRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinMiscellaneousDiscrepancyRel;
 import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
+import com.ohnosequences.bio4j.model.relationships.comment.DiseaseComment;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
 import com.era7.bioinfo.bioinfoutil.Executable;
@@ -212,6 +237,32 @@ public class InitBio4jTitan implements Executable {
     	//unpublished observation
     	graph.makeLabel(UnpublishedObservationAuthorRel.NAME).manyToMany().make();
     	graph.makeLabel(UnpublishedObservationProteinCitationRel.NAME).manyToMany().make();
+    	//comment
+    	graph.makeLabel(AllergenCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(BioPhysicoChemicalPropertiesCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(BiotechnologyCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(CatalyticActivityCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(CautionCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(CofactorCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(DevelopmentalStageCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(DiseaseCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(DisruptionPhenotypeCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(DomainCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(EnzymeRegulationCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(FunctionCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(MassSpectrometryCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(MiscellaneousCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(OnlineInformationCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(PathwayCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(PharmaceuticalCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(PolymorphismCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(PostTranslationalModificationCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(RnaEditingCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(SimilarityCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(SubunitCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(TissueSpecificityCommentRel.NAME).manyToMany().make();
+    	graph.makeLabel(ToxicDoseCommentRel.NAME).manyToMany().make();
+    	
     	
     }
     
