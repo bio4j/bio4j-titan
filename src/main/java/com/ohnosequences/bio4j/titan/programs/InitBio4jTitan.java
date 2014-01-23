@@ -21,12 +21,24 @@ import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
+import com.ohnosequences.bio4j.blueprints.model.relationships.InstituteCountryRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.IsoformEventGeneratorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.SubcellularLocationParentRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.TaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductSplicingRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.article.ArticleAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.article.ArticleJournalRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.article.ArticleProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookCityRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookEditorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookPublisherRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousGeneModelPredictionRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousTerminationRel;
@@ -38,6 +50,7 @@ import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
+import com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency;
 import com.tinkerpop.blueprints.Vertex;
 
 import java.util.ArrayList;
@@ -83,6 +96,9 @@ public class InitBio4jTitan implements Executable {
 
             System.out.println("Creating non functiontal keys...");
             createNonFunctionalKeys(graph);    
+            
+            System.out.println("Defining relationship types...");
+            defineRelationshipTypes(graph);
             
             System.out.println("Creating indices...");
             createIndices(graph);
@@ -144,6 +160,28 @@ public class InitBio4jTitan implements Executable {
         SequenceCautionNode proteinMiscDiscrepancyNode = new SequenceCautionNode(manager.createNode(SequenceCautionNode.NODE_TYPE));
         proteinMiscDiscrepancyNode.setName(ProteinMiscellaneousDiscrepancyRel.UNIPROT_ATTRIBUTE_TYPE_VALUE);
         
+    }
+    
+    private static void defineRelationshipTypes(TitanGraph graph){
+    	
+    	//relationships
+    	graph.makeLabel(InstituteCountryRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(IsoformEventGeneratorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(SubcellularLocationParentRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(TaxonParentRel.NAME).manyToOne(UniquenessConsistency.NO_LOCK).make();
+    	//aproducts
+    	//-->to be completed
+    	//article
+    	graph.makeLabel(ArticleAuthorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(ArticleJournalRel.NAME).manyToOne(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(ArticleProteinCitationRel.NAME).manyToMany().make();
+    	//book
+    	graph.makeLabel(BookAuthorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(BookCityRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(BookEditorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(BookProteinCitationRel.NAME).manyToMany().make();
+    	graph.makeLabel(BookPublisherRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	
     }
     
     private static void createNonFunctionalKeys(TitanGraph graph){
