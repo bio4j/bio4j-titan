@@ -39,6 +39,19 @@ import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.Book
 import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookEditorRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookProteinCitationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.citation.book.BookPublisherRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.onarticle.OnlineArticleAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.onarticle.OnlineArticleJournalRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.onarticle.OnlineArticleProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.patent.PatentAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.patent.PatentProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.submission.SubmissionAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.submission.SubmissionDbRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.submission.SubmissionProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.thesis.ThesisAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.thesis.ThesisInstituteRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.thesis.ThesisProteinCitationRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.uo.UnpublishedObservationAuthorRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.citation.uo.UnpublishedObservationProteinCitationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousGeneModelPredictionRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinErroneousTerminationRel;
@@ -172,15 +185,33 @@ public class InitBio4jTitan implements Executable {
     	//aproducts
     	//-->to be completed
     	//article
-    	graph.makeLabel(ArticleAuthorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(ArticleAuthorRel.NAME).manyToMany().make();
     	graph.makeLabel(ArticleJournalRel.NAME).manyToOne(UniquenessConsistency.NO_LOCK).make();
     	graph.makeLabel(ArticleProteinCitationRel.NAME).manyToMany().make();
     	//book
-    	graph.makeLabel(BookAuthorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(BookAuthorRel.NAME).manyToMany().make();
     	graph.makeLabel(BookCityRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
-    	graph.makeLabel(BookEditorRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(BookEditorRel.NAME).manyToMany().make();
     	graph.makeLabel(BookProteinCitationRel.NAME).manyToMany().make();
     	graph.makeLabel(BookPublisherRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	//online article
+    	graph.makeLabel(OnlineArticleAuthorRel.NAME).manyToMany().make();
+    	graph.makeLabel(OnlineArticleJournalRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(OnlineArticleProteinCitationRel.NAME).manyToMany().make();
+    	//patent
+    	graph.makeLabel(PatentAuthorRel.NAME).manyToMany().make();
+    	graph.makeLabel(PatentProteinCitationRel.NAME).manyToMany().make();
+    	//submission
+    	graph.makeLabel(SubmissionAuthorRel.NAME).manyToMany().make();
+    	graph.makeLabel(SubmissionDbRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(SubmissionProteinCitationRel.NAME).manyToMany().make();
+    	//thesis
+    	graph.makeLabel(ThesisAuthorRel.NAME).manyToMany().make();
+    	graph.makeLabel(ThesisInstituteRel.NAME).oneToMany(UniquenessConsistency.NO_LOCK).make();
+    	graph.makeLabel(ThesisProteinCitationRel.NAME).manyToMany().make();
+    	//unpublished observation
+    	graph.makeLabel(UnpublishedObservationAuthorRel.NAME).manyToMany().make();
+    	graph.makeLabel(UnpublishedObservationProteinCitationRel.NAME).manyToMany().make();
     	
     }
     
