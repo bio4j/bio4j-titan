@@ -65,6 +65,7 @@ import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
+import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency;
 import com.tinkerpop.blueprints.Vertex;
 
@@ -378,8 +379,8 @@ public class InitBio4jTitan implements Executable {
         graph.makeLabel(NCBITaxonRel.NAME).oneToOne().make();
 
         // GI
-        graph.makeKey(GiIdNode.GI_ID_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
-        graph.makeLabel(GiIdToNCBITaxonRel.NAME).oneToOne().make();
+        TitanKey giIdKey = graph.makeKey(GiIdNode.GI_ID_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeLabel(GiIdToNCBITaxonRel.NAME).manyToOne().signature(giIdKey).make();
     }
 
     private static void createIndices(TitanGraph graph) {
@@ -424,8 +425,8 @@ public class InitBio4jTitan implements Executable {
         graph.createKeyIndex(ThesisNode.TITLE_PROPERTY, Vertex.class);
 
         //---NCBI TAXON--
-        graph.createKeyIndex(NCBITaxonNode.TAX_ID_PROPERTY, Vertex.class);
-        graph.createKeyIndex(NCBITaxonNode.GI_IDS_PROPERTY, Vertex.class);
+        // graph.createKeyIndex(NCBITaxonNode.TAX_ID_PROPERTY, Vertex.class);
+        // graph.createKeyIndex(NCBITaxonNode.GI_IDS_PROPERTY, Vertex.class);
 
         //---REACTOME TERM---
         graph.createKeyIndex(ReactomeTermNode.ID_PROPERTY, Vertex.class);

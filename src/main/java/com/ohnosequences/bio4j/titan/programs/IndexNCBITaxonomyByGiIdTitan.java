@@ -115,21 +115,21 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
                     if (nCBITaxonNode != null) {
                         // add node
                         GiIdNode giNode = new GiIdNode(manager.createNode(GiIdNode.NODE_TYPE));
-                        giNode.setGiId(giId);
                         // add relation to taxon
-                        NCBITaxonNode taxNode = nodeRetriever.getNCBITaxonByTaxId(taxId);
-                        manager.getGraph().addEdge(null, giNode.getNode(), taxNode.getNode(), GiIdToNCBITaxonRel.NAME);
+                        manager.getGraph().addEdge(null, giNode.getNode(), nCBITaxonNode.getNode(), GiIdToNCBITaxonRel.NAME);
+                        // and set the mapping
+                        giNode.setGiId(giId);
 
-                        lineCounter++;
-                        if (lineCounter % limitForTransaction == 0) {
-                            System.out.println("lineCounter = " + lineCounter);
-                            outBufferedWriter.flush();
-                            manager.getGraph().commit();
-                        }
                     } else {
                         outBufferedWriter.write(giId + "\t" + taxId + "\n");
                     }
 
+                    lineCounter++;
+                    if (lineCounter % limitForTransaction == 0) {
+                        System.out.println("lineCounter = " + lineCounter);
+                        outBufferedWriter.flush();
+                        manager.getGraph().commit();
+                    }
                 }
                 reader.close();
                 outBufferedWriter.close();
