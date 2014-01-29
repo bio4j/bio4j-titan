@@ -1,0 +1,1 @@
+Upgraded to bio4j-model v0.3.2 with important fix for relationships names collision

@@ -1,0 +1,8 @@
+* Added some relationship types definitions;
+* Fixed setters/getters for gi ids and old tax ids;
+* Defined necessary taxonomy keys in InitBio4j;
+* Improved taxonomy importing (batch-loading);
+* Changed implementation of GI-related importing programs;
+* Fixed package tree plus added new class wrapper NCBITAxonNode;
+* Removed wrong package tree;
+* Made GI ids and old tax ids multiple-value properties
