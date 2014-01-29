@@ -19,6 +19,7 @@ package com.ohnosequences.bio4j.titan.programs;
 import com.ohnosequences.bio4j.blueprints.model.nodes.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.NCBITaxonNode;
+import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.GiIdNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.refseq.GenomeElementNode;
 import com.ohnosequences.bio4j.blueprints.model.relationships.InstituteCountryRel;
@@ -26,6 +27,7 @@ import com.ohnosequences.bio4j.blueprints.model.relationships.IsoformEventGenera
 import com.ohnosequences.bio4j.blueprints.model.relationships.SubcellularLocationParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.TaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonRel;
+import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.GiIdToNCBITaxonRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.NCBITaxonParentRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductInitiationRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.aproducts.AlternativeProductPromoterRel;
@@ -88,6 +90,7 @@ import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.thinkaurelius.titan.core.TitanGraph;
+import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TypeMaker.UniquenessConsistency;
 import com.tinkerpop.blueprints.Vertex;
 
@@ -425,6 +428,10 @@ public class InitBio4jTitan implements Executable {
         graph.makeLabel(NCBITaxonParentRel.NAME).manyToOne().make();
         // FIXME: not sure about this label:
         graph.makeLabel(NCBITaxonRel.NAME).oneToOne().make();
+
+        // GI
+        TitanKey giIdKey = graph.makeKey(GiIdNode.GI_ID_PROPERTY).dataType(String.class).unique().indexed(Vertex.class).make();
+        graph.makeLabel(GiIdToNCBITaxonRel.NAME).manyToOne().signature(giIdKey).make();
     }
 
     private static void createIndices(TitanGraph graph) {
@@ -469,8 +476,8 @@ public class InitBio4jTitan implements Executable {
         graph.createKeyIndex(ThesisNode.TITLE_PROPERTY, Vertex.class);
 
         //---NCBI TAXON--
-        graph.createKeyIndex(NCBITaxonNode.TAX_ID_PROPERTY, Vertex.class);
-        graph.createKeyIndex(NCBITaxonNode.GI_IDS_PROPERTY, Vertex.class);
+        // graph.createKeyIndex(NCBITaxonNode.TAX_ID_PROPERTY, Vertex.class);
+        // graph.createKeyIndex(NCBITaxonNode.GI_IDS_PROPERTY, Vertex.class);
 
         //---REACTOME TERM---
         graph.createKeyIndex(ReactomeTermNode.ID_PROPERTY, Vertex.class);

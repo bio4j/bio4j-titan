@@ -16,6 +16,8 @@
  */
 package com.ohnosequences.bio4j.titan.programs;
 
+import com.ohnosequences.bio4j.blueprints.model.relationships.ncbi.GiIdToNCBITaxonRel;
+import com.ohnosequences.bio4j.blueprints.model.nodes.ncbi.GiIdNode;
 import com.ohnosequences.bio4j.titan.model.NCBITaxonNode;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
@@ -55,7 +57,7 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
 
         if (args.length != 2) {
             System.out.println("This program expects the following parameters: \n"
-                    + "1. Tax-id <--> Gi-id table file \n"
+                    + "1. Gi-id <--> Tax-id table file \n"
                     + "2. Bio4j DB folder \n");
         } else {
 
@@ -111,18 +113,23 @@ public class IndexNCBITaxonomyByGiIdTitan implements Executable {
                     if (taxId != "0") nCBITaxonNode = nodeRetriever.getNCBITaxonByTaxId(String.valueOf(taxId));
 
                     if (nCBITaxonNode != null) {
-                        nCBITaxonNode.addGiId(giId);
+                        // add node
+                        GiIdNode giNode = new GiIdNode(manager.createNode(GiIdNode.NODE_TYPE));
+                        // add relation to taxon
+                        manager.getGraph().addEdge(null, giNode.getNode(), nCBITaxonNode.getNode(), GiIdToNCBITaxonRel.NAME);
+                        // and set the mapping
+                        giNode.setGiId(giId);
 
-                        lineCounter++;
-                        if (lineCounter % limitForTransaction == 0) {
-                            System.out.println("lineCounter = " + lineCounter);
-                            outBufferedWriter.flush();
-                            manager.getGraph().commit();
-                        }
                     } else {
                         outBufferedWriter.write(giId + "\t" + taxId + "\n");
                     }
 
+                    lineCounter++;
+                    if (lineCounter % limitForTransaction == 0) {
+                        System.out.println("lineCounter = " + lineCounter);
+                        outBufferedWriter.flush();
+                        manager.getGraph().commit();
+                    }
                 }
                 reader.close();
                 outBufferedWriter.close();
