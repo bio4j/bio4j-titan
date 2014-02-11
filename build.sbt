@@ -4,11 +4,11 @@ Nice.javaProject
 
 Nice.fatArtifactSettings
 
-name := "bio4j-titandb"
+organization := "bio4j"
 
-description := "bio4j-titandb project"
+name := "titandb"
 
-organization := "ohnosequences"
+description := "titandb implementation of the Bio4j model"
 
 bucketSuffix := "era7.com"
 
