@@ -16,7 +16,6 @@
  */
 package com.ohnosequences.bio4j.titan.programs;
 
-import com.ohnosequences.bio4j.CommonData;
 import com.ohnosequences.bio4j.blueprints.model.nodes.IsoformNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.ProteinNode;
 import com.ohnosequences.bio4j.blueprints.model.relationships.uniref.UniRef100MemberRel;
@@ -24,6 +23,7 @@ import com.ohnosequences.bio4j.blueprints.model.relationships.uniref.UniRef50Mem
 import com.ohnosequences.bio4j.blueprints.model.relationships.uniref.UniRef90MemberRel;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
+import com.ohnosequences.bio4j.titan.model.util.UniprotStuff;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -193,9 +193,9 @@ public class ImportUnirefTitan implements Executable {
 
         while ((line = reader.readLine()) != null) {
             //----we reached a entry line-----
-            if (line.trim().startsWith("<" + CommonData.ENTRY_TAG_NAME)) {
+            if (line.trim().startsWith("<" + UniprotStuff.ENTRY_TAG_NAME)) {
 
-                while (!line.trim().startsWith("</" + CommonData.ENTRY_TAG_NAME + ">")) {
+                while (!line.trim().startsWith("</" + UniprotStuff.ENTRY_TAG_NAME + ">")) {
                     entryStBuilder.append(line);
                     line = reader.readLine();
                 }

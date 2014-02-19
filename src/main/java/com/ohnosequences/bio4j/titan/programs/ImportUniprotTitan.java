@@ -16,7 +16,6 @@
  */
 package com.ohnosequences.bio4j.titan.programs;
 
-import com.ohnosequences.bio4j.CommonData;
 import com.ohnosequences.bio4j.blueprints.model.nodes.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.citation.*;
 import com.ohnosequences.bio4j.blueprints.model.nodes.reactome.ReactomeTermNode;
@@ -53,6 +52,7 @@ import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
 import com.ohnosequences.bio4j.titan.model.ProteinNode;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
+import com.ohnosequences.bio4j.titan.model.util.UniprotStuff;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.bioinfoxml.bio4j.UniprotDataXML;
 import com.era7.era7xmlapi.model.XMLElement;
@@ -158,9 +158,9 @@ public class ImportUniprotTitan implements Executable {
                 StringBuilder entryStBuilder = new StringBuilder();
 
                 while ((line = reader.readLine()) != null) {
-                    if (line.trim().startsWith("<" + CommonData.ENTRY_TAG_NAME)) {
+                    if (line.trim().startsWith("<" + UniprotStuff.ENTRY_TAG_NAME)) {
 
-                        while (!line.trim().startsWith("</" + CommonData.ENTRY_TAG_NAME + ">")) {
+                        while (!line.trim().startsWith("</" + UniprotStuff.ENTRY_TAG_NAME + ">")) {
                             entryStBuilder.append(line);
                             line = reader.readLine();
                         }
@@ -172,12 +172,12 @@ public class ImportUniprotTitan implements Executable {
                         XMLElement entryXMLElem = new XMLElement(entryStBuilder.toString());
                         entryStBuilder.delete(0, entryStBuilder.length());
 
-                        String modifiedDateSt = entryXMLElem.asJDomElement().getAttributeValue(CommonData.ENTRY_MODIFIED_DATE_ATTRIBUTE);
+                        String modifiedDateSt = entryXMLElem.asJDomElement().getAttributeValue(UniprotStuff.ENTRY_MODIFIED_DATE_ATTRIBUTE);
 
-                        String accessionSt = entryXMLElem.asJDomElement().getChildText(CommonData.ENTRY_ACCESSION_TAG_NAME);
-                        String nameSt = entryXMLElem.asJDomElement().getChildText(CommonData.ENTRY_NAME_TAG_NAME);
-                        String fullNameSt = getProteinFullName(entryXMLElem.asJDomElement().getChild(CommonData.PROTEIN_TAG_NAME));
-                        String shortNameSt = getProteinShortName(entryXMLElem.asJDomElement().getChild(CommonData.PROTEIN_TAG_NAME));
+                        String accessionSt = entryXMLElem.asJDomElement().getChildText(UniprotStuff.ENTRY_ACCESSION_TAG_NAME);
+                        String nameSt = entryXMLElem.asJDomElement().getChildText(UniprotStuff.ENTRY_NAME_TAG_NAME);
+                        String fullNameSt = getProteinFullName(entryXMLElem.asJDomElement().getChild(UniprotStuff.PROTEIN_TAG_NAME));
+                        String shortNameSt = getProteinShortName(entryXMLElem.asJDomElement().getChild(UniprotStuff.PROTEIN_TAG_NAME));
 
                         if (shortNameSt == null) {
                             shortNameSt = "";
@@ -190,7 +190,7 @@ public class ImportUniprotTitan implements Executable {
                         
                         List<String> alternativeAccessions = new LinkedList<>();
                         //-----------alternative accessions-------------
-                        List<Element> altAccessionsList = entryXMLElem.asJDomElement().getChildren(CommonData.ENTRY_ACCESSION_TAG_NAME);
+                        List<Element> altAccessionsList = entryXMLElem.asJDomElement().getChildren(UniprotStuff.ENTRY_ACCESSION_TAG_NAME);
                         for (int i = 1; i < altAccessionsList.size(); i++) {
                             alternativeAccessions.add(altAccessionsList.get(i).getText());
                         }
@@ -198,7 +198,7 @@ public class ImportUniprotTitan implements Executable {
                         currentProteinNode.setAlternativeAccessions(alternativeAccessions.toArray(new String[alternativeAccessions.size()]));
 
                         //-----db references-------------
-                        List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(CommonData.DB_REFERENCE_TAG_NAME);
+                        List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(UniprotStuff.DB_REFERENCE_TAG_NAME);
                         LinkedList<String> emblReferences = new LinkedList<>();
                         LinkedList<String> refseqReferences = new LinkedList<>();
                         LinkedList<String> enzymeDBReferences = new LinkedList<>();
@@ -343,7 +343,7 @@ public class ImportUniprotTitan implements Executable {
                         for (Element dbReferenceElem : dbReferenceList) {      
                             
                             String refId = dbReferenceElem.getAttributeValue("id");                            
-                            String attributeType = dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE);
+                            String attributeType = dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE);
                             
                             if(attributeType.equals(UniprotDBXref.ENSEMBL.getUniprotAttributeValue())){
                                 ensemblReferences.add(refId);
@@ -355,18 +355,18 @@ public class ImportUniprotTitan implements Executable {
                                 keggReferences.add(refId);
                             }else if(attributeType.equals(UniprotDBXref.EMBL.getUniprotAttributeValue())){
                                 emblReferences.add(refId);
-                            }else if (dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals("EC")) {
+                            }else if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals("EC")) {
                                 enzymeDBReferences.add(refId);
                             } else if (attributeType.equals(UniprotDBXref.ARRAY_EXPRESS.getUniprotAttributeValue())) {
                                 arrayExpressReferences.add(refId);
-                            } else if (dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals("RefSeq")) {                                
+                            } else if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals("RefSeq")) {                                
                                 List<Element> children = dbReferenceElem.getChildren("property");
                                 for (Element propertyElem : children) {
                                     if (propertyElem.getAttributeValue("type").equals("nucleotide sequence ID")) {
                                         refseqReferences.add(propertyElem.getAttributeValue("value"));
                                     }
                                 }
-                            } else if (dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals("Reactome")) {
+                            } else if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals("Reactome")) {
                                 Element propertyElem = dbReferenceElem.getChild("property");
                                 String pathwayName = "";
                                 if (propertyElem.getAttributeValue("type").equals("pathway name")) {
@@ -638,10 +638,10 @@ public class ImportUniprotTitan implements Executable {
                             
                         }
 
-                        Element sequenceElem = entryXMLElem.asJDomElement().getChild(CommonData.ENTRY_SEQUENCE_TAG_NAME);
+                        Element sequenceElem = entryXMLElem.asJDomElement().getChild(UniprotStuff.ENTRY_SEQUENCE_TAG_NAME);
                         String sequenceSt = sequenceElem.getText();
-                        int seqLength = Integer.parseInt(sequenceElem.getAttributeValue(CommonData.SEQUENCE_LENGTH_ATTRIBUTE));
-                        float seqMass = Float.parseFloat(sequenceElem.getAttributeValue(CommonData.SEQUENCE_MASS_ATTRIBUTE));
+                        int seqLength = Integer.parseInt(sequenceElem.getAttributeValue(UniprotStuff.SEQUENCE_LENGTH_ATTRIBUTE));
+                        float seqMass = Float.parseFloat(sequenceElem.getAttributeValue(UniprotStuff.SEQUENCE_MASS_ATTRIBUTE));
                         
                         currentProteinNode.setModifiedDate(modifiedDateSt);
                         currentProteinNode.setAccession(accessionSt);
@@ -790,10 +790,10 @@ public class ImportUniprotTitan implements Executable {
                         
 
                         //---------------gene-names-------------------
-                        Element geneElement = entryXMLElem.asJDomElement().getChild(CommonData.GENE_TAG_NAME);
+                        Element geneElement = entryXMLElem.asJDomElement().getChild(UniprotStuff.GENE_TAG_NAME);
                         ArrayList<String> geneNames = new ArrayList<>();
                         if (geneElement != null) {
-                            List<Element> genesList = geneElement.getChildren(CommonData.GENE_NAME_TAG_NAME);
+                            List<Element> genesList = geneElement.getChildren(UniprotStuff.GENE_NAME_TAG_NAME);
                             for (Element geneNameElem : genesList) {
                                 geneNames.add(geneNameElem.getText());
                             }
@@ -861,7 +861,7 @@ public class ImportUniprotTitan implements Executable {
                         }
 
                         //--------------------------------datasets--------------------------------------------------
-                        String proteinDataSetSt = entryXMLElem.asJDomElement().getAttributeValue(CommonData.ENTRY_DATASET_ATTRIBUTE);
+                        String proteinDataSetSt = entryXMLElem.asJDomElement().getAttributeValue(UniprotStuff.ENTRY_DATASET_ATTRIBUTE);
 
                         DatasetNode datasetNode = nodeRetriever.getDatasetByName(proteinDataSetSt);
 
@@ -885,9 +885,9 @@ public class ImportUniprotTitan implements Executable {
 
                         //-------------------------------keywords------------------------------------------------------
                         if (uniprotDataXML.getKeywords()) {
-                            List<Element> keywordsList = entryXMLElem.asJDomElement().getChildren(CommonData.KEYWORD_TAG_NAME);
+                            List<Element> keywordsList = entryXMLElem.asJDomElement().getChildren(UniprotStuff.KEYWORD_TAG_NAME);
                             for (Element keywordElem : keywordsList) {
-                                String keywordId = keywordElem.getAttributeValue(CommonData.KEYWORD_ID_ATTRIBUTE);
+                                String keywordId = keywordElem.getAttributeValue(UniprotStuff.KEYWORD_ID_ATTRIBUTE);
                                 String keywordName = keywordElem.getText();
 
                                 KeywordNode keywordNode = nodeRetriever.getKeywordById(keywordId);
@@ -908,19 +908,19 @@ public class ImportUniprotTitan implements Executable {
                         for (Element dbReferenceElem : dbReferenceList) {
 
                             //-------------------------------INTERPRO------------------------------------------------------  
-                            if (dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals(CommonData.INTERPRO_DB_REFERENCE_TYPE)) {
+                            if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals(UniprotStuff.INTERPRO_DB_REFERENCE_TYPE)) {
 
                                 if (uniprotDataXML.getInterpro()) {
-                                    String interproId = dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_ID_ATTRIBUTE);
+                                    String interproId = dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_ID_ATTRIBUTE);
 
                                     InterproNode interproNode = nodeRetriever.getInterproById(interproId);
 
                                     if (interproNode == null) {
                                         String interproEntryNameSt = "";
-                                        List<Element> properties = dbReferenceElem.getChildren(CommonData.DB_REFERENCE_PROPERTY_TAG_NAME);
+                                        List<Element> properties = dbReferenceElem.getChildren(UniprotStuff.DB_REFERENCE_PROPERTY_TAG_NAME);
                                         for (Element prop : properties) {
-                                            if (prop.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals(CommonData.INTERPRO_ENTRY_NAME)) {
-                                                interproEntryNameSt = prop.getAttributeValue(CommonData.DB_REFERENCE_VALUE_ATTRIBUTE);
+                                            if (prop.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals(UniprotStuff.INTERPRO_ENTRY_NAME)) {
+                                                interproEntryNameSt = prop.getAttributeValue(UniprotStuff.DB_REFERENCE_VALUE_ATTRIBUTE);
                                                 break;
                                             }
                                         }
@@ -935,19 +935,19 @@ public class ImportUniprotTitan implements Executable {
                                 }
 
                             } //-------------------------------PFAM------------------------------------------------------  
-                            else if (dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals("Pfam")) {
+                            else if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals("Pfam")) {
 
                                 if (uniprotDataXML.getPfam()) {
-                                    String pfamId = dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_ID_ATTRIBUTE);
+                                    String pfamId = dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_ID_ATTRIBUTE);
 
                                     PfamNode pfamNode = nodeRetriever.getPfamById(pfamId);
 
                                     if (pfamNode == null) {
                                         String pfamEntryNameSt = "";
-                                        List<Element> properties = dbReferenceElem.getChildren(CommonData.DB_REFERENCE_PROPERTY_TAG_NAME);
+                                        List<Element> properties = dbReferenceElem.getChildren(UniprotStuff.DB_REFERENCE_PROPERTY_TAG_NAME);
                                         for (Element prop : properties) {
-                                            if (prop.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals("entry name")) {
-                                                pfamEntryNameSt = prop.getAttributeValue(CommonData.DB_REFERENCE_VALUE_ATTRIBUTE);
+                                            if (prop.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals("entry name")) {
+                                                pfamEntryNameSt = prop.getAttributeValue(UniprotStuff.DB_REFERENCE_VALUE_ATTRIBUTE);
                                                 break;
                                             }
                                         }
@@ -961,14 +961,14 @@ public class ImportUniprotTitan implements Executable {
 
 
                             } //-------------------GO -----------------------------
-                            else if (dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(CommonData.GO_DB_REFERENCE_TYPE)) {
+                            else if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(UniprotStuff.GO_DB_REFERENCE_TYPE)) {
 
                                 if (uniprotDataXML.getGeneOntology()) {
-                                    String goId = dbReferenceElem.getAttributeValue(CommonData.DB_REFERENCE_ID_ATTRIBUTE);
+                                    String goId = dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_ID_ATTRIBUTE);
                                     String evidenceSt = "";
-                                    List<Element> props = dbReferenceElem.getChildren(CommonData.DB_REFERENCE_PROPERTY_TAG_NAME);
+                                    List<Element> props = dbReferenceElem.getChildren(UniprotStuff.DB_REFERENCE_PROPERTY_TAG_NAME);
                                     for (Element element : props) {
-                                        if (element.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE).equals(CommonData.EVIDENCE_TYPE_ATTRIBUTE)) {
+                                        if (element.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals(UniprotStuff.EVIDENCE_TYPE_ATTRIBUTE)) {
                                             evidenceSt = element.getAttributeValue("value");
                                             if (evidenceSt == null) {
                                                 evidenceSt = "";
@@ -994,16 +994,16 @@ public class ImportUniprotTitan implements Executable {
                         commName = "";
                         synName = "";
 
-                        Element organismElem = entryXMLElem.asJDomElement().getChild(CommonData.ORGANISM_TAG_NAME);
+                        Element organismElem = entryXMLElem.asJDomElement().getChild(UniprotStuff.ORGANISM_TAG_NAME);
 
-                        List<Element> organismNames = organismElem.getChildren(CommonData.ORGANISM_NAME_TAG_NAME);
+                        List<Element> organismNames = organismElem.getChildren(UniprotStuff.ORGANISM_NAME_TAG_NAME);
                         for (Element element : organismNames) {
-                            String type = element.getAttributeValue(CommonData.ORGANISM_NAME_TYPE_ATTRIBUTE);
-                            if (type.equals(CommonData.ORGANISM_SCIENTIFIC_NAME_TYPE)) {
+                            String type = element.getAttributeValue(UniprotStuff.ORGANISM_NAME_TYPE_ATTRIBUTE);
+                            if (type.equals(UniprotStuff.ORGANISM_SCIENTIFIC_NAME_TYPE)) {
                                 scName = element.getText();
-                            } else if (type.equals(CommonData.ORGANISM_COMMON_NAME_TYPE)) {
+                            } else if (type.equals(UniprotStuff.ORGANISM_COMMON_NAME_TYPE)) {
                                 commName = element.getText();
-                            } else if (type.equals(CommonData.ORGANISM_SYNONYM_NAME_TYPE)) {
+                            } else if (type.equals(UniprotStuff.ORGANISM_SYNONYM_NAME_TYPE)) {
                                 synName = element.getText();
                             }
                         }
@@ -1018,7 +1018,7 @@ public class ImportUniprotTitan implements Executable {
                             organismNode.setScientificName(scName);
                             organismNode.setSynonymName(synName);
 
-                            List<Element> organismDbRefElems = organismElem.getChildren(CommonData.DB_REFERENCE_TAG_NAME);
+                            List<Element> organismDbRefElems = organismElem.getChildren(UniprotStuff.DB_REFERENCE_TAG_NAME);
                             if (organismDbRefElems != null) {
                                 for (Element dbRefElem : organismDbRefElems) {
                                     String t = dbRefElem.getAttributeValue("type");
@@ -1135,11 +1135,11 @@ public class ImportUniprotTitan implements Executable {
 
 
         //--------------------------------features----------------------------------------------------
-        List<Element> featuresList = entryXMLElem.asJDomElement().getChildren(CommonData.FEATURE_TAG_NAME);
+        List<Element> featuresList = entryXMLElem.asJDomElement().getChildren(UniprotStuff.FEATURE_TAG_NAME);
 
         for (Element featureElem : featuresList) {
 
-            String featureTypeSt = featureElem.getAttributeValue(CommonData.FEATURE_TYPE_ATTRIBUTE);
+            String featureTypeSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_TYPE_ATTRIBUTE);
             
             FeatureTypeNode featureTypeNode = nodeRetriever.getFeatureTypeByName(featureTypeSt);
 
@@ -1148,33 +1148,33 @@ public class ImportUniprotTitan implements Executable {
                 featureTypeNode.setName(featureTypeSt);
             }
 
-            String featureDescSt = featureElem.getAttributeValue(CommonData.FEATURE_DESCRIPTION_ATTRIBUTE);
+            String featureDescSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_DESCRIPTION_ATTRIBUTE);
             if (featureDescSt == null) {
                 featureDescSt = "";
             }
-            String featureIdSt = featureElem.getAttributeValue(CommonData.FEATURE_ID_ATTRIBUTE);
+            String featureIdSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_ID_ATTRIBUTE);
             if (featureIdSt == null) {
                 featureIdSt = "";
             }
-            String featureStatusSt = featureElem.getAttributeValue(CommonData.STATUS_ATTRIBUTE);
+            String featureStatusSt = featureElem.getAttributeValue(UniprotStuff.STATUS_ATTRIBUTE);
             if (featureStatusSt == null) {
                 featureStatusSt = "";
             }
-            String featureEvidenceSt = featureElem.getAttributeValue(CommonData.EVIDENCE_ATTRIBUTE);
+            String featureEvidenceSt = featureElem.getAttributeValue(UniprotStuff.EVIDENCE_ATTRIBUTE);
             if (featureEvidenceSt == null) {
                 featureEvidenceSt = "";
             }
 
-            Element locationElem = featureElem.getChild(CommonData.FEATURE_LOCATION_TAG_NAME);
-            Element positionElem = locationElem.getChild(CommonData.FEATURE_POSITION_TAG_NAME);
+            Element locationElem = featureElem.getChild(UniprotStuff.FEATURE_LOCATION_TAG_NAME);
+            Element positionElem = locationElem.getChild(UniprotStuff.FEATURE_POSITION_TAG_NAME);
             String beginFeatureSt;
             String endFeatureSt;
             if (positionElem != null) {
-                beginFeatureSt = positionElem.getAttributeValue(CommonData.FEATURE_POSITION_POSITION_ATTRIBUTE);
+                beginFeatureSt = positionElem.getAttributeValue(UniprotStuff.FEATURE_POSITION_POSITION_ATTRIBUTE);
                 endFeatureSt = beginFeatureSt;
             } else {
-                beginFeatureSt = locationElem.getChild(CommonData.FEATURE_LOCATION_BEGIN_TAG_NAME).getAttributeValue(CommonData.FEATURE_LOCATION_POSITION_ATTRIBUTE);
-                endFeatureSt = locationElem.getChild(CommonData.FEATURE_LOCATION_END_TAG_NAME).getAttributeValue(CommonData.FEATURE_LOCATION_POSITION_ATTRIBUTE);
+                beginFeatureSt = locationElem.getChild(UniprotStuff.FEATURE_LOCATION_BEGIN_TAG_NAME).getAttributeValue(UniprotStuff.FEATURE_LOCATION_POSITION_ATTRIBUTE);
+                endFeatureSt = locationElem.getChild(UniprotStuff.FEATURE_LOCATION_END_TAG_NAME).getAttributeValue(UniprotStuff.FEATURE_LOCATION_POSITION_ATTRIBUTE);
             }
 
             if (beginFeatureSt == null) {
@@ -1184,15 +1184,15 @@ public class ImportUniprotTitan implements Executable {
                 endFeatureSt = "";
             }
 
-            String originalSt = featureElem.getChildText(CommonData.FEATURE_ORIGINAL_TAG_NAME);
-            String variationSt = featureElem.getChildText(CommonData.FEATURE_VARIATION_TAG_NAME);
+            String originalSt = featureElem.getChildText(UniprotStuff.FEATURE_ORIGINAL_TAG_NAME);
+            String variationSt = featureElem.getChildText(UniprotStuff.FEATURE_VARIATION_TAG_NAME);
             if (originalSt == null) {
                 originalSt = "";
             }
             if (variationSt == null) {
                 variationSt = "";
             }
-            String featureRefSt = featureElem.getAttributeValue(CommonData.FEATURE_REF_ATTRIBUTE);
+            String featureRefSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_REF_ATTRIBUTE);
             if (featureRefSt == null) {
                 featureRefSt = "";
             }
@@ -1302,11 +1302,11 @@ public class ImportUniprotTitan implements Executable {
             String proteinSequence,
             UniprotDataXML uniprotDataXML) {
 
-        List<Element> comments = entryXMLElem.asJDomElement().getChildren(CommonData.COMMENT_TAG_NAME);
+        List<Element> comments = entryXMLElem.asJDomElement().getChildren(UniprotStuff.COMMENT_TAG_NAME);
 
         for (Element commentElem : comments) {
 
-            String commentTypeSt = commentElem.getAttributeValue(CommonData.COMMENT_TYPE_ATTRIBUTE);
+            String commentTypeSt = commentElem.getAttributeValue(UniprotStuff.COMMENT_TYPE_ATTRIBUTE);
 
             Element textElem = commentElem.getChild("text");
             String commentTextSt = "";
@@ -1462,11 +1462,11 @@ public class ImportUniprotTitan implements Executable {
             else if (commentTypeSt.equals(ProteinSubcellularLocationRel.UNIPROT_ATTRIBUTE_TYPE_VALUE)) {
 
                 if (uniprotDataXML.getSubcellularLocations()) {
-                    List<Element> subcLocations = commentElem.getChildren(CommonData.SUBCELLULAR_LOCATION_TAG_NAME);
+                    List<Element> subcLocations = commentElem.getChildren(UniprotStuff.SUBCELLULAR_LOCATION_TAG_NAME);
 
                     for (Element subcLocation : subcLocations) {
 
-                        List<Element> locations = subcLocation.getChildren(CommonData.LOCATION_TAG_NAME);
+                        List<Element> locations = subcLocation.getChildren(UniprotStuff.LOCATION_TAG_NAME);
                         Element firstLocation = locations.get(0);
 
                         SubcellularLocationNode firstLocationNode = nodeRetriever.getSubcellularLocationByName(firstLocation.getTextTrim());
@@ -1490,8 +1490,8 @@ public class ImportUniprotTitan implements Executable {
                             lastLocationNode = tempLocationNode;
                         }
                         Element lastLocation = locations.get(locations.size() - 1);
-                        String evidenceSt = lastLocation.getAttributeValue(CommonData.EVIDENCE_ATTRIBUTE);
-                        String statusSt = lastLocation.getAttributeValue(CommonData.STATUS_ATTRIBUTE);
+                        String evidenceSt = lastLocation.getAttributeValue(UniprotStuff.EVIDENCE_ATTRIBUTE);
+                        String statusSt = lastLocation.getAttributeValue(UniprotStuff.STATUS_ATTRIBUTE);
                         String topologyStatusSt = "";
                         String topologySt = "";
                         Element topologyElem = subcLocation.getChild("topology");
@@ -1523,7 +1523,7 @@ public class ImportUniprotTitan implements Executable {
                 updateCommentProps = false;
 
             } //----- alternative products---------
-            else if (commentTypeSt.equals(CommonData.COMMENT_ALTERNATIVE_PRODUCTS_TYPE)) {
+            else if (commentTypeSt.equals(UniprotStuff.COMMENT_ALTERNATIVE_PRODUCTS_TYPE)) {
 
                 if (uniprotDataXML.getIsoforms()) {
                     List<Element> eventList = commentElem.getChildren("event");
@@ -1581,7 +1581,7 @@ public class ImportUniprotTitan implements Executable {
                 updateCommentProps = false;
 
             } //----- sequence caution---------
-            else if (commentTypeSt.equals(CommonData.COMMENT_SEQUENCE_CAUTION_TYPE)) {
+            else if (commentTypeSt.equals(UniprotStuff.COMMENT_SEQUENCE_CAUTION_TYPE)) {
 
                 Element conflictElem = commentElem.getChild("conflict");
                 if (conflictElem != null) {
@@ -1825,11 +1825,11 @@ public class ImportUniprotTitan implements Executable {
         if (proteinElement == null) {
             return "";
         } else {
-            Element recElem = proteinElement.getChild(CommonData.PROTEIN_RECOMMENDED_NAME_TAG_NAME);
+            Element recElem = proteinElement.getChild(UniprotStuff.PROTEIN_RECOMMENDED_NAME_TAG_NAME);
             if (recElem == null) {
                 return "";
             } else {
-                return recElem.getChildText(CommonData.PROTEIN_FULL_NAME_TAG_NAME);
+                return recElem.getChildText(UniprotStuff.PROTEIN_FULL_NAME_TAG_NAME);
             }
         }
     }
@@ -1838,11 +1838,11 @@ public class ImportUniprotTitan implements Executable {
         if (proteinElement == null) {
             return "";
         } else {
-            Element recElem = proteinElement.getChild(CommonData.PROTEIN_RECOMMENDED_NAME_TAG_NAME);
+            Element recElem = proteinElement.getChild(UniprotStuff.PROTEIN_RECOMMENDED_NAME_TAG_NAME);
             if (recElem == null) {
                 return "";
             } else {
-                return recElem.getChildText(CommonData.PROTEIN_SHORT_NAME_TAG_NAME);
+                return recElem.getChildText(UniprotStuff.PROTEIN_SHORT_NAME_TAG_NAME);
             }
         }
     }
@@ -1855,13 +1855,13 @@ public class ImportUniprotTitan implements Executable {
             UniprotDataXML uniprotDataXML) {
 
 
-        List<Element> referenceList = entryXMLElem.asJDomElement().getChildren(CommonData.REFERENCE_TAG_NAME);
+        List<Element> referenceList = entryXMLElem.asJDomElement().getChildren(UniprotStuff.REFERENCE_TAG_NAME);
 
         for (Element reference : referenceList) {
-            List<Element> citationsList = reference.getChildren(CommonData.CITATION_TAG_NAME);
+            List<Element> citationsList = reference.getChildren(UniprotStuff.CITATION_TAG_NAME);
             for (Element citation : citationsList) {
 
-                String citationType = citation.getAttributeValue(CommonData.DB_REFERENCE_TYPE_ATTRIBUTE);
+                String citationType = citation.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE);
 
                 List<PersonNode> authorsPersonNodes = new ArrayList<>();
                 List<ConsortiumNode> authorsConsortiumNodes = new ArrayList<>();

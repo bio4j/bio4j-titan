@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.ohnosequences.bio4j.titan.programs;
-import com.ohnosequences.bio4j.CommonData;
 import com.ohnosequences.bio4j.blueprints.model.nodes.IsoformNode;
 import com.ohnosequences.bio4j.blueprints.model.nodes.ProteinNode;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinIsoformInteractionRel;
 import com.ohnosequences.bio4j.blueprints.model.relationships.protein.ProteinProteinInteractionRel;
 import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
 import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
+import com.ohnosequences.bio4j.titan.model.util.UniprotStuff;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -113,9 +113,9 @@ public class ImportProteinInteractionsTitan implements Executable {
 
 
                 while ((line = reader.readLine()) != null) {
-                    if (line.trim().startsWith("<" + CommonData.ENTRY_TAG_NAME)) {
+                    if (line.trim().startsWith("<" + UniprotStuff.ENTRY_TAG_NAME)) {
 
-                        while (!line.trim().startsWith("</" + CommonData.ENTRY_TAG_NAME + ">")) {
+                        while (!line.trim().startsWith("</" + UniprotStuff.ENTRY_TAG_NAME + ">")) {
                             entryStBuilder.append(line);
                             line = reader.readLine();
                         }
@@ -125,15 +125,15 @@ public class ImportProteinInteractionsTitan implements Executable {
                         XMLElement entryXMLElem = new XMLElement(entryStBuilder.toString());
                         entryStBuilder.delete(0, entryStBuilder.length());
 
-                        accessionSt = entryXMLElem.asJDomElement().getChildText(CommonData.ENTRY_ACCESSION_TAG_NAME);
+                        accessionSt = entryXMLElem.asJDomElement().getChildText(UniprotStuff.ENTRY_ACCESSION_TAG_NAME);
 
                         ProteinNode currentProteinNode = nodeRetriever.getProteinByAccession(accessionSt);
 
-                        List<Element> comments = entryXMLElem.asJDomElement().getChildren(CommonData.COMMENT_TAG_NAME);
+                        List<Element> comments = entryXMLElem.asJDomElement().getChildren(UniprotStuff.COMMENT_TAG_NAME);
 
                         for (Element commentElem : comments) {
 
-                            String commentTypeSt = commentElem.getAttributeValue(CommonData.COMMENT_TYPE_ATTRIBUTE);
+                            String commentTypeSt = commentElem.getAttributeValue(UniprotStuff.COMMENT_TYPE_ATTRIBUTE);
 
                             //----------interaction----------------
                             if (commentTypeSt.equals(ProteinProteinInteractionRel.UNIPROT_ATTRIBUTE_TYPE_VALUE)) {
