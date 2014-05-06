@@ -2,7 +2,7 @@ import AssemblyKeys._
 
 Nice.javaProject
 
-Nice.fatArtifactSettings
+fatArtifactSettings
 
 organization := "bio4j"
 
