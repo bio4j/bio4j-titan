@@ -1,12 +1,15 @@
 package com.ohnosequences.bio4j.titan.model;
 
 import com.thinkaurelius.titan.core.TitanVertex;
+import com.tinkerpop.blueprints.Vertex;
 
 /*
  A typed node.
 
  @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
  */
-public abstract class Node implements TitanVertex, com.bio4j.model.Node<Node<N,T>, T> {
+public abstract class NodeTitan implements TitanVertex{
+	
+	Vertex vertex;
 
 }

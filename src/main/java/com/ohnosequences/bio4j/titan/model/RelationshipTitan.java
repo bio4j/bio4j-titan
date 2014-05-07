@@ -1,4 +1,4 @@
-package com.bio4j.model;
+package com.ohnosequences.bio4j.titan.model;
 
 /*
   A typed relationship with typed source and target. 
@@ -12,12 +12,12 @@ package com.bio4j.model;
 
   @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo Pareja-Tobes</a>
 */
-public interface Relationship <
-  S extends Node<S,ST>,
+public interface RelationshipTitan <
+  S extends NodeTitan<S,ST>,
   ST extends Enum<ST> & NodeType<S,ST>,
-  R extends Relationship<S,ST,R,RT,T,TT>, 
+  R extends RelationshipTitan<S,ST,R,RT,T,TT>, 
   RT extends Enum<RT> & RelationshipType<S,ST,R,RT,T,TT>,
-  T extends Node<T,TT>,
+  T extends NodeTitan<T,TT>,
   TT extends Enum<TT> & NodeType<T,TT>
 > extends Element<R,RT> {
 
