@@ -1,10 +1,10 @@
-package com.bio4j.model.util;
+// package com.bio4j.model.util;
 
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
+// import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
 
-public interface NCBITaxonRetriever extends NodeRetriever<NCBITaxon>{
+// public interface NCBITaxonRetriever extends NodeRetriever<NCBITaxon>{
 
-  public NCBITaxon getNCBITaxonByTaxId(String taxId);
-  public NCBITaxon getNCBITaxonByGiId(String giId);
+//   public NCBITaxon getNCBITaxonByTaxId(String taxId);
+//   public NCBITaxon getNCBITaxonByGiId(String giId);
 
-}
+// }

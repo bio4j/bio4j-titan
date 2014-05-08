@@ -1,9 +1,9 @@
-package com.bio4j.model.util;
+// package com.bio4j.model.util;
 
-import com.bio4j.model.isoforms.nodes.Isoform;
+// import com.bio4j.model.isoforms.nodes.Isoform;
 
-public interface IsoformRetriever extends NodeRetriever<Isoform>{
+// public interface IsoformRetriever extends NodeRetriever<Isoform>{
 
-  public Isoform getIsoformById(String isoformId);
+//   public Isoform getIsoformById(String isoformId);
 
-}
+// }

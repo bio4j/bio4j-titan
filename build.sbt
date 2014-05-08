@@ -2,7 +2,9 @@ import AssemblyKeys._
 
 Nice.javaProject
 
-Nice.fatArtifactSettings
+javaVersion := "1.8"
+
+fatArtifactSettings
 
 organization := "bio4j"
 
@@ -15,6 +17,7 @@ bucketSuffix := "era7.com"
 
 libraryDependencies ++= Seq(
   "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
+  "ohnosequences" % "typed-graphs" % "0.1.0-SNAPSHOT",
   "ohnosequences" % "bioinfo-util" % "1.3.0",
   "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.4",
   "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0",
@@ -25,6 +28,7 @@ dependencyOverrides ++= Set(
   "commons-codec" % "commons-codec" % "1.7",
   "com.fasterxml.jackson.core" % "jackson-core" % "2.1.2",
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.2",
+  "com.fasterxml.jackson.core" % "jackson-annotations" % "2.1.1",
   "commons-beanutils" % "commons-beanutils" % "1.8.3",
   "commons-beanutils" % "commons-beanutils-core" % "1.8.3"
 )
