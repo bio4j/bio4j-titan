@@ -1,4 +1,4 @@
-package com.bio4j.model.go.relationships;
+package com.ohnosequences.bio4j.titan.model.go.relationships;
 
 import com.ohnosequences.typedGraphs.Relationship;
 import com.ohnosequences.typedGraphs.RelationshipType;
