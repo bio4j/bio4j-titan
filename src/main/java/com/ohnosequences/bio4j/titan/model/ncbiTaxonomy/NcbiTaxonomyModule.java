@@ -3,7 +3,7 @@ package com.bio4j.model.ncbiTaxonomy;
 import java.util.Set;
 import java.util.HashSet;
 
-import com.bio4j.model.Module;
+import com.ohnosequences.typedGraphs.Module;
 import com.ohnosequences.typedGraphs.NodeType;
 import com.ohnosequences.typedGraphs.RelationshipType;
 import com.ohnosequences.typedGraphs.PropertyType;
