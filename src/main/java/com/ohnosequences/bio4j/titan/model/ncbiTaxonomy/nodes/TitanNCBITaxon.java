@@ -32,7 +32,10 @@ import com.bio4j.titan.model.ncbiTaxonomy.relationships.TitanParent;
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo Pareja-Tobes</a>
  */
-public final class TitanNCBITaxon extends TitanNode<TitanNCBITaxon, NCBITaxon.Type> implements NCBITaxon
+public final class TitanNCBITaxon extends TitanNode <
+  NCBITaxon, NCBITaxon.Type,
+  TitanNCBITaxon, TitanNCBITaxon.Type
+> implements NCBITaxon
   
   // // properties
   // TaxId<NCBITaxon, NCBITaxon.Type>, // TODO what is this? probably should be changed to id
@@ -47,25 +50,41 @@ public final class TitanNCBITaxon extends TitanNode<TitanNCBITaxon, NCBITaxon.Ty
   TitanNCBITaxon(TitanVertex vertex) { super(vertex); }
 
   // parent
-  // incoming
-  @Override
-  public List<? extends TitanParent> parent_in()  { return inFromMany(TitanParent.TYPE); }
 
+  // incoming
+  @Override public List<? extends TitanParent> parent_in() { 
+
+    return inFromMany(TitanParent.TYPE); 
+  }
   // TODO implement
-  @Override
-  public List<TitanNCBITaxon> parent_inNodes() { return new LinkedList<TitanNCBITaxon>(); }
+  @Override public List<TitanNCBITaxon> parent_inNodes() { 
+
+    return new LinkedList<TitanNCBITaxon>(); 
+  }
   // outgoing
-  @Override
-  public TitanParent parent_out() { return outToOne(TitanParent.TYPE); }
-  @Override
-  public TitanNCBITaxon parent_outNodes() { return new LinkedList<TitanNCBITaxon>(); }
+  @Override public TitanParent parent_out() { 
+
+    return outToOne(TitanParent.TYPE); 
+  }
+  // TODO implement
+  @Override public TitanNCBITaxon parent_outNodes() { 
+
+    return null; 
+  }
 
   // is this about some sort of connection with UniProt taxonomy?
   // public Taxon taxon(); // TODO what is this??
 
   public static Type TYPE = Type.ncbiTaxon;
+
+  @Override
+  public Type titanType() { return TYPE; }
   
-  public static enum Type implements TitanNodeType<TitanNCBITaxon, NCBITaxon.Type> {
+  public static enum Type implements TitanNodeType <
+    NCBITaxon, NCBITaxon.Type,
+    TitanNCBITaxon, TitanNCBITaxon.Type
+  >
+  {
 
     ncbiTaxon;
 
