@@ -14,7 +14,7 @@
 //  * You should have received a copy of the GNU Affero General Public License
 //  * along with this program.  If not, see <http://www.gnu.org/licenses/>
 //  */
-// package com.ohnosequences.bio4j.titan.programs;
+// package com.bio4j.titan.programs;
 
 // import com.bio4j.model.nodes.EnzymeNode;
 // import com.era7.bioinfo.bioinfoutil.Executable;

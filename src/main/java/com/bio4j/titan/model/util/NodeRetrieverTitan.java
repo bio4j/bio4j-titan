@@ -14,7 +14,7 @@
 //  * You should have received a copy of the GNU Affero General Public License
 //  * along with this program.  If not, see <http://www.gnu.org/licenses/>
 //  */
-// package com.ohnosequences.bio4j.titan.model.util;
+// package com.bio4j.titan.model.util;
 
 // import com.bio4j.model.nodes.*;
 // import com.bio4j.model.nodes.citation.*;
@@ -25,11 +25,11 @@
 // import com.bio4j.model.relationships.aproducts.AlternativeProductRibosomalFrameshiftingRel;
 // import com.bio4j.model.relationships.aproducts.AlternativeProductSplicingRel;
 // import com.bio4j.model.relationships.protein.*;
-// import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
-// import com.ohnosequences.bio4j.model.nodes.Dataset;
-// import com.ohnosequences.bio4j.model.nodes.GoTerm;
-// import com.ohnosequences.bio4j.model.util.NodeRetriever;
-// import com.ohnosequences.bio4j.titan.model.NCBITaxonNode;
+// import com.bio4jmodel.enums.UniprotDBXref;
+// import com.bio4jmodel.nodes.Dataset;
+// import com.bio4jmodel.nodes.GoTerm;
+// import com.bio4jmodel.util.NodeRetriever;
+// import com.bio4j.titan.model.NCBITaxonNode;
 // import com.tinkerpop.blueprints.Vertex;
 
 // import java.util.Iterator;

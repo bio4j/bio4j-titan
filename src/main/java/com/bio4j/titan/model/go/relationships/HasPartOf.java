@@ -1,4 +1,4 @@
-package com.ohnosequences.bio4j.titan.model.go.relationships;
+package com.bio4j.titan.model.go.relationships;
 
 import com.ohnosequences.typedGraphs.Relationship;
 import com.ohnosequences.typedGraphs.RelationshipType;
@@ -10,27 +10,26 @@ import com.bio4j.model.go.nodes.GoTerm;
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo Pareja-Tobes</a>
  */
-public interface IsA extends Relationship <
+public interface HasPartOf extends Relationship <
   GoTerm, GoTerm.Type,
-  IsA, IsA.Type,
+  HasPartOf, HasPartOf.Type,
   GoTerm, GoTerm.Type
 > {
 
   public GoTerm source();
   public GoTerm target();
 
-  public static Type TYPE = Type.isA;
+  public static Type TYPE = Type.hasPartOf;
   public static enum Type implements RelationshipType <
     GoTerm, GoTerm.Type,
-    IsA,  IsA.Type,
+    HasPartOf, HasPartOf.Type,
     GoTerm, GoTerm.Type
   > {
-
-    isA;
+    hasPartOf;
 
     public Arity arity() { return Arity.manyToMany; } // TODO review arity
 
-    public Type value() { return isA; }
+    public Type value() { return hasPartOf; }
     public GoTerm.Type sourceType() { return GoTerm.TYPE; }
     public GoTerm.Type targetType() { return GoTerm.TYPE; }
   }

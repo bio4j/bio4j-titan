@@ -1,4 +1,4 @@
-// package com.ohnosequences.bio4j.titan.model;
+// package com.bio4j.titan.model;
 
 // /*
 //   A typed relationship with typed source and target. 

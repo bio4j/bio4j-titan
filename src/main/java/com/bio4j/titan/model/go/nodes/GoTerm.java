@@ -1,4 +1,4 @@
-package com.ohnosequences.bio4j.titan.model.go.nodes;
+package com.bio4j.titan.model.go.nodes;
 
 import java.util.List;
 

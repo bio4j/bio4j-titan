@@ -14,7 +14,7 @@
 //  * You should have received a copy of the GNU Affero General Public License
 //  * along with this program.  If not, see <http://www.gnu.org/licenses/>
 //  */
-// package com.ohnosequences.bio4j.titan.programs;
+// package com.bio4j.titan.programs;
 
 // import com.bio4j.model.nodes.*;
 // import com.bio4j.model.nodes.citation.*;
@@ -82,9 +82,9 @@
 // import com.bio4j.model.relationships.protein.ProteinErroneousTranslationRel;
 // import com.bio4j.model.relationships.protein.ProteinFrameshiftRel;
 // import com.bio4j.model.relationships.protein.ProteinMiscellaneousDiscrepancyRel;
-// import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
-// import com.ohnosequences.bio4j.model.relationships.comment.DiseaseComment;
-// import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
+// import com.bio4jmodel.enums.UniprotDBXref;
+// import com.bio4jmodel.relationships.comment.DiseaseComment;
+// import com.bio4j.titan.model.util.Bio4jManager;
 // import com.era7.bioinfo.bioinfoneo4j.BasicEntity;
 // import com.era7.bioinfo.bioinfoutil.Executable;
 // import com.thinkaurelius.titan.core.TitanGraph;

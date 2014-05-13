@@ -1,4 +1,4 @@
-// package com.ohnosequences.bio4j.titan.model;
+// package com.bio4j.titan.model;
 
 // import com.thinkaurelius.titan.core.TitanVertex;
 // import com.tinkerpop.blueprints.Vertex;

@@ -14,9 +14,9 @@
 //  * You should have received a copy of the GNU Affero General Public License
 //  * along with this program.  If not, see <http://www.gnu.org/licenses/>
 //  */
-// package com.ohnosequences.bio4j.titan.model;
+// package com.bio4j.titan.model;
 
-// import com.ohnosequences.bio4j.model.enums.UniprotDBXref;
+// import com.bio4jmodel.enums.UniprotDBXref;
 // import com.thinkaurelius.titan.core.TitanProperty;
 // import com.thinkaurelius.titan.core.TitanVertex;
 // import com.tinkerpop.blueprints.Vertex;

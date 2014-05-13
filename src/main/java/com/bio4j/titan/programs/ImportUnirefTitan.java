@@ -14,16 +14,16 @@
 //  * You should have received a copy of the GNU Affero General Public License
 //  * along with this program.  If not, see <http://www.gnu.org/licenses/>
 //  */
-// package com.ohnosequences.bio4j.titan.programs;
+// package com.bio4j.titan.programs;
 
 // import com.bio4j.model.nodes.IsoformNode;
 // import com.bio4j.model.nodes.ProteinNode;
 // import com.bio4j.model.relationships.uniref.UniRef100MemberRel;
 // import com.bio4j.model.relationships.uniref.UniRef50MemberRel;
 // import com.bio4j.model.relationships.uniref.UniRef90MemberRel;
-// import com.ohnosequences.bio4j.titan.model.util.Bio4jManager;
-// import com.ohnosequences.bio4j.titan.model.util.NodeRetrieverTitan;
-// import com.ohnosequences.bio4j.titan.model.util.UniprotStuff;
+// import com.bio4j.titan.model.util.Bio4jManager;
+// import com.bio4j.titan.model.util.NodeRetrieverTitan;
+// import com.bio4j.titan.model.util.UniprotStuff;
 // import com.era7.bioinfo.bioinfoutil.Executable;
 // import com.era7.era7xmlapi.model.XMLElement;
 // import com.thinkaurelius.titan.core.TitanGraph;
