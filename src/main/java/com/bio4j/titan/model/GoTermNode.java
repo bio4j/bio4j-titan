@@ -16,7 +16,7 @@
 //  */
 // package com.bio4j.titan.model;
 
-// import com.bio4j.model.go.nodes.GoTerm;
+// import com.bio4j.model.go.nodes.Term;
 // import com.bio4j.model.go.relationships.HasPartOf;
 // import com.bio4j.model.go.relationships.IsA;
 // import com.bio4j.model.go.relationships.NegativelyRegulates;
@@ -47,9 +47,9 @@
 //  *
 //  * @author Pablo Pareja Tobes <ppareja@era7.com>
 //  */
-// public class GoTermNode extends NodeTitan implements GoTerm{
+// public class TermNode extends NodeTitan implements Term{
     
-//     public GoTermNode(Vertex v){
+//     public TermNode(Vertex v){
 //         super(v);
 //     }
 
@@ -312,7 +312,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> hasPartOf_inNodes() {
+// 	public List<Term> hasPartOf_inNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -324,7 +324,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> hasPartOf_outNodes() {
+// 	public List<Term> hasPartOf_outNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -336,7 +336,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> isA_inNodes() {
+// 	public List<Term> isA_inNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -348,7 +348,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> isA_outNodes() {
+// 	public List<Term> isA_outNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -360,7 +360,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> negativelyRegulates_inNodes() {
+// 	public List<Term> negativelyRegulates_inNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -372,7 +372,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> negativelyRegulates_outNodes() {
+// 	public List<Term> negativelyRegulates_outNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -384,7 +384,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> partOf_inNodes() {
+// 	public List<Term> partOf_inNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -396,7 +396,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> partOf_outNodes() {
+// 	public List<Term> partOf_outNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -408,7 +408,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> positivelyRegulates_inNodes() {
+// 	public List<Term> positivelyRegulates_inNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -420,7 +420,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> positivelyRegulates_outNodes() {
+// 	public List<Term> positivelyRegulates_outNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -432,7 +432,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> regulates_inNodes() {
+// 	public List<Term> regulates_inNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
@@ -444,7 +444,7 @@
 // 	}
 
 // 	@Override
-// 	public List<GoTerm> regulates_outNodes() {
+// 	public List<Term> regulates_outNodes() {
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}

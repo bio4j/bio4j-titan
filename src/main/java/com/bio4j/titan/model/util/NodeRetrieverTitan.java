@@ -27,7 +27,7 @@
 // import com.bio4j.model.relationships.protein.*;
 // import com.bio4jmodel.enums.UniprotDBXref;
 // import com.bio4jmodel.nodes.Dataset;
-// import com.bio4jmodel.nodes.GoTerm;
+// import com.bio4jmodel.nodes.Term;
 // import com.bio4jmodel.util.NodeRetriever;
 // import com.bio4j.titan.model.NCBITaxonNode;
 // import com.tinkerpop.blueprints.Vertex;
@@ -109,40 +109,40 @@
 //     /**
 //      *
 //      * @param goId
-//      * @return GoTermNode with the id provided
+//      * @return TermNode with the id provided
 //      */
 //     @Override
-//     public GoTermNode getGoTermById(String goId) {
-//         Iterator<Vertex> iterator = manager.getGraph().getVertices(GoTermNode.ID_PROPERTY, goId).iterator();
+//     public TermNode getTermById(String goId) {
+//         Iterator<Vertex> iterator = manager.getGraph().getVertices(TermNode.ID_PROPERTY, goId).iterator();
 //         if (iterator.hasNext()) {
-//             return new GoTermNode(iterator.next());
+//             return new TermNode(iterator.next());
 //         } else {
 //             return null;
 //         }
 //     }
 //     @Override
-//     public GoTerm getMolecularFunctionGoTerm(){
-//         Iterator<Vertex> iterator = manager.getGraph().getVertices(GoTermNode.ID_PROPERTY, GoTermNode.MOLECULAR_FUNCTION_GO_ID).iterator();
+//     public Term getMolecularFunctionTerm(){
+//         Iterator<Vertex> iterator = manager.getGraph().getVertices(TermNode.ID_PROPERTY, TermNode.MOLECULAR_FUNCTION_GO_ID).iterator();
 //         if(iterator.hasNext()){
-//             return new GoTermNode(iterator.next());
+//             return new TermNode(iterator.next());
 //         }else{
 //             return null;
 //         }
 //     }
 //     @Override
-//     public GoTermNode getBiologicalProcessGoTerm(){
-//         Iterator<Vertex> iterator = manager.getGraph().getVertices(GoTermNode.ID_PROPERTY, GoTermNode.BIOLOGICAL_PROCESS_GO_ID).iterator();
+//     public TermNode getBiologicalProcessTerm(){
+//         Iterator<Vertex> iterator = manager.getGraph().getVertices(TermNode.ID_PROPERTY, TermNode.BIOLOGICAL_PROCESS_GO_ID).iterator();
 //         if(iterator.hasNext()){
-//             return new GoTermNode(iterator.next());
+//             return new TermNode(iterator.next());
 //         }else{
 //             return null;
 //         }
 //     }
 //     @Override
-//     public GoTermNode getCellularComponentGoTerm(){
-//         Iterator<Vertex> iterator = manager.getGraph().getVertices(GoTermNode.ID_PROPERTY, GoTermNode.CELLULAR_COMPONENT_GO_ID).iterator();
+//     public TermNode getCellularComponentTerm(){
+//         Iterator<Vertex> iterator = manager.getGraph().getVertices(TermNode.ID_PROPERTY, TermNode.CELLULAR_COMPONENT_GO_ID).iterator();
 //         if(iterator.hasNext()){
-//             return new GoTermNode(iterator.next());
+//             return new TermNode(iterator.next());
 //         }else{
 //             return null;
 //         }
