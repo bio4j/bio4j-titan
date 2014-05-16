@@ -213,16 +213,6 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
     @Override public TitanCellularComponent from(TitanEdge edge) {  return new TitanCellularComponent(edge, TitanGoGraph.this); }
   }
 
-
-
-
-
-
-
-
-
-
-
 	public static abstract class GoNode <
 	N extends Node<N,NT>,
 	NT extends Enum<NT> & NodeType<N,NT>,
@@ -253,7 +243,20 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
  		@Override public TitanGoGraph graph() { return goGraph; }
  	}
 
-	
+	// TODO finish this
+  protected void initTypeDefinitions() {
+
+    // for the term node
+    this.titanTermKey = titanKeyForNodeType(Id.TYPE(Term.TYPE));
+    this.titanTermType = new TitanTermType();
+
+    // for the partOf rel
+    this.titanPartOfLabel = titanLabelForRelationshipType(PartOf.TYPE).make();
+    this.titanPartOfType = new TitanPartOfType();
+
+    // etc etc
+  }
+
 
 
 }
