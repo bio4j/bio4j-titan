@@ -132,7 +132,86 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
     @Override public TitanTermType titanTargetType() { return TitanGoGraph.this.titanTermType(); }
     @Override public TitanRegulates from(TitanEdge edge) {  return new TitanRegulates(edge, TitanGoGraph.this); }
   }
-
+  // TitanPositivelyRegulates
+  public TitanPositivelyRegulatesType titanPositivelyRegulatesType() { return titanPositivelyRegulatesType; }
+  private TitanLabel titanPositivelyRegulatesLabel;
+  private TitanPositivelyRegulatesType titanPositivelyRegulatesType;
+  public final class TitanPositivelyRegulatesType implements TitanRelationshipType <
+    Term,Term.Type, TitanTerm,TitanTermType,
+    PositivelyRegulates,PositivelyRegulates.Type,TitanPositivelyRegulates,TitanPositivelyRegulatesType, 
+    Term,Term.Type, TitanTerm,TitanTermType
+  > 
+  {
+    @Override public PositivelyRegulates.Type type() { return PositivelyRegulates.TYPE; }
+    @Override public TitanLabel label() { return TitanGoGraph.this.titanPositivelyRegulatesLabel; }
+    @Override public TitanTermType titanSourceType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanTermType titanTargetType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanPositivelyRegulates from(TitanEdge edge) {  return new TitanPositivelyRegulates(edge, TitanGoGraph.this); }
+  }
+  // TitanNegativelyRegulates
+  public TitanNegativelyRegulatesType titanNegativelyRegulatesType() { return titanNegativelyRegulatesType; }
+  private TitanLabel titanNegativelyRegulatesLabel;
+  private TitanNegativelyRegulatesType titanNegativelyRegulatesType;
+  public final class TitanNegativelyRegulatesType implements TitanRelationshipType <
+    Term,Term.Type, TitanTerm,TitanTermType,
+    NegativelyRegulates,NegativelyRegulates.Type,TitanNegativelyRegulates,TitanNegativelyRegulatesType, 
+    Term,Term.Type, TitanTerm,TitanTermType
+  > 
+  {
+    @Override public NegativelyRegulates.Type type() { return NegativelyRegulates.TYPE; }
+    @Override public TitanLabel label() { return TitanGoGraph.this.titanNegativelyRegulatesLabel; }
+    @Override public TitanTermType titanSourceType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanTermType titanTargetType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanNegativelyRegulates from(TitanEdge edge) {  return new TitanNegativelyRegulates(edge, TitanGoGraph.this); }
+  }
+  // BiologicalProcess
+  public TitanBiologicalProcessType titanBiologicalProcessType() { return titanBiologicalProcessType; }
+  private TitanLabel titanBiologicalProcessLabel;
+  private TitanBiologicalProcessType titanBiologicalProcessType;
+  public final class TitanBiologicalProcessType implements TitanRelationshipType <
+    Term,Term.Type, TitanTerm,TitanTermType,
+    BiologicalProcess,BiologicalProcess.Type,TitanBiologicalProcess,TitanBiologicalProcessType, 
+    SubOntologies,SubOntologies.Type, TitanSubOntologies,TitanSubOntologiesType
+  > 
+  {
+    @Override public BiologicalProcess.Type type() { return BiologicalProcess.TYPE; }
+    @Override public TitanLabel label() { return TitanGoGraph.this.titanBiologicalProcessLabel; }
+    @Override public TitanTermType titanSourceType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanSubOntologiesType titanTargetType() { return TitanGoGraph.this.titanSubOntologiesType(); }
+    @Override public TitanBiologicalProcess from(TitanEdge edge) {  return new TitanBiologicalProcess(edge, TitanGoGraph.this); }
+  }
+  // MolecularFunction
+  public TitanMolecularFunctionType titanMolecularFunctionType() { return titanMolecularFunctionType; }
+  private TitanLabel titanMolecularFunctionLabel;
+  private TitanMolecularFunctionType titanMolecularFunctionType;
+  public final class TitanMolecularFunctionType implements TitanRelationshipType <
+    Term,Term.Type, TitanTerm,TitanTermType,
+    MolecularFunction,MolecularFunction.Type,TitanMolecularFunction,TitanMolecularFunctionType, 
+    SubOntologies,SubOntologies.Type, TitanSubOntologies,TitanSubOntologiesType
+  > 
+  {
+    @Override public MolecularFunction.Type type() { return MolecularFunction.TYPE; }
+    @Override public TitanLabel label() { return TitanGoGraph.this.titanMolecularFunctionLabel; }
+    @Override public TitanTermType titanSourceType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanSubOntologiesType titanTargetType() { return TitanGoGraph.this.titanSubOntologiesType(); }
+    @Override public TitanMolecularFunction from(TitanEdge edge) {  return new TitanMolecularFunction(edge, TitanGoGraph.this); }
+  }
+  // CellularComponent
+  public TitanCellularComponentType titanCellularComponentType() { return titanCellularComponentType; }
+  private TitanLabel titanCellularComponentLabel;
+  private TitanCellularComponentType titanCellularComponentType;
+  public final class TitanCellularComponentType implements TitanRelationshipType <
+    Term,Term.Type, TitanTerm,TitanTermType,
+    CellularComponent,CellularComponent.Type,TitanCellularComponent,TitanCellularComponentType, 
+    SubOntologies,SubOntologies.Type, TitanSubOntologies,TitanSubOntologiesType
+  > 
+  {
+    @Override public CellularComponent.Type type() { return CellularComponent.TYPE; }
+    @Override public TitanLabel label() { return TitanGoGraph.this.titanCellularComponentLabel; }
+    @Override public TitanTermType titanSourceType() { return TitanGoGraph.this.titanTermType(); }
+    @Override public TitanSubOntologiesType titanTargetType() { return TitanGoGraph.this.titanSubOntologiesType(); }
+    @Override public TitanCellularComponent from(TitanEdge edge) {  return new TitanCellularComponent(edge, TitanGoGraph.this); }
+  }
 
 
 
