@@ -13,20 +13,23 @@ import com.thinkaurelius.titan.core.*;
 import com.bio4j.titan.model.go.TitanGoGraph;
 
 /**
- *
+ * 
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
- * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo Pareja-Tobes</a>
+ * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
+ *         Pareja-Tobes</a>
  */
-public final class TitanPartOf extends TitanGoGraph.GoRel <
-  Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType,
-  PartOf, PartOf.Type, TitanPartOf, TitanGoGraph.TitanPartOfType,
-  Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType
-> 
-  implements PartOf
-{
+public final class TitanPartOf
+		extends
+		TitanGoGraph.GoRel<Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType, PartOf, PartOf.Type, TitanPartOf, TitanGoGraph.TitanPartOfType, Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType>
+		implements PartOf {
 
-  public TitanPartOf(TitanEdge edge, TitanGoGraph graph) { super(edge, graph); }
+	public TitanPartOf(TitanEdge edge, TitanGoGraph graph) {
+		super(edge, graph);
+	}
 
-  @Override public TitanGoGraph.TitanPartOfType titanType() { return graph().titanPartOfType(); }
+	@Override
+	public TitanGoGraph.TitanPartOfType titanType() {
+		return graph().titanPartOfType();
+	}
 
 }

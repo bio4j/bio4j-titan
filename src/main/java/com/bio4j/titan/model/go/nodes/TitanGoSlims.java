@@ -15,18 +15,23 @@ import com.bio4j.titan.model.go.TitanGoGraph;
 import com.thinkaurelius.titan.core.*;
 
 /**
- *
+ * 
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
- * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo Pareja-Tobes</a>
+ * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
+ *         Pareja-Tobes</a>
  */
-public final class TitanGoSlims extends TitanGoGraph.GoNode <
-  GoSlims,GoSlims.Type, TitanGoSlims, TitanGoGraph.TitanGoSlimsType
-> 
-  implements GoSlims
-{
+public final class TitanGoSlims
+		extends
+		TitanGoGraph.GoNode<GoSlims, GoSlims.Type, TitanGoSlims, TitanGoGraph.TitanGoSlimsType>
+		implements GoSlims {
 
-  public TitanGoSlims(TitanVertex vertex, TitanGoGraph graph) { super(vertex,graph); }
+	public TitanGoSlims(TitanVertex vertex, TitanGoGraph graph) {
+		super(vertex, graph);
+	}
 
-  @Override public TitanGoGraph.TitanGoSlimsType titanType() { return graph().titanGoSlimsType(); }
+	@Override
+	public TitanGoGraph.TitanGoSlimsType titanType() {
+		return graph().titanGoSlimsType();
+	}
 
 }
