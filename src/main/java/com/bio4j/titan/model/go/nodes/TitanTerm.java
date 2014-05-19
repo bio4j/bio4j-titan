@@ -26,7 +26,7 @@ import com.thinkaurelius.titan.core.*;
  * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo Pareja-Tobes</a>
  */
 public final class TitanTerm extends TitanGoGraph.GoNode <
-  Term,Term.Type, TitanTerm, TitanGoGraph.TitanTermType
+  TitanTerm, TitanGoGraph.TitanTermType
 > 
   implements Term
 {
@@ -34,12 +34,6 @@ public final class TitanTerm extends TitanGoGraph.GoNode <
   public TitanTerm(TitanVertex vertex, TitanGoGraph graph) { super(vertex,graph); }
 
   @Override public TitanGoGraph.TitanTermType titanType() { return graph().titanTermType(); }
-
-  @Override public String   id()          { return get(Id.TYPE(type())); }
-  @Override public String   name()        { return get(Name.TYPE(type())); }
-  @Override public String   comment()     { return get(Comment.TYPE((type()))); }
-  @Override public String   synonym()     { return get(Synonym.TYPE((type()))); }
-  @Override public String   definition()  { return get(Definition.TYPE((type()))); }
 
   // isA
   // incoming

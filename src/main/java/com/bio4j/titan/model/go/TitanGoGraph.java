@@ -35,7 +35,7 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
 	private TitanTermType titanTermType;
 	public final class TitanTermType implements TitanNodeType <
 		Term,Term.Type,TitanTerm,TitanTermType
-	> 
+	>, Term.Type
 	{
 		@Override public Term.Type type() { return Term.TYPE; }	
 		@Override public TitanKey titanKey() { return TitanGoGraph.this.titanTermKey; }
@@ -215,7 +215,7 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
 
 	public static abstract class GoNode <
 	N extends Node<N,NT>,
-	NT extends Enum<NT> & NodeType<N,NT>,
+	NT extends NodeType<N,NT>,
   TitanN extends TitanNode<N,NT, TitanN,TitanNT>,
   TitanNT extends TitanNodeType<N,NT, TitanN,TitanNT>
  	> extends TitanNode <N,NT, TitanN,TitanNT> {
@@ -226,7 +226,7 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
  	}
 
  	public static abstract class GoRel <
-		S extends Node<S,ST>, ST extends Enum<ST> & NodeType<S,ST>,
+		S extends Node<S,ST>, ST extends NodeType<S,ST>,
 	  TitanS extends TitanNode<S,ST, TitanS,TitanST>, TitanST extends TitanNodeType<S,ST, TitanS,TitanST>,
 
 	  R extends Relationship<S,ST,R,RT,T,TT>,
@@ -234,7 +234,7 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
 	  TitanR extends TitanRelationship<S,ST,TitanS,TitanST, R,RT,TitanR,TitanRT, T,TT,TitanT,TitanTT>,
 	  TitanRT extends TitanRelationshipType<S,ST,TitanS,TitanST, R,RT,TitanR,TitanRT, T,TT,TitanT,TitanTT>,
 
-	  T extends Node<T,TT>, TT extends Enum<TT> & NodeType<T,TT>,
+	  T extends Node<T,TT>, TT extends NodeType<T,TT>,
 	  TitanT extends TitanNode<T,TT, TitanT,TitanTT>, TitanTT extends TitanNodeType<T,TT, TitanT,TitanTT>
  	> extends TitanRelationship <S,ST,TitanS,TitanST, R,RT,TitanR,TitanRT, T,TT,TitanT,TitanTT> {
 
