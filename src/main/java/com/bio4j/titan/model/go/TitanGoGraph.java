@@ -482,7 +482,6 @@ public abstract class TitanGoGraph extends TitanTypedGraph {
 		}
 	}
 
-	// TODO finish this
 	protected void initTypeDefinitions() {
 
 		// for the term node
