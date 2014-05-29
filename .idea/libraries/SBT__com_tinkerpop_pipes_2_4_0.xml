@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.tinkerpop:pipes:2.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.tinkerpop/pipes/jars/pipes-2.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.tinkerpop/pipes/docs/pipes-2.4.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.tinkerpop/pipes/srcs/pipes-2.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

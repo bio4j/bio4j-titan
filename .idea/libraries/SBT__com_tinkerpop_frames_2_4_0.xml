@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SBT: com.tinkerpop:frames:2.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.tinkerpop/frames/jars/frames-2.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.tinkerpop/frames/docs/frames-2.4.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.tinkerpop/frames/srcs/frames-2.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
