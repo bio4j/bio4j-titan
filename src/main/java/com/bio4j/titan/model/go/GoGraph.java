@@ -112,4 +112,42 @@ public interface GoGraph {
             >
             extends Relationship.Type.OneToMany<S, ST, R, RT, T, TT> {
     }
+
+    /*
+    The negativelyRegulates relationship; it goes from terms to terms.
+    */
+    interface NegativelyRegulates<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends NegativelyRegulates<S, ST, R, RT, T, TT>, RT extends NegativelyRegulatesType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship<S, ST, R, RT, T, TT> {
+    }
+
+    interface NegativelyRegulatesType<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends NegativelyRegulates<S, ST, R, RT, T, TT>, RT extends NegativelyRegulatesType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
+    }
+
+    /*
+    The positivelyRegulates relationship; it goes from terms to terms.
+    */
+    interface PositivelyRegulates<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends PositivelyRegulates<S, ST, R, RT, T, TT>, RT extends PositivelyRegulatesType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship<S, ST, R, RT, T, TT> {
+    }
+
+    interface PositivelyRegulatesType<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends PositivelyRegulates<S, ST, R, RT, T, TT>, RT extends PositivelyRegulatesType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
+    }
 }
