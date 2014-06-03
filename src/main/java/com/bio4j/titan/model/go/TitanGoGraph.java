@@ -1,5 +1,6 @@
 package com.bio4j.titan.model.go;
 
+import com.bio4j.model.go.relationships.IsA;
 import com.ohnosequences.typedGraphs.titan.*;
 import com.thinkaurelius.titan.core.*;
 
@@ -117,9 +118,12 @@ public abstract class TitanGoGraph
         }
     }
 
-    // rels
+    //-----------------------------------------------------------------------------------------
+    //--------------------------------RELATIONSHIPS--------------------------------------------
 
-    // the partOf rel
+
+    //================partOf rel============================
+
     public final class TitanPartOf
             extends
             TitanRelationship<TitanTerm, TitanTermType, TitanPartOf, TitanPartOfType, TitanTerm, TitanTermType>
@@ -168,6 +172,59 @@ public abstract class TitanGoGraph
         @Override
         public TitanPartOf from(TitanEdge edge) {
             return new TitanPartOf(edge);
+        }
+    }
+
+    //================isA rel============================
+
+    public final class TitanIsA
+            extends
+            TitanRelationship<TitanTerm, TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTermType>
+            implements
+            IsA<TitanTerm, TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTermType> {
+        TitanIsA(TitanEdge edge) {
+            super(edge);
+        }
+
+        /*
+          Note here how we need a reference to the enclosing graph, which contains the term type value.
+        */
+        @Override
+        public TitanIsAType type() {
+            return TitanGoGraph.this.isAT;
+        }
+    }
+
+    TitanLabel isALabel;
+    TitanIsAType isAT = new TitanIsAType();
+
+    public final class TitanIsAType
+            implements
+            TitanRelationship.Type<TitanTerm, TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTermType>,
+            IsAType<TitanTerm, TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTermType> {
+        @Override
+        public TitanLabel label() {
+            return TitanGoGraph.this.isALabel;
+        }
+
+        @Override
+        public TitanIsAType value() {
+            return TitanGoGraph.this.isAT;
+        }
+
+        @Override
+        public TitanTermType sourceType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanTermType targetType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanIsA from(TitanEdge edge) {
+            return new TitanIsA(edge);
         }
     }
 

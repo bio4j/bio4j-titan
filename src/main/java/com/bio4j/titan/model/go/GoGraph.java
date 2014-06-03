@@ -93,4 +93,23 @@ public interface GoGraph {
             >
             extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
     }
+
+    /*
+    The isA relationship; it goes from terms to terms.
+    */
+    interface IsA<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends IsA<S, ST, R, RT, T, TT>, RT extends IsAType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship<S, ST, R, RT, T, TT> {
+    }
+
+    interface IsAType<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends IsA<S, ST, R, RT, T, TT>, RT extends IsAType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship.Type.OneToMany<S, ST, R, RT, T, TT> {
+    }
 }
