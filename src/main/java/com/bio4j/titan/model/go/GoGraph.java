@@ -74,6 +74,27 @@ public interface GoGraph {
         }
     }
 
+    // TODO Review cardinality of Relationships
+
+    /*
+    The hasPartOf relationship; it goes from terms to terms.
+    */
+    interface HasPartOf<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends HasPartOf<S, ST, R, RT, T, TT>, RT extends HasPartOfType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship<S, ST, R, RT, T, TT> {
+    }
+
+    interface HasPartOfType<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends HasPartOf<S, ST, R, RT, T, TT>, RT extends HasPartOfType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
+    }
+
 
     /*
     The partOf relationship; it goes from terms to terms.
@@ -150,4 +171,6 @@ public interface GoGraph {
             >
             extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
     }
+
+
 }

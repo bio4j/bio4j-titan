@@ -175,6 +175,59 @@ public abstract class TitanGoGraph
         }
     }
 
+    //================hasPartOf rel============================
+
+    public final class TitanHasPartOf
+            extends
+            TitanRelationship<TitanTerm, TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTermType>
+            implements
+            HasPartOf<TitanTerm, TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTermType> {
+        TitanHasPartOf(TitanEdge edge) {
+            super(edge);
+        }
+
+        /*
+          Note here how we need a reference to the enclosing graph, which contains the term type value.
+        */
+        @Override
+        public TitanHasPartOfType type() {
+            return TitanGoGraph.this.hasPartOfT;
+        }
+    }
+
+    TitanLabel hasPartOfLabel;
+    TitanHasPartOfType hasPartOfT = new TitanHasPartOfType();
+
+    public final class TitanHasPartOfType
+            implements
+            TitanRelationship.Type<TitanTerm, TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTermType>,
+            HasPartOfType<TitanTerm, TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTermType> {
+        @Override
+        public TitanLabel label() {
+            return TitanGoGraph.this.hasPartOfLabel;
+        }
+
+        @Override
+        public TitanHasPartOfType value() {
+            return TitanGoGraph.this.hasPartOfT;
+        }
+
+        @Override
+        public TitanTermType sourceType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanTermType targetType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanHasPartOf from(TitanEdge edge) {
+            return new TitanHasPartOf(edge);
+        }
+    }
+
     //================isA rel============================
 
     public final class TitanIsA
@@ -225,6 +278,114 @@ public abstract class TitanGoGraph
         @Override
         public TitanIsA from(TitanEdge edge) {
             return new TitanIsA(edge);
+        }
+    }
+
+    //================positivelyRegulates rel============================
+
+    public final class TitanPositivelyRegulates
+            extends
+            TitanRelationship<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType>
+            implements
+            PositivelyRegulates<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType> {
+
+        TitanPositivelyRegulates(TitanEdge edge) {
+            super(edge);
+        }
+
+        /*
+          Note here how we need a reference to the enclosing graph, which contains the term type value.
+        */
+        @Override
+        public TitanPositivelyRegulatesType type() {
+            return TitanGoGraph.this.positivelyRegulatesT;
+        }
+    }
+
+    TitanLabel positivelyRegulatesLabel;
+    TitanPositivelyRegulatesType positivelyRegulatesT = new TitanPositivelyRegulatesType();
+
+    public final class TitanPositivelyRegulatesType
+            implements
+            TitanRelationship.Type<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType>,
+            PositivelyRegulatesType<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType> {
+        @Override
+        public TitanLabel label() {
+            return TitanGoGraph.this.positivelyRegulatesLabel;
+        }
+
+        @Override
+        public TitanPositivelyRegulatesType value() {
+            return TitanGoGraph.this.positivelyRegulatesT;
+        }
+
+        @Override
+        public TitanTermType sourceType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanTermType targetType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanPositivelyRegulates from(TitanEdge edge) {
+            return new TitanPositivelyRegulates(edge);
+        }
+    }
+
+    //================negativelyRegulates rel============================
+
+    public final class TitanNegativelyRegulates
+            extends
+            TitanRelationship<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType>
+            implements
+            NegativelyRegulates<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType> {
+
+        TitanNegativelyRegulates(TitanEdge edge) {
+            super(edge);
+        }
+
+        /*
+          Note here how we need a reference to the enclosing graph, which contains the term type value.
+        */
+        @Override
+        public TitanNegativelyRegulatesType type() {
+            return TitanGoGraph.this.negativelyRegulatesT;
+        }
+    }
+
+    TitanLabel negativelyRegulatesLabel;
+    TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType();
+
+    public final class TitanNegativelyRegulatesType
+            implements
+            TitanRelationship.Type<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType>,
+            NegativelyRegulatesType<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType> {
+        @Override
+        public TitanLabel label() {
+            return TitanGoGraph.this.negativelyRegulatesLabel;
+        }
+
+        @Override
+        public TitanNegativelyRegulatesType value() {
+            return TitanGoGraph.this.negativelyRegulatesT;
+        }
+
+        @Override
+        public TitanTermType sourceType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanTermType targetType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanNegativelyRegulates from(TitanEdge edge) {
+            return new TitanNegativelyRegulates(edge);
         }
     }
 
