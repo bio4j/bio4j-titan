@@ -12,7 +12,7 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
     private void initTypes() {
 
 
-        // Term keyss
+        // Term keys
         termTkey = titanKeyForNodeType(termT.id);
         termIdKey = termTkey;
         termNameKey = titanKeyForNodeProperty(termT.name).make();
