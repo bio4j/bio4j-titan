@@ -9,40 +9,43 @@ import com.bio4j.titan.model.go.nodes.TitanTerm.TitanTermType;
 import com.bio4j.titan.model.go.nodes.TitanTerm;
 import com.bio4j.titan.model.go.relationships.TitanPartOf;
 import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
+import com.bio4j.titan.model.go.relationships.TitanNegativelyRegulates.TitanNegativelyRegulatesType;
 
 /*
   Implementing the types with Titan
 */
 public abstract class TitanGoGraph
-implements
-  TitanTypedGraph,
-  GoGraph
-{
+        implements
+        TitanTypedGraph,
+        GoGraph {
 
-  protected TitanGraph rawGraph;
+    protected TitanGraph rawGraph;
 
-  TitanGoGraph(TitanGraph rawGraph) {
-    
-    this.rawGraph = rawGraph;
-  }
+    TitanGoGraph(TitanGraph rawGraph) {
 
-  @Override public TitanGraph rawGraph() {
-    return rawGraph;
-  }
+        this.rawGraph = rawGraph;
+    }
 
-  /*
-    The type of a TitanTerm. This an inner class of the graph. The first key here represents the type of the node, while the rest are for properties of this term: `id` and `name` in this case.
-  */
-  public TitanKey termTkey;
-  public TitanKey termIdKey;
-  public TitanKey termNameKey;
-  public final TitanTermType termT = new TitanTermType(this);
+    @Override
+    public TitanGraph rawGraph() {
+        return rawGraph;
+    }
 
-  //-----------------------------------------------------------------------------------------
-  //--------------------------------RELATIONSHIPS--------------------------------------------
+    /*
+      The type of a TitanTerm. This an inner class of the graph. The first key here represents the type of the node, while the rest are for properties of this term: `id` and `name` in this case.
+    */
+    public TitanKey termTkey;
+    public TitanKey termIdKey;
+    public TitanKey termNameKey;
+    public final TitanTermType termT = new TitanTermType(this);
 
-  public TitanLabel partOfLabel;
-  public TitanPartOfType partOfT = new TitanPartOfType(this);
+    //-----------------------------------------------------------------------------------------
+    //--------------------------------RELATIONSHIPS--------------------------------------------
+
+    public TitanLabel partOfLabel;
+    public TitanPartOfType partOfT = new TitanPartOfType(this);
+    public TitanLabel negativelyRegulatesLabel;
+    public TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType(this);
 
     //================partOf rel============================
 
@@ -261,58 +264,6 @@ implements
     }
 
     //================negativelyRegulates rel============================
-
-    public final class TitanNegativelyRegulates
-            extends
-            TitanRelationship<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType>
-            implements
-            NegativelyRegulates<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType> {
-
-        TitanNegativelyRegulates(TitanEdge edge) {
-            super(edge);
-        }
-
-        /*
-          Note here how we need a reference to the enclosing graph, which contains the term type value.
-        */
-        @Override
-        public TitanNegativelyRegulatesType type() {
-            return TitanGoGraph.this.negativelyRegulatesT;
-        }
-    }
-
-    TitanLabel negativelyRegulatesLabel;
-    TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType();
-
-    public final class TitanNegativelyRegulatesType
-            implements
-            TitanRelationship.Type<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType>,
-            NegativelyRegulatesType<TitanTerm, TitanTermType, TitanNegativelyRegulates, TitanNegativelyRegulatesType, TitanTerm, TitanTermType> {
-        @Override
-        public TitanLabel label() {
-            return TitanGoGraph.this.negativelyRegulatesLabel;
-        }
-
-        @Override
-        public TitanNegativelyRegulatesType value() {
-            return TitanGoGraph.this.negativelyRegulatesT;
-        }
-
-        @Override
-        public TitanTermType sourceType() {
-            return TitanGoGraph.this.termT;
-        }
-
-        @Override
-        public TitanTermType targetType() {
-            return TitanGoGraph.this.termT;
-        }
-
-        @Override
-        public TitanNegativelyRegulates from(TitanEdge edge) {
-            return new TitanNegativelyRegulates(edge);
-        }
-    }
 
 
 }

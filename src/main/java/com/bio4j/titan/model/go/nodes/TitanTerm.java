@@ -17,122 +17,123 @@ import com.bio4j.model.go.GoGraph.TermType;
 import com.thinkaurelius.titan.core.*;
 
 /**
-*
-* @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
-* @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
-*         Pareja-Tobes</a>
-*/
-
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
+ * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
+ *         Pareja-Tobes</a>
+ */
 
 
 public final class TitanTerm
-extends
-  TitanNode<TitanTerm, TitanTerm.TitanTermType>
-implements
-  Term<TitanTerm, TitanTerm.TitanTermType> 
-{
+        extends
+        TitanNode<TitanTerm, TitanTerm.TitanTermType>
+        implements
+        Term<TitanTerm, TitanTerm.TitanTermType> {
 
-public TitanTerm(TitanVertex vertex, TitanGoGraph goGraph) {
-  
-  super(vertex);
-  this.goGraph = goGraph;
-}
+    public TitanTerm(TitanVertex vertex, TitanGoGraph goGraph) {
 
-  TitanGoGraph goGraph;
-
-  @Override public TitanTermType type() {
-
-    return goGraph.termT;
-  }
-
-
-  public static final class TitanTermType
-  implements
-    TitanNode.Type<TitanTerm, TitanTerm.TitanTermType>,
-    TermType<TitanTerm, TitanTerm.TitanTermType> 
-  {
-
-    public TitanTermType(TitanGoGraph goGraph) {
-      this.goGraph = goGraph;
+        super(vertex);
+        this.goGraph = goGraph;
     }
 
     TitanGoGraph goGraph;
 
-    @Override public TitanKey titanKey() {
+    @Override
+    public TitanTermType type() {
 
-      return goGraph.termTkey;
+        return goGraph.termT;
     }
 
-    @Override public TitanTermType value() {
-        
-      return goGraph.termT;
+
+    public static final class TitanTermType
+            implements
+            TitanNode.Type<TitanTerm, TitanTerm.TitanTermType>,
+            TermType<TitanTerm, TitanTerm.TitanTermType> {
+
+        public TitanTermType(TitanGoGraph goGraph) {
+            this.goGraph = goGraph;
+        }
+
+        TitanGoGraph goGraph;
+
+        @Override
+        public TitanKey titanKey() {
+
+            return goGraph.termTkey;
+        }
+
+        @Override
+        public TitanTermType value() {
+
+            return goGraph.termT;
+        }
+
+        @Override
+        public TitanTerm fromTitanVertex(TitanVertex vertex) {
+
+            return new TitanTerm(vertex, goGraph);
+        }
+
+        // properties
+        public id id = new id();
+
+        // no need to worry about the unchecked warning
+        @Override
+        public id Id() {
+
+            return id;
+        }
+
+        public final class id
+                implements
+                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanTerm, TitanTermType, id, String>,
+                Term.id<TitanTerm, TitanTermType, id> {
+
+            @Override
+            public TitanTermType elementType() {
+
+                return TitanTermType.this;
+            }
+
+            @Override
+            public TitanKey titanKey() {
+
+                return goGraph.termIdKey;
+            }
+        }
+
+        name name = new name();
+
+        @Override
+        public name Name() {
+
+            return name;
+        }
+
+        public final class name
+                implements
+                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanTerm, TitanTermType, name, String>,
+                Term.name<TitanTerm, TitanTermType, name> {
+
+            @Override
+            public TitanTermType elementType() {
+
+                return TitanTermType.this;
+            }
+
+            @Override
+            public TitanKey titanKey() {
+
+                return goGraph.termNameKey;
+            }
+        }
     }
-
-    @Override public TitanTerm fromTitanVertex(TitanVertex vertex) {
-        
-      return new TitanTerm(vertex, goGraph);
-    }
-
-    // properties
-    public id id = new id();
-
-    // no need to worry about the unchecked warning
-    @Override public id Id() {
-      
-      return id;
-    }
-
-    public final class id
-    implements
-      com.ohnosequences.typedGraphs.titan.TitanProperty<TitanTerm, TitanTermType, id, String>,
-      Term.id<TitanTerm, TitanTermType, id> 
-    {
-      
-      @Override public TitanTermType elementType() {
-
-        return TitanTermType.this;
-      }
-
-      @Override public TitanKey titanKey() {
-        
-        return goGraph.termIdKey;
-      }
-    }
-
-    name name = new name();
-
-    @Override public name Name() {
-
-      return name;
-    }
-
-    public final class name
-    implements
-      com.ohnosequences.typedGraphs.titan.TitanProperty<TitanTerm, TitanTermType, name, String>,
-      Term.name<TitanTerm, TitanTermType, name> 
-    {
-
-      @Override public TitanTermType elementType() {
-
-        return TitanTermType.this;
-      }
-
-      @Override public TitanKey titanKey() {
-        
-        return goGraph.termNameKey;
-      }
-    }
-  }
 
 
 }
 
 
-
-
-
 // public final class TitanTerm extends
-	
+
 //   TitanGoGraph.GoNode<TitanTerm, TitanGoGraph.TitanTermType> implements
 // 		Term {
 
