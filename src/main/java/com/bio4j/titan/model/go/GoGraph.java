@@ -135,6 +135,26 @@ public interface GoGraph {
     }
 
     /*
+    The regulates relationship; it goes from terms to terms.
+    */
+    interface Regulates<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends Regulates<S, ST, R, RT, T, TT>, RT extends RegulatesType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship<S, ST, R, RT, T, TT> {
+    }
+
+    interface RegulatesType<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends Regulates<S, ST, R, RT, T, TT>, RT extends RegulatesType<S, ST, R, RT, T, TT>,
+            T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
+    }
+
+
+    /*
     The negativelyRegulates relationship; it goes from terms to terms.
     */
     interface NegativelyRegulates<

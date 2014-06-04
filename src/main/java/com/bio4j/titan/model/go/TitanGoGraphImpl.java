@@ -25,6 +25,8 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
         hasPartOfLabel = titanLabelForRelationshipType(hasPartOfT).make();
         // isA stuff
         isALabel = titanLabelForRelationshipType(isAT).make();
+        // regulates stuff
+        regulatesLabel = titanLabelForRelationshipType(regulatesT).make();
         // positivelyRegulates stuff
         positivelyRegulatesLabel = titanLabelForRelationshipType(positivelyRegulatesT).make();
         // negativelyRegulates stuff

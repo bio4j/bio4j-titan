@@ -281,6 +281,60 @@ public abstract class TitanGoGraph
         }
     }
 
+    //================regulates rel============================
+
+    public final class TitanRegulates
+            extends
+            TitanRelationship<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType>
+            implements
+            Regulates<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType> {
+
+        TitanRegulates(TitanEdge edge) {
+            super(edge);
+        }
+
+        /*
+          Note here how we need a reference to the enclosing graph, which contains the term type value.
+        */
+        @Override
+        public TitanRegulatesType type() {
+            return TitanGoGraph.this.regulatesT;
+        }
+    }
+
+    TitanLabel regulatesLabel;
+    TitanRegulatesType regulatesT = new TitanRegulatesType();
+
+    public final class TitanRegulatesType
+            implements
+            TitanRelationship.Type<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType>,
+            RegulatesType<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType> {
+        @Override
+        public TitanLabel label() {
+            return TitanGoGraph.this.regulatesLabel;
+        }
+
+        @Override
+        public TitanRegulatesType value() {
+            return TitanGoGraph.this.regulatesT;
+        }
+
+        @Override
+        public TitanTermType sourceType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanTermType targetType() {
+            return TitanGoGraph.this.termT;
+        }
+
+        @Override
+        public TitanRegulates from(TitanEdge edge) {
+            return new TitanRegulates(edge);
+        }
+    }
+
     //================positivelyRegulates rel============================
 
     public final class TitanPositivelyRegulates
