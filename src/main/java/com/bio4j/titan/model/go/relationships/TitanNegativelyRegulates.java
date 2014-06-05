@@ -1,10 +1,10 @@
 package com.bio4j.titan.model.go.relationships;
 
 import com.bio4j.model.go.GoGraph.NegativelyRegulatesType;
-import com.bio4j.titan.model.go.nodes.TitanTerm;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 
 import com.bio4j.model.go.relationships.NegativelyRegulates;
-import com.bio4j.titan.model.go.nodes.TitanTerm.TitanTermType;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 
 import com.ohnosequences.typedGraphs.titan.TitanRelationship;
 import com.thinkaurelius.titan.core.*;
@@ -19,15 +19,15 @@ import com.bio4j.titan.model.go.TitanGoGraph;
 public final class TitanNegativelyRegulates
         extends
         TitanRelationship<
-                TitanTerm, TitanTerm.TitanTermType,
+                TitanGoTerm, TitanGoTerm.TitanGoTermType,
                 TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                TitanTerm, TitanTerm.TitanTermType
+                TitanGoTerm, TitanGoTerm.TitanGoTermType
                 >
         implements
         NegativelyRegulates<
-                TitanTerm, TitanTerm.TitanTermType,
+                TitanGoTerm, TitanGoTerm.TitanGoTermType,
                 TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                TitanTerm, TitanTerm.TitanTermType
+                TitanGoTerm, TitanGoTerm.TitanGoTermType
                 > {
 
     TitanNegativelyRegulates(TitanEdge edge, TitanGoGraph goGraph) {
@@ -50,14 +50,14 @@ public final class TitanNegativelyRegulates
     public static final class TitanNegativelyRegulatesType
             implements
             TitanRelationship.Type<
-                    TitanTerm, TitanTerm.TitanTermType,
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
                     TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                    TitanTerm, TitanTerm.TitanTermType
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType
                     >,
             NegativelyRegulatesType<
-                    TitanTerm, TitanTerm.TitanTermType,
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
                     TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                    TitanTerm, TitanTerm.TitanTermType
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType
                     > {
 
         TitanGoGraph goGraph;
@@ -78,13 +78,13 @@ public final class TitanNegativelyRegulates
         }
 
         @Override
-        public TitanTermType sourceType() {
-            return goGraph.termT;
+        public TitanGoTermType sourceType() {
+            return goGraph.goTermT;
         }
 
         @Override
-        public TitanTermType targetType() {
-            return goGraph.termT;
+        public TitanGoTermType targetType() {
+            return goGraph.goTermT;
         }
 
         @Override

@@ -6,7 +6,7 @@
 //import com.bio4j.model.go.nodes.Term;
 //import com.bio4j.model.go.nodes.SubOntologies;
 //
-//import com.bio4j.titan.model.go.nodes.TitanTerm;
+//import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 //import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 //
 //import com.bio4j.model.go.relationships.MolecularFunction;
@@ -23,7 +23,7 @@
 // */
 //public final class TitanMolecularFunction
 //		extends
-//		TitanGoGraph.GoRel<Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType, MolecularFunction, MolecularFunction.Type, TitanMolecularFunction, TitanGoGraph.TitanMolecularFunctionType, SubOntologies, SubOntologies.Type, TitanSubOntologies, TitanGoGraph.TitanSubOntologiesType>
+//		TitanGoGraph.GoRel<Term, Term.Type, TitanGoTerm, TitanGoGraph.TitanTermType, MolecularFunction, MolecularFunction.Type, TitanMolecularFunction, TitanGoGraph.TitanMolecularFunctionType, SubOntologies, SubOntologies.Type, TitanSubOntologies, TitanGoGraph.TitanSubOntologiesType>
 //		implements MolecularFunction {
 //
 //	public TitanMolecularFunction(TitanEdge edge, TitanGoGraph graph) {

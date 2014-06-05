@@ -1,13 +1,9 @@
 package com.bio4j.titan.model.go;
 
-import com.bio4j.model.go.relationships.IsA;
 import com.ohnosequences.typedGraphs.titan.*;
 import com.thinkaurelius.titan.core.*;
-import com.bio4j.model.go.nodes.*;
-import com.bio4j.titan.model.go.nodes.*;
-import com.bio4j.titan.model.go.nodes.TitanTerm.TitanTermType;
-import com.bio4j.titan.model.go.nodes.TitanTerm;
-import com.bio4j.titan.model.go.relationships.TitanPartOf;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanNegativelyRegulates.TitanNegativelyRegulatesType;
 
@@ -32,12 +28,12 @@ public abstract class TitanGoGraph
     }
 
     /*
-      The type of a TitanTerm. This an inner class of the graph. The first key here represents the type of the node, while the rest are for properties of this term: `id` and `name` in this case.
+      The type of a TitanGoTerm. This an inner class of the graph. The first key here represents the type of the node, while the rest are for properties of this term: `id` and `name` in this case.
     */
-    public TitanKey termTkey;
-    public TitanKey termIdKey;
-    public TitanKey termNameKey;
-    public final TitanTermType termT = new TitanTermType(this);
+    public TitanKey goTermTkey;
+    public TitanKey goTermIdKey;
+    public TitanKey goTermNameKey;
+    public final TitanGoTermType goTermT = new TitanGoTermType(this);
 
     //-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
@@ -53,9 +49,9 @@ public abstract class TitanGoGraph
 
     public final class TitanHasPartOf
             extends
-            TitanRelationship<TitanTerm, TitanTerm.TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTerm.TitanTermType>
+            TitanRelationship<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTerm.TitanGoTermType>
             implements
-            HasPartOf<TitanTerm, TitanTerm.TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTerm.TitanTermType> {
+            HasPartOf<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTerm.TitanGoTermType> {
         TitanHasPartOf(TitanEdge edge) {
             super(edge);
         }
@@ -74,8 +70,8 @@ public abstract class TitanGoGraph
 
     public final class TitanHasPartOfType
             implements
-            TitanRelationship.Type<TitanTerm, TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTermType>,
-            HasPartOfType<TitanTerm, TitanTermType, TitanHasPartOf, TitanHasPartOfType, TitanTerm, TitanTermType> {
+            TitanRelationship.Type<TitanGoTerm, TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTermType>,
+            HasPartOfType<TitanGoTerm, TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTermType> {
         @Override
         public TitanLabel label() {
             return TitanGoGraph.this.hasPartOfLabel;
@@ -87,13 +83,13 @@ public abstract class TitanGoGraph
         }
 
         @Override
-        public TitanTermType sourceType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType sourceType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
-        public TitanTermType targetType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType targetType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
@@ -106,9 +102,9 @@ public abstract class TitanGoGraph
 
     public final class TitanIsA
             extends
-            TitanRelationship<TitanTerm, TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTermType>
+            TitanRelationship<TitanGoTerm, TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTermType>
             implements
-            IsA<TitanTerm, TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTermType> {
+            IsA<TitanGoTerm, TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTermType> {
         TitanIsA(TitanEdge edge) {
             super(edge);
         }
@@ -127,8 +123,8 @@ public abstract class TitanGoGraph
 
     public final class TitanIsAType
             implements
-            TitanRelationship.Type<TitanTerm, TitanTerm.TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTerm.TitanTermType>,
-            IsAType<TitanTerm, TitanTerm.TitanTermType, TitanIsA, TitanIsAType, TitanTerm, TitanTerm.TitanTermType> {
+            TitanRelationship.Type<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTerm.TitanGoTermType>,
+            IsAType<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTerm.TitanGoTermType> {
         @Override
         public TitanLabel label() {
             return TitanGoGraph.this.isALabel;
@@ -140,13 +136,13 @@ public abstract class TitanGoGraph
         }
 
         @Override
-        public TitanTermType sourceType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType sourceType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
-        public TitanTermType targetType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType targetType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
@@ -159,9 +155,9 @@ public abstract class TitanGoGraph
 
     public final class TitanRegulates
             extends
-            TitanRelationship<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType>
+            TitanRelationship<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType>
             implements
-            Regulates<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType> {
+            Regulates<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType> {
 
         TitanRegulates(TitanEdge edge) {
             super(edge);
@@ -181,8 +177,8 @@ public abstract class TitanGoGraph
 
     public final class TitanRegulatesType
             implements
-            TitanRelationship.Type<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType>,
-            RegulatesType<TitanTerm, TitanTermType, TitanRegulates, TitanRegulatesType, TitanTerm, TitanTermType> {
+            TitanRelationship.Type<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType>,
+            RegulatesType<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType> {
         @Override
         public TitanLabel label() {
             return TitanGoGraph.this.regulatesLabel;
@@ -194,13 +190,13 @@ public abstract class TitanGoGraph
         }
 
         @Override
-        public TitanTermType sourceType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType sourceType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
-        public TitanTermType targetType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType targetType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
@@ -213,9 +209,9 @@ public abstract class TitanGoGraph
 
     public final class TitanPositivelyRegulates
             extends
-            TitanRelationship<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType>
+            TitanRelationship<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType>
             implements
-            PositivelyRegulates<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType> {
+            PositivelyRegulates<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType> {
 
         TitanPositivelyRegulates(TitanEdge edge) {
             super(edge);
@@ -235,8 +231,8 @@ public abstract class TitanGoGraph
 
     public final class TitanPositivelyRegulatesType
             implements
-            TitanRelationship.Type<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType>,
-            PositivelyRegulatesType<TitanTerm, TitanTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanTerm, TitanTermType> {
+            TitanRelationship.Type<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType>,
+            PositivelyRegulatesType<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType> {
         @Override
         public TitanLabel label() {
             return TitanGoGraph.this.positivelyRegulatesLabel;
@@ -248,13 +244,13 @@ public abstract class TitanGoGraph
         }
 
         @Override
-        public TitanTermType sourceType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType sourceType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override
-        public TitanTermType targetType() {
-            return TitanGoGraph.this.termT;
+        public TitanGoTermType targetType() {
+            return TitanGoGraph.this.goTermT;
         }
 
         @Override

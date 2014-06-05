@@ -4,7 +4,7 @@
 //import com.ohnosequences.typedGraphs.RelationshipType;
 //
 //import com.bio4j.model.go.nodes.Term;
-//import com.bio4j.titan.model.go.nodes.TitanTerm;
+//import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 //
 //import com.bio4j.model.go.relationships.IsA;
 //
@@ -20,7 +20,7 @@
 // */
 //public final class TitanIsA
 //		extends
-//		TitanGoGraph.GoRel<Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType, IsA, IsA.Type, TitanIsA, TitanGoGraph.TitanIsAType, Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType>
+//		TitanGoGraph.GoRel<Term, Term.Type, TitanGoTerm, TitanGoGraph.TitanTermType, IsA, IsA.Type, TitanIsA, TitanGoGraph.TitanIsAType, Term, Term.Type, TitanGoTerm, TitanGoGraph.TitanTermType>
 //		implements IsA {
 //
 //	public TitanIsA(TitanEdge edge, TitanGoGraph graph) {

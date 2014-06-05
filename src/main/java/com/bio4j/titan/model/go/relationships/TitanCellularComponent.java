@@ -6,7 +6,7 @@
 //import com.bio4j.model.go.nodes.Term;
 //import com.bio4j.model.go.nodes.SubOntologies;
 //
-//import com.bio4j.titan.model.go.nodes.TitanTerm;
+//import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 //import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 //
 //import com.bio4j.model.go.relationships.CellularComponent;
@@ -23,7 +23,7 @@
 // */
 //public final class TitanCellularComponent
 //		extends
-//		TitanGoGraph.GoRel<Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType, CellularComponent, CellularComponent.Type, TitanCellularComponent, TitanGoGraph.TitanCellularComponentType, SubOntologies, SubOntologies.Type, TitanSubOntologies, TitanGoGraph.TitanSubOntologiesType>
+//		TitanGoGraph.GoRel<Term, Term.Type, TitanGoTerm, TitanGoGraph.TitanTermType, CellularComponent, CellularComponent.Type, TitanCellularComponent, TitanGoGraph.TitanCellularComponentType, SubOntologies, SubOntologies.Type, TitanSubOntologies, TitanGoGraph.TitanSubOntologiesType>
 //		implements CellularComponent {
 //
 //	public TitanCellularComponent(TitanEdge edge, TitanGoGraph graph) {

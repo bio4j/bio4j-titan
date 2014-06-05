@@ -4,7 +4,7 @@
 //import com.ohnosequences.typedGraphs.RelationshipType;
 //
 //import com.bio4j.model.go.nodes.Term;
-//import com.bio4j.titan.model.go.nodes.TitanTerm;
+//import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 //
 //import com.bio4j.model.go.relationships.HasPartOf;
 //
@@ -20,7 +20,7 @@
 // */
 //public final class TitanHasPartOf
 //		extends
-//		TitanGoGraph.GoRel<Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType, HasPartOf, HasPartOf.Type, TitanHasPartOf, TitanGoGraph.TitanHasPartOfType, Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType>
+//		TitanGoGraph.GoRel<Term, Term.Type, TitanGoTerm, TitanGoGraph.TitanTermType, HasPartOf, HasPartOf.Type, TitanHasPartOf, TitanGoGraph.TitanHasPartOfType, Term, Term.Type, TitanGoTerm, TitanGoGraph.TitanTermType>
 //		implements HasPartOf {
 //
 //	public TitanHasPartOf(TitanEdge edge, TitanGoGraph graph) {

@@ -1,13 +1,12 @@
 package com.bio4j.titan.model.go.relationships;
 
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.ohnosequences.typedGraphs.titan.*;
 
 // properties
-import com.bio4j.model.properties.*;
 
 import com.bio4j.titan.model.go.TitanGoGraph;
-import com.bio4j.titan.model.go.nodes.TitanTerm;
-import com.bio4j.titan.model.go.nodes.TitanTerm.TitanTermType;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 
 import com.bio4j.model.go.GoGraph.PartOfType;
 import com.bio4j.model.go.relationships.*;
@@ -17,15 +16,15 @@ import com.thinkaurelius.titan.core.*;
 public final class TitanPartOf
         extends
         TitanRelationship<
-                TitanTerm, TitanTerm.TitanTermType,
+                TitanGoTerm, TitanGoTerm.TitanGoTermType,
                 TitanPartOf, TitanPartOf.TitanPartOfType,
-                TitanTerm, TitanTerm.TitanTermType
+                TitanGoTerm, TitanGoTerm.TitanGoTermType
                 >
         implements
         PartOf<
-                TitanTerm, TitanTerm.TitanTermType,
+                TitanGoTerm, TitanGoTerm.TitanGoTermType,
                 TitanPartOf, TitanPartOf.TitanPartOfType,
-                TitanTerm, TitanTerm.TitanTermType
+                TitanGoTerm, TitanGoTerm.TitanGoTermType
                 > {
 
 
@@ -49,14 +48,14 @@ public final class TitanPartOf
     public static final class TitanPartOfType
             implements
             TitanRelationship.Type<
-                    TitanTerm, TitanTerm.TitanTermType,
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
                     TitanPartOf, TitanPartOf.TitanPartOfType,
-                    TitanTerm, TitanTerm.TitanTermType
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType
                     >,
             PartOfType<
-                    TitanTerm, TitanTerm.TitanTermType,
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
                     TitanPartOf, TitanPartOf.TitanPartOfType,
-                    TitanTerm, TitanTerm.TitanTermType
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType
                     > {
 
         TitanGoGraph goGraph;
@@ -77,13 +76,13 @@ public final class TitanPartOf
         }
 
         @Override
-        public TitanTermType sourceType() {
-            return goGraph.termT;
+        public TitanGoTermType sourceType() {
+            return goGraph.goTermT;
         }
 
         @Override
-        public TitanTermType targetType() {
-            return goGraph.termT;
+        public TitanGoTermType targetType() {
+            return goGraph.goTermT;
         }
 
         @Override

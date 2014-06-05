@@ -1,15 +1,10 @@
 package com.bio4j.titan.model.go.nodes;
 
-import java.util.List;
-
-import com.ohnosequences.typedGraphs.*;
 import com.ohnosequences.typedGraphs.titan.*;
 
 // properties
-import com.bio4j.model.properties.*;
 
 import com.bio4j.titan.model.go.TitanGoGraph;
-import com.bio4j.titan.model.go.TitanGoGraph.*;
 
 import com.bio4j.model.go.nodes.Term;
 import com.bio4j.model.go.GoGraph.TermType;
@@ -23,13 +18,13 @@ import com.thinkaurelius.titan.core.*;
  */
 
 
-public final class TitanTerm
+public final class TitanGoTerm
         extends
-        TitanNode<TitanTerm, TitanTerm.TitanTermType>
+        TitanNode<TitanGoTerm, TitanGoTerm.TitanGoTermType>
         implements
-        Term<TitanTerm, TitanTerm.TitanTermType> {
+        Term<TitanGoTerm, TitanGoTerm.TitanGoTermType> {
 
-    public TitanTerm(TitanVertex vertex, TitanGoGraph goGraph) {
+    public TitanGoTerm(TitanVertex vertex, TitanGoGraph goGraph) {
 
         super(vertex);
         this.goGraph = goGraph;
@@ -38,18 +33,18 @@ public final class TitanTerm
     TitanGoGraph goGraph;
 
     @Override
-    public TitanTermType type() {
+    public TitanGoTermType type() {
 
-        return goGraph.termT;
+        return goGraph.goTermT;
     }
 
 
-    public static final class TitanTermType
+    public static final class TitanGoTermType
             implements
-            TitanNode.Type<TitanTerm, TitanTerm.TitanTermType>,
-            TermType<TitanTerm, TitanTerm.TitanTermType> {
+            TitanNode.Type<TitanGoTerm, TitanGoTerm.TitanGoTermType>,
+            TermType<TitanGoTerm, TitanGoTerm.TitanGoTermType> {
 
-        public TitanTermType(TitanGoGraph goGraph) {
+        public TitanGoTermType(TitanGoGraph goGraph) {
             this.goGraph = goGraph;
         }
 
@@ -58,19 +53,19 @@ public final class TitanTerm
         @Override
         public TitanKey titanKey() {
 
-            return goGraph.termTkey;
+            return goGraph.goTermTkey;
         }
 
         @Override
-        public TitanTermType value() {
+        public TitanGoTermType value() {
 
-            return goGraph.termT;
+            return goGraph.goTermT;
         }
 
         @Override
-        public TitanTerm fromTitanVertex(TitanVertex vertex) {
+        public TitanGoTerm fromTitanVertex(TitanVertex vertex) {
 
-            return new TitanTerm(vertex, goGraph);
+            return new TitanGoTerm(vertex, goGraph);
         }
 
         // properties
@@ -85,19 +80,19 @@ public final class TitanTerm
 
         public final class id
                 implements
-                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanTerm, TitanTermType, id, String>,
-                Term.id<TitanTerm, TitanTermType, id> {
+                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, id, String>,
+                Term.id<TitanGoTerm, TitanGoTermType, id> {
 
             @Override
-            public TitanTermType elementType() {
+            public TitanGoTermType elementType() {
 
-                return TitanTermType.this;
+                return TitanGoTermType.this;
             }
 
             @Override
             public TitanKey titanKey() {
 
-                return goGraph.termIdKey;
+                return goGraph.goTermIdKey;
             }
         }
 
@@ -111,19 +106,19 @@ public final class TitanTerm
 
         public final class name
                 implements
-                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanTerm, TitanTermType, name, String>,
-                Term.name<TitanTerm, TitanTermType, name> {
+                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, name, String>,
+                Term.name<TitanGoTerm, TitanGoTermType, name> {
 
             @Override
-            public TitanTermType elementType() {
+            public TitanGoTermType elementType() {
 
-                return TitanTermType.this;
+                return TitanGoTermType.this;
             }
 
             @Override
             public TitanKey titanKey() {
 
-                return goGraph.termNameKey;
+                return goGraph.goTermNameKey;
             }
         }
     }
@@ -132,12 +127,12 @@ public final class TitanTerm
 }
 
 
-// public final class TitanTerm extends
+// public final class TitanGoTerm extends
 
-//   TitanGoGraph.GoNode<TitanTerm, TitanGoGraph.TitanTermType> implements
+//   TitanGoGraph.GoNode<TitanGoTerm, TitanGoGraph.TitanTermType> implements
 // 		Term {
 
-// 	public TitanTerm(TitanVertex vertex, TitanGoGraph graph) {
+// 	public TitanGoTerm(TitanVertex vertex, TitanGoGraph graph) {
 // 		super(vertex, graph);
 // 	}
 
@@ -154,7 +149,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> isA_inNodes() {
+// 	public List<TitanGoTerm> isA_inNodes() {
 // 		return inFromMany_Nodes(graph().titanIsAType());
 // 	}
 
@@ -165,7 +160,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> isA_outNodes() {
+// 	public List<TitanGoTerm> isA_outNodes() {
 // 		return outToMany_Nodes(graph().titanIsAType());
 // 	}
 
@@ -177,7 +172,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> regulates_inNodes() {
+// 	public List<TitanGoTerm> regulates_inNodes() {
 // 		return inFromMany_Nodes(graph().titanRegulatesType());
 // 	}
 
@@ -188,7 +183,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> regulates_outNodes() {
+// 	public List<TitanGoTerm> regulates_outNodes() {
 // 		return outToMany_Nodes(graph().titanRegulatesType());
 // 	}
 
@@ -200,7 +195,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> positivelyRegulates_inNodes() {
+// 	public List<TitanGoTerm> positivelyRegulates_inNodes() {
 // 		return inFromMany_Nodes(graph().titanPositivelyRegulatesType());
 // 	}
 
@@ -211,7 +206,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> positivelyRegulates_outNodes() {
+// 	public List<TitanGoTerm> positivelyRegulates_outNodes() {
 // 		return outToMany_Nodes(graph().titanPositivelyRegulatesType());
 // 	}
 
@@ -223,7 +218,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> negativelyRegulates_inNodes() {
+// 	public List<TitanGoTerm> negativelyRegulates_inNodes() {
 // 		return inFromMany_Nodes(graph().titanNegativelyRegulatesType());
 // 	}
 
@@ -234,7 +229,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> negativelyRegulates_outNodes() {
+// 	public List<TitanGoTerm> negativelyRegulates_outNodes() {
 // 		return outToMany_Nodes(graph().titanNegativelyRegulatesType());
 // 	}
 
@@ -246,7 +241,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> partOf_inNodes() {
+// 	public List<TitanGoTerm> partOf_inNodes() {
 // 		return inFromMany_Nodes(graph().titanPartOfType());
 // 	}
 
@@ -257,7 +252,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> partOf_outNodes() {
+// 	public List<TitanGoTerm> partOf_outNodes() {
 // 		return outToMany_Nodes(graph().titanPartOfType());
 // 	}
 
@@ -269,7 +264,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> hasPartOf_inNodes() {
+// 	public List<TitanGoTerm> hasPartOf_inNodes() {
 // 		return inFromMany_Nodes(graph().titanHasPartOfType());
 // 	}
 
@@ -280,7 +275,7 @@ public final class TitanTerm
 // 	}
 
 // 	@Override
-// 	public List<TitanTerm> hasPartOf_outNodes() {
+// 	public List<TitanGoTerm> hasPartOf_outNodes() {
 // 		return outToMany_Nodes(graph().titanHasPartOfType());
 // 	}
 
