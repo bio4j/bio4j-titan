@@ -6,6 +6,7 @@ import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanNegativelyRegulates.TitanNegativelyRegulatesType;
+import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
 
 /*
   Implementing the types with Titan
@@ -40,6 +41,8 @@ public abstract class TitanGoGraph
 
     public TitanLabel partOfLabel;
     public TitanPartOfType partOfT = new TitanPartOfType(this);
+    public TitanLabel regulatesLabel;
+    public TitanRegulatesType regulatesT = new TitanRegulatesType(this);
     public TitanLabel negativelyRegulatesLabel;
     public TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType(this);
 
@@ -151,59 +154,6 @@ public abstract class TitanGoGraph
         }
     }
 
-    //================regulates rel============================
-
-    public final class TitanRegulates
-            extends
-            TitanRelationship<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType>
-            implements
-            Regulates<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType> {
-
-        TitanRegulates(TitanEdge edge) {
-            super(edge);
-        }
-
-        /*
-          Note here how we need a reference to the enclosing graph, which contains the term type value.
-        */
-        @Override
-        public TitanRegulatesType type() {
-            return TitanGoGraph.this.regulatesT;
-        }
-    }
-
-    TitanLabel regulatesLabel;
-    TitanRegulatesType regulatesT = new TitanRegulatesType();
-
-    public final class TitanRegulatesType
-            implements
-            TitanRelationship.Type<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType>,
-            RegulatesType<TitanGoTerm, TitanGoTermType, TitanRegulates, TitanRegulatesType, TitanGoTerm, TitanGoTermType> {
-        @Override
-        public TitanLabel label() {
-            return TitanGoGraph.this.regulatesLabel;
-        }
-
-        @Override
-        public TitanRegulatesType value() {
-            return TitanGoGraph.this.regulatesT;
-        }
-
-        @Override
-        public TitanGoTermType sourceType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanGoTermType targetType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanRegulates from(TitanEdge edge) {
-            return new TitanRegulates(edge);
-        }
-    }
 
     //================positivelyRegulates rel============================
 
