@@ -5,7 +5,9 @@ import com.thinkaurelius.titan.core.*;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
+import com.bio4j.titan.model.go.relationships.TitanHasPartOf.TitanHasPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanNegativelyRegulates.TitanNegativelyRegulatesType;
+import com.bio4j.titan.model.go.relationships.TitanPositivelyRegulates.TitanPositivelyRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
 
 /*
@@ -41,65 +43,15 @@ public abstract class TitanGoGraph
 
     public TitanLabel partOfLabel;
     public TitanPartOfType partOfT = new TitanPartOfType(this);
+    public TitanLabel hasPartOfLabel;
+    public TitanHasPartOfType hasPartOfT = new TitanHasPartOfType(this);
     public TitanLabel regulatesLabel;
     public TitanRegulatesType regulatesT = new TitanRegulatesType(this);
+    public TitanLabel positivelyRegulatesLabel;
+    public TitanPositivelyRegulatesType positivelyRegulatesT = new TitanPositivelyRegulatesType(this);
     public TitanLabel negativelyRegulatesLabel;
     public TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType(this);
 
-    //================partOf rel============================
-
-    //================hasPartOf rel============================
-
-    public final class TitanHasPartOf
-            extends
-            TitanRelationship<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTerm.TitanGoTermType>
-            implements
-            HasPartOf<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTerm.TitanGoTermType> {
-        TitanHasPartOf(TitanEdge edge) {
-            super(edge);
-        }
-
-        /*
-          Note here how we need a reference to the enclosing graph, which contains the term type value.
-        */
-        @Override
-        public TitanHasPartOfType type() {
-            return TitanGoGraph.this.hasPartOfT;
-        }
-    }
-
-    TitanLabel hasPartOfLabel;
-    TitanHasPartOfType hasPartOfT = new TitanHasPartOfType();
-
-    public final class TitanHasPartOfType
-            implements
-            TitanRelationship.Type<TitanGoTerm, TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTermType>,
-            HasPartOfType<TitanGoTerm, TitanGoTermType, TitanHasPartOf, TitanHasPartOfType, TitanGoTerm, TitanGoTermType> {
-        @Override
-        public TitanLabel label() {
-            return TitanGoGraph.this.hasPartOfLabel;
-        }
-
-        @Override
-        public TitanHasPartOfType value() {
-            return TitanGoGraph.this.hasPartOfT;
-        }
-
-        @Override
-        public TitanGoTermType sourceType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanGoTermType targetType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanHasPartOf from(TitanEdge edge) {
-            return new TitanHasPartOf(edge);
-        }
-    }
 
     //================isA rel============================
 
@@ -153,63 +105,6 @@ public abstract class TitanGoGraph
             return new TitanIsA(edge);
         }
     }
-
-
-    //================positivelyRegulates rel============================
-
-    public final class TitanPositivelyRegulates
-            extends
-            TitanRelationship<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType>
-            implements
-            PositivelyRegulates<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType> {
-
-        TitanPositivelyRegulates(TitanEdge edge) {
-            super(edge);
-        }
-
-        /*
-          Note here how we need a reference to the enclosing graph, which contains the term type value.
-        */
-        @Override
-        public TitanPositivelyRegulatesType type() {
-            return TitanGoGraph.this.positivelyRegulatesT;
-        }
-    }
-
-    TitanLabel positivelyRegulatesLabel;
-    TitanPositivelyRegulatesType positivelyRegulatesT = new TitanPositivelyRegulatesType();
-
-    public final class TitanPositivelyRegulatesType
-            implements
-            TitanRelationship.Type<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType>,
-            PositivelyRegulatesType<TitanGoTerm, TitanGoTermType, TitanPositivelyRegulates, TitanPositivelyRegulatesType, TitanGoTerm, TitanGoTermType> {
-        @Override
-        public TitanLabel label() {
-            return TitanGoGraph.this.positivelyRegulatesLabel;
-        }
-
-        @Override
-        public TitanPositivelyRegulatesType value() {
-            return TitanGoGraph.this.positivelyRegulatesT;
-        }
-
-        @Override
-        public TitanGoTermType sourceType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanGoTermType targetType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanPositivelyRegulates from(TitanEdge edge) {
-            return new TitanPositivelyRegulates(edge);
-        }
-    }
-
-    //================negativelyRegulates rel============================
 
 
 }
