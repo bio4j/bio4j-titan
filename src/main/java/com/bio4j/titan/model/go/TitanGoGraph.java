@@ -9,6 +9,7 @@ import com.bio4j.titan.model.go.relationships.TitanHasPartOf.TitanHasPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanNegativelyRegulates.TitanNegativelyRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanPositivelyRegulates.TitanPositivelyRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
+import com.bio4j.titan.model.go.relationships.TitanIsA.TitanIsAType;
 
 /*
   Implementing the types with Titan
@@ -41,6 +42,8 @@ public abstract class TitanGoGraph
     //-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
 
+    public TitanLabel isALabel;
+    public TitanIsAType isAT = new TitanIsAType(this);
     public TitanLabel partOfLabel;
     public TitanPartOfType partOfT = new TitanPartOfType(this);
     public TitanLabel hasPartOfLabel;
@@ -51,60 +54,6 @@ public abstract class TitanGoGraph
     public TitanPositivelyRegulatesType positivelyRegulatesT = new TitanPositivelyRegulatesType(this);
     public TitanLabel negativelyRegulatesLabel;
     public TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType(this);
-
-
-    //================isA rel============================
-
-    public final class TitanIsA
-            extends
-            TitanRelationship<TitanGoTerm, TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTermType>
-            implements
-            IsA<TitanGoTerm, TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTermType> {
-        TitanIsA(TitanEdge edge) {
-            super(edge);
-        }
-
-        /*
-          Note here how we need a reference to the enclosing graph, which contains the term type value.
-        */
-        @Override
-        public TitanIsAType type() {
-            return TitanGoGraph.this.isAT;
-        }
-    }
-
-    TitanLabel isALabel;
-    TitanIsAType isAT = new TitanIsAType();
-
-    public final class TitanIsAType
-            implements
-            TitanRelationship.Type<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTerm.TitanGoTermType>,
-            IsAType<TitanGoTerm, TitanGoTerm.TitanGoTermType, TitanIsA, TitanIsAType, TitanGoTerm, TitanGoTerm.TitanGoTermType> {
-        @Override
-        public TitanLabel label() {
-            return TitanGoGraph.this.isALabel;
-        }
-
-        @Override
-        public TitanIsAType value() {
-            return TitanGoGraph.this.isAT;
-        }
-
-        @Override
-        public TitanGoTermType sourceType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanGoTermType targetType() {
-            return TitanGoGraph.this.goTermT;
-        }
-
-        @Override
-        public TitanIsA from(TitanEdge edge) {
-            return new TitanIsA(edge);
-        }
-    }
 
 
 }
