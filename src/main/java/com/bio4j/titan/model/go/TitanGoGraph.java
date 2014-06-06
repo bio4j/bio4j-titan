@@ -1,8 +1,10 @@
 package com.bio4j.titan.model.go;
 
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 import com.ohnosequences.typedGraphs.titan.*;
 import com.thinkaurelius.titan.core.*;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanHasPartOf.TitanHasPartOfType;
@@ -10,6 +12,8 @@ import com.bio4j.titan.model.go.relationships.TitanNegativelyRegulates.TitanNega
 import com.bio4j.titan.model.go.relationships.TitanPositivelyRegulates.TitanPositivelyRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanIsA.TitanIsAType;
+import com.bio4j.titan.model.go.relationships.TitanSubOntology.TitanSubOntologyType;
+
 
 /*
   Implementing the types with Titan
@@ -39,6 +43,9 @@ public abstract class TitanGoGraph
     public TitanKey goTermNameKey;
     public final TitanGoTermType goTermT = new TitanGoTermType(this);
 
+    public TitanKey subOntologiesNameKey;
+    public final TitanSubOntologiesType subOntologiesT = new TitanSubOntologiesType(this);
+
     //-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
 
@@ -54,6 +61,8 @@ public abstract class TitanGoGraph
     public TitanPositivelyRegulatesType positivelyRegulatesT = new TitanPositivelyRegulatesType(this);
     public TitanLabel negativelyRegulatesLabel;
     public TitanNegativelyRegulatesType negativelyRegulatesT = new TitanNegativelyRegulatesType(this);
+    public TitanLabel subOntologyLabel;
+    public TitanSubOntologyType subOntologyT = new TitanSubOntologyType(this);
 
 
 }

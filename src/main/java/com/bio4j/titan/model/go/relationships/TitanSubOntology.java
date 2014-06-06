@@ -1,0 +1,97 @@
+package com.bio4j.titan.model.go.relationships;
+
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
+import com.ohnosequences.typedGraphs.titan.*;
+
+import com.thinkaurelius.titan.core.*;
+
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.model.go.relationships.*;
+
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
+import com.bio4j.model.go.GoGraph.SubOntologyType;
+
+/**
+ *
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
+ * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
+ *         Pareja-Tobes</a>
+ */
+public final class TitanSubOntology
+        extends
+        TitanRelationship<
+                TitanGoTerm, TitanGoTerm.TitanGoTermType,
+                TitanSubOntology, TitanSubOntology.TitanSubOntologyType,
+                TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
+                >
+        implements
+        SubOntology<
+                TitanGoTerm, TitanGoTermType,
+                TitanSubOntology, TitanSubOntology.TitanSubOntologyType,
+                TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
+                >  {
+
+    TitanSubOntology(TitanEdge edge, TitanGoGraph goGraph) {
+
+        super(edge);
+        this.goGraph = goGraph;
+    }
+
+    TitanGoGraph goGraph;
+
+    /*
+      Note here how we need a reference to the enclosing graph, which contains the term type value.
+    */
+    @Override
+    public TitanSubOntologyType type() {
+        return goGraph.subOntologyT;
+    }
+
+    public static final class TitanSubOntologyType
+            implements
+            TitanRelationship.Type<
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
+                    TitanSubOntology, TitanSubOntology.TitanSubOntologyType,
+                    TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
+                    >,
+            SubOntologyType<
+                    TitanGoTerm, TitanGoTermType,
+                    TitanSubOntology, TitanSubOntologyType,
+                    TitanSubOntologies, TitanSubOntologiesType
+                    > {
+
+        TitanGoGraph goGraph;
+
+        public TitanSubOntologyType(TitanGoGraph goGraph) {
+
+            this.goGraph = goGraph;
+        }
+
+        @Override
+        public TitanLabel label() {
+            return goGraph.subOntologyLabel;
+        }
+
+        @Override
+        public TitanSubOntologyType value() {
+            return goGraph.subOntologyT;
+        }
+
+        @Override
+        public TitanGoTermType sourceType() {
+            return goGraph.goTermT;
+        }
+
+        @Override
+        public TitanGoTermType targetType() {
+            return goGraph.goTermT;
+        }
+
+        @Override
+        public TitanSubOntology from(TitanEdge edge) {
+            return new TitanSubOntology(edge, goGraph);
+        }
+    }
+
+}

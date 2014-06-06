@@ -283,24 +283,24 @@ public final class TitanGoTerm
         return outToOne(graph().titanCellularComponentType());
     }
 
-    public SubOntologies cellularComponent_outNodes() {
+    public TitanSubOntologies cellularComponent_outNodes() {
         return outToOne_Node(graph().titanCellularComponentType());
     }
 
-    // /////////////////////// extras ////////////////////////////////////
-
-    // goAnnotation
-    // incoming
-    // TODO implement
-    @Override
-    public List<GoAnnotation> goAnnotation_in() {
-        return null;
-    }
-
-    @Override
-    public List<Protein> goAnnotation_inNodes() {
-        return null;
-    }
+//    // /////////////////////// extras ////////////////////////////////////
+//
+//    // goAnnotation
+//    // incoming
+//    // TODO implement
+//    @Override
+//    public List<GoAnnotation> goAnnotation_in() {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<Protein> goAnnotation_inNodes() {
+//        return null;
+//    }
 
 
 }
