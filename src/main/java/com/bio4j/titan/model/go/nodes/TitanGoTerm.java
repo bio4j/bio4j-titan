@@ -126,6 +126,10 @@ public final class TitanGoTerm
         }
     }
 
+    @Override
+    public List<TitanIsA> isA_in() {
+        return inFromMany(goGraph.isAT);
+    }
 
     @Override
     public List<TitanGoTerm> isA_inNodes() {
