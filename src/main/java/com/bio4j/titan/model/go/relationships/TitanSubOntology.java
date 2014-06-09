@@ -8,9 +8,10 @@ import com.thinkaurelius.titan.core.*;
 
 import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.model.go.relationships.*;
+import com.bio4j.model.go.GoGraph.SubOntologyType;
 
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
-import com.bio4j.model.go.GoGraph.SubOntologyType;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 
 /**
  *
@@ -58,7 +59,7 @@ public final class TitanSubOntology
             SubOntologyType<
                     TitanGoTerm, TitanGoTermType,
                     TitanSubOntology, TitanSubOntologyType,
-                    TitanSubOntologies, TitanSubOntologiesType
+                    TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
                     > {
 
         TitanGoGraph goGraph;
@@ -84,9 +85,7 @@ public final class TitanSubOntology
         }
 
         @Override
-        public TitanGoTermType targetType() {
-            return goGraph.goTermT;
-        }
+        public TitanSubOntologiesType targetType() {  return goGraph.subOntologiesT;   }
 
         @Override
         public TitanSubOntology from(TitanEdge edge) {

@@ -43,6 +43,7 @@ public abstract class TitanGoGraph
     public TitanKey goTermNameKey;
     public final TitanGoTermType goTermT = new TitanGoTermType(this);
 
+    public TitanKey subOntologiesTKey;
     public TitanKey subOntologiesNameKey;
     public final TitanSubOntologiesType subOntologiesT = new TitanSubOntologiesType(this);
 
