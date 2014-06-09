@@ -76,8 +76,7 @@ public final class TitanGoTerm
         public id id = new id();
 
         // no need to worry about the unchecked warning
-        @Override
-        public id Id() {
+        @Override public id Id() {
 
             return id;
         }

@@ -10,8 +10,8 @@ import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.model.go.relationships.*;
 import com.bio4j.model.go.GoGraph.SubOntologyType;
 
-import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
-import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 
 /**
  *
@@ -28,7 +28,7 @@ public final class TitanSubOntology
                 >
         implements
         SubOntology<
-                TitanGoTerm, TitanGoTermType,
+                TitanGoTerm, TitanGoTerm.TitanGoTermType,
                 TitanSubOntology, TitanSubOntology.TitanSubOntologyType,
                 TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
                 >  {
@@ -57,8 +57,8 @@ public final class TitanSubOntology
                     TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
                     >,
             SubOntologyType<
-                    TitanGoTerm, TitanGoTermType,
-                    TitanSubOntology, TitanSubOntologyType,
+                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
+                    TitanSubOntology, TitanSubOntology.TitanSubOntologyType,
                     TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType
                     > {
 
@@ -74,18 +74,15 @@ public final class TitanSubOntology
             return goGraph.subOntologyLabel;
         }
 
-        @Override
-        public TitanSubOntologyType value() {
+        @Override public TitanSubOntology.TitanSubOntologyType value() {
             return goGraph.subOntologyT;
         }
 
-        @Override
-        public TitanGoTermType sourceType() {
+        @Override public TitanGoTerm.TitanGoTermType sourceType() {
             return goGraph.goTermT;
         }
 
-        @Override
-        public TitanSubOntologiesType targetType() {  return goGraph.subOntologiesT;   }
+        @Override public TitanSubOntologies.TitanSubOntologiesType targetType() {  return goGraph.subOntologiesT;   }
 
         @Override
         public TitanSubOntology from(TitanEdge edge) {
