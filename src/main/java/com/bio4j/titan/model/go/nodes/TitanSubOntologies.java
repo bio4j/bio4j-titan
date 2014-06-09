@@ -94,34 +94,17 @@ public final class TitanSubOntologies
         }
     }
 
-    // MolecularFunction
-    // incoming
-    public List<? extends MolecularFunction> molecularFunction_in() {
-        return inFromMany(graph().titanMolecularFunctionType());
+    // SubOntology
+    // ingoing
+    @Override
+    public List<TitanSubOntology> subOntology_in() {
+        return inFromMany(goGraph.subOntologyT);
     }
 
-    public List<? extends Term> term_inNodes() {
-        return inFromMany_Nodes(graph().titanMolecularFunctionType());
+    @Override
+    public List<TitanGoTerm> term_inNodes() {
+        return inFromManyNodes(goGraph.subOntologyT);
     }
 
-    // BiologicalProcess
-    // incoming
-    public List<? extends BiologicalProcess> biologicalProcess_in() {
-        return inFromMany(graph().titanBiologicalProcessType());
-    }
-
-    public List<? extends Term> biologicalProcess_inNodes() {
-        return inFromMany_Nodes(graph().titanBiologicalProcessType());
-    }
-
-    // CellularComponent
-    // incoming
-    public List<? extends CellularComponent> cellularComponent_in() {
-        return inFromMany(graph().titanCellularComponentType());
-    }
-
-    public List<? extends Term> cellularComponent_inNodes() {
-        return inFromMany_Nodes(graph().titanCellularComponentType());
-    }
 
 }

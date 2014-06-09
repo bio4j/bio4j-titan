@@ -1,5 +1,6 @@
 package com.bio4j.titan.model.go.nodes;
 
+import com.bio4j.model.go.nodes.SubOntologies;
 import com.bio4j.titan.model.go.relationships.*;
 import com.ohnosequences.typedGraphs.titan.*;
 
@@ -262,35 +263,18 @@ public final class TitanGoTerm
         return outToManyNodes(goGraph.hasPartOfT);
     }
 
-    // MolecularFunction
+    // SubOntology
     // outgoing
-//    public TitanMolecularFunction molecularFunction_out() {
-//        return outToOne(graph().titanMolecularFunctionType());
-//    }
-//
-//    public TitanSubOntologies molecularFunction_outNodes() {
-//        return outToOne_Node(graph().titanMolecularFunctionType());
-//    }
-//
-//    // BiologicalProcess
-//    // outgoing
-//    public BiologicalProcess biologicalProcess_out() {
-//        return outToOne(graph().titanBiologicalProcessType());
-//    }
-//
-//    public SubOntologies biologicalProcess_outNodes() {
-//        return outToOne_Node(graph().titanBiologicalProcessType());
-//    }
-//
-//    // CellularComponent
-//    // outgoing
-//    public CellularComponent cellularComponent_out() {
-//        return outToOne(graph().titanCellularComponentType());
-//    }
-//
-//    public TitanSubOntologies cellularComponent_outNodes() {
-//        return outToOne_Node(graph().titanCellularComponentType());
-//    }
+    @Override
+    public TitanSubOntology subOntology_out() {
+        return outToOne(goGraph.subOntologyT);
+    }
+
+    @Override
+    public TitanSubOntologies subOntology_outNodes() {
+        return outToOneNode(goGraph.subOntologiesT);
+    }
+
 
 //    // /////////////////////// extras ////////////////////////////////////
 //
