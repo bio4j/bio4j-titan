@@ -128,7 +128,7 @@ public final class TitanGoTerm
 
     @Override
     public List<TitanGoTerm> isA_inNodes() {
-        return inFromMany_Nodes(graph().titanIsAType());
+        return inFromMany_Nodes(goGraph.titanIsAType());
     }
 
     // // outgoing

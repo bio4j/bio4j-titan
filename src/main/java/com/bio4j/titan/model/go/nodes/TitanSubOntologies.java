@@ -22,8 +22,9 @@ import com.bio4j.model.go.GoGraph.SubOntologiesType;
  */
 public final class TitanSubOntologies
         extends
-        TitanNode<SubOntologies, SubOntologies.Type, TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>
-        implements SubOntologies {
+        TitanNode<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>
+        implements
+        SubOntologies<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType> {
 
 
     public TitanSubOntologies(TitanVertex vertex, TitanGoGraph goGraph) {
