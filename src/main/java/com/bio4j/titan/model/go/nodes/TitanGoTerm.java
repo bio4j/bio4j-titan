@@ -1,5 +1,6 @@
 package com.bio4j.titan.model.go.nodes;
 
+import com.bio4j.titan.model.go.relationships.*;
 import com.ohnosequences.typedGraphs.titan.*;
 
 // properties
@@ -128,164 +129,164 @@ public final class TitanGoTerm
 
     @Override
     public List<TitanGoTerm> isA_inNodes() {
-        return inFromMany_Nodes(goGraph.titanIsAType());
+        return inFromManyNodes(goGraph.isAT);
     }
 
     // // outgoing
     @Override
     public List<TitanIsA> isA_out() {
-        return outToMany(graph().titanIsAType());
+        return outToMany(goGraph.isAT);
     }
 
     @Override
     public List<TitanGoTerm> isA_outNodes() {
-        return outToMany_Nodes(graph().titanIsAType());
+        return outToManyNodes(goGraph.isAT);
     }
 
     // regulates
     // incoming
     @Override
     public List<TitanRegulates> regulates_in() {
-        return inFromMany(graph().titanRegulatesType());
+        return inFromMany(goGraph.regulatesT);
     }
 
     @Override
     public List<TitanGoTerm> regulates_inNodes() {
-        return inFromMany_Nodes(graph().titanRegulatesType());
+        return inFromManyNodes(goGraph.regulatesT);
     }
 
     // // outgoing
     @Override
     public List<TitanRegulates> regulates_out() {
-        return outToMany(graph().titanRegulatesType());
+        return outToMany(goGraph.regulatesT);
     }
 
     @Override
     public List<TitanGoTerm> regulates_outNodes() {
-        return outToMany_Nodes(graph().titanRegulatesType());
+        return outToManyNodes(goGraph.regulatesT);
     }
 
     // positivelyRegulates
     // incoming
     @Override
     public List<TitanPositivelyRegulates> positivelyRegulates_in() {
-        return inFromMany(graph().titanPositivelyRegulatesType());
+        return inFromMany(goGraph.positivelyRegulatesT);
     }
 
     @Override
     public List<TitanGoTerm> positivelyRegulates_inNodes() {
-        return inFromMany_Nodes(graph().titanPositivelyRegulatesType());
+        return inFromManyNodes(goGraph.positivelyRegulatesT);
     }
 
     // // outgoing
     @Override
     public List<TitanPositivelyRegulates> positivelyRegulates_out() {
-        return outToMany(graph().titanPositivelyRegulatesType());
+        return outToMany(goGraph.positivelyRegulatesT);
     }
 
     @Override
     public List<TitanGoTerm> positivelyRegulates_outNodes() {
-        return outToMany_Nodes(graph().titanPositivelyRegulatesType());
+        return outToManyNodes(goGraph.positivelyRegulatesT);
     }
 
     // negativelyRegulates
     // incoming
     @Override
     public List<TitanNegativelyRegulates> negativelyRegulates_in() {
-        return inFromMany(graph().titanNegativelyRegulatesType());
+        return inFromMany(goGraph.negativelyRegulatesT);
     }
 
     @Override
     public List<TitanGoTerm> negativelyRegulates_inNodes() {
-        return inFromMany_Nodes(graph().titanNegativelyRegulatesType());
+        return inFromManyNodes(goGraph.negativelyRegulatesT);
     }
 
     // // outgoing
     @Override
     public List<TitanNegativelyRegulates> negativelyRegulates_out() {
-        return outToMany(graph().titanNegativelyRegulatesType());
+        return outToMany(goGraph.negativelyRegulatesT);
     }
 
     @Override
     public List<TitanGoTerm> negativelyRegulates_outNodes() {
-        return outToMany_Nodes(graph().titanNegativelyRegulatesType());
+        return outToManyNodes(goGraph.negativelyRegulatesT);
     }
 
     // // partOf
     // // incoming
     @Override
     public List<TitanPartOf> partOf_in() {
-        return inFromMany(graph().titanPartOfType());
+        return inFromMany(goGraph.partOfT);
     }
 
     @Override
     public List<TitanGoTerm> partOf_inNodes() {
-        return inFromMany_Nodes(graph().titanPartOfType());
+        return inFromManyNodes(goGraph.partOfT);
     }
 
     // // outgoing
     @Override
     public List<TitanPartOf> partOf_out() {
-        return outToMany(graph().titanPartOfType());
+        return outToMany(goGraph.partOfT);
     }
 
     @Override
     public List<TitanGoTerm> partOf_outNodes() {
-        return outToMany_Nodes(graph().titanPartOfType());
+        return outToManyNodes(goGraph.partOfT);
     }
 
     // // partOf
     // // incoming
     @Override
     public List<TitanHasPartOf> hasPartOf_in() {
-        return inFromMany(graph().titanHasPartOfType());
+        return inFromMany(goGraph.hasPartOfT);
     }
 
     @Override
     public List<TitanGoTerm> hasPartOf_inNodes() {
-        return inFromMany_Nodes(graph().titanHasPartOfType());
+        return inFromManyNodes(goGraph.hasPartOfT);
     }
 
     // // outgoing
     @Override
     public List<TitanHasPartOf> hasPartOf_out() {
-        return outToMany(graph().titanHasPartOfType());
+        return outToMany(goGraph.hasPartOfT);
     }
 
     @Override
     public List<TitanGoTerm> hasPartOf_outNodes() {
-        return outToMany_Nodes(graph().titanHasPartOfType());
+        return outToManyNodes(goGraph.hasPartOfT);
     }
 
     // MolecularFunction
     // outgoing
-    public TitanMolecularFunction molecularFunction_out() {
-        return outToOne(graph().titanMolecularFunctionType());
-    }
-
-    public TitanSubOntologies molecularFunction_outNodes() {
-        return outToOne_Node(graph().titanMolecularFunctionType());
-    }
-
-    // BiologicalProcess
-    // outgoing
-    public BiologicalProcess biologicalProcess_out() {
-        return outToOne(graph().titanBiologicalProcessType());
-    }
-
-    public SubOntologies biologicalProcess_outNodes() {
-        return outToOne_Node(graph().titanBiologicalProcessType());
-    }
-
-    // CellularComponent
-    // outgoing
-    public CellularComponent cellularComponent_out() {
-        return outToOne(graph().titanCellularComponentType());
-    }
-
-    public TitanSubOntologies cellularComponent_outNodes() {
-        return outToOne_Node(graph().titanCellularComponentType());
-    }
+//    public TitanMolecularFunction molecularFunction_out() {
+//        return outToOne(graph().titanMolecularFunctionType());
+//    }
+//
+//    public TitanSubOntologies molecularFunction_outNodes() {
+//        return outToOne_Node(graph().titanMolecularFunctionType());
+//    }
+//
+//    // BiologicalProcess
+//    // outgoing
+//    public BiologicalProcess biologicalProcess_out() {
+//        return outToOne(graph().titanBiologicalProcessType());
+//    }
+//
+//    public SubOntologies biologicalProcess_outNodes() {
+//        return outToOne_Node(graph().titanBiologicalProcessType());
+//    }
+//
+//    // CellularComponent
+//    // outgoing
+//    public CellularComponent cellularComponent_out() {
+//        return outToOne(graph().titanCellularComponentType());
+//    }
+//
+//    public TitanSubOntologies cellularComponent_outNodes() {
+//        return outToOne_Node(graph().titanCellularComponentType());
+//    }
 
 //    // /////////////////////// extras ////////////////////////////////////
 //
