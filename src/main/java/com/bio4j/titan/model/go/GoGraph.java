@@ -74,6 +74,49 @@ public interface GoGraph {
         }
     }
 
+    /*
+      Node simbolizing each of the Gene Ontology sub ontologies (biological process, molecular function, cellular component)
+    */
+    interface SubOntologies<
+            N extends SubOntologies<N, NT>, NT extends SubOntologiesType<N, NT>
+            >
+            extends Node<N, NT> {
+        /*
+          These method is completely optional, it just gives you a way of retrieving a particular property at the level of this interface.
+        */
+        public default String name() {
+            return this.get(type().Name());
+        }
+    }
+
+    /*
+      The type of a SubOntologies node. Nested here we can find the properties of this type. Again, they could be defined anywhere; they are nested just for convenience.
+    */
+    interface SubOntologiesType<
+            N extends SubOntologies<N, NT>, NT extends SubOntologiesType<N, NT>
+            >
+            extends Node.Type<N, NT> {
+
+        public <P extends name<N, NT, P>> P Name();
+
+        interface name<
+                N extends SubOntologies<N, NT>,
+                NT extends SubOntologiesType<N, NT>,
+                P extends name<N, NT, P>
+                >
+                extends Property<N, NT, P, String> {
+            @Override
+            public default String name() {
+                return "name";
+            }
+
+            @Override
+            public default Class<String> valueClass() {
+                return String.class;
+            }
+        }
+    }
+
     // TODO Review cardinality of Relationships
 
     /*
@@ -188,6 +231,25 @@ public interface GoGraph {
             S extends Term<S, ST>, ST extends TermType<S, ST>,
             R extends PositivelyRegulates<S, ST, R, RT, T, TT>, RT extends PositivelyRegulatesType<S, ST, R, RT, T, TT>,
             T extends Term<T, TT>, TT extends TermType<T, TT>
+            >
+            extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
+    }
+
+    /*
+    The subontology relationship; it goes from terms to subontologies.
+    */
+    interface SubOntology<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends SubOntology<S, ST, R, RT, T, TT>, RT extends SubOntologyType<S, ST, R, RT, T, TT>,
+            T extends SubOntologies<T, TT>, TT extends SubOntologiesType<T, TT>
+            >
+            extends Relationship<S, ST, R, RT, T, TT> {
+    }
+
+    interface SubOntologyType<
+            S extends Term<S, ST>, ST extends TermType<S, ST>,
+            R extends SubOntology<S, ST, R, RT, T, TT>, RT extends SubOntologyType<S, ST, R, RT, T, TT>,
+            T extends SubOntologies<T, TT>, TT extends SubOntologiesType<T, TT>
             >
             extends Relationship.Type.ManyToMany<S, ST, R, RT, T, TT> {
     }
