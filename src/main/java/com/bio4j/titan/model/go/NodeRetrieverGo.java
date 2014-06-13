@@ -22,6 +22,7 @@ public class NodeRetrieverGo extends Retriever {
         Iterator<TitanIndexQuery.Result<Vertex>> verticesIt = graph.rawGraph.indexQuery(graph.goTermT.id.fullName(), id).vertices().iterator();
         if(verticesIt.hasNext()){
             //TitanGoTerm term = new TitanGoTerm(verticesIt.next().getElement(), graph);
+            return null;
         }else{
             return null;
         }
