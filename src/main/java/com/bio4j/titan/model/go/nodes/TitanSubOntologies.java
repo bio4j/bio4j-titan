@@ -81,9 +81,9 @@ public final class TitanSubOntologies
                 SubOntologies.name<TitanSubOntologies, TitanSubOntologiesType, name> {
 
             @Override
-            public TitanSubOntologies elementType() {
+            public TitanSubOntologiesType elementType() {
 
-                return TitanSubOntologies.this;
+                return TitanSubOntologiesType.this;
             }
 
             @Override
