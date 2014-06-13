@@ -2,6 +2,7 @@ package com.bio4j.titan.model.go;
 
 import com.ohnosequences.typedGraphs.Retriever;
 import com.thinkaurelius.titan.core.TitanIndexQuery;
+import com.thinkaurelius.titan.core.TitanVertex;
 import com.tinkerpop.blueprints.Vertex;
 
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
@@ -18,9 +19,9 @@ public class NodeRetrieverGo extends Retriever {
 	}
 
 	public TitanGoTerm getTermById(String id){
-        Iterator<TitanIndexQuery.Result<Vertex>> verticesIt = graph.rawGraph.indexQuery(graph.termT.id.fullName(), id).vertices().iterator();
+        Iterator<TitanIndexQuery.Result<Vertex>> verticesIt = graph.rawGraph.indexQuery(graph.goTermT.id.fullName(), id).vertices().iterator();
         if(verticesIt.hasNext()){
-            TitanGoTerm term = new TitanGoTerm(verticesIt.next().getElement(), graph);
+            //TitanGoTerm term = new TitanGoTerm(verticesIt.next().getElement(), graph);
         }else{
             return null;
         }

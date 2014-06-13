@@ -42,7 +42,7 @@ public final class TitanSubOntologies
 
     public static final class TitanSubOntologiesType
             implements
-            TitanNode.Type<TitanGoTerm, TitanGoTerm.TitanGoTermType>,
+            TitanNode.Type<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>,
             SubOntologiesType<TitanSubOntologies, TitanSubOntologiesType> {
 
         public TitanSubOntologiesType(TitanGoGraph goGraph) {
@@ -62,9 +62,9 @@ public final class TitanSubOntologies
         }
 
         @Override
-        public TitanGoTerm fromTitanVertex(TitanVertex vertex) {
+        public TitanSubOntologies fromTitanVertex(TitanVertex vertex) {
 
-            return new TitanGoTerm(vertex, goGraph);
+            return new TitanSubOntologies(vertex, goGraph);
         }
 
         name name = new name();
