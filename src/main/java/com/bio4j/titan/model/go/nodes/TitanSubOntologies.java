@@ -69,12 +69,6 @@ public final class TitanSubOntologies
 
         name name = new name();
 
-        @Override
-        public name Name() {
-
-            return name;
-        }
-
         public final class name
                 implements
                 com.ohnosequences.typedGraphs.titan.TitanProperty<TitanSubOntologies, TitanSubOntologiesType, name, String>,

@@ -75,12 +75,6 @@ public final class TitanGoTerm
         // properties
         public id id = new id();
 
-        // no need to worry about the unchecked warning
-        @Override public id Id() {
-
-            return id;
-        }
-
         public final class id
                 implements
                 com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, id, String>,
@@ -100,12 +94,6 @@ public final class TitanGoTerm
         }
 
         name name = new name();
-
-        @Override
-        public name Name() {
-
-            return name;
-        }
 
         public final class name
                 implements
