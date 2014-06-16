@@ -88,10 +88,12 @@ public class ImportGeneOntologyTitan implements Executable {
              Configuration conf = new BaseConfiguration();
              conf.setProperty("storage.directory", args[1]);
              conf.setProperty("storage.backend", "local");
+	         conf.setProperty("autotype", "none");
 
              //-------creating graph handlers---------------------
 	         TitanGraph g = TitanFactory.open(conf);
 	         TitanGoGraphImpl graph = new TitanGoGraphImpl(g);
+
 
              BufferedWriter statsBuff = null;
 
