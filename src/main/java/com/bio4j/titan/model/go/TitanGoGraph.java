@@ -1,5 +1,6 @@
 package com.bio4j.titan.model.go;
 
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
 import com.bio4j.titan.model.go.relationships.TitanHasPartOf.TitanHasPartOfType;
@@ -9,6 +10,7 @@ import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanPositivelyRegulates.TitanPositivelyRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanSubOntology.TitanSubOntologyType;
+import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.thinkaurelius.titan.core.TitanKey;
@@ -46,6 +48,11 @@ public abstract class TitanGoGraph
 	public TitanKey subOntologiesTKey;
 	public TitanKey subOntologiesNameKey;
 	public final TitanSubOntologiesType subOntologiesT = new TitanSubOntologiesType(this);
+
+	//------------------INDICES----------------
+	//-----------------------------------------
+	TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> termIdIndex;
+
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------

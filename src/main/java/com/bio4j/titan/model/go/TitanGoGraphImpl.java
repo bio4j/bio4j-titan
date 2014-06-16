@@ -38,6 +38,6 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 	}
 
 	private void initIndices(){
-		termIdIndex = new TitanNodeIndex.DefaultUnique(this.rawGraph, goTermT.id);
+		termIdIndex = new TitanNodeIndex.DefaultUnique(this, goTermT.id);
 	}
 }

@@ -123,11 +123,6 @@ public interface GoGraph {
 		}
 	}
 
-	//------------------INDEXES----------------
-	TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTerm.id,String> termIdIndex;
-
-	//-----------------------------------------
-
 	// TODO Review cardinality of Relationships
 
 	/*
