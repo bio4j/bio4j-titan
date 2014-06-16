@@ -268,6 +268,9 @@ public class ImportGeneOntologyTitan implements Executable {
                  }
                  reader.close();
 
+	             //----committing transaction---
+	             graph.rawGraph().commit();
+
                  //-----------------------------------------------------------------------
 
                  logger.log(Level.INFO, "Inserting relationships....");
