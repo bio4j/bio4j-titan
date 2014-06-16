@@ -1,5 +1,6 @@
 package com.bio4j.titan.model.go;
 
+import com.bio4j.model.go.GoGraph;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
@@ -46,6 +47,7 @@ public abstract class TitanGoGraph
 	public TitanKey goTermDefinitionKey;
 	public TitanKey goTermObsoleteKey;
 	public TitanKey goTermCommentKey;
+	public TitanKey goTermSynonymKey;
 	public final TitanGoTermType goTermT = new TitanGoTermType(this);
 
 	public TitanKey subOntologiesTKey;

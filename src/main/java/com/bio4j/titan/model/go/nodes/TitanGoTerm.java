@@ -1,12 +1,13 @@
 package com.bio4j.titan.model.go.nodes;
 
-import com.bio4j.model.go.GoGraph.TermType;
+import com.bio4j.model.go.GoGraph;
 import com.bio4j.model.go.nodes.Term;
 import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.go.relationships.*;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
+import com.bio4j.model.go.GoGraph.TermType;
 
 import java.util.List;
 
@@ -22,8 +23,22 @@ import java.util.List;
 public final class TitanGoTerm
 		extends
 		TitanNode<TitanGoTerm, TitanGoTerm.TitanGoTermType>
-		implements
-		Term<TitanGoTerm, TitanGoTerm.TitanGoTermType> {
+		implements Term<TitanGoTerm, TitanGoTerm.TitanGoTermType>
+
+		 {
+
+	@Override
+	public String id(){ return get(goGraph.goTermT.id);}
+	@Override
+	public String name(){   return get(goGraph.goTermT.name);}
+	@Override
+	public String comment(){   return get(goGraph.goTermT.comment);}
+	@Override
+	public String synonym(){   return get(goGraph.goTermT.synonym);}
+	@Override
+	public String definition(){   return get(goGraph.goTermT.definition);}
+	@Override
+	public String obsolete(){   return get(goGraph.goTermT.obsolete);}
 
 	public TitanGoTerm(TitanVertex vertex, TitanGoGraph goGraph) {
 
@@ -162,6 +177,25 @@ public final class TitanGoTerm
 			public TitanKey titanKey() {
 
 				return goGraph.goTermCommentKey;
+			}
+		}
+
+		public synonym synonym = new synonym();
+		public final class synonym
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, synonym, String>,
+				Term.synonym<TitanGoTerm, TitanGoTermType, synonym> {
+
+			@Override
+			public TitanGoTermType elementType() {
+
+				return TitanGoTermType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return goGraph.goTermSynonymKey;
 			}
 		}
 	}
