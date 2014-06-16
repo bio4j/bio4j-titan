@@ -1,15 +1,13 @@
 package com.bio4j.titan.model.go.relationships;
 
 import com.bio4j.model.go.GoGraph.NegativelyRegulatesType;
-import com.bio4j.titan.model.go.nodes.TitanGoTerm;
-
 import com.bio4j.model.go.relationships.NegativelyRegulates;
-import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
-
-import com.ohnosequences.typedGraphs.titan.TitanRelationship;
-import com.thinkaurelius.titan.core.*;
-
 import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
+import com.ohnosequences.typedGraphs.titan.TitanRelationship;
+import com.thinkaurelius.titan.core.TitanEdge;
+import com.thinkaurelius.titan.core.TitanLabel;
 
 /**
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
@@ -17,80 +15,80 @@ import com.bio4j.titan.model.go.TitanGoGraph;
  *         Pareja-Tobes</a>
  */
 public final class TitanNegativelyRegulates
-        extends
-        TitanRelationship<
-                TitanGoTerm, TitanGoTerm.TitanGoTermType,
-                TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                TitanGoTerm, TitanGoTerm.TitanGoTermType
-                >
-        implements
-        NegativelyRegulates<
-                TitanGoTerm, TitanGoTerm.TitanGoTermType,
-                TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                TitanGoTerm, TitanGoTerm.TitanGoTermType
-                > {
+		extends
+		TitanRelationship<
+				TitanGoTerm, TitanGoTerm.TitanGoTermType,
+				TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
+				TitanGoTerm, TitanGoTerm.TitanGoTermType
+				>
+		implements
+		NegativelyRegulates<
+				TitanGoTerm, TitanGoTerm.TitanGoTermType,
+				TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
+				TitanGoTerm, TitanGoTerm.TitanGoTermType
+				> {
 
-    TitanNegativelyRegulates(TitanEdge edge, TitanGoGraph goGraph) {
+	TitanNegativelyRegulates(TitanEdge edge, TitanGoGraph goGraph) {
 
-        super(edge);
-        this.goGraph = goGraph;
-    }
+		super(edge);
+		this.goGraph = goGraph;
+	}
 
-    TitanGoGraph goGraph;
+	TitanGoGraph goGraph;
 
-    /*
-     Note here how we need a reference to the enclosing graph, which contains the term type value.
+	/*
+	 Note here how we need a reference to the enclosing graph, which contains the term type value.
    */
-    @Override
-    public TitanNegativelyRegulatesType type() {
+	@Override
+	public TitanNegativelyRegulatesType type() {
 
-        return goGraph.negativelyRegulatesT;
-    }
+		return goGraph.negativelyRegulatesT;
+	}
 
-    public static final class TitanNegativelyRegulatesType
-            implements
-            TitanRelationship.Type<
-                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
-                    TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                    TitanGoTerm, TitanGoTerm.TitanGoTermType
-                    >,
-            NegativelyRegulatesType<
-                    TitanGoTerm, TitanGoTerm.TitanGoTermType,
-                    TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
-                    TitanGoTerm, TitanGoTerm.TitanGoTermType
-                    > {
+	public static final class TitanNegativelyRegulatesType
+			implements
+			TitanRelationship.Type<
+					TitanGoTerm, TitanGoTerm.TitanGoTermType,
+					TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
+					TitanGoTerm, TitanGoTerm.TitanGoTermType
+					>,
+			NegativelyRegulatesType<
+					TitanGoTerm, TitanGoTerm.TitanGoTermType,
+					TitanNegativelyRegulates, TitanNegativelyRegulates.TitanNegativelyRegulatesType,
+					TitanGoTerm, TitanGoTerm.TitanGoTermType
+					> {
 
-        TitanGoGraph goGraph;
+		TitanGoGraph goGraph;
 
-        public TitanNegativelyRegulatesType(TitanGoGraph goGraph) {
+		public TitanNegativelyRegulatesType(TitanGoGraph goGraph) {
 
-            this.goGraph = goGraph;
-        }
+			this.goGraph = goGraph;
+		}
 
-        @Override
-        public TitanLabel label() {
-            return goGraph.negativelyRegulatesLabel;
-        }
+		@Override
+		public TitanLabel label() {
+			return goGraph.negativelyRegulatesLabel;
+		}
 
-        @Override
-        public TitanNegativelyRegulatesType value() {
-            return goGraph.negativelyRegulatesT;
-        }
+		@Override
+		public TitanNegativelyRegulatesType value() {
+			return goGraph.negativelyRegulatesT;
+		}
 
-        @Override
-        public TitanGoTermType sourceType() {
-            return goGraph.goTermT;
-        }
+		@Override
+		public TitanGoTermType sourceType() {
+			return goGraph.goTermT;
+		}
 
-        @Override
-        public TitanGoTermType targetType() {
-            return goGraph.goTermT;
-        }
+		@Override
+		public TitanGoTermType targetType() {
+			return goGraph.goTermT;
+		}
 
-        @Override
-        public TitanNegativelyRegulates from(TitanEdge edge) {
-            return new TitanNegativelyRegulates(edge, goGraph);
-        }
-    }
+		@Override
+		public TitanNegativelyRegulates from(TitanEdge edge) {
+			return new TitanNegativelyRegulates(edge, goGraph);
+		}
+	}
 
 }

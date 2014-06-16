@@ -7,9 +7,9 @@
 //  A typed node.
 
 //  @author <a href="mailto:ppareja@ohnosequences.com">Pablo Pareja-Tobes</a>
- 
+
 // public abstract class NodeTitan implements TitanVertex{
-	
+
 // 	Vertex vertex;
 
 // }

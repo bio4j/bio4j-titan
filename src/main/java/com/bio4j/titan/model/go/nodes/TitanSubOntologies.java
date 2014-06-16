@@ -1,19 +1,17 @@
 package com.bio4j.titan.model.go.nodes;
 
+import com.bio4j.model.go.GoGraph.SubOntologiesType;
+import com.bio4j.model.go.nodes.SubOntologies;
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.go.relationships.TitanSubOntology;
+import com.ohnosequences.typedGraphs.titan.TitanNode;
+import com.thinkaurelius.titan.core.TitanKey;
+import com.thinkaurelius.titan.core.TitanVertex;
+
 import java.util.List;
 
-
-import com.bio4j.model.go.GoGraph;
-import com.bio4j.model.go.nodes.*;
 // properties
-import com.bio4j.model.properties.*;
 // relationships
-import com.bio4j.model.go.relationships.*;
-import com.bio4j.titan.model.go.relationships.*;
-import com.bio4j.titan.model.go.TitanGoGraph;
-import com.ohnosequences.typedGraphs.titan.TitanNode;
-import com.thinkaurelius.titan.core.*;
-import com.bio4j.model.go.GoGraph.SubOntologiesType;
 
 /**
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
@@ -21,84 +19,84 @@ import com.bio4j.model.go.GoGraph.SubOntologiesType;
  *         Pareja-Tobes</a>
  */
 public final class TitanSubOntologies
-        extends
-        TitanNode<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>
-        implements
-        SubOntologies<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType> {
+		extends
+		TitanNode<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>
+		implements
+		SubOntologies<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType> {
 
 
-    public TitanSubOntologies(TitanVertex vertex, TitanGoGraph goGraph) {
-        super(vertex);
-        this.goGraph = goGraph;
-    }
+	public TitanSubOntologies(TitanVertex vertex, TitanGoGraph goGraph) {
+		super(vertex);
+		this.goGraph = goGraph;
+	}
 
-    TitanGoGraph goGraph;
+	TitanGoGraph goGraph;
 
-    @Override
-    public TitanSubOntologiesType type() {
-        return goGraph.subOntologiesT;
-    }
+	@Override
+	public TitanSubOntologiesType type() {
+		return goGraph.subOntologiesT;
+	}
 
 
-    public static final class TitanSubOntologiesType
-            implements
-            TitanNode.Type<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>,
-            SubOntologiesType<TitanSubOntologies, TitanSubOntologiesType> {
+	public static final class TitanSubOntologiesType
+			implements
+			TitanNode.Type<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>,
+			SubOntologiesType<TitanSubOntologies, TitanSubOntologiesType> {
 
-        public TitanSubOntologiesType(TitanGoGraph goGraph) {
-            this.goGraph = goGraph;
-        }
+		public TitanSubOntologiesType(TitanGoGraph goGraph) {
+			this.goGraph = goGraph;
+		}
 
-        TitanGoGraph goGraph;
+		TitanGoGraph goGraph;
 
-        @Override
-        public TitanKey titanKey() {
-            return goGraph.subOntologiesTKey;
-        }
+		@Override
+		public TitanKey titanKey() {
+			return goGraph.subOntologiesTKey;
+		}
 
-        @Override
-        public TitanSubOntologiesType value() {
-            return goGraph.subOntologiesT;
-        }
+		@Override
+		public TitanSubOntologiesType value() {
+			return goGraph.subOntologiesT;
+		}
 
-        @Override
-        public TitanSubOntologies fromTitanVertex(TitanVertex vertex) {
+		@Override
+		public TitanSubOntologies fromTitanVertex(TitanVertex vertex) {
 
-            return new TitanSubOntologies(vertex, goGraph);
-        }
+			return new TitanSubOntologies(vertex, goGraph);
+		}
 
-        name name = new name();
+		name name = new name();
 
-        public final class name
-                implements
-                com.ohnosequences.typedGraphs.titan.TitanProperty<TitanSubOntologies, TitanSubOntologiesType, name, String>,
-                SubOntologies.name<TitanSubOntologies, TitanSubOntologiesType, name> {
+		public final class name
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanSubOntologies, TitanSubOntologiesType, name, String>,
+				SubOntologies.name<TitanSubOntologies, TitanSubOntologiesType, name> {
 
-            @Override
-            public TitanSubOntologiesType elementType() {
+			@Override
+			public TitanSubOntologiesType elementType() {
 
-                return TitanSubOntologiesType.this;
-            }
+				return TitanSubOntologiesType.this;
+			}
 
-            @Override
-            public TitanKey titanKey() {
+			@Override
+			public TitanKey titanKey() {
 
-                return goGraph.subOntologiesNameKey;
-            }
-        }
-    }
+				return goGraph.subOntologiesNameKey;
+			}
+		}
+	}
 
-    // SubOntology
-    // ingoing
-    @Override
-    public List<TitanSubOntology> subOntology_in() {
-        return inFromMany(goGraph.subOntologyT);
-    }
+	// SubOntology
+	// ingoing
+	@Override
+	public List<TitanSubOntology> subOntology_in() {
+		return inFromMany(goGraph.subOntologyT);
+	}
 
-    @Override
-    public List<TitanGoTerm> term_inNodes() {
-        return inFromManyNodes(goGraph.subOntologyT);
-    }
+	@Override
+	public List<TitanGoTerm> term_inNodes() {
+		return inFromManyNodes(goGraph.subOntologyT);
+	}
 
 
 }

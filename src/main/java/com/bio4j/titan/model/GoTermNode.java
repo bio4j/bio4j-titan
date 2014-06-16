@@ -48,7 +48,7 @@
 //  * @author Pablo Pareja Tobes <ppareja@era7.com>
 //  */
 // public class TermNode extends NodeTitan implements Term{
-    
+
 //     public TermNode(Vertex v){
 //         super(v);
 //     }
@@ -242,7 +242,7 @@
 // 	@Override
 // 	public void remove() {
 // 		// TODO Auto-generated method stub
-		
+
 // 	}
 
 // 	@Override
@@ -260,13 +260,13 @@
 // 	@Override
 // 	public void setProperty(String arg0, Object arg1) {
 // 		// TODO Auto-generated method stub
-		
+
 // 	}
 
 // 	@Override
 // 	public void setProperty(TitanKey arg0, Object arg1) {
 // 		// TODO Auto-generated method stub
-		
+
 // 	}
 
 // 	@Override
@@ -448,7 +448,7 @@
 // 		// TODO Auto-generated method stub
 // 		return null;
 // 	}
-    
+
 // //    @Override
 // //    public String[] getAlternativeIds(){    
 // //        String[] result;
@@ -471,5 +471,5 @@
 // //            tempVertex.addProperty(ALTERNATIVE_IDS_PROPERTY, string);
 // //        } 
 // //    }
-    
+
 // }
