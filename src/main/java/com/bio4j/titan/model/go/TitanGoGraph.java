@@ -43,6 +43,9 @@ public abstract class TitanGoGraph
 	public TitanKey goTermTkey;
 	public TitanKey goTermIdKey;
 	public TitanKey goTermNameKey;
+	public TitanKey goTermDefinitionKey;
+	public TitanKey goTermObsoleteKey;
+	public TitanKey goTermCommentKey;
 	public final TitanGoTermType goTermT = new TitanGoTermType(this);
 
 	public TitanKey subOntologiesTKey;
@@ -51,7 +54,7 @@ public abstract class TitanGoGraph
 
 	//------------------INDICES----------------
 	//-----------------------------------------
-	TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> termIdIndex;
+	public TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> goTermIdIndex;
 
 
 	//-----------------------------------------------------------------------------------------

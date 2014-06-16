@@ -17,10 +17,12 @@
 package com.bio4j.titan.programs;
 
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
+import com.tinkerpop.blueprints.Vertex;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.jdom2.Element;
@@ -133,7 +135,6 @@ public class ImportGeneOntologyTitan implements Executable {
                          }
                          //organism final line
                          termStBuilder.append(line);
-                         System.out.println("organismStBuilder.toString() = " + organismStBuilder.toString());
                          XMLElement termXMLElement = new XMLElement(termStBuilder.toString());
                          termStBuilder.delete(0, termStBuilder.length());
 
@@ -178,7 +179,7 @@ public class ImportGeneOntologyTitan implements Executable {
 
 
                          //----term parents----
-                         List<Element> termParentTerms = termXMLElement.asJDomElement().getChildren(is);
+                         List<Element> termParentTerms = termXMLElement.asJDomElement().getChildren(IS_A_OBOXML_RELATIONSHIP_NAME);
                          ArrayList<String> array = new ArrayList<>();
                          for (Element elem : termParentTerms) {
                              array.add(elem.getText().trim());
@@ -243,22 +244,21 @@ public class ImportGeneOntologyTitan implements Executable {
                          }
                          //-------------------------------------
 
-                         Vertex goTermVertex = graph.addVertex(null);
+                         Vertex goTermVertex = graph.rawGraph().addVertex(null);
 
-                         goTermVertex.setProperty(GoTerm.ID_PROPERTY, goId);
-                         goTermVertex.setProperty(GoTerm.NAME_PROPERTY, goName);
-                         goTermVertex.setProperty(GoTerm.DEFINITION_PROPERTY, goDefinition);
-                         goTermVertex.setProperty(GoTerm.NAMESPACE_PROPERTY, goNamespace);
-                         goTermVertex.setProperty(GoTerm.OBSOLETE_PROPERTY, goIsObsolete);
-                         goTermVertex.setProperty(GoTerm.COMMENT_PROPERTY, goComment);
-                         goTermVertex.setProperty(GoTerm.NODE_TYPE_PROPERTY, GoTerm.NODE_TYPE);
+                         goTermVertex.setProperty(graph.goTermT.id.fullName(), goId);
+                         goTermVertex.setProperty(graph.goTermT.name.fullName(), goName);
+                         goTermVertex.setProperty(graph.goTermT.definition.fullName(), goDefinition);
+                         goTermVertex.setProperty(graph.goTermT.obsolete.fullName(), goIsObsolete);
+                         goTermVertex.setProperty(graph.goTermT.comment.fullName(), goComment);
                          //----------------------
 
+	                     // TODO see if this has to be implemented in the new version
                          //----alternative IDs----
-                         TitanVertex goTitanVertex = (TitanVertex) goTermVertex;
-                         for (String string : alternativeIds) {
-                             goTitanVertex.addProperty(GoTerm.ALTERNATIVE_IDS_PROPERTY, string);
-                         }
+//                         TitanVertex goTitanVertex = (TitanVertex) goTermVertex;
+//                         for (String string : alternativeIds) {
+//                             goTitanVertex.addProperty(GoTerm.ALTERNATIVE_IDS_PROPERTY, string);
+//                         }
 
                      }
                      termCounter++;
@@ -278,12 +278,12 @@ public class ImportGeneOntologyTitan implements Executable {
                  Set<String> keys = termParentsMap.keySet();
                  for (String key : keys) {
 
-                	 GoTerm tempGoTerm = nodeRetriever.getGoTermById(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
                      ArrayList<String> tempArray = termParentsMap.get(key);
 
                      for (String string : tempArray) {
-                    	 GoTerm tempGoTerm2 = nodeRetriever.getGoTermById(string);
-                         graph.addEdge(null, tempGoTerm.getNode(), tempGoTerm2.getNode(), IsAGoRel.NAME);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.isAT.name());
                      }
                  }
 
@@ -291,59 +291,59 @@ public class ImportGeneOntologyTitan implements Executable {
                  //-------------------'regulates' relationships----------------------
                  keys = regulatesMap.keySet();
                  for (String key : keys) {
-                	 GoTerm tempGoTerm = nodeRetriever.getGoTermById(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
                      ArrayList<String> tempArray = regulatesMap.get(key);
                      for (String string : tempArray) {
-                    	 GoTerm tempGoTerm2 = nodeRetriever.getGoTermById(string);
-                         graph.addEdge(null, tempGoTerm.getNode(), tempGoTerm2.getNode(), RegulatesGoRel.NAME);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.regulatesT.name());
                      }
                  }
 
                  logger.log(Level.INFO, "'negatively_regulates' relationships....");
-                 //-------------------'regulates' relationships----------------------
+                 //-------------------'negatively regulates' relationships----------------------
                  keys = negativelyRegulatesMap.keySet();
                  for (String key : keys) {
-                	 GoTerm tempGoTerm = nodeRetriever.getGoTermById(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
                      ArrayList<String> tempArray = negativelyRegulatesMap.get(key);
                      for (String string : tempArray) {
-                    	 GoTerm tempGoTerm2 = nodeRetriever.getGoTermById(string);
-                         graph.addEdge(null, tempGoTerm.getNode(), tempGoTerm2.getNode(), NegativelyRegulatesGoRel.NAME);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.negativelyRegulatesT.name());
                      }
                  }
 
                  logger.log(Level.INFO, "'positively_regulates' relationships....");
-                 //-------------------'regulates' relationships----------------------
+                 //-------------------'positively regulates' relationships----------------------
                  keys = positivelyRegulatesMap.keySet();
                  for (String key : keys) {
-                	 GoTerm tempGoTerm = nodeRetriever.getGoTermById(key);
+	                 TitanGoTerm tempGoTerm =  graph.goTermIdIndex.getNode(key);
                      ArrayList<String> tempArray = positivelyRegulatesMap.get(key);
                      for (String string : tempArray) {
-                    	 GoTerm tempGoTerm2 = nodeRetriever.getGoTermById(string);
-                         graph.addEdge(null, tempGoTerm.getNode(), tempGoTerm2.getNode(), PositivelyRegulatesGoRel.NAME);
+	                     TitanGoTerm tempGoTerm2 =  graph.goTermIdIndex.getNode(string);
+                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.positivelyRegulatesT.name());
                      }
                  }
 
                  logger.log(Level.INFO, "'part_of' relationships....");
-                 //-------------------'regulates' relationships----------------------
+                 //-------------------'parf of' relationships----------------------
                  keys = partOfMap.keySet();
                  for (String key : keys) {
-                	 GoTerm tempGoTerm = nodeRetriever.getGoTermById(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
                      ArrayList<String> tempArray = partOfMap.get(key);
                      for (String string : tempArray) {
-                    	 GoTerm tempGoTerm2 = nodeRetriever.getGoTermById(string);
-                         graph.addEdge(null, tempGoTerm.getNode(), tempGoTerm2.getNode(), PartOfGoRel.NAME);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.partOfT.name());
                      }
                  }
 
-                 logger.log(Level.INFO, "'has_part' relationships....");
-                 //-------------------'regulates' relationships----------------------
+                 logger.log(Level.INFO, "'has_part_of' relationships....");
+                 //-------------------'has part of' relationships----------------------
                  keys = hasPartMap.keySet();
                  for (String key : keys) {
-                	 GoTerm tempGoTerm = nodeRetriever.getGoTermById(key);
+                	 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
                      ArrayList<String> tempArray = hasPartMap.get(key);
                      for (String string : tempArray) {
-                    	 GoTerm tempGoTerm2 = nodeRetriever.getGoTermById(string);
-                         graph.addEdge(null, tempGoTerm.getNode(), tempGoTerm2.getNode(), HasPartOfGoRel.NAME);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.hasPartOfT.name());
                      }
                  }
 
@@ -363,7 +363,7 @@ public class ImportGeneOntologyTitan implements Executable {
                      fh.close();
                      logger.log(Level.INFO, "Closing up manager....");
                      //shutdown, makes sure all changes are written to disk
-                     manager.shutDown();
+                     graph.rawGraph().shutdown();
 
                      //-----------------writing stats file---------------------
                      long elapsedTime = System.nanoTime() - initTime;

@@ -2,7 +2,7 @@ package com.bio4j.titan.model.go;
 
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.ohnosequences.typedGraphs.titan.TitanNodeIndex.DefaultUnique
+import com.ohnosequences.typedGraphs.titan.TitanNodeIndex.DefaultUnique;
 
 public final class TitanGoGraphImpl extends TitanGoGraph {
 
@@ -19,6 +19,9 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 		goTermTkey = titanKeyForNodeType(goTermT.id);
 		goTermIdKey = goTermTkey;
 		goTermNameKey = titanKeyForNodeProperty(goTermT.name).make();
+		goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition).make();
+		goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete).make();
+		goTermCommentKey = titanKeyForNodeProperty(goTermT.comment).make();
 		// if you want to index the name just add the corresponding titan stuff before make, like
 		// termNameKey = titanKeyForNodeProperty(termT.name).indexed(com.tinkerpop.blueprints.Edge.class).make();
 
@@ -38,6 +41,6 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 	}
 
 	private void initIndices(){
-		termIdIndex = new TitanNodeIndex.DefaultUnique(this, goTermT.id);
+		goTermIdIndex = new TitanNodeIndex.DefaultUnique(this, goTermT.id);
 	}
 }

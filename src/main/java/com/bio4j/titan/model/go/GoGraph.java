@@ -41,7 +41,6 @@ public interface GoGraph {
 			extends Node.Type<N, NT> {
 
 		public <P extends id<N, NT, P>> P Id();
-
 		// properties
 		interface id<
 				N extends Term<N, NT>,
@@ -61,7 +60,6 @@ public interface GoGraph {
 		}
 
 		public <P extends name<N, NT, P>> P Name();
-
 		interface name<
 				N extends Term<N, NT>,
 				NT extends TermType<N, NT>,
@@ -71,6 +69,60 @@ public interface GoGraph {
 			@Override
 			public default String name() {
 				return "name";
+			}
+
+			@Override
+			public default Class<String> valueClass() {
+				return String.class;
+			}
+		}
+
+		public <P extends definition<N, NT, P>> P Definition();
+		interface definition<
+				N extends Term<N, NT>,
+				NT extends TermType<N, NT>,
+				P extends definition<N, NT, P>
+				>
+				extends Property<N, NT, P, String> {
+			@Override
+			public default String name() {
+				return "definition";
+			}
+
+			@Override
+			public default Class<String> valueClass() {
+				return String.class;
+			}
+		}
+
+		public <P extends obsolete<N, NT, P>> P Obsolete();
+		interface obsolete<
+				N extends Term<N, NT>,
+				NT extends TermType<N, NT>,
+				P extends obsolete<N, NT, P>
+				>
+				extends Property<N, NT, P, String> {
+			@Override
+			public default String name() {
+				return "obsolete";
+			}
+
+			@Override
+			public default Class<String> valueClass() {
+				return String.class;
+			}
+		}
+
+		public <P extends comment<N, NT, P>> P Comment();
+		interface comment<
+				N extends Term<N, NT>,
+				NT extends TermType<N, NT>,
+				P extends comment<N, NT, P>
+				>
+				extends Property<N, NT, P, String> {
+			@Override
+			public default String name() {
+				return "comment";
 			}
 
 			@Override

@@ -69,9 +69,8 @@ public final class TitanGoTerm
 			return new TitanGoTerm(vertex, goGraph);
 		}
 
-		// properties
+		// --------------------------------properties----------------------------------------
 		public id id = new id();
-
 		public final class id
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, id, String>,
@@ -91,7 +90,6 @@ public final class TitanGoTerm
 		}
 
 		public name name = new name();
-
 		public final class name
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, name, String>,
@@ -107,6 +105,63 @@ public final class TitanGoTerm
 			public TitanKey titanKey() {
 
 				return goGraph.goTermNameKey;
+			}
+		}
+
+		public definition definition = new definition();
+		public final class definition
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, definition, String>,
+				Term.definition<TitanGoTerm, TitanGoTermType, definition> {
+
+			@Override
+			public TitanGoTermType elementType() {
+
+				return TitanGoTermType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return goGraph.goTermDefinitionKey;
+			}
+		}
+
+		public obsolete obsolete = new obsolete();
+		public final class obsolete
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, obsolete, String>,
+				Term.obsolete<TitanGoTerm, TitanGoTermType, obsolete> {
+
+			@Override
+			public TitanGoTermType elementType() {
+
+				return TitanGoTermType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return goGraph.goTermObsoleteKey;
+			}
+		}
+
+		public comment comment = new comment();
+		public final class comment
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, comment, String>,
+				Term.comment<TitanGoTerm, TitanGoTermType, comment> {
+
+			@Override
+			public TitanGoTermType elementType() {
+
+				return TitanGoTermType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return goGraph.goTermCommentKey;
 			}
 		}
 	}
