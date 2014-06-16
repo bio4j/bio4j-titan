@@ -19,10 +19,10 @@ public class NodeRetrieverGo extends Retriever {
 	}
 
 	public TitanGoTerm getTermById(String id){
+
         Iterator<TitanIndexQuery.Result<Vertex>> verticesIt = graph.rawGraph.indexQuery(graph.goTermT.id.fullName(), id).vertices().iterator();
         if(verticesIt.hasNext()){
-            //TitanGoTerm term = new TitanGoTerm(verticesIt.next().getElement(), graph);
-            return null;
+            TitanGoTerm term = new TitanGoTerm(verticesIt.next().getElement(), graph);
         }else{
             return null;
         }

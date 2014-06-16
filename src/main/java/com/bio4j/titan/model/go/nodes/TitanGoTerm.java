@@ -93,7 +93,7 @@ public final class TitanGoTerm
             }
         }
 
-        name name = new name();
+        public name name = new name();
 
         public final class name
                 implements
@@ -259,7 +259,7 @@ public final class TitanGoTerm
 
     @Override
     public TitanSubOntologies subOntology_outNodes() {
-        return outToOneNode(goGraph.subOntologiesT);
+        return outToOneNode(goGraph.subOntologyT);
     }
 
 
