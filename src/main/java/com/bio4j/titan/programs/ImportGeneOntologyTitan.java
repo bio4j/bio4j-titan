@@ -285,8 +285,8 @@ public class ImportGeneOntologyTitan implements Executable {
                      for (String string : tempArray) {
 	                     System.out.println("string: " + string);
 	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
-	                     System.out.println("id2: " + tempGoTerm.id() + " name2: " + tempGoTerm.name());
-                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.isAT.name());
+	                     System.out.println("id2: " + tempGoTerm2.id() + " name2: " + tempGoTerm2.name());
+	                     tempGoTerm.addOut(graph.isAT, tempGoTerm2);
                      }
                  }
 
@@ -298,7 +298,7 @@ public class ImportGeneOntologyTitan implements Executable {
                      ArrayList<String> tempArray = regulatesMap.get(key);
                      for (String string : tempArray) {
 	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
-                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.regulatesT.name());
+	                     tempGoTerm.addOut(graph.regulatesT, tempGoTerm2);
                      }
                  }
 
@@ -310,7 +310,7 @@ public class ImportGeneOntologyTitan implements Executable {
                      ArrayList<String> tempArray = negativelyRegulatesMap.get(key);
                      for (String string : tempArray) {
 	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
-                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.negativelyRegulatesT.name());
+	                     tempGoTerm.addOut(graph.negativelyRegulatesT, tempGoTerm2);
                      }
                  }
 
@@ -322,7 +322,7 @@ public class ImportGeneOntologyTitan implements Executable {
                      ArrayList<String> tempArray = positivelyRegulatesMap.get(key);
                      for (String string : tempArray) {
 	                     TitanGoTerm tempGoTerm2 =  graph.goTermIdIndex.getNode(string);
-                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.positivelyRegulatesT.name());
+	                     tempGoTerm.addOut(graph.positivelyRegulatesT, tempGoTerm2);
                      }
                  }
 
@@ -334,7 +334,7 @@ public class ImportGeneOntologyTitan implements Executable {
                      ArrayList<String> tempArray = partOfMap.get(key);
                      for (String string : tempArray) {
 	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
-                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.partOfT.name());
+	                     tempGoTerm.addOut(graph.partOfT, tempGoTerm2);
                      }
                  }
 
@@ -346,7 +346,7 @@ public class ImportGeneOntologyTitan implements Executable {
                      ArrayList<String> tempArray = hasPartMap.get(key);
                      for (String string : tempArray) {
 	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
-                         graph.rawGraph().addEdge(null, tempGoTerm, tempGoTerm2, graph.hasPartOfT.name());
+	                     tempGoTerm.addOut(graph.hasPartOfT, tempGoTerm2);
                      }
                  }
 
