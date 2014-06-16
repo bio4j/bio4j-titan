@@ -89,7 +89,7 @@ public final class TitanHasPartOf
 		}
 
 		@Override
-		public TitanHasPartOf from(TitanEdge edge) {
+		public TitanHasPartOf fromTitanEdge(TitanEdge edge) {
 			return new TitanHasPartOf(edge, goGraph);
 		}
 	}

@@ -85,7 +85,7 @@ public final class TitanSubOntology
 		}
 
 		@Override
-		public TitanSubOntology from(TitanEdge edge) {
+		public TitanSubOntology fromTitanEdge(TitanEdge edge) {
 			return new TitanSubOntology(edge, goGraph);
 		}
 	}

@@ -89,7 +89,7 @@ public final class TitanIsA
 		}
 
 		@Override
-		public TitanIsA from(TitanEdge edge) {
+		public TitanIsA fromTitanEdge(TitanEdge edge) {
 			return new TitanIsA(edge, goGraph);
 		}
 	}

@@ -85,7 +85,7 @@ public final class TitanPositivelyRegulates
 		}
 
 		@Override
-		public TitanPositivelyRegulates from(TitanEdge edge) {
+		public TitanPositivelyRegulates fromTitanEdge(TitanEdge edge) {
 			return new TitanPositivelyRegulates(edge, goGraph);
 		}
 	}
