@@ -24,6 +24,8 @@ public class dsfalksjdf {
 		TitanGraph g = TitanFactory.open(conf);
 		TitanGoGraphImpl graph = new TitanGoGraphImpl(g);
 
+		g.commit();
+
 		Vertex goTermVertex = graph.rawGraph().addVertex(null);
 		goTermVertex.setProperty(graph.goTermT.id.fullName(), "1");
 
