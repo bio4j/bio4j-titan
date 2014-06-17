@@ -1,17 +1,21 @@
+package com.bio4j.titan.test;
+
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.relationships.TitanIsA;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
-/**
- * Created by ppareja on 6/16/2014.
- */
-public class dsfalksjdf {
 
-	public static void main(String[] args){
+/**
+ * Created by ppareja on 6/16/2014. 
+ */
+public final class TestAddRel {
+
+	public static void main(String[] args) {
 
 
 		//----------DB configuration------------------
@@ -41,6 +45,7 @@ public class dsfalksjdf {
 		System.out.println("term 1: " + tempGoTerm.id());
 		System.out.println("term 2: " + tempGoTerm2.id());
 
-		tempGoTerm.addOut(graph.isAT, tempGoTerm2);
+		TitanIsA tisa = tempGoTerm.addOut(graph.isAT, tempGoTerm2);
+		System.out.println(tisa);
 	}
 }
