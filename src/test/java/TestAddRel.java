@@ -47,5 +47,7 @@ public final class TestAddRel {
 
 		TitanIsA tisa = tempGoTerm.addOut(graph.isAT, tempGoTerm2);
 		System.out.println(tisa);
+		System.out.println(tisa.type().name());
+
 	}
 }
