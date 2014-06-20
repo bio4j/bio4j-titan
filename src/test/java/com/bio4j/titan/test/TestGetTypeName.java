@@ -2,12 +2,14 @@ package com.bio4j.titan.test;
 
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.relationships.TitanIsA;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
 import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -29,6 +31,24 @@ public final class TestGetTypeName {
 		TitanGoGraphImpl graph = new TitanGoGraphImpl(g);
 
 		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("GO:0000003");
+		System.out.println("is A relationships: ");
+		List<TitanIsA> list = tempGoTerm.isA_in();
+		for(TitanIsA rel : list){
+			System.out.println(rel.getLabel());
+		}
+
+		List<TitanGoTerm> listNodes = tempGoTerm.isA_inNodes();
+		System.out.println("in IsA nodes");
+		for(TitanGoTerm term : listNodes){
+			System.out.println(term.id());
+		}
+
+		List<TitanGoTerm> listNodesOut = tempGoTerm.isA_outNodes();
+		System.out.println("out IsA nodes");
+		for(TitanGoTerm term : listNodesOut){
+			System.out.println(term.id());
+		}
+
 
 		System.out.println("term keys: ");
 
