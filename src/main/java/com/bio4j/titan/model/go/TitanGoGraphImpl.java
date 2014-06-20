@@ -18,25 +18,25 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 		// Term keys
 		goTermTkey = titanKeyForNodeType(goTermT.id);
 		goTermIdKey = goTermTkey;
-		goTermNameKey = titanKeyForNodeProperty(goTermT.name).make();
-		goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition).make();
-		goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete).make();
-		goTermCommentKey = titanKeyForNodeProperty(goTermT.comment).make();
+		goTermNameKey = titanKeyForNodeProperty(goTermT.name);
+		goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition);
+		goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete);
+		goTermCommentKey = titanKeyForNodeProperty(goTermT.comment);
 		// if you want to index the name just add the corresponding titan stuff before make, like
 		// termNameKey = titanKeyForNodeProperty(termT.name).indexed(com.tinkerpop.blueprints.Edge.class).make();
 
 		// partOf stuff
-		partOfLabel = titanLabelForRelationshipType(partOfT).make();
+		partOfLabel = titanLabelForRelationshipType(partOfT);
 		// hasPartOF stuff
-		hasPartOfLabel = titanLabelForRelationshipType(hasPartOfT).make();
+		hasPartOfLabel = titanLabelForRelationshipType(hasPartOfT);
 		// isA stuff
-		isALabel = titanLabelForRelationshipType(isAT).make();
+		isALabel = titanLabelForRelationshipType(isAT);
 		// regulates stuff
-		regulatesLabel = titanLabelForRelationshipType(regulatesT).make();
+		regulatesLabel = titanLabelForRelationshipType(regulatesT);
 		// positivelyRegulates stuff
-		positivelyRegulatesLabel = titanLabelForRelationshipType(positivelyRegulatesT).make();
+		positivelyRegulatesLabel = titanLabelForRelationshipType(positivelyRegulatesT);
 		// negativelyRegulates stuff
-		negativelyRegulatesLabel = titanLabelForRelationshipType(negativelyRegulatesT).make();
+		negativelyRegulatesLabel = titanLabelForRelationshipType(negativelyRegulatesT);
 
 	}
 

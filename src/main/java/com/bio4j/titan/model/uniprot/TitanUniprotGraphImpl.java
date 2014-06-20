@@ -1,13 +1,13 @@
-//package com.bio4j.titan.model.enzyme;
+//package com.bio4j.titan.model.uniprot;
 //
 //import com.thinkaurelius.titan.core.TitanGraph;
 //
 ///**
 // * Created by ppareja on 6/20/2014.
 // */
-//public class TitanEnzymeDBGraphImpl extends TitanEnzymeDBGraph {
+//public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 //
-//	public TitanEnzymeDBGraphImpl(TitanGraph graph) {
+//	public TitanUniprotGraphImpl(TitanGraph graph) {
 //		super(graph);
 //		initTypes();
 //		initIndices();

@@ -28,7 +28,7 @@ public final class TestGetTypeName {
 		TitanGraph g = TitanFactory.open(conf);
 		TitanGoGraphImpl graph = new TitanGoGraphImpl(g);
 
-		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("GO:0019952");
+		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("GO:0000003");
 
 		System.out.println("term keys: ");
 
