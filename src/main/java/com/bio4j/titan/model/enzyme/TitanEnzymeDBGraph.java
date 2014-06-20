@@ -5,6 +5,7 @@ import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme.TitanEnzymeType;
+import com.thinkaurelius.titan.core.TitanLabel;
 
 /**
  * Created by ppareja on 6/20/2014.
@@ -40,4 +41,6 @@ public abstract class TitanEnzymeDBGraph implements
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
+	public TitanLabel enzymaticActivityLabel;
+	public TitanEnzymaticActivityType enzymaticActivityT = new TitanEnzymaticActivityType(this);
 }

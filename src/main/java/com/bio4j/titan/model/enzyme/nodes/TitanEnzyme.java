@@ -62,15 +62,6 @@ public class TitanEnzyme extends
 		return get(enzymeDBGraph.enzymeT.prositeCrossReferences);
 	}
 
-	@Override
-	public List<? extends EnzymaticActivity> enzymaticActivity_in() {
-		return null;
-	}
-
-	@Override
-	public List<? extends Protein> enzymaticActivity_inNodes() {
-		return null;
-	}
 
 	public static final class TitanEnzymeType
 			implements
@@ -214,6 +205,16 @@ public class TitanEnzyme extends
 
 				return enzymeDBGraph.enzymePrositeCrossReferencesKey;
 			}
+		}
+
+		@Override
+		public List<? extends EnzymaticActivity> enzymaticActivity_in() {
+			return inFromMany(enzymeDBGraph.enzymaticActivityT);
+		}
+
+		@Override
+		public List<? extends Protein> enzymaticActivity_inNodes() {
+			return inFromManyNodes(enzymeDBGraph.enzymaticActivityT);
 		}
 
 	}
