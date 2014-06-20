@@ -284,13 +284,13 @@ public class ImportGeneOntologyTitan implements Executable {
                  for (String key : keys) {
 
 	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
-	                 System.out.println("id: " + tempGoTerm.id() + " name: " + tempGoTerm.name());
+	                 //System.out.println("id: " + tempGoTerm.id() + " name: " + tempGoTerm.name());
                      ArrayList<String> tempArray = termParentsMap.get(key);
 
                      for (String string : tempArray) {
-	                     System.out.println("string: " + string);
+	                     //System.out.println("string: " + string);
 	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
-	                     System.out.println("id2: " + tempGoTerm2.id() + " name2: " + tempGoTerm2.name());
+	                     //System.out.println("id2: " + tempGoTerm2.id() + " name2: " + tempGoTerm2.name());
 	                     tempGoTerm.addOut(graph.isAT, tempGoTerm2);
                      }
                  }
