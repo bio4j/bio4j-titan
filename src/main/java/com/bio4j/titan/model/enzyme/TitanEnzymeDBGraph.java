@@ -1,6 +1,7 @@
 package com.bio4j.titan.model.enzyme;
 
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
+import com.bio4j.titan.model.enzyme.relationships.TitanEnzymaticActivity.TitanEnzymaticActivityType;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.thinkaurelius.titan.core.TitanKey;
