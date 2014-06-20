@@ -22,8 +22,10 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 		goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition);
 		goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete);
 		goTermCommentKey = titanKeyForNodeProperty(goTermT.comment);
-		// if you want to index the name just add the corresponding titan stuff before make, like
-		// termNameKey = titanKeyForNodeProperty(termT.name).indexed(com.tinkerpop.blueprints.Edge.class).make();
+
+		// Subontologies keys
+		subOntologiesTKey = titanKeyForNodeType(subOntologiesT.name);
+		subOntologiesNameKey = subOntologiesTKey;
 
 		// partOf stuff
 		partOfLabel = titanLabelForRelationshipType(partOfT);
@@ -42,6 +44,6 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 
 	private void initIndices(){
 		goTermIdIndex = new TitanNodeIndex.DefaultUnique(this, goTermT.id);
-		subontologiesNameIndex = new TitanNodeIndex.DefaultUnique(this, subOntologiesT.name);
+		subOntologiesNameIndex = new TitanNodeIndex.DefaultUnique(this, subOntologiesT.name);
 	}
 }

@@ -58,7 +58,7 @@ public abstract class TitanGoGraph
 	//------------------INDICES----------------
 	//-----------------------------------------
 	public TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> goTermIdIndex;
-	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subontologiesNameIndex;
+	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subOntologiesNameIndex;
 
 
 	//-----------------------------------------------------------------------------------------

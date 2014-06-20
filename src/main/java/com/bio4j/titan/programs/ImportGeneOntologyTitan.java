@@ -18,6 +18,7 @@ package com.bio4j.titan.programs;
 
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanFactory;
@@ -126,12 +127,12 @@ public class ImportGeneOntologyTitan implements Executable {
 
 	             logger.log(Level.INFO, "inserting subontologies nodes....");
 	             //---biological process---
-	             Vertex subontologiesBPVertex = graph.rawGraph().addVertex(null);
-	             subontologiesBPVertex.setProperty(graph.subOntologiesT.name.fullName(), "biological_process");
-	             Vertex subontologiesCCVertex = graph.rawGraph().addVertex(null);
-	             subontologiesCCVertex.setProperty(graph.subOntologiesT.name.fullName(), "cellular_component");
-	             Vertex subontologiesMFVertex = graph.rawGraph().addVertex(null);
-	             subontologiesCCVertex.setProperty(graph.subOntologiesT.name.fullName(), "molecular_function");
+	             TitanSubOntologies subOntologiesBP = graph.subOntologiesT.from(graph.rawGraph().addVertex(null));
+	             subOntologiesBP.set(graph.subOntologiesT.name, "biological_process");
+	             TitanSubOntologies subOntologiesCC = graph.subOntologiesT.from(graph.rawGraph().addVertex(null));
+	             subOntologiesCC.set(graph.subOntologiesT.name, "cellular_component");
+	             TitanSubOntologies subOntologiesMM = graph.subOntologiesT.from(graph.rawGraph().addVertex(null));
+	             subOntologiesMM.set(graph.subOntologiesT.name, "molecular_function");
 
                  logger.log(Level.INFO, "inserting term nodes....");
 
@@ -254,19 +255,20 @@ public class ImportGeneOntologyTitan implements Executable {
                          }
                          //-------------------------------------
 
-                         Vertex goTermVertex = graph.rawGraph().addVertex(null);
+	                     TitanGoTerm term = graph.goTermT.from(graph.rawGraph().addVertex(null));
 
-                         goTermVertex.setProperty(graph.goTermT.id.fullName(), goId);
-                         goTermVertex.setProperty(graph.goTermT.name.fullName(), goName);
-                         goTermVertex.setProperty(graph.goTermT.definition.fullName(), goDefinition);
-                         goTermVertex.setProperty(graph.goTermT.obsolete.fullName(), goIsObsolete);
-                         goTermVertex.setProperty(graph.goTermT.comment.fullName(), goComment);
+	                     term.set(graph.goTermT.id, goId);
+	                     term.set(graph.goTermT.name, goName);
+	                     term.set(graph.goTermT.definition, goDefinition);
+	                     term.set(graph.goTermT.obsolete, goIsObsolete);
+	                     term.set(graph.goTermT.comment, goComment);
                          //----------------------
 
-	                     graph.rawGraph().commit();
 	                     //----namespace---
 	                     TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(goId);
-	                     tempGoTerm.addOut(graph.subOntologyT,graph.subontologiesNameIndex.getNode(goNamespace));
+	                     System.out.println(tempGoTerm.name());
+	                     System.out.println(goNamespace);
+	                     tempGoTerm.addOut(graph.subOntologyT,graph.subOntologiesNameIndex.getNode(goNamespace));
 
 
                      }
