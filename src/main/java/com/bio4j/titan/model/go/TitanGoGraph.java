@@ -3,6 +3,7 @@ package com.bio4j.titan.model.go;
 import com.bio4j.model.go.GoGraph;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies.TitanSubOntologiesType;
 import com.bio4j.titan.model.go.relationships.TitanHasPartOf.TitanHasPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanIsA.TitanIsAType;
@@ -57,6 +58,7 @@ public abstract class TitanGoGraph
 	//------------------INDICES----------------
 	//-----------------------------------------
 	public TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> goTermIdIndex;
+	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subontologiesNameIndex;
 
 
 	//-----------------------------------------------------------------------------------------

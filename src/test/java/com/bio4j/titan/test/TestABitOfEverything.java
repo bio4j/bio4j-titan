@@ -2,6 +2,7 @@ package com.bio4j.titan.test;
 
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 import com.bio4j.titan.model.go.relationships.TitanIsA;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by ppareja on 6/16/2014.
  */
-public final class TestGetTypeName {
+public final class TestABitOfEverything {
 
 	public static void main(String[] args) {
 
@@ -49,6 +50,8 @@ public final class TestGetTypeName {
 			System.out.println(term.id());
 		}
 
+		TitanSubOntologies titanSubOntologies = tempGoTerm.subOntology_outNodes();
+		System.out.println(titanSubOntologies.name());
 
 		System.out.println("term keys: ");
 

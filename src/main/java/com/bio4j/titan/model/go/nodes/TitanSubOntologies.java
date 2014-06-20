@@ -24,6 +24,8 @@ public final class TitanSubOntologies
 		implements
 		SubOntologies<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType> {
 
+	@Override
+	public String name(){   return get(goGraph.subOntologiesT.name);}
 
 	public TitanSubOntologies(TitanVertex vertex, TitanGoGraph goGraph) {
 		super(vertex);
@@ -65,7 +67,7 @@ public final class TitanSubOntologies
 			return new TitanSubOntologies(vertex, goGraph);
 		}
 
-		name name = new name();
+		public name name = new name();
 
 		public final class name
 				implements

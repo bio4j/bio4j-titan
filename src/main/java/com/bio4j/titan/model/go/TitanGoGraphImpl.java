@@ -42,5 +42,6 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 
 	private void initIndices(){
 		goTermIdIndex = new TitanNodeIndex.DefaultUnique(this, goTermT.id);
+		subontologiesNameIndex = new TitanNodeIndex.DefaultUnique(this, subOntologiesT.name);
 	}
 }

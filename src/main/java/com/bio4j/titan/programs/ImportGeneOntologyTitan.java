@@ -124,7 +124,16 @@ public class ImportGeneOntologyTitan implements Executable {
                  String line;
                  StringBuilder termStBuilder = new StringBuilder();
 
-                 logger.log(Level.INFO, "inserting nodes....");
+	             logger.log(Level.INFO, "inserting subontologies nodes....");
+	             //---biological process---
+	             Vertex subontologiesBPVertex = graph.rawGraph().addVertex(null);
+	             subontologiesBPVertex.setProperty(graph.subOntologiesT.name.fullName(), "biological_process");
+	             Vertex subontologiesCCVertex = graph.rawGraph().addVertex(null);
+	             subontologiesCCVertex.setProperty(graph.subOntologiesT.name.fullName(), "cellular_component");
+	             Vertex subontologiesMFVertex = graph.rawGraph().addVertex(null);
+	             subontologiesCCVertex.setProperty(graph.subOntologiesT.name.fullName(), "molecular_function");
+
+                 logger.log(Level.INFO, "inserting term nodes....");
 
                  //-----first I create all the elements whitout their relationships-------------
 
@@ -172,12 +181,11 @@ public class ImportGeneOntologyTitan implements Executable {
                              }
                          }
 
-
-                         List<Element> altIdElems = termXMLElement.asJDomElement().getChildren("alt_id");
-                         String[] alternativeIds = new String[altIdElems.size()];
-                         for (int i = 0; i < altIdElems.size(); i++) {
-                             alternativeIds[i] = altIdElems.get(i).getText();
-                         }
+//                         List<Element> altIdElems = termXMLElement.asJDomElement().getChildren("alt_id");
+//                         String[] alternativeIds = new String[altIdElems.size()];
+//                         for (int i = 0; i < altIdElems.size(); i++) {
+//                             alternativeIds[i] = altIdElems.get(i).getText();
+//                         }
 
 
                          //----term parents----
@@ -255,12 +263,11 @@ public class ImportGeneOntologyTitan implements Executable {
                          goTermVertex.setProperty(graph.goTermT.comment.fullName(), goComment);
                          //----------------------
 
-	                     // TODO see if this has to be implemented in the new version
-                         //----alternative IDs----
-//                         TitanVertex goTitanVertex = (TitanVertex) goTermVertex;
-//                         for (String string : alternativeIds) {
-//                             goTitanVertex.addProperty(GoTerm.ALTERNATIVE_IDS_PROPERTY, string);
-//                         }
+	                     graph.rawGraph().commit();
+	                     //----namespace---
+	                     TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(goId);
+	                     tempGoTerm.addOut(graph.subOntologyT,graph.subontologiesNameIndex.getNode(goNamespace));
+
 
                      }
                      termCounter++;
