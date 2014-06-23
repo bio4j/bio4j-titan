@@ -268,7 +268,7 @@ public class ImportGeneOntologyTitan implements Executable {
 	                     TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(goId);
 	                     System.out.println(tempGoTerm.name());
 	                     System.out.println(goNamespace);
-	                     tempGoTerm.addOut(graph.subOntologyT,graph.subOntologiesNameIndex.getNode(goNamespace));
+	                     tempGoTerm.addOut(graph.subOntologyT,graph.subOntologiesNameIndex.getNode("'"+goNamespace+"'"));
 
 
                      }
