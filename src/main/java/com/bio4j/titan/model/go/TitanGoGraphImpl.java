@@ -39,6 +39,8 @@ public final class TitanGoGraphImpl extends TitanGoGraph {
 		positivelyRegulatesLabel = titanLabelForRelationshipType(positivelyRegulatesT);
 		// negativelyRegulates stuff
 		negativelyRegulatesLabel = titanLabelForRelationshipType(negativelyRegulatesT);
+		// subOntology stuff
+		subOntologyLabel = titanLabelForRelationshipType(subOntologyT);
 
 	}
 

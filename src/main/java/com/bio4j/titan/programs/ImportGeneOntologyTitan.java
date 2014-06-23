@@ -264,11 +264,12 @@ public class ImportGeneOntologyTitan implements Executable {
 	                     term.set(graph.goTermT.comment, goComment);
                          //----------------------
 
+	                     g.commit();
+
 	                     //----namespace---
 	                     TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(goId);
-	                     System.out.println(tempGoTerm.name());
-	                     System.out.println(goNamespace);
-	                     tempGoTerm.addOut(graph.subOntologyT,graph.subOntologiesNameIndex.getNode("'"+goNamespace+"'"));
+	                     TitanSubOntologies titanSubontologies = graph.subOntologiesNameIndex.getNode(goNamespace);
+	                     tempGoTerm.addOut(graph.subOntologyT, titanSubontologies);
 
 
                      }
