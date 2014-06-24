@@ -17,7 +17,6 @@ bucketSuffix := "era7.com"
 
 libraryDependencies ++= Seq(
   "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
-  "ohnosequences" % "typed-graphs" % "0.1.0-SNAPSHOT",
   "ohnosequences" % "bioinfo-util" % "1.3.0",
   "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.4",
   "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0",

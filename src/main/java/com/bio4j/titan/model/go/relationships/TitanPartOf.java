@@ -1,35 +1,93 @@
 package com.bio4j.titan.model.go.relationships;
 
-import com.ohnosequences.typedGraphs.Relationship;
-import com.ohnosequences.typedGraphs.RelationshipType;
-
-import com.bio4j.model.go.nodes.Term;
-import com.bio4j.titan.model.go.nodes.TitanTerm;
-
+import com.bio4j.model.go.GoGraph.PartOfType;
 import com.bio4j.model.go.relationships.PartOf;
-
-import com.thinkaurelius.titan.core.*;
-
 import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
+import com.ohnosequences.typedGraphs.titan.TitanRelationship;
+import com.thinkaurelius.titan.core.TitanEdge;
+import com.thinkaurelius.titan.core.TitanLabel;
 
-/**
- * 
- * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
- * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
- *         Pareja-Tobes</a>
- */
+// properties
+
 public final class TitanPartOf
 		extends
-		TitanGoGraph.GoRel<Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType, PartOf, PartOf.Type, TitanPartOf, TitanGoGraph.TitanPartOfType, Term, Term.Type, TitanTerm, TitanGoGraph.TitanTermType>
-		implements PartOf {
+		TitanRelationship<
+				TitanGoTerm, TitanGoTerm.TitanGoTermType,
+				TitanPartOf, TitanPartOf.TitanPartOfType,
+				TitanGoTerm, TitanGoTerm.TitanGoTermType
+				>
+		implements
+		PartOf<
+				TitanGoTerm, TitanGoTerm.TitanGoTermType,
+				TitanPartOf, TitanPartOf.TitanPartOfType,
+				TitanGoTerm, TitanGoTerm.TitanGoTermType
+				> {
 
-	public TitanPartOf(TitanEdge edge, TitanGoGraph graph) {
-		super(edge, graph);
+
+	TitanPartOf(TitanEdge edge, TitanGoGraph goGraph) {
+
+		super(edge);
+		this.goGraph = goGraph;
 	}
 
+	TitanGoGraph goGraph;
+
+	/*
+	  Note here how we need a reference to the enclosing graph, which contains the term type value.
+	*/
 	@Override
-	public TitanGoGraph.TitanPartOfType titanType() {
-		return graph().titanPartOfType();
+	public TitanPartOfType type() {
+
+		return goGraph.partOfT;
 	}
+
+	public static final class TitanPartOfType
+			implements
+			TitanRelationship.Type<
+					TitanGoTerm, TitanGoTerm.TitanGoTermType,
+					TitanPartOf, TitanPartOf.TitanPartOfType,
+					TitanGoTerm, TitanGoTerm.TitanGoTermType
+					>,
+			PartOfType<
+					TitanGoTerm, TitanGoTerm.TitanGoTermType,
+					TitanPartOf, TitanPartOf.TitanPartOfType,
+					TitanGoTerm, TitanGoTerm.TitanGoTermType
+					> {
+
+		TitanGoGraph goGraph;
+
+		public TitanPartOfType(TitanGoGraph goGraph) {
+
+			this.goGraph = goGraph;
+		}
+
+		@Override
+		public TitanLabel label() {
+			return goGraph.partOfLabel;
+		}
+
+		@Override
+		public TitanPartOfType value() {
+			return goGraph.partOfT;
+		}
+
+		@Override
+		public TitanGoTermType sourceType() {
+			return goGraph.goTermT;
+		}
+
+		@Override
+		public TitanGoTermType targetType() {
+			return goGraph.goTermT;
+		}
+
+		@Override
+		public TitanPartOf fromTitanEdge(TitanEdge edge) {
+			return new TitanPartOf(edge, goGraph);
+		}
+	}
+
 
 }
