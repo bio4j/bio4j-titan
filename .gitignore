@@ -17,6 +17,8 @@ project/plugins/project/
 # st2
 *.sublime-project
 *.sublime-workspace
+# Intellij Idea IDE specific
+.idea/
 
 # data folders
 data/in/
