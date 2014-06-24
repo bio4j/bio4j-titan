@@ -6,8 +6,8 @@
 //import com.thinkaurelius.titan.core.TitanKey;
 //
 ///**
-// * Created by ppareja on 6/20/2014.
-// */
+//* Created by ppareja on 6/20/2014.
+//*/
 //public class TitanUniprotGraph implements
 //		TitanTypedGraph,
 //		UniprotGraph {
