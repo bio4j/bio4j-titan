@@ -1,67 +1,104 @@
 package com.bio4j.titan.model.go.nodes;
 
+import com.bio4j.model.go.GoGraph.SubOntologiesType;
+import com.bio4j.model.go.nodes.SubOntologies;
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.go.relationships.TitanSubOntology;
+import com.ohnosequences.typedGraphs.titan.TitanNode;
+import com.thinkaurelius.titan.core.TitanKey;
+import com.thinkaurelius.titan.core.TitanVertex;
+
 import java.util.List;
 
-import com.ohnosequences.typedGraphs.titan.TitanNode;
-import com.ohnosequences.typedGraphs.titan.TitanNodeType;
-
-import com.bio4j.model.go.nodes.*;
 // properties
-import com.bio4j.model.properties.*;
 // relationships
-import com.bio4j.model.go.relationships.*;
-import com.bio4j.titan.model.go.relationships.*;
-import com.bio4j.titan.model.go.TitanGoGraph;
-import com.thinkaurelius.titan.core.*;
 
 /**
- * 
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  * @author <a href="mailto:eparejatobes@ohnosequences.com">Eduardo
  *         Pareja-Tobes</a>
  */
 public final class TitanSubOntologies
 		extends
-		TitanGoGraph.GoNode<SubOntologies, SubOntologies.Type, TitanSubOntologies, TitanGoGraph.TitanSubOntologiesType>
-		implements SubOntologies {
+		TitanNode<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>
+		implements
+		SubOntologies<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType> {
 
-	// MolecularFunction
-	// incoming
-	public List<? extends MolecularFunction> molecularFunction_in() {
-		return inFromMany(graph().titanMolecularFunctionType());
+	@Override
+	public String name(){   return get(goGraph.subOntologiesT.name);}
+
+	public TitanSubOntologies(TitanVertex vertex, TitanGoGraph goGraph) {
+		super(vertex);
+		this.goGraph = goGraph;
 	}
 
-	public List<? extends Term> term_inNodes() {
-		return inFromMany_Nodes(graph().titanMolecularFunctionType());
+	TitanGoGraph goGraph;
+
+	@Override
+	public TitanSubOntologiesType type() {
+		return goGraph.subOntologiesT;
 	}
 
-	// BiologicalProcess
-	// incoming
-	public List<? extends BiologicalProcess> biologicalProcess_in() {
-		return inFromMany(graph().titanBiologicalProcessType());
+
+	public static final class TitanSubOntologiesType
+			implements
+			TitanNode.Type<TitanSubOntologies, TitanSubOntologies.TitanSubOntologiesType>,
+			SubOntologiesType<TitanSubOntologies, TitanSubOntologiesType> {
+
+		public TitanSubOntologiesType(TitanGoGraph goGraph) {
+			this.goGraph = goGraph;
+		}
+
+		TitanGoGraph goGraph;
+
+		@Override
+		public TitanKey titanKey() {
+			return goGraph.subOntologiesTKey;
+		}
+
+		@Override
+		public TitanSubOntologiesType value() {
+			return goGraph.subOntologiesT;
+		}
+
+		@Override
+		public TitanSubOntologies fromTitanVertex(TitanVertex vertex) {
+
+			return new TitanSubOntologies(vertex, goGraph);
+		}
+
+		public name name = new name();
+
+		public final class name
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanSubOntologies, TitanSubOntologiesType, name, String>,
+				SubOntologies.name<TitanSubOntologies, TitanSubOntologiesType, name> {
+
+			@Override
+			public TitanSubOntologiesType elementType() {
+
+				return TitanSubOntologiesType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return goGraph.subOntologiesNameKey;
+			}
+		}
 	}
 
-	public List<? extends Term> biologicalProcess_inNodes() {
-		return inFromMany_Nodes(graph().titanBiologicalProcessType());
-	}
-
-	// CellularComponent
-	// incoming
-	public List<? extends CellularComponent> cellularComponent_in() {
-		return inFromMany(graph().titanCellularComponentType());
-	}
-
-	public List<? extends Term> cellularComponent_inNodes() {
-		return inFromMany_Nodes(graph().titanCellularComponentType());
-	}
-
-	public TitanSubOntologies(TitanVertex vertex, TitanGoGraph graph) {
-		super(vertex, graph);
+	// SubOntology
+	// ingoing
+	@Override
+	public List<TitanSubOntology> subOntology_in() {
+		return inFromMany(goGraph.subOntologyT);
 	}
 
 	@Override
-	public TitanGoGraph.TitanSubOntologiesType titanType() {
-		return graph().titanSubOntologiesType();
+	public List<TitanGoTerm> term_inNodes() {
+		return inFromManyNodes(goGraph.subOntologyT);
 	}
+
 
 }
