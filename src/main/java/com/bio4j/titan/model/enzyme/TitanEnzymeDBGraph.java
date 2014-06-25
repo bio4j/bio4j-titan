@@ -2,6 +2,7 @@ package com.bio4j.titan.model.enzyme;
 
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -27,6 +28,8 @@ public abstract class TitanEnzymeDBGraph implements
 	public TitanGraph rawGraph() {
 		return rawGraph;
 	}
+
+	public TitanUniprotEnzymeDBGraph titanUniprotEnzymeDBGraph;
 
 	public TitanKey enzymeTkey;
 	public TitanKey enzymeIdKey;

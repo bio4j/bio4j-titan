@@ -207,5 +207,15 @@ public class TitanEnzyme extends
 			}
 		}
 
+		@Override
+		public List<TitanEnzymaticActivity> enzymaticActivity_in() {
+			return null;
+		}
+
+		@Override
+		public List<TitanProtein> enzymaticActivity_inNodes() {
+			return null;
+		}
+
 	}
 }
