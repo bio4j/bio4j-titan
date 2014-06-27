@@ -215,6 +215,7 @@ public class TitanEnzyme extends
 		@Override
 		public List<TitanProtein> enzymaticActivity_inNodes() {
 			return null;
+			// inFromManyNodes(enzymeDBGraph.uniprotEnzymeDBGraph().enzymaticActivityT)
 		}
 
 	}

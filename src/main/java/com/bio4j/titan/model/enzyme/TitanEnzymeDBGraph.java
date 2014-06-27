@@ -13,9 +13,11 @@ import com.thinkaurelius.titan.core.TitanLabel;
 /**
 * Created by ppareja on 6/20/2014.
 */
-public abstract class TitanEnzymeDBGraph implements
-		TitanTypedGraph,
-		EnzymeDBGraph{
+public abstract class TitanEnzymeDBGraph 
+implements
+	TitanTypedGraph,
+	EnzymeDBGraph 
+{
 
 	protected TitanGraph rawGraph;
 
@@ -29,7 +31,7 @@ public abstract class TitanEnzymeDBGraph implements
 		return rawGraph;
 	}
 
-	public TitanUniprotEnzymeDBGraph titanUniprotEnzymeDBGraph;
+	public abstract TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph();
 
 	public TitanKey enzymeTkey;
 	public TitanKey enzymeIdKey;

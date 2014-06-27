@@ -23,9 +23,10 @@ import com.thinkaurelius.titan.core.TitanLabel;
   Implementing the types with Titan
 */
 public abstract class TitanGoGraph
-		implements
-		TitanTypedGraph,
-		GoGraph {
+implements
+	TitanTypedGraph,
+	GoGraph 
+{
 
 	protected TitanGraph rawGraph;
 
