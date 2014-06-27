@@ -7,6 +7,8 @@ import com.bio4j.model.uniprot.nodes.Protein;
 import com.bio4j.model.uniprot.relationships.ProteinDataset;
 import com.bio4j.model.uniprot.relationships.ProteinOrganism;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
@@ -85,7 +87,7 @@ public class TitanProtein extends
 		@Override
 		public TitanKey titanKey() {
 
-			return uniprotGraph.proteinTkey;
+			return uniprotGraph.proteinTKey;
 		}
 
 		@Override
