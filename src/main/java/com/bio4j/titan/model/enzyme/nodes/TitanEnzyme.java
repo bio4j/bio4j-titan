@@ -5,6 +5,7 @@ import com.bio4j.model.enzymedb.nodes.Enzyme;
 import com.bio4j.model.enzymedb.relationships.EnzymaticActivity;
 import com.bio4j.model.uniprot.nodes.Protein;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
+import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;

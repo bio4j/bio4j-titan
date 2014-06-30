@@ -1,11 +1,8 @@
 package com.bio4j.titan.model.uniprot.nodes;
 
 import com.bio4j.model.uniprot.UniprotGraph.ProteinType;
-import com.bio4j.model.uniprot.nodes.Dataset;
-import com.bio4j.model.uniprot.nodes.Organism;
-import com.bio4j.model.uniprot.nodes.Protein;
-import com.bio4j.model.uniprot.relationships.ProteinDataset;
-import com.bio4j.model.uniprot.relationships.ProteinOrganism;
+import com.bio4j.model.uniprot.nodes.*;
+import com.bio4j.model.uniprot.relationships.*;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism;
@@ -40,12 +37,42 @@ public class TitanProtein extends
 	public int length(){ return get(uniprotGraph.proteinT.length);}
 
 	@Override
-	public List<TitanProteinOrganism> proteinOrganism_out() {
+	public List<TitanProteinInterpro> proteinIntepro_out() {
+		return outToMany(uniprotGraph.proteinInterproT);
+	}
+
+	@Override
+	public List<TitanInterpro> proteinInterpro_outNodes() {
+		return outToMany(uniprotGraph.proteinInterproT);
+	}
+
+	@Override
+	public List<TitanProteinReactomeTerm> proteinReactomeTerm_out() {
+		return outToMany(uniprotGraph.proteinReactomeTermT);
+	}
+
+	@Override
+	public List<TitanReactomeTerm> proteinReactomeTerm_outNodes() {
+		return outToMany(uniprotGraph.proteinReactomeTermT);
+	}
+
+	@Override
+	public List<TitanProteinKeyword> proteinKeyword_out() {
+		return outToMany(uniprotGraph.proteinKeywordT);
+	}
+
+	@Override
+	public List<TitanKeyword> proteinKeyword_outNodes() {
+		return outToMany(uniprotGraph.proteinKeywordT);
+	}
+
+	@Override
+	public TitanProteinOrganism proteinOrganism_out() {
 		return outToOne(uniprotGraph.proteinOrganismT);
 	}
 
 	@Override
-	public List<TitanOrganism> proteinOrganism_outNodes() {
+	public TitanOrganism proteinOrganism_outNodes() {
 		return outToOneNode(uniprotGraph.proteinOrganismT);
 	}
 

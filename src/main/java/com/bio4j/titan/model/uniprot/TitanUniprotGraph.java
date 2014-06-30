@@ -3,11 +3,14 @@ package com.bio4j.titan.model.uniprot;
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.titan.model.uniprot.nodes.TitanDataset;
 import com.bio4j.titan.model.uniprot.nodes.TitanDataset.TitanDatasetType;
+import com.bio4j.titan.model.uniprot.nodes.TitanKeyword;
+import com.bio4j.titan.model.uniprot.nodes.TitanKeyword.TitanKeywordType;
 import com.bio4j.titan.model.uniprot.nodes.TitanOrganism;
 import com.bio4j.titan.model.uniprot.nodes.TitanOrganism.TitanOrganismType;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein.TitanProteinType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset.TitanProteinDatasetType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinKeyword.TitanProteinKeywordType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism.TitanProteinOrganismType;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
@@ -43,22 +46,41 @@ public class TitanUniprotGraph implements
 	public TitanKey proteinMassKey;
 	public TitanKey proteinModifiedDateKey;
 	public TitanKey proteinLengthKey;
+	public final TitanProteinType proteinT = new TitanProteinType(this);
 	//---dataset---
 	public TitanKey datasetTKey;
 	public TitanKey datasetNameKey;
+	public final TitanDatasetType datasetT = new TitanDatasetType(this);
 	//---organism---
 	public TitanKey organismTKey;
 	public TitanKey organismNameKey;
-
-	public final TitanProteinType proteinT = new TitanProteinType(this);
-	public final TitanDatasetType datasetT = new TitanDatasetType(this);
 	public final TitanOrganismType organismT = new TitanOrganismType(this);
+	//---keyword---
+	public TitanKey keywordTKey;
+	public TitanKey keywordNameKey;
+	public TitanKey keywordIdKey;
+	public final TitanKeywordType keywordT = new TitanKeywordType(this);
+	//---interpro---
+	public TitanKey interproTKey;
+	public TitanKey interproNameKey;
+	public TitanKey interproIdKey;
+	public final TitanInteproType interproT = new TitanInteproType(this);
+	//---reactome term---
+	public TitanKey reactomeTermTKey;
+	public TitanKey reactomeTermNameKey;
+	public TitanKey reactomeTermIdKey;
+	public final TitanReactomeTermType reactomeTermT = new TitanReactomeTermType(this);
+
+
 
 	//------------------INDICES----------------
 	//-----------------------------------------
 	public TitanNodeIndex.Unique<TitanProtein,TitanProteinType, TitanProteinType.accession,String> proteinAccessionIndex;
 	public TitanNodeIndex.Unique<TitanDataset,TitanDatasetType, TitanDatasetType.name,String> datasetNameIndex;
 	public TitanNodeIndex.Unique<TitanOrganism,TitanOrganismType, TitanOrganismType.name,String> organismNameIndex;
+	public TitanNodeIndex.Unique<TitanKeyword,TitanKeywordType, TitanKeywordType.id,String> keywordIdIndex;
+	public TitanNodeIndex.Unique<TitanReactomeTerm,TitanReactomeTermType, TitanReactomeTermType.id,String> reactomeTermIdIndex;
+	public TitanNodeIndex.Unique<TitanInterpro,TitanInterproType, TitanInterproType.id,String> interproIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
@@ -66,4 +88,10 @@ public class TitanUniprotGraph implements
 	public TitanProteinDatasetType proteinDatasetT = new TitanProteinDatasetType(this);
 	public TitanLabel proteinOrganismLabel;
 	public TitanProteinOrganismType proteinOrganismT = new TitanProteinOrganismType(this);
+	public TitanLabel proteinKeywordLabel;
+	public TitanProteinKeywordType proteinKeywordT = new TitanProteinKeywordType(this);
+	public TitanLabel proteinReactomeTermLabel;
+	public TitanProteinReactomeTermType proteinReactomeTermT = new TitanProteinReactomeTermType(this);
+	public TitanLabel proteinInteproLabel;
+	public TitanProteinInteproType proteinInterproT = new TitanProteinInterproType(this);
 }
