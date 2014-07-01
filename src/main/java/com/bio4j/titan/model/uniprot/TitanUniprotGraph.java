@@ -71,6 +71,11 @@ public class TitanUniprotGraph implements
 	public TitanKey reactomeTermPathwayNameKey;
 	public TitanKey reactomeTermIdKey;
 	public final TitanReactomeTermType reactomeTermT = new TitanReactomeTermType(this);
+	//---pfam---
+	public TitanKey pfamTKey;
+	public TitanKey pfamNameKey;
+	public TitanKey pfamIdKey;
+	public final TitanPfamType pfamT = new TitanPfamType(this);
 
 
 
@@ -82,6 +87,7 @@ public class TitanUniprotGraph implements
 	public TitanNodeIndex.Unique<TitanKeyword,TitanKeywordType, TitanKeywordType.id,String> keywordIdIndex;
 	public TitanNodeIndex.Unique<TitanReactomeTerm,TitanReactomeTermType, TitanReactomeTermType.id,String> reactomeTermIdIndex;
 	public TitanNodeIndex.Unique<TitanInterpro,TitanInterproType, TitanInterproType.id,String> interproIdIndex;
+	public TitanNodeIndex.Unique<TitanPfam,TitanPfamType, TitanPfamType.id,String> pfamIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
@@ -93,6 +99,8 @@ public class TitanUniprotGraph implements
 	public TitanProteinKeywordType proteinKeywordT = new TitanProteinKeywordType(this);
 	public TitanLabel proteinReactomeTermLabel;
 	public TitanProteinReactomeTermType proteinReactomeTermT = new TitanProteinReactomeTermType(this);
-	public TitanLabel proteinInteproLabel;
+	public TitanLabel proteinInterproLabel;
 	public TitanProteinInterproType proteinInterproT = new TitanProteinInterproType(this);
+	public TitanLabel proteinPfamLabel;
+	public TitanProteinPfamType proteinPfamT = new TitanProteinPfamType(this);
 }
