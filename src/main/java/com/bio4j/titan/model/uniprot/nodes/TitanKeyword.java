@@ -25,13 +25,13 @@ public class TitanKeyword extends
 	public String id(){ return get(uniprotGraph.keywordT.id);}
 
 	@Override
-	public List<TitanProteinKeyword> proteinKeyword_out() {
-		return outToMany(uniprotGraph.proteinKeywordT);
+	public List<TitanProteinKeyword> proteinKeyword_in() {
+		return inFromMany(uniprotGraph.proteinKeywordT);
 	}
 
 	@Override
-	public List<TitanKeyword> proteinKeyword_outNodes() {
-		return outToMany(uniprotGraph.proteinKeywordT);
+	public List<TitanProtein> proteinKeyword_inNodes() {
+		return inFromManyNodes(uniprotGraph.proteinKeywordT);
 	}
 
 	public TitanKeyword(TitanVertex vertex, TitanUniprotGraph uniprotGraph) {

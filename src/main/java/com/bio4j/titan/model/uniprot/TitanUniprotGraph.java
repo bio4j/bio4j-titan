@@ -1,17 +1,18 @@
 package com.bio4j.titan.model.uniprot;
 
 import com.bio4j.model.uniprot.UniprotGraph;
-import com.bio4j.titan.model.uniprot.nodes.TitanDataset;
+import com.bio4j.titan.model.uniprot.nodes.*;
 import com.bio4j.titan.model.uniprot.nodes.TitanDataset.TitanDatasetType;
-import com.bio4j.titan.model.uniprot.nodes.TitanKeyword;
 import com.bio4j.titan.model.uniprot.nodes.TitanKeyword.TitanKeywordType;
-import com.bio4j.titan.model.uniprot.nodes.TitanOrganism;
 import com.bio4j.titan.model.uniprot.nodes.TitanOrganism.TitanOrganismType;
-import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein.TitanProteinType;
+import com.bio4j.titan.model.uniprot.nodes.TitanInterpro.TitanInterproType;
+import com.bio4j.titan.model.uniprot.nodes.TitanReactomeTerm.TitanReactomeTermType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset.TitanProteinDatasetType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinInterpro.TitanProteinInterproType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinKeyword.TitanProteinKeywordType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism.TitanProteinOrganismType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.TitanProteinReactomeTermType;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -64,10 +65,10 @@ public class TitanUniprotGraph implements
 	public TitanKey interproTKey;
 	public TitanKey interproNameKey;
 	public TitanKey interproIdKey;
-	public final TitanInteproType interproT = new TitanInteproType(this);
+	public final TitanInterproType interproT = new TitanInterproType(this);
 	//---reactome term---
 	public TitanKey reactomeTermTKey;
-	public TitanKey reactomeTermNameKey;
+	public TitanKey reactomeTermPathwayNameKey;
 	public TitanKey reactomeTermIdKey;
 	public final TitanReactomeTermType reactomeTermT = new TitanReactomeTermType(this);
 
@@ -93,5 +94,5 @@ public class TitanUniprotGraph implements
 	public TitanLabel proteinReactomeTermLabel;
 	public TitanProteinReactomeTermType proteinReactomeTermT = new TitanProteinReactomeTermType(this);
 	public TitanLabel proteinInteproLabel;
-	public TitanProteinInteproType proteinInterproT = new TitanProteinInterproType(this);
+	public TitanProteinInterproType proteinInterproT = new TitanProteinInterproType(this);
 }

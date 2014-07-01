@@ -2,10 +2,15 @@ package com.bio4j.titan.model.uniprot.nodes;
 
 import com.bio4j.model.uniprot.UniprotGraph.OrganismType;
 import com.bio4j.model.uniprot.nodes.Organism;
+import com.bio4j.model.uniprot.nodes.Protein;
+import com.bio4j.model.uniprot.relationships.ProteinOrganism;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
+
+import java.util.List;
 
 /**
  * Created by ppareja on 6/27/2014.
@@ -16,6 +21,16 @@ public class TitanOrganism extends
 
 	@Override
 	public String name(){ return get(uniprotGraph.organismT.name);}
+
+	@Override
+	public List<TitanProteinOrganism> proteinOrganism_in() {
+		return inFromMany(uniprotGraph.proteinOrganismT);
+	}
+
+	@Override
+	public List<TitanProtein> proteinOrganism_inNodes() {
+		return inFromManyNodes(uniprotGraph.proteinOrganismT);
+	}
 
 	public TitanOrganism(TitanVertex vertex, TitanUniprotGraph uniprotGraph) {
 
