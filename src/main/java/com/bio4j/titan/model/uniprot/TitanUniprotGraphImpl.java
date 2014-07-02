@@ -30,8 +30,10 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		datasetTKey = titanKeyForNodeType(datasetT.name);
 		datasetNameKey = datasetTKey;
 		// Organism keys
-		organismTKey = titanKeyForNodeType(organismT.name);
-		organismNameKey = organismTKey;
+		organismTKey = titanKeyForNodeType(organismT.scientificName);
+		organismScientificNameKey = organismTKey;
+		organismCommonNameKey = titanKeyForNodeType(organismT.commonName);
+		organismSynonymNameKey = titanKeyForNodeType(organismT.synonymName);
 		// Keyword keys
 		keywordTKey = titanKeyForNodeType(keywordT.id);
 		keywordIdKey = keywordTKey;
@@ -67,7 +69,7 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 	private void initIndices() {
 		proteinAccessionIndex = new TitanNodeIndex.DefaultUnique(this, proteinT.accession);
 		datasetNameIndex = new TitanNodeIndex.DefaultUnique(this, datasetT.name);
-		organismNameIndex = new TitanNodeIndex.DefaultUnique(this, organismT.name);
+		organismScientificNameIndex = new TitanNodeIndex.DefaultUnique(this, organismT.scientificName);
 		interproIdIndex = new TitanNodeIndex.DefaultUnique(this, interproT.id);
 		keywordIdIndex = new TitanNodeIndex.DefaultUnique(this, keywordT.id);
 		reactomeTermIdIndex = new TitanNodeIndex.DefaultUnique(this, reactomeTermT.id);

@@ -20,7 +20,11 @@ public class TitanOrganism extends
 		implements Organism<TitanOrganism, TitanOrganism.TitanOrganismType> {
 
 	@Override
-	public String name(){ return get(uniprotGraph.organismT.name);}
+	public String scientificName(){ return get(uniprotGraph.organismT.scientificName);}
+	@Override
+	public String commonName(){ return get(uniprotGraph.organismT.commonName);}
+	@Override
+	public String synonymName(){ return get(uniprotGraph.organismT.synonymName);}
 
 	@Override
 	public List<TitanProteinOrganism> proteinOrganism_in() {
@@ -76,12 +80,11 @@ public class TitanOrganism extends
 		}
 
 		// --------------------------------properties----------------------------------------
-		public name name = new name();
-
-		public final class name
+		public scientificName scientificName = new scientificName();
+		public final class scientificName
 				implements
-				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanOrganism, TitanOrganismType, name, String>,
-				Organism.name<TitanOrganism, TitanOrganismType, name> {
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanOrganism, TitanOrganismType, scientificName, String>,
+				Organism.scientificName<TitanOrganism, TitanOrganismType, scientificName> {
 
 			@Override
 			public TitanOrganismType elementType() {
@@ -92,7 +95,45 @@ public class TitanOrganism extends
 			@Override
 			public TitanKey titanKey() {
 
-				return uniprotGraph.organismNameKey;
+				return uniprotGraph.organismScientificNameKey;
+			}
+		}
+
+		public commonName commonName = new commonName();
+		public final class commonName
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanOrganism, TitanOrganismType, commonName, String>,
+				Organism.commonName<TitanOrganism, TitanOrganismType, commonName> {
+
+			@Override
+			public TitanOrganismType elementType() {
+
+				return TitanOrganismType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return uniprotGraph.organismCommonNameKey;
+			}
+		}
+
+		public synonymName synonymName = new synonymName();
+		public final class synonymName
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanOrganism, TitanOrganismType, synonymName, String>,
+				Organism.synonymName<TitanOrganism, TitanOrganismType, synonymName> {
+
+			@Override
+			public TitanOrganismType elementType() {
+
+				return TitanOrganismType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return uniprotGraph.organismSynonymNameKey;
 			}
 		}
 	}

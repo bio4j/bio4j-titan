@@ -466,14 +466,14 @@ public class ImportUniprot implements Executable {
 
 
 							} //-------------------GO -----------------------------
-							else if (dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(UniprotStuff.GO_DB_REFERENCE_TYPE)) {
+							else if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
 
 								if (uniprotDataXML.getGeneOntology()) {
-									String goId = dbReferenceElem.getAttributeValue(UniprotStuff.DB_REFERENCE_ID_ATTRIBUTE);
+									String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
 									String evidenceSt = "";
-									List<Element> props = dbReferenceElem.getChildren(UniprotStuff.DB_REFERENCE_PROPERTY_TAG_NAME);
+									List<Element> props = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
 									for (Element element : props) {
-										if (element.getAttributeValue(UniprotStuff.DB_REFERENCE_TYPE_ATTRIBUTE).equals(UniprotStuff.EVIDENCE_TYPE_ATTRIBUTE)) {
+										if (element.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).equals(EVIDENCE_TYPE_ATTRIBUTE)) {
 											evidenceSt = element.getAttributeValue("value");
 											if (evidenceSt == null) {
 												evidenceSt = "";
@@ -499,25 +499,26 @@ public class ImportUniprot implements Executable {
 						commName = "";
 						synName = "";
 
-						Element organismElem = entryXMLElem.asJDomElement().getChild(UniprotStuff.ORGANISM_TAG_NAME);
+						Element organismElem = entryXMLElem.asJDomElement().getChild(ORGANISM_TAG_NAME);
 
-						List<Element> organismNames = organismElem.getChildren(UniprotStuff.ORGANISM_NAME_TAG_NAME);
+						List<Element> organismNames = organismElem.getChildren(ORGANISM_NAME_TAG_NAME);
 						for (Element element : organismNames) {
-							String type = element.getAttributeValue(UniprotStuff.ORGANISM_NAME_TYPE_ATTRIBUTE);
+							String type = element.getAttributeValue(ORGANISM_NAME_TYPE_ATTRIBUTE);
 							switch (type) {
-								case UniprotStuff.ORGANISM_SCIENTIFIC_NAME_TYPE:
+								case ORGANISM_SCIENTIFIC_NAME_TYPE:
 									scName = element.getText();
 									break;
-								case UniprotStuff.ORGANISM_COMMON_NAME_TYPE:
+								case ORGANISM_COMMON_NAME_TYPE:
 									commName = element.getText();
 									break;
-								case UniprotStuff.ORGANISM_SYNONYM_NAME_TYPE:
+								case ORGANISM_SYNONYM_NAME_TYPE:
 									synName = element.getText();
 									break;
 							}
 						}
 
-						//long organismNodeId = indexService.getSingleNode(OrganismNode.ORGANISM_SCIENTIFIC_NAME_INDEX, scName);
+						TitanOrganism organism = graph.organismNameIndex
+
 						long organismNodeId = -1;
 						IndexHits<Long> organismScientifiNameIndexHits = organismScientificNameIndex.get(OrganismNode.ORGANISM_SCIENTIFIC_NAME_INDEX, scName);
 						if (organismScientifiNameIndexHits.hasNext()) {

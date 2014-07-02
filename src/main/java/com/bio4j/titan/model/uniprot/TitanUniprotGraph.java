@@ -56,7 +56,9 @@ public class TitanUniprotGraph implements
 	public final TitanDatasetType datasetT = new TitanDatasetType(this);
 	//---organism---
 	public TitanKey organismTKey;
-	public TitanKey organismNameKey;
+	public TitanKey organismScientificNameKey;
+	public TitanKey organismCommonNameKey;
+	public TitanKey organismSynonymNameKey;
 	public final TitanOrganismType organismT = new TitanOrganismType(this);
 	//---keyword---
 	public TitanKey keywordTKey;
@@ -85,7 +87,7 @@ public class TitanUniprotGraph implements
 	//-----------------------------------------
 	public TitanNodeIndex.Unique<TitanProtein,TitanProteinType, TitanProteinType.accession,String> proteinAccessionIndex;
 	public TitanNodeIndex.Unique<TitanDataset,TitanDatasetType, TitanDatasetType.name,String> datasetNameIndex;
-	public TitanNodeIndex.Unique<TitanOrganism,TitanOrganismType, TitanOrganismType.name,String> organismNameIndex;
+	public TitanNodeIndex.Unique<TitanOrganism,TitanOrganismType, TitanOrganismType.scientificName,String> organismScientificNameIndex;
 	public TitanNodeIndex.Unique<TitanKeyword,TitanKeywordType, TitanKeywordType.id,String> keywordIdIndex;
 	public TitanNodeIndex.Unique<TitanReactomeTerm,TitanReactomeTermType, TitanReactomeTermType.id,String> reactomeTermIdIndex;
 	public TitanNodeIndex.Unique<TitanInterpro,TitanInterproType, TitanInterproType.id,String> interproIdIndex;
