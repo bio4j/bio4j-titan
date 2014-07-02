@@ -101,7 +101,7 @@ public class TitanInterpro extends
 		public final class id
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanInterpro, TitanInterproType, id, String>,
-				Interpro.name<TitanInterpro, TitanInterproType, id> {
+				Interpro.id<TitanInterpro, TitanInterproType, id> {
 
 			@Override
 			public TitanInterproType elementType() {

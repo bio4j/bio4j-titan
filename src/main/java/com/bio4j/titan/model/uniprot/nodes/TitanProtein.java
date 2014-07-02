@@ -4,8 +4,7 @@ import com.bio4j.model.uniprot.UniprotGraph.ProteinType;
 import com.bio4j.model.uniprot.nodes.*;
 import com.bio4j.model.uniprot.relationships.*;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
-import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset;
-import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism;
+import com.bio4j.titan.model.uniprot.relationships.*;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
@@ -43,7 +42,7 @@ public class TitanProtein extends
 
 	@Override
 	public List<TitanInterpro> proteinInterpro_outNodes() {
-		return outToMany(uniprotGraph.proteinInterproT);
+		return outToManyNodes(uniprotGraph.proteinInterproT);
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class TitanProtein extends
 
 	@Override
 	public List<TitanReactomeTerm> proteinReactomeTerm_outNodes() {
-		return outToMany(uniprotGraph.proteinReactomeTermT);
+		return outToManyNodes(uniprotGraph.proteinReactomeTermT);
 	}
 
 	@Override
@@ -63,7 +62,7 @@ public class TitanProtein extends
 
 	@Override
 	public List<TitanKeyword> proteinKeyword_outNodes() {
-		return outToMany(uniprotGraph.proteinKeywordT);
+		return outToManyNodes(uniprotGraph.proteinKeywordT);
 	}
 
 	@Override

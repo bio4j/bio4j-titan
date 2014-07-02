@@ -103,7 +103,7 @@ public class TitanKeyword extends
 		public final class id
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanKeyword, TitanKeywordType, id, String>,
-				Keyword.name<TitanKeyword, TitanKeywordType, id> {
+				Keyword.id<TitanKeyword, TitanKeywordType, id> {
 
 			@Override
 			public TitanKeywordType elementType() {

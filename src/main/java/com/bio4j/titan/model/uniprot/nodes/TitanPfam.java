@@ -1,8 +1,14 @@
 package com.bio4j.titan.model.uniprot.nodes;
 
+import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot.nodes.Pfam;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinPfam;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
+import com.thinkaurelius.titan.core.TitanKey;
+import com.thinkaurelius.titan.core.TitanVertex;
+
+import java.util.List;
 
 /**
  * Created by ppareja on 7/1/2014.
@@ -17,16 +23,16 @@ public class TitanPfam  extends
 	public String id(){ return get(uniprotGraph.pfamT.id);}
 
 	@Override
-	public List<TitanProteinKeyword> proteinKeyword_in() {
-		return inFromMany(uniprotGraph.proteinKeywordT);
+	public List<TitanProteinPfam> proteinPfam_in() {
+		return inFromMany(uniprotGraph.proteinPfamT);
 	}
 
 	@Override
-	public List<TitanProtein> proteinKeyword_inNodes() {
-		return inFromManyNodes(uniprotGraph.proteinKeywordT);
+	public List<TitanProtein> proteinPfam_inNodes() {
+		return inFromManyNodes(uniprotGraph.proteinPfamT);
 	}
 
-	public TitanKeyword(TitanVertex vertex, TitanUniprotGraph uniprotGraph) {
+	public TitanPfam(TitanVertex vertex, TitanUniprotGraph uniprotGraph) {
 
 		super(vertex);
 		this.uniprotGraph = uniprotGraph;
@@ -35,17 +41,17 @@ public class TitanPfam  extends
 	TitanUniprotGraph uniprotGraph;
 
 	@Override
-	public TitanKeywordType type() {
+	public TitanPfamType type() {
 
-		return uniprotGraph.keywordT;
+		return uniprotGraph.pfamT;
 	}
 
-	public static final class TitanKeywordType
+	public static final class TitanPfamType
 			implements
-			TitanNode.Type<TitanKeyword, TitanKeyword.TitanKeywordType>,
-			UniprotGraph.KeywordType<TitanKeyword, TitanKeywordType> {
+			TitanNode.Type<TitanPfam, TitanPfam.TitanPfamType>,
+			UniprotGraph.PfamType<TitanPfam, TitanPfamType> {
 
-		public TitanKeywordType(TitanUniprotGraph uniprotGraph) {
+		public TitanPfamType(TitanUniprotGraph uniprotGraph) {
 			this.uniprotGraph = uniprotGraph;
 		}
 
@@ -54,19 +60,19 @@ public class TitanPfam  extends
 		@Override
 		public TitanKey titanKey() {
 
-			return uniprotGraph.keywordTKey;
+			return uniprotGraph.pfamTKey;
 		}
 
 		@Override
-		public TitanKeywordType value() {
+		public TitanPfamType value() {
 
-			return uniprotGraph.keywordT;
+			return uniprotGraph.pfamT;
 		}
 
 		@Override
-		public TitanKeyword fromTitanVertex(TitanVertex vertex) {
+		public TitanPfam fromTitanVertex(TitanVertex vertex) {
 
-			return new TitanKeyword(vertex, uniprotGraph);
+			return new TitanPfam(vertex, uniprotGraph);
 		}
 
 		// --------------------------------properties----------------------------------------
@@ -74,19 +80,19 @@ public class TitanPfam  extends
 
 		public final class name
 				implements
-				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanKeyword, TitanKeywordType, name, String>,
-				Keyword.name<TitanKeyword, TitanKeywordType, name> {
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanPfam, TitanPfamType, name, String>,
+				Pfam.name<TitanPfam, TitanPfamType, name> {
 
 			@Override
-			public TitanKeywordType elementType() {
+			public TitanPfamType elementType() {
 
-				return TitanKeywordType.this;
+				return TitanPfamType.this;
 			}
 
 			@Override
 			public TitanKey titanKey() {
 
-				return uniprotGraph.keywordNameKey;
+				return uniprotGraph.pfamNameKey;
 			}
 		}
 
@@ -94,19 +100,19 @@ public class TitanPfam  extends
 
 		public final class id
 				implements
-				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanKeyword, TitanKeywordType, id, String>,
-				Keyword.name<TitanKeyword, TitanKeywordType, id> {
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanPfam, TitanPfamType, id, String>,
+				Pfam.id<TitanPfam, TitanPfamType, id> {
 
 			@Override
-			public TitanKeywordType elementType() {
+			public TitanPfamType elementType() {
 
-				return TitanKeywordType.this;
+				return TitanPfamType.this;
 			}
 
 			@Override
 			public TitanKey titanKey() {
 
-				return uniprotGraph.keywordIdKey;
+				return uniprotGraph.pfamIdKey;
 			}
 		}
 	}
