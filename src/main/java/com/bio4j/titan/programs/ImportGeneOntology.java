@@ -40,7 +40,7 @@ import java.util.logging.SimpleFormatter;
 *
 * @author Pablo Pareja Tobes <ppareja@era7.com>
 */
-public class ImportGeneOntologyTitan implements Executable {
+public class ImportGeneOntology implements Executable {
 
      public static final String TERM_TAG_NAME = "term";
      public static final String ID_TAG_NAME = "id";
