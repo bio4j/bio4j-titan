@@ -517,45 +517,34 @@ public class ImportUniprot implements Executable {
 							}
 						}
 
-						TitanOrganism organism = graph.organismNameIndex
+						TitanOrganism organism = graph.organismScientificNameIndex.getNode(scName);
 
-						long organismNodeId = -1;
-						IndexHits<Long> organismScientifiNameIndexHits = organismScientificNameIndex.get(OrganismNode.ORGANISM_SCIENTIFIC_NAME_INDEX, scName);
-						if (organismScientifiNameIndexHits.hasNext()) {
-							organismNodeId = organismScientifiNameIndexHits.getSingle();
-						}
-						if (organismNodeId < 0) {
+						if (organism == null) {
 
-							organismProperties.put(OrganismNode.COMMON_NAME_PROPERTY, commName);
-							organismProperties.put(OrganismNode.SCIENTIFIC_NAME_PROPERTY, scName);
-							organismProperties.put(OrganismNode.SYNONYM_NAME_PROPERTY, synName);
+							organism = graph.organismT.from(graph.rawGraph().addVertex(null));
+							organism.set(graph.organismT.scientificName, scName);
+							organism.set(graph.organismT.commonName, commName);
+							organism.set(graph.organismT.synonymName, synName);
+							g.commit();
 
-
-							List<Element> organismDbRefElems = organismElem.getChildren(UniprotStuff.DB_REFERENCE_TAG_NAME);
-							boolean ncbiIdFound = false;
-							if (organismDbRefElems != null) {
-								for (Element dbRefElem : organismDbRefElems) {
-									String t = dbRefElem.getAttributeValue("type");
-									if (t.equals("NCBI Taxonomy")) {
-										organismProperties.put(OrganismNode.NCBI_TAXONOMY_ID_PROPERTY, dbRefElem.getAttributeValue("id"));
-										ncbiIdFound = true;
-										break;
-									}
-								}
-							}
-							if (!ncbiIdFound) {
-								organismProperties.put(OrganismNode.NCBI_TAXONOMY_ID_PROPERTY, "");
-							}
-							organismNodeId = inserter.createNode(organismProperties);
-
-							organismScientificNameIndex.add(organismNodeId, MapUtil.map(OrganismNode.ORGANISM_SCIENTIFIC_NAME_INDEX, scName));
-							organismNcbiTaxonomyIdIndex.add(organismNodeId, MapUtil.map(OrganismNode.NCBI_TAXONOMY_ID_PROPERTY, organismProperties.get(OrganismNode.NCBI_TAXONOMY_ID_PROPERTY)));
-
-							//flushing organism scientifica name index
-							organismScientificNameIndex.flush();
-
-							//---adding organism node to node_type index----
-							nodeTypeIndex.add(organismNodeId, MapUtil.map(Bio4jManager.NODE_TYPE_INDEX_NAME, OrganismNode.NODE_TYPE));
+							/* TODO see what to do with the NCBI taxonomy ID, just link to the NCBI tax node or also store
+							    the id as an attribute
+							*/
+//							List<Element> organismDbRefElems = organismElem.getChildren(DB_REFERENCE_TAG_NAME);
+//							boolean ncbiIdFound = false;
+//							if (organismDbRefElems != null) {
+//								for (Element dbRefElem : organismDbRefElems) {
+//									String t = dbRefElem.getAttributeValue("type");
+//									if (t.equals("NCBI Taxonomy")) {
+//										organismProperties.put(OrganismNode.NCBI_TAXONOMY_ID_PROPERTY, dbRefElem.getAttributeValue("id"));
+//										ncbiIdFound = true;
+//										break;
+//									}
+//								}
+//							}
+//							if (!ncbiIdFound) {
+//								organismProperties.put(OrganismNode.NCBI_TAXONOMY_ID_PROPERTY, "");
+//							}
 
 							Element lineage = entryXMLElem.asJDomElement().getChild("organism").getChild("lineage");
 							List<Element> taxons = lineage.getChildren("taxon");
