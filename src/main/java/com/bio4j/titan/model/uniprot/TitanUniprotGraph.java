@@ -8,12 +8,14 @@ import com.bio4j.titan.model.uniprot.nodes.TitanOrganism.TitanOrganismType;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein.TitanProteinType;
 import com.bio4j.titan.model.uniprot.nodes.TitanInterpro.TitanInterproType;
 import com.bio4j.titan.model.uniprot.nodes.TitanPfam.TitanPfamType;
+import com.bio4j.titan.model.uniprot.nodes.TitanKegg.TitanKeggType;
 import com.bio4j.titan.model.uniprot.nodes.TitanReactomeTerm.TitanReactomeTermType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset.TitanProteinDatasetType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinInterpro.TitanProteinInterproType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinKeyword.TitanProteinKeywordType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism.TitanProteinOrganismType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinPfam.TitanProteinPfamType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinKegg.TitanProteinKeggType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.TitanProteinReactomeTermType;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
@@ -112,4 +114,6 @@ public class TitanUniprotGraph implements
 	public TitanProteinInterproType proteinInterproT = new TitanProteinInterproType(this);
 	public TitanLabel proteinPfamLabel;
 	public TitanProteinPfamType proteinPfamT = new TitanProteinPfamType(this);
+	public TitanLabel proteinKeggLabel;
+	public TitanProteinKeggType proteinKeggT = new TitanProteinKeggType(this);
 }
