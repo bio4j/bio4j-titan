@@ -80,6 +80,10 @@ public class TitanUniprotGraph implements
 	public TitanKey pfamNameKey;
 	public TitanKey pfamIdKey;
 	public final TitanPfamType pfamT = new TitanPfamType(this);
+	//---kegg---
+	public TitanKey keggTKey;
+	public TitanKey keggIdKey;
+	public final TitanKeggType keggT = new TitanKeggType(this);
 
 
 
@@ -92,6 +96,7 @@ public class TitanUniprotGraph implements
 	public TitanNodeIndex.Unique<TitanReactomeTerm,TitanReactomeTermType, TitanReactomeTermType.id,String> reactomeTermIdIndex;
 	public TitanNodeIndex.Unique<TitanInterpro,TitanInterproType, TitanInterproType.id,String> interproIdIndex;
 	public TitanNodeIndex.Unique<TitanPfam,TitanPfamType, TitanPfamType.id,String> pfamIdIndex;
+	public TitanNodeIndex.Unique<TitanKegg,TitanKeggType, TitanKeggType.id,String> keggIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
