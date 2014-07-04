@@ -94,7 +94,7 @@ public class ImportUniprot implements Executable {
 	public static final String FEATURE_LOCATION_BEGIN_TAG_NAME = "begin";
 	public static final String FEATURE_LOCATION_END_TAG_NAME = "end";
 	public static final String FEATURE_LOCATION_POSITION_ATTRIBUTE = "position";
-	public static final String FEATURE_POSITION_POSITION_ATTRIBUTE = "position"
+	public static final String FEATURE_POSITION_POSITION_ATTRIBUTE = "position";
 
 	@Override
 	public void execute(ArrayList<String> array) {
