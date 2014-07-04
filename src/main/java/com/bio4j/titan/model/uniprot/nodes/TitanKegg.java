@@ -3,6 +3,7 @@ package com.bio4j.titan.model.uniprot.nodes;
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot.nodes.Kegg;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinKegg;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
