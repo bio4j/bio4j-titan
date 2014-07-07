@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.go.nodes;
 
 import com.bio4j.model.go.GoGraph;
-import com.bio4j.model.go.nodes.Term;
+import com.bio4j.model.go.nodes.GoTerm;
 import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.go.relationships.*;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
@@ -23,7 +23,7 @@ import java.util.List;
 public final class TitanGoTerm
 		extends
 		TitanNode<TitanGoTerm, TitanGoTerm.TitanGoTermType>
-		implements Term<TitanGoTerm, TitanGoTerm.TitanGoTermType>
+		implements GoTerm<TitanGoTerm, TitanGoTerm.TitanGoTermType>
 
 		 {
 
@@ -89,7 +89,7 @@ public final class TitanGoTerm
 		public final class id
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, id, String>,
-				Term.id<TitanGoTerm, TitanGoTermType, id> {
+				GoTerm.id<TitanGoTerm, TitanGoTermType, id> {
 
 			@Override
 			public TitanGoTermType elementType() {
@@ -108,7 +108,7 @@ public final class TitanGoTerm
 		public final class name
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, name, String>,
-				Term.name<TitanGoTerm, TitanGoTermType, name> {
+				GoTerm.name<TitanGoTerm, TitanGoTermType, name> {
 
 			@Override
 			public TitanGoTermType elementType() {
@@ -127,7 +127,7 @@ public final class TitanGoTerm
 		public final class definition
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, definition, String>,
-				Term.definition<TitanGoTerm, TitanGoTermType, definition> {
+				GoTerm.definition<TitanGoTerm, TitanGoTermType, definition> {
 
 			@Override
 			public TitanGoTermType elementType() {
@@ -146,7 +146,7 @@ public final class TitanGoTerm
 		public final class obsolete
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, obsolete, String>,
-				Term.obsolete<TitanGoTerm, TitanGoTermType, obsolete> {
+				GoTerm.obsolete<TitanGoTerm, TitanGoTermType, obsolete> {
 
 			@Override
 			public TitanGoTermType elementType() {
@@ -165,7 +165,7 @@ public final class TitanGoTerm
 		public final class comment
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, comment, String>,
-				Term.comment<TitanGoTerm, TitanGoTermType, comment> {
+				GoTerm.comment<TitanGoTerm, TitanGoTermType, comment> {
 
 			@Override
 			public TitanGoTermType elementType() {
@@ -184,7 +184,7 @@ public final class TitanGoTerm
 		public final class synonym
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, synonym, String>,
-				Term.synonym<TitanGoTerm, TitanGoTermType, synonym> {
+				GoTerm.synonym<TitanGoTerm, TitanGoTermType, synonym> {
 
 			@Override
 			public TitanGoTermType elementType() {
