@@ -50,6 +50,15 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		pfamTKey = titanKeyForNodeType(pfamT.id);
 		pfamIdKey = pfamTKey;
 		pfamNameKey = titanKeyForNodeType(pfamT.name);
+		// EMBL keys
+		eMBLTKey = titanKeyForNodeType(eMBLT.id);
+		eMBLIdKey = eMBLTKey;
+		eMBLMoleculeTypeKey = titanKeyForNodeType(eMBLT.moleculeType);
+		eMBLProteinSequenceIdKey = titanKeyForNodeType(eMBLT.proteinSequenceId);
+		// PIR keys
+		pIRTKey = titanKeyForNodeType(pIRT.id);
+		pIRIdKey = pIRTKey;
+		pIREntryNameKey = titanKeyForNodeType(pIRT.entryName);
 
 		// proteinDataset
 		proteinDatasetLabel = titanLabelForRelationshipType(proteinDatasetT);
@@ -74,5 +83,7 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		keywordIdIndex = new TitanNodeIndex.DefaultUnique(this, keywordT.id);
 		reactomeTermIdIndex = new TitanNodeIndex.DefaultUnique(this, reactomeTermT.id);
 		pfamIdIndex = new TitanNodeIndex.DefaultUnique(this, pfamT.id);
+		eMBLIdIndex = new TitanNodeIndex.DefaultUnique(this, eMBLT.id);
+		pIRIdIndex = new TitanNodeIndex.DefaultUnique(this, pIRT.id);
 	}
 }

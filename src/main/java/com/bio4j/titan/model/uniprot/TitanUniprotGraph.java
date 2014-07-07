@@ -10,6 +10,7 @@ import com.bio4j.titan.model.uniprot.nodes.TitanInterpro.TitanInterproType;
 import com.bio4j.titan.model.uniprot.nodes.TitanEMBL.TitanEMBLType;
 import com.bio4j.titan.model.uniprot.nodes.TitanPfam.TitanPfamType;
 import com.bio4j.titan.model.uniprot.nodes.TitanKegg.TitanKeggType;
+import com.bio4j.titan.model.uniprot.nodes.TitanPIR.TitanPIRType;
 import com.bio4j.titan.model.uniprot.nodes.TitanReactomeTerm.TitanReactomeTermType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset.TitanProteinDatasetType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinInterpro.TitanProteinInterproType;
@@ -18,6 +19,7 @@ import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism.TitanPro
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinPfam.TitanProteinPfamType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinKegg.TitanProteinKeggType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinEMBL.TitanProteinEMBLType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinPIR.TitanProteinPIRType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.TitanProteinReactomeTermType;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
@@ -94,6 +96,11 @@ public class TitanUniprotGraph implements
 	public TitanKey eMBLMoleculeTypeKey;
 	public TitanKey eMBLProteinSequenceIdKey;
 	public final TitanEMBLType eMBLT = new TitanEMBLType(this);
+	//---PIR---
+	public TitanKey pIRTKey;
+	public TitanKey pIRIdKey;
+	public TitanKey pIREntryNameKey;
+	public final TitanPIRType pIRT = new TitanPIRType(this);
 
 
 
@@ -108,6 +115,7 @@ public class TitanUniprotGraph implements
 	public TitanNodeIndex.Unique<TitanPfam,TitanPfamType, TitanPfamType.id,String> pfamIdIndex;
 	public TitanNodeIndex.Unique<TitanKegg,TitanKeggType, TitanKeggType.id,String> keggIdIndex;
 	public TitanNodeIndex.Unique<TitanEMBL,TitanEMBLType, TitanEMBLType.id,String> eMBLIdIndex;
+	public TitanNodeIndex.Unique<TitanPIR,TitanPIRType, TitanPIRType.id,String> pIRIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
@@ -127,4 +135,6 @@ public class TitanUniprotGraph implements
 	public TitanProteinKeggType proteinKeggT = new TitanProteinKeggType(this);
 	public TitanLabel proteinEMBLLabel;
 	public TitanProteinEMBLType proteinEMBLT = new TitanProteinEMBLType(this);
+	public TitanLabel proteinPIRLabel;
+	public TitanProteinPIRType proteinPIRT = new TitanProteinPIRType(this);
 }
