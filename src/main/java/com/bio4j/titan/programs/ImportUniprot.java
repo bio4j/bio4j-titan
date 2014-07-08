@@ -226,7 +226,6 @@ public class ImportUniprot implements Executable {
 						List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(DB_REFERENCE_TAG_NAME);
 						ArrayList<String> refseqReferences = new ArrayList<>();
 						ArrayList<String> enzymeDBReferences = new ArrayList<>();
-						ArrayList<String> ensemblReferences = new ArrayList<>();
 						ArrayList<String> ensemblPlantsReferences = new ArrayList<>();
 						HashMap<String, String> reactomeReferences = new HashMap<>();
 
@@ -234,7 +233,31 @@ public class ImportUniprot implements Executable {
 							String refId = dbReferenceElem.getAttributeValue("id");
 							switch (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE)) {
 								case "Ensembl":
+									//looking for Ensembl node
+									TitanEnsembl ensembl = graph.ensemblIdIndex.getNode(refId);
+									if(ensembl == null){
+										String moleculeIdSt = "";
+										String proteinSequenceIdSt = "";
+										String geneIdSt = "";
+										List<Element> children = dbReferenceElem.getChildren("property");
+										for (Element propertyElem : children) {
+											if (propertyElem.getAttributeValue("type").equals("protein sequence ID")) {
+												proteinSequenceIdSt = propertyElem.getAttributeValue("value");
+											}
+											if (propertyElem.getAttributeValue("type").equals("gene ID")) {
+												geneIdSt = propertyElem.getAttributeValue("value");
+											}
+										}
+										Element moleculeTag = dbReferenceElem.getChild("molecule");
+										moleculeIdSt = moleculeTag.getAttributeValue("id");
 
+										ensembl = graph.ensemblT.from(graph.rawGraph().addVertex(null));
+										ensembl.set(graph.ensemblT.id, refId);
+										ensembl.set(graph.ensemblT.proteinSequenceId, proteinSequenceIdSt);
+										ensembl.set(graph.ensemblT.moleculeId, moleculeIdSt);
+										ensembl.set(graph.ensemblT.geneId, geneIdSt);
+									}
+									protein.addOut(graph.proteinEnsemblT, ensembl);
 									break;
 								case "PIR":
 									//looking for PIR node
