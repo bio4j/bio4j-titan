@@ -59,6 +59,12 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		pIRTKey = titanKeyForNodeType(pIRT.id);
 		pIRIdKey = pIRTKey;
 		pIREntryNameKey = titanKeyForNodeType(pIRT.entryName);
+		// Ensembl keys
+		ensemblTKey = titanKeyForNodeType(ensemblT.id);
+		ensemblIdKey = ensemblTKey;
+		ensemblMoleculeIdKey = titanKeyForNodeType(ensemblT.moleculeId);
+		ensemblProteinSequenceIdKey = titanKeyForNodeType(ensemblT.proteinSequenceId);
+		ensemblGeneIdKey = titanKeyForNodeType(ensemblT.geneId);
 
 		// proteinDataset
 		proteinDatasetLabel = titanLabelForRelationshipType(proteinDatasetT);
@@ -72,6 +78,14 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		proteinReactomeTermLabel = titanLabelForRelationshipType(proteinReactomeTermT);
 		// proteinPfam
 		proteinPfamLabel = titanLabelForRelationshipType(proteinPfamT);
+		// proteinKegg
+		proteinKeggLabel = titanLabelForRelationshipType(proteinKeggT);
+		// proteinKegg
+		proteinPIRLabel = titanLabelForRelationshipType(proteinPIRT);
+		// proteinEMBL
+		proteinEMBLLabel = titanLabelForRelationshipType(proteinEMBLT);
+		// proteinEnsembl
+		proteinEnsemblLabel = titanLabelForRelationshipType(proteinEnsemblT);
 
 	}
 
@@ -85,5 +99,7 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		pfamIdIndex = new TitanNodeIndex.DefaultUnique(this, pfamT.id);
 		eMBLIdIndex = new TitanNodeIndex.DefaultUnique(this, eMBLT.id);
 		pIRIdIndex = new TitanNodeIndex.DefaultUnique(this, pIRT.id);
+		keggIdIndex = new TitanNodeIndex.DefaultUnique(this, keggT.id);
+		ensemblIdIndex = new TitanNodeIndex.DefaultUnique(this, ensemblT.id);
 	}
 }

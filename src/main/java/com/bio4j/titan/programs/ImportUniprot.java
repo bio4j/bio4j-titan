@@ -205,17 +205,28 @@ public class ImportUniprot implements Executable {
 //							alternativeAccessions.add(altAccessionsList.get(i).getText());
 //						}
 
-						//-----db references-------------
-						String pirIdSt = "";
-						String keggIdSt = "";
-						String ensemblIdSt = "";
-						String uniGeneIdSt = "";
-						String arrayExpressIdSt = "";
+						Element sequenceElem = entryXMLElem.asJDomElement().getChild(ENTRY_SEQUENCE_TAG_NAME);
+						String sequenceSt = sequenceElem.getText();
+						int seqLength = Integer.parseInt(sequenceElem.getAttributeValue(SEQUENCE_LENGTH_ATTRIBUTE));
+						float seqMass = Float.parseFloat(sequenceElem.getAttributeValue(SEQUENCE_MASS_ATTRIBUTE));
 
+
+						TitanProtein protein = graph.proteinT.from(graph.rawGraph().addVertex(null));
+
+						protein.set(graph.proteinT.modifiedDate, modifiedDateSt);
+						protein.set(graph.proteinT.accession, accessionSt);
+						protein.set(graph.proteinT.name, nameSt);
+						protein.set(graph.proteinT.fullName, fullNameSt);
+						protein.set(graph.proteinT.shortName, shortNameSt);
+						protein.set(graph.proteinT.sequence, sequenceSt);
+						protein.set(graph.proteinT.length, seqLength);
+						protein.set(graph.proteinT.mass, String.valueOf(seqMass));
+
+						//-----db references-------------
 						List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(DB_REFERENCE_TAG_NAME);
-						ArrayList<String> emblCrossReferences = new ArrayList<>();
 						ArrayList<String> refseqReferences = new ArrayList<>();
 						ArrayList<String> enzymeDBReferences = new ArrayList<>();
+						ArrayList<String> ensemblReferences = new ArrayList<>();
 						ArrayList<String> ensemblPlantsReferences = new ArrayList<>();
 						HashMap<String, String> reactomeReferences = new HashMap<>();
 
@@ -223,16 +234,43 @@ public class ImportUniprot implements Executable {
 							String refId = dbReferenceElem.getAttributeValue("id");
 							switch (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE)) {
 								case "Ensembl":
-									ensemblIdSt = refId;
+
 									break;
 								case "PIR":
-									pirIdSt = refId;
+									//looking for PIR node
+									TitanPIR pIR = graph.pIRIdIndex.getNode(refId);
+									if(pIR == null){
+										String entryNameSt = "";
+										List<Element> children = dbReferenceElem.getChildren("property");
+										for (Element propertyElem : children) {
+											if (propertyElem.getAttributeValue("type").equals("entry name")) {
+												entryNameSt = propertyElem.getAttributeValue("value");
+											}
+										}
+										pIR = graph.pIRT.from(graph.rawGraph().addVertex(null));
+										pIR.set(graph.pIRT.entryName, entryNameSt);
+										pIR.set(graph.pIRT.id, refId);
+									}
+									protein.addOut(graph.proteinPIRT, pIR);
+
 									break;
 								case "UniGene":
-									uniGeneIdSt = refId;
+									//looking for UniGene node
+									TitanUniGene uniGene = graph.uniGeneIdIndex.getNode(refId);
+									if(uniGene == null){
+										uniGene = graph.uniGeneT.from(graph.rawGraph().addVertex(null));
+										uniGene.set(graph.uniGeneT.id, refId);
+									}
+									protein.addOut(graph.proteinUniGeneT, uniGene);
 									break;
 								case "KEGG":
-									keggIdSt = refId;
+									//looking for Kegg node
+									TitanKegg kegg = graph.keggIdIndex.getNode(refId);
+									if(kegg == null){
+										kegg = graph.keggT.from(graph.rawGraph().addVertex(null));
+										kegg.set(graph.keggT.id, refId);
+									}
+									protein.addOut(graph.proteinKeggT, kegg);
 									break;
 								case "EMBL":
 									emblCrossReferences.add(refId);
@@ -240,11 +278,7 @@ public class ImportUniprot implements Executable {
 								case "EC":
 									enzymeDBReferences.add(refId);
 									break;
-								case "ArrayExpress":
-									arrayExpressIdSt = refId;
-									break;
 								case "RefSeq":
-									//refseqReferences.add(refId);
 									List<Element> children = dbReferenceElem.getChildren("property");
 									for (Element propertyElem : children) {
 										if (propertyElem.getAttributeValue("type").equals("nucleotide sequence ID")) {
@@ -267,24 +301,7 @@ public class ImportUniprot implements Executable {
 
 						}
 
-						Element sequenceElem = entryXMLElem.asJDomElement().getChild(ENTRY_SEQUENCE_TAG_NAME);
-						String sequenceSt = sequenceElem.getText();
-						int seqLength = Integer.parseInt(sequenceElem.getAttributeValue(SEQUENCE_LENGTH_ATTRIBUTE));
-						float seqMass = Float.parseFloat(sequenceElem.getAttributeValue(SEQUENCE_MASS_ATTRIBUTE));
 
-
-						TitanProtein protein = graph.proteinT.from(graph.rawGraph().addVertex(null));
-
-						protein.set(graph.proteinT.modifiedDate, modifiedDateSt);
-						protein.set(graph.proteinT.accession, accessionSt);
-						protein.set(graph.proteinT.name, nameSt);
-						protein.set(graph.proteinT.fullName, fullNameSt);
-						protein.set(graph.proteinT.shortName, shortNameSt);
-						protein.set(graph.proteinT.sequence, sequenceSt);
-						protein.set(graph.proteinT.length, seqLength);
-						protein.set(graph.proteinT.mass, String.valueOf(seqMass));
-
-						proteinProperties.put(ProteinNode.ARRAY_EXPRESS_ID_PROPERTY, arrayExpressIdSt);
 						proteinProperties.put(ProteinNode.PIR_ID_PROPERTY, pirIdSt);
 						proteinProperties.put(ProteinNode.KEGG_ID_PROPERTY, keggIdSt);
 						proteinProperties.put(ProteinNode.EMBL_REFERENCES_PROPERTY, convertToStringArray(emblCrossReferences));
@@ -320,6 +337,23 @@ public class ImportUniprot implements Executable {
 						}
 
 						//--------------reactome associations----------------
+						if (uniprotDataXML.getReactome()) {
+							for (String reactomeId : reactomeReferences.keySet()) {
+
+								TitanReactomeTerm reactomeTerm = graph.reactomeTermIdIndex.getNode(reactomeId);
+
+								if (reactomeTerm == null) {
+									reactomeTerm = graph.reactomeTermT.from(graph.rawGraph().addVertex(null));
+									reactomeTerm.set(graph.reactomeTermT.id, reactomeId);
+									reactomeTerm.set(graph.reactomeTermT.pathwayName, reactomeReferences.get(reactomeId));
+									g.commit();
+								}
+								protein.addOut(graph.proteinReactomeTermT, reactomeTerm);
+							}
+						}
+						//-------------------------------------------------------
+
+						//--------------PIR associations----------------
 						if (uniprotDataXML.getReactome()) {
 							for (String reactomeId : reactomeReferences.keySet()) {
 
