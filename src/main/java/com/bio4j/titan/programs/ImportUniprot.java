@@ -296,7 +296,27 @@ public class ImportUniprot implements Executable {
 									protein.addOut(graph.proteinKeggT, kegg);
 									break;
 								case "EMBL":
-									emblCrossReferences.add(refId);
+									//looking for EMBL node
+									TitanEMBL embl = graph.eMBLIdIndex.getNode(refId);
+									if(embl == null){
+										String moleculeTypeSt = "";
+										String proteinSequenceIdSt = "";
+										List<Element> children = dbReferenceElem.getChildren("property");
+										for (Element propertyElem : children) {
+											if (propertyElem.getAttributeValue("type").equals("protein sequence ID")) {
+												proteinSequenceIdSt = propertyElem.getAttributeValue("value");
+											}
+											if (propertyElem.getAttributeValue("type").equals("molecule type")) {
+												moleculeTypeSt = propertyElem.getAttributeValue("value");
+											}
+										}
+
+										embl = graph.eMBLT.from(graph.rawGraph().addVertex(null));
+										embl.set(graph.eMBLT.id, refId);
+										embl.set(graph.eMBLT.proteinSequenceId, proteinSequenceIdSt);
+										embl.set(graph.eMBLT.moleculeType, moleculeTypeSt);
+									}
+									protein.addOut(graph.proteinEMBLT, embl);
 									break;
 								case "EC":
 									enzymeDBReferences.add(refId);
@@ -325,12 +345,8 @@ public class ImportUniprot implements Executable {
 						}
 
 
-						proteinProperties.put(ProteinNode.PIR_ID_PROPERTY, pirIdSt);
-						proteinProperties.put(ProteinNode.KEGG_ID_PROPERTY, keggIdSt);
-						proteinProperties.put(ProteinNode.EMBL_REFERENCES_PROPERTY, convertToStringArray(emblCrossReferences));
-						proteinProperties.put(ProteinNode.ENSEMBL_PLANTS_REFERENCES_PROPERTY, convertToStringArray(ensemblPlantsReferences));
-						proteinProperties.put(ProteinNode.ENSEMBL_ID_PROPERTY, ensemblIdSt);
-						proteinProperties.put(ProteinNode.UNIGENE_ID_PROPERTY, uniGeneIdSt);
+//						proteinProperties.put(ProteinNode.ENSEMBL_PLANTS_REFERENCES_PROPERTY, convertToStringArray(ensemblPlantsReferences));
+
 
 						// TODO we need to decide how to store this
 //						//---------------gene-names-------------------
@@ -346,18 +362,18 @@ public class ImportUniprot implements Executable {
 
 
 						//--------------refseq associations----------------
-						if (uniprotDataXML.getRefseq()) {
-							for (String refseqReferenceSt : refseqReferences) {
-								//System.out.println("refseqReferenceSt = " + refseqReferenceSt);
-								IndexHits<Long> hits = genomeElementVersionIndex.get(GenomeElementNode.GENOME_ELEMENT_VERSION_INDEX, refseqReferenceSt);
-								if (hits.hasNext()) {
-									inserter.createRelationship(currentProteinId, hits.getSingle(), proteinGenomeElementRel, null);
-								} else {
-									logger.log(Level.INFO, ("GenomeElem not found for: " + currentAccessionId + " , " + refseqReferenceSt));
-								}
-
-							}
-						}
+//						if (uniprotDataXML.getRefseq()) {
+//							for (String refseqReferenceSt : refseqReferences) {
+//								//System.out.println("refseqReferenceSt = " + refseqReferenceSt);
+//								IndexHits<Long> hits = genomeElementVersionIndex.get(GenomeElementNode.GENOME_ELEMENT_VERSION_INDEX, refseqReferenceSt);
+//								if (hits.hasNext()) {
+//									inserter.createRelationship(currentProteinId, hits.getSingle(), proteinGenomeElementRel, null);
+//								} else {
+//									logger.log(Level.INFO, ("GenomeElem not found for: " + currentAccessionId + " , " + refseqReferenceSt));
+//								}
+//
+//							}
+//						}
 
 						//--------------reactome associations----------------
 						if (uniprotDataXML.getReactome()) {
@@ -393,32 +409,32 @@ public class ImportUniprot implements Executable {
 						}
 						//-------------------------------------------------------
 
-						//---------------enzyme db associations----------------------
-						if (uniprotDataXML.getEnzymeDb()) {
-							for (String enzymeDBRef : enzymeDBReferences) {
-								//TitanEnzyme enzyme = graph..getNode(reactomeId);
-								long enzymeNodeId;
-								IndexHits<Long> enzymeIdIndexHits = enzymeIdIndex.get(EnzymeNode.ENZYME_ID_INDEX, enzymeDBRef);
-								if (enzymeIdIndexHits.hasNext()) {
-									enzymeNodeId = enzymeIdIndexHits.next();
-									inserter.createRelationship(currentProteinId, enzymeNodeId, proteinEnzymaticActivityRel, null);
-								} else {
-									enzymeIdsNotFoundBuff.write("Enzyme term: " + enzymeDBRef + " not found.\t" + currentAccessionId);
-								}
-							}
-						}
-						//------------------------------------------------------------
+//						//---------------enzyme db associations----------------------
+//						if (uniprotDataXML.getEnzymeDb()) {
+//							for (String enzymeDBRef : enzymeDBReferences) {
+//								//TitanEnzyme enzyme = graph..getNode(reactomeId);
+//								long enzymeNodeId;
+//								IndexHits<Long> enzymeIdIndexHits = enzymeIdIndex.get(EnzymeNode.ENZYME_ID_INDEX, enzymeDBRef);
+//								if (enzymeIdIndexHits.hasNext()) {
+//									enzymeNodeId = enzymeIdIndexHits.next();
+//									inserter.createRelationship(currentProteinId, enzymeNodeId, proteinEnzymaticActivityRel, null);
+//								} else {
+//									enzymeIdsNotFoundBuff.write("Enzyme term: " + enzymeDBRef + " not found.\t" + currentAccessionId);
+//								}
+//							}
+//						}
+//						//------------------------------------------------------------
 
 
-						//-----comments import---
-						if (uniprotDataXML.getComments()) {
-							importProteinComments(entryXMLElem, inserter, indexProvider, currentProteinId, sequenceSt, uniprotDataXML);
-						}
-
-						//-----features import----
-						if (uniprotDataXML.getFeatures()) {
-							importProteinFeatures(entryXMLElem, inserter, indexProvider, currentProteinId);
-						}
+//						//-----comments import---
+//						if (uniprotDataXML.getComments()) {
+//							importProteinComments(entryXMLElem, inserter, indexProvider, currentProteinId, sequenceSt, uniprotDataXML);
+//						}
+//
+//						//-----features import----
+//						if (uniprotDataXML.getFeatures()) {
+//							importProteinFeatures(entryXMLElem, inserter, indexProvider, currentProteinId);
+//						}
 
 						//--------------------------------datasets--------------------------------------------------
 						String proteinDataSetSt = entryXMLElem.asJDomElement().getAttributeValue(ENTRY_DATASET_ATTRIBUTE);
@@ -523,27 +539,27 @@ public class ImportUniprot implements Executable {
 
 
 							} //-------------------GO -----------------------------
-							else if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
-
-								if (uniprotDataXML.getGeneOntology()) {
-									String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
-									String evidenceSt = "";
-									List<Element> props = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
-									for (Element element : props) {
-										if (element.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).equals(EVIDENCE_TYPE_ATTRIBUTE)) {
-											evidenceSt = element.getAttributeValue("value");
-											if (evidenceSt == null) {
-												evidenceSt = "";
-											}
-											break;
-										}
-									}
-									long goTermNodeId = goTermIdIndex.get(GoTermNode.GO_TERM_ID_INDEX, goId).getSingle();
-									proteinGoProperties.put(ProteinGoRel.EVIDENCE_PROPERTY, evidenceSt);
-									inserter.createRelationship(currentProteinId, goTermNodeId, proteinGoRel, proteinGoProperties);
-								}
-
-							}
+//							else if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
+//
+//								if (uniprotDataXML.getGeneOntology()) {
+//									String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
+//									String evidenceSt = "";
+//									List<Element> props = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
+//									for (Element element : props) {
+//										if (element.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).equals(EVIDENCE_TYPE_ATTRIBUTE)) {
+//											evidenceSt = element.getAttributeValue("value");
+//											if (evidenceSt == null) {
+//												evidenceSt = "";
+//											}
+//											break;
+//										}
+//									}
+//									long goTermNodeId = goTermIdIndex.get(GoTermNode.GO_TERM_ID_INDEX, goId).getSingle();
+//									proteinGoProperties.put(ProteinGoRel.EVIDENCE_PROPERTY, evidenceSt);
+//									inserter.createRelationship(currentProteinId, goTermNodeId, proteinGoRel, proteinGoProperties);
+//								}
+//
+//							}
 
 						}
 						//---------------------------------------------------------------------------------------
@@ -608,6 +624,7 @@ public class ImportUniprot implements Executable {
 
 							Element firstTaxonElem = taxons.get(0);
 
+							//TitanTa
 							//long firstTaxonId = indexService.getSingleNode(TaxonNode.TAXON_NAME_INDEX, firstTaxonElem.getText());
 							long firstTaxonId = -1;
 							IndexHits<Long> firstTaxonIndexHits = taxonNameIndex.get(TaxonNode.TAXON_NAME_INDEX, firstTaxonElem.getText());
