@@ -624,46 +624,35 @@ public class ImportUniprot implements Executable {
 
 							Element firstTaxonElem = taxons.get(0);
 
-							//TitanTa
-							//long firstTaxonId = indexService.getSingleNode(TaxonNode.TAXON_NAME_INDEX, firstTaxonElem.getText());
-							long firstTaxonId = -1;
-							IndexHits<Long> firstTaxonIndexHits = taxonNameIndex.get(TaxonNode.TAXON_NAME_INDEX, firstTaxonElem.getText());
-							if (firstTaxonIndexHits.hasNext()) {
-								firstTaxonId = firstTaxonIndexHits.getSingle();
-							}
+							TitanTaxon firstTaxon = graph.taxonNameIndex.getNode(firstTaxonElem.getText());
 
-							if (firstTaxonId < 0) {
+							if (firstTaxon == null) {
 
 								String firstTaxonName = firstTaxonElem.getText();
-								taxonProperties.put(TaxonNode.NAME_PROPERTY, firstTaxonName);
-								firstTaxonId = createTaxonNode(taxonProperties, inserter, taxonNameIndex, nodeTypeIndex);
-								//flushing taxon name index--
-								taxonNameIndex.flush();
+								firstTaxon = graph.taxonT.from(graph.rawGraph().addVertex(null));
+								firstTaxon.set(graph.taxonT.name, firstTaxonName);
+								g.commit();
 
 							}
 
-							long lastTaxonId = firstTaxonId;
+							TitanTaxon lastTaxon = firstTaxon;
+
 							for (int i = 1; i < taxons.size(); i++) {
 								String taxonName = taxons.get(i).getText();
-								long currentTaxonId = -1;
-								IndexHits<Long> currentTaxonIndexHits = taxonNameIndex.get(TaxonNode.TAXON_NAME_INDEX, taxonName);
-								if (currentTaxonIndexHits.hasNext()) {
-									currentTaxonId = currentTaxonIndexHits.getSingle();
+								TitanTaxon currentTaxon = graph.taxonNameIndex.getNode(taxonName);
+
+								if (currentTaxon == null) {
+
+									currentTaxon = graph.taxonT.from(graph.rawGraph().addVertex(null));
+									currentTaxon.set(graph.taxonT.name, taxonName);
+									g.commit();
+									lastTaxon.addOut(graph.taxonParentT, currentTaxon);
 								}
-								if (currentTaxonId < 0) {
-
-									taxonProperties.put(TaxonNode.NAME_PROPERTY, taxonName);
-									currentTaxonId = createTaxonNode(taxonProperties, inserter, taxonNameIndex, nodeTypeIndex);
-									//flushing taxon name index--
-									taxonNameIndex.flush();
-									inserter.createRelationship(lastTaxonId, currentTaxonId, taxonParentRel, null);
-
-
-								}
-								lastTaxonId = currentTaxonId;
+								lastTaxon = currentTaxon;
 							}
 
-							inserter.createRelationship(lastTaxonId, organismNodeId, taxonParentRel, null);
+
+							organism.addOut(graph.organismTaxonT, lastTaxon);
 
 						}
 
@@ -671,7 +660,7 @@ public class ImportUniprot implements Executable {
 						//---------------------------------------------------------------------------------------
 						//---------------------------------------------------------------------------------------
 
-						inserter.createRelationship(currentProteinId, organismNodeId, proteinOrganismRel, null);
+						protein.addOut(graph.proteinOrganismT, organism);
 
 						proteinCounter++;
 						if ((proteinCounter % limitForPrintingOut) == 0) {

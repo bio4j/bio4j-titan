@@ -23,7 +23,7 @@ public class TitanTaxon extends
 		return inFromOne(uniprotGraph.taxonParentT);
 	}
 	@Override
-	public TitanTaxonParent taxonParent_inNode() {
+	public TitanTaxon taxonParent_inNode() {
 		return inFromOneNode(uniprotGraph.taxonParentT);
 	}
 	@Override
@@ -31,7 +31,7 @@ public class TitanTaxon extends
 		return outToOne(uniprotGraph.taxonParentT);
 	}
 	@Override
-	public TitanTaxonParent taxonParent_outNode() {
+	public TitanTaxon taxonParent_outNode() {
 		return outToOneNode(uniprotGraph.taxonParentT);
 	}
 

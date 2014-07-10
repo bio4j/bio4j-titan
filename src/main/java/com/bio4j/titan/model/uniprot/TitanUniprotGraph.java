@@ -27,6 +27,7 @@ import com.bio4j.titan.model.uniprot.relationships.TitanProteinUniGene.TitanProt
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinEnsembl.TitanProteinEnsemblType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.TitanProteinReactomeTermType;
 import com.bio4j.titan.model.uniprot.relationships.TitanTaxonParent.TitanTaxonParentType;
+import com.bio4j.titan.model.uniprot.relationships.TitanOrganismTaxon.TitanOrganismTaxonType;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -167,4 +168,6 @@ public class TitanUniprotGraph implements
 	public TitanProteinEnsemblType proteinEnsemblT = new TitanProteinEnsemblType(this);
 	public TitanLabel taxonParentLabel;
 	public TitanTaxonParentType taxonParentT = new TitanTaxonParentType(this);
+	public TitanLabel organismTaxonLabel;
+	public TitanOrganismTaxonType organismTaxonT = new TitanOrganismTaxonType(this);
 }
