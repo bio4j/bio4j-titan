@@ -1,5 +1,6 @@
 package com.bio4j.titan.programs;
 
+import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraphImpl;
 import com.ohnosequences.util.Executable;
@@ -62,8 +63,6 @@ public class ImportUniprotGoTitan implements Executable {
 			File inFile = new File(args[0]);
 			File configFile = new File(args[2]);
 
-			String currentAccessionId = "";
-
 			//----------DB configuration------------------
 			Configuration conf = new BaseConfiguration();
 			conf.setProperty("storage.directory", args[1]);
@@ -111,7 +110,6 @@ public class ImportUniprotGoTitan implements Executable {
 
 						String accessionSt = entryXMLElem.asJDomElement().getChildText(ENTRY_ACCESSION_TAG_NAME);
 
-						currentAccessionId = accessionSt;
 						TitanProtein protein = null;
 
 						//-----db references-------------
@@ -123,24 +121,14 @@ public class ImportUniprotGoTitan implements Executable {
 							if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
 
 								if(protein == null){
-									protein = grap
+									protein = graph.titanUniprotGraph.proteinAccessionIndex.getNode(accessionSt);
 								}
 
 								String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
-								String evidenceSt = "";
-								List<Element> props = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
-								for (Element element : props) {
-									if (element.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).equals(EVIDENCE_TYPE_ATTRIBUTE)) {
-										evidenceSt = element.getAttributeValue("value");
-										if (evidenceSt == null) {
-											evidenceSt = "";
-										}
-										break;
-									}
-								}
-								long goTermNodeId = goTermIdIndex.get(GoTermNode.GO_TERM_ID_INDEX, goId).getSingle();
-								proteinGoProperties.put(ProteinGoRel.EVIDENCE_PROPERTY, evidenceSt);
-								inserter.createRelationship(currentProteinId, goTermNodeId, proteinGoRel, proteinGoProperties);
+
+								TitanGoTerm goTerm = graph.titanGoGraph.goTermIdIndex.getNode(goId);
+
+								protein.addOut(graph.goAnnotationT, goTerm);
 
 
 							}
@@ -159,7 +147,6 @@ public class ImportUniprotGoTitan implements Executable {
 				}
 
 			} catch (Exception e) {
-				logger.log(Level.SEVERE, ("Exception retrieving protein " + currentAccessionId));
 				logger.log(Level.SEVERE, e.getMessage());
 				StackTraceElement[] trace = e.getStackTrace();
 				for (StackTraceElement stackTraceElement : trace) {
