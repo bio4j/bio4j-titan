@@ -21,6 +21,8 @@ import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
 import com.era7.bioinfo.bioinfoutil.Executable;
 import com.era7.era7xmlapi.model.XMLElement;
+import com.ohnosequences.util.Executable;
+import com.ohnosequences.xml.api.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;
@@ -40,7 +42,7 @@ import java.util.logging.SimpleFormatter;
 *
 * @author Pablo Pareja Tobes <ppareja@era7.com>
 */
-public class ImportGeneOntology implements Executable {
+public class ImportGeneOntologyTitan implements Executable {
 
      public static final String TERM_TAG_NAME = "term";
      public static final String ID_TAG_NAME = "id";

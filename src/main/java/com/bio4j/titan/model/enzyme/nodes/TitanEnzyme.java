@@ -39,7 +39,7 @@ public class TitanEnzyme extends
 	}
 
 	@Override
-	public String cofactors() {
+	public String[] cofactors() {
 		return get(enzymeDBGraph.enzymeT.cofactors);
 	}
 
@@ -59,7 +59,7 @@ public class TitanEnzyme extends
 	}
 
 	@Override
-	public String prositeCrossReferences() {
+	public String[] prositeCrossReferences() {
 		return get(enzymeDBGraph.enzymeT.prositeCrossReferences);
 	}
 
@@ -116,7 +116,7 @@ public class TitanEnzyme extends
 		public cofactors cofactors = new cofactors();
 		public final class cofactors
 				implements
-				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanEnzyme, TitanEnzymeType, cofactors, String>,
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanEnzyme, TitanEnzymeType, cofactors, String[]>,
 				Enzyme.cofactors<TitanEnzyme, TitanEnzymeType, cofactors> {
 
 			@Override
@@ -192,7 +192,7 @@ public class TitanEnzyme extends
 		public prositeCrossReferences prositeCrossReferences = new prositeCrossReferences();
 		public final class prositeCrossReferences
 				implements
-				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanEnzyme, TitanEnzymeType, prositeCrossReferences, String>,
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanEnzyme, TitanEnzymeType, prositeCrossReferences, String[]>,
 				Enzyme.prositeCrossReferences<TitanEnzyme, TitanEnzymeType, prositeCrossReferences> {
 
 			@Override

@@ -1,6 +1,9 @@
 package com.bio4j.titan.model.uniprot_go;
 
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.thinkaurelius.titan.core.TitanLabel;
@@ -12,11 +15,13 @@ public class TitanUniprotGoGraph implements
 		TitanTypedGraph, UniprotGoGraph {
 
 	protected TitanGraph rawGraph;
-	//public TitanUniprotGraph titanUniprotGraph;
+	protected TitanUniprotGraph titanUniprotGraph;
+	protected TitanGoGraph titanGoGraph;
 
 	TitanUniprotGoGraph(TitanGraph rawGraph) {
 
 		this.rawGraph = rawGraph;
+
 	}
 
 	@Override

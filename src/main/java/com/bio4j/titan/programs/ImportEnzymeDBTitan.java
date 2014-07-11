@@ -19,6 +19,7 @@ package com.bio4j.titan.programs;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraphImpl;
 import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme;
 import com.era7.bioinfo.bioinfoutil.Executable;
+import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;

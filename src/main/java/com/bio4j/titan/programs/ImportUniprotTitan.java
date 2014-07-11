@@ -1,6 +1,5 @@
 package com.bio4j.titan.programs;
 
-import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
 import com.bio4j.titan.model.uniprot.nodes.*;
 import com.ohnosequences.util.Executable;
@@ -11,7 +10,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +17,6 @@ import java.util.logging.SimpleFormatter;
 
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
-import com.thinkaurelius.titan.core.TitanKey;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.jdom2.Element;
@@ -28,7 +25,7 @@ import org.jdom2.Element;
  *
  * @author Pablo Pareja Tobes <ppareja@era7.com>
  */
-public class ImportUniprot implements Executable {
+public class ImportUniprotTitan implements Executable {
 
 	private static final Logger logger = Logger.getLogger("ImportUniprot");
 	private static FileHandler fh;
@@ -706,7 +703,7 @@ public class ImportUniprot implements Executable {
 
 
 				} catch (IOException ex) {
-					Logger.getLogger(ImportUniprot.class.getName()).log(Level.SEVERE, null, ex);
+					Logger.getLogger(ImportUniprotTitan.class.getName()).log(Level.SEVERE, null, ex);
 				}
 
 			}
