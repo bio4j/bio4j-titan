@@ -39,7 +39,7 @@ import com.thinkaurelius.titan.core.TitanLabel;
 /**
 * Created by ppareja on 6/20/2014.
 */
-public class TitanUniprotGraph implements
+public abstract class TitanUniprotGraph implements
 		TitanTypedGraph,
 		UniprotGraph {
 

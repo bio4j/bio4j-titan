@@ -537,28 +537,7 @@ public class ImportUniprotTitan implements Executable {
 								}
 
 
-							} //-------------------GO -----------------------------
-//							else if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
-//
-//								if (uniprotDataXML.getGeneOntology()) {
-//									String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
-//									String evidenceSt = "";
-//									List<Element> props = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
-//									for (Element element : props) {
-//										if (element.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).equals(EVIDENCE_TYPE_ATTRIBUTE)) {
-//											evidenceSt = element.getAttributeValue("value");
-//											if (evidenceSt == null) {
-//												evidenceSt = "";
-//											}
-//											break;
-//										}
-//									}
-//									long goTermNodeId = goTermIdIndex.get(GoTermNode.GO_TERM_ID_INDEX, goId).getSingle();
-//									proteinGoProperties.put(ProteinGoRel.EVIDENCE_PROPERTY, evidenceSt);
-//									inserter.createRelationship(currentProteinId, goTermNodeId, proteinGoRel, proteinGoProperties);
-//								}
-//
-//							}
+							}
 
 						}
 						//---------------------------------------------------------------------------------------

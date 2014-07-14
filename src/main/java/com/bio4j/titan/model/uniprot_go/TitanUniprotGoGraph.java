@@ -13,7 +13,7 @@ import com.thinkaurelius.titan.core.TitanLabel;
 /**
  * Created by ppareja on 6/25/2014.
  */
-public class TitanUniprotGoGraph implements
+public abstract class TitanUniprotGoGraph implements
 		TitanTypedGraph, UniprotGoGraph {
 
 	protected TitanGraph rawGraph;

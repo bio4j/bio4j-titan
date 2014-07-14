@@ -1,13 +1,14 @@
 package com.bio4j.titan.model.go.nodes;
 
-import com.bio4j.model.go.GoGraph;
+import com.bio4j.model.go.GoGraph.TermType;
 import com.bio4j.model.go.nodes.GoTerm;
+import com.bio4j.model.uniprot.nodes.Protein;
+import com.bio4j.model.uniprot_go.relationships.GoAnnotation;
 import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.go.relationships.*;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
-import com.bio4j.model.go.GoGraph.TermType;
 
 import java.util.List;
 
@@ -25,20 +26,37 @@ public final class TitanGoTerm
 		TitanNode<TitanGoTerm, TitanGoTerm.TitanGoTermType>
 		implements GoTerm<TitanGoTerm, TitanGoTerm.TitanGoTermType>
 
-		 {
+{
 
 	@Override
-	public String id(){ return get(goGraph.goTermT.id);}
+	public String id() {
+		return get(goGraph.goTermT.id);
+	}
+
 	@Override
-	public String name(){   return get(goGraph.goTermT.name);}
+	public String name() {
+		return get(goGraph.goTermT.name);
+	}
+
 	@Override
-	public String comment(){   return get(goGraph.goTermT.comment);}
+	public String comment() {
+		return get(goGraph.goTermT.comment);
+	}
+
 	@Override
-	public String synonym(){   return get(goGraph.goTermT.synonym);}
+	public String synonym() {
+		return get(goGraph.goTermT.synonym);
+	}
+
 	@Override
-	public String definition(){   return get(goGraph.goTermT.definition);}
+	public String definition() {
+		return get(goGraph.goTermT.definition);
+	}
+
 	@Override
-	public String obsolete(){   return get(goGraph.goTermT.obsolete);}
+	public String obsolete() {
+		return get(goGraph.goTermT.obsolete);
+	}
 
 	public TitanGoTerm(TitanVertex vertex, TitanGoGraph goGraph) {
 
@@ -86,6 +104,7 @@ public final class TitanGoTerm
 
 		// --------------------------------properties----------------------------------------
 		public id id = new id();
+
 		public final class id
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, id, String>,
@@ -105,6 +124,7 @@ public final class TitanGoTerm
 		}
 
 		public name name = new name();
+
 		public final class name
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, name, String>,
@@ -124,6 +144,7 @@ public final class TitanGoTerm
 		}
 
 		public definition definition = new definition();
+
 		public final class definition
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, definition, String>,
@@ -143,6 +164,7 @@ public final class TitanGoTerm
 		}
 
 		public obsolete obsolete = new obsolete();
+
 		public final class obsolete
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, obsolete, String>,
@@ -162,6 +184,7 @@ public final class TitanGoTerm
 		}
 
 		public comment comment = new comment();
+
 		public final class comment
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, comment, String>,
@@ -181,6 +204,7 @@ public final class TitanGoTerm
 		}
 
 		public synonym synonym = new synonym();
+
 		public final class synonym
 				implements
 				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanGoTerm, TitanGoTermType, synonym, String>,
@@ -335,6 +359,17 @@ public final class TitanGoTerm
 	public List<TitanGoTerm> hasPartOf_outNodes() {
 		return outToManyNodes(goGraph.hasPartOfT);
 	}
+
+	@Override
+	public List<? extends GoAnnotation> goAnnotation_in() {
+		return inFromMany(goGraph.uniprotGoGraph.goAnnotationT);
+	}
+
+	@Override
+	public List<? extends Protein> goAnnotation_inNodes() {
+		return inFromManyNodes(goGraph.uniprotGoGraph.goAnnotationT);
+	}
+
 
 	// SubOntology
 	// outgoing

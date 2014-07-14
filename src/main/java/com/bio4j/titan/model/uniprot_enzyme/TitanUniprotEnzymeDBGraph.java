@@ -5,6 +5,6 @@ import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 /**
  * Created by ppareja on 6/25/2014.
  */
-public class TitanUniprotEnzymeDBGraph implements
+public abstract class TitanUniprotEnzymeDBGraph implements
 		TitanTypedGraph {
 }
