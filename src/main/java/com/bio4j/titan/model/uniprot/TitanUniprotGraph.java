@@ -30,6 +30,9 @@ import com.bio4j.titan.model.uniprot.relationships.TitanProteinEnsembl.TitanProt
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.TitanProteinReactomeTermType;
 import com.bio4j.titan.model.uniprot.relationships.TitanTaxonParent.TitanTaxonParentType;
 import com.bio4j.titan.model.uniprot.relationships.TitanOrganismTaxon.TitanOrganismTaxonType;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraphImpl;
+import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -44,6 +47,8 @@ public abstract class TitanUniprotGraph implements
 		UniprotGraph {
 
 	protected TitanGraph rawGraph;
+	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph;
+	public TitanUniprotGoGraph uniprotGoGraph;
 
 	TitanUniprotGraph(TitanGraph rawGraph) {
 

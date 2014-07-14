@@ -65,7 +65,7 @@ public class TitanProteinInterpro extends
 
 		@Override
 		public TitanLabel label() {
-			return uniprotGraph.proteinInteproLabel;
+			return uniprotGraph.proteinInterproLabel;
 		}
 
 		@Override

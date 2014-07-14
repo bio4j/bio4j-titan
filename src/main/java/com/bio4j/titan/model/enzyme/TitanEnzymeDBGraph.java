@@ -34,8 +34,6 @@ implements
 		return rawGraph;
 	}
 
-	public abstract TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph();
-
 	public TitanKey enzymeTkey;
 	public TitanKey enzymeIdKey;
 	public TitanKey enzymeCofactorsKey;

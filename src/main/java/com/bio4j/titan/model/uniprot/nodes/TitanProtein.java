@@ -1,10 +1,14 @@
 package com.bio4j.titan.model.uniprot.nodes;
 
+import com.bio4j.model.enzymedb.nodes.Enzyme;
 import com.bio4j.model.uniprot.UniprotGraph.ProteinType;
 import com.bio4j.model.uniprot.nodes.*;
 import com.bio4j.model.uniprot.relationships.*;
+import com.bio4j.model.uniprot_enzymedb.relationships.EnzymaticActivity;
+import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot.relationships.*;
+import com.bio4j.titan.model.uniprot_enzyme.relationships.TitanEnzymaticActivity;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
@@ -63,6 +67,13 @@ public class TitanProtein extends
 	@Override
 	public List<TitanKeyword> proteinKeyword_outNodes() {
 		return outToManyNodes(uniprotGraph.proteinKeywordT);
+	}
+
+	@Override
+	public List<TitanEnzymaticActivity> enzymaticActivity_out() {   return outToMany(uniprotGraph.uniprotEnzymeDBGraph.enzymaticActivityT);	}
+
+	@Override
+	public List<TitanEnzyme> enzymaticActivity_outNodes() { 	return outToManyNodes(uniprotGraph.uniprotEnzymeDBGraph.enzymaticActivityT);
 	}
 
 	@Override

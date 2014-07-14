@@ -2,9 +2,8 @@ package com.bio4j.titan.model.uniprot.nodes;
 
 import com.bio4j.model.uniprot.UniprotGraph.OrganismType;
 import com.bio4j.model.uniprot.nodes.Organism;
-import com.bio4j.model.uniprot.nodes.Protein;
-import com.bio4j.model.uniprot.relationships.ProteinOrganism;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.relationships.TitanOrganismTaxon;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
@@ -35,6 +34,12 @@ public class TitanOrganism extends
 	public List<TitanProtein> proteinOrganism_inNodes() {
 		return inFromManyNodes(uniprotGraph.proteinOrganismT);
 	}
+
+	@Override
+	public TitanOrganismTaxon organismTaxon_out() {	return outToOne(uniprotGraph.organismTaxonT);	}
+
+	@Override
+	public TitanTaxon organismTaxon_outNode() {		return outToOneNode(uniprotGraph.organismTaxonT);	}
 
 	public TitanOrganism(TitanVertex vertex, TitanUniprotGraph uniprotGraph) {
 

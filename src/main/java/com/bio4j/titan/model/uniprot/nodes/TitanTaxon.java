@@ -1,8 +1,11 @@
 package com.bio4j.titan.model.uniprot.nodes;
 
 import com.bio4j.model.uniprot.UniprotGraph;
+import com.bio4j.model.uniprot.nodes.Organism;
 import com.bio4j.model.uniprot.nodes.Taxon;
+import com.bio4j.model.uniprot.relationships.OrganismTaxon;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.relationships.TitanOrganismTaxon;
 import com.bio4j.titan.model.uniprot.relationships.TitanTaxonParent;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
@@ -17,6 +20,12 @@ public class TitanTaxon extends
 
 	@Override
 	public String name(){ return get(uniprotGraph.taxonT.name);}
+
+	@Override
+	public TitanOrganismTaxon organismTaxon_in() {	return	inFromOne(uniprotGraph.organismTaxonT);		}
+
+	@Override
+	public TitanOrganism organismTaxon_inNode() {		return inFromOneNode(uniprotGraph.organismTaxonT);	}
 
 	@Override
 	public TitanTaxonParent taxonParent_in() {
