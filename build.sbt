@@ -45,6 +45,7 @@ mergeStrategy in assembly ~= { old => {
     case PathList("META-INF", "LICENSES.txt")                     => MergeStrategy.rename
     case "log4j.properties"                                       => MergeStrategy.filterDistinctLines
     case PathList("org", "apache", "commons", "collections", _*)  => MergeStrategy.first
+	case PathList("org", "neo4j" , _*)                            => MergeStrategy.last
     case x                                                        => old(x)
   }
 }
