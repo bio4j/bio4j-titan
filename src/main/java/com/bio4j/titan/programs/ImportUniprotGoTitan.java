@@ -13,7 +13,6 @@ import org.jdom2.Element;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -121,12 +120,12 @@ public class ImportUniprotGoTitan implements Executable {
 							if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
 
 								if(protein == null){
-									protein = graph.titanUniprotGraph.proteinAccessionIndex.getNode(accessionSt);
+									protein = graph.uniprotGraph.proteinAccessionIndex.getNode(accessionSt);
 								}
 
 								String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
 
-								TitanGoTerm goTerm = graph.titanGoGraph.goTermIdIndex.getNode(goId);
+								TitanGoTerm goTerm = graph.goGraph.goTermIdIndex.getNode(goId);
 
 								protein.addOut(graph.goAnnotationT, goTerm);
 

@@ -37,18 +37,18 @@ public abstract class TitanNCBITaxonomyGraph
 	public TitanKey nCBITaxonCommentKey;
 	public TitanKey nCBITaxonScientificNameKey;
 	public TitanKey nCBITaxonTaxonomicRankKey;
-	public final TitanNCBITaxonType goTermT = new TitanNCBITaxonType(this);
+	//public final TitanNCBITaxonType goTermT = new TitanNCBITaxonType(this);
 
 
 	//------------------INDICES----------------
 	//-----------------------------------------
-	public TitanNodeIndex.Unique<TitanNCBITaxon,TitanNCBITaxonType, TitanNCBITaxonType.id,String> nCBITaxonIdIndex;
+	//public TitanNodeIndex.Unique<TitanNCBITaxon,TitanNCBITaxonType, TitanNCBITaxonType.id,String> nCBITaxonIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
 
 	public TitanLabel nCBITaxonParentLabel;
-	public NCBITaxonParentType nCBITaxonParentT = new NCBITaxonParentType(this);
+	//public NCBITaxonParentType nCBITaxonParentT = new NCBITaxonParentType(this);
 
 
 }

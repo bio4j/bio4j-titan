@@ -74,12 +74,12 @@ public class TitanGoAnnotation extends
 
 		@Override
 		public TitanProtein.TitanProteinType sourceType() {
-			return uniprotGoGraph.titanUniprotGraph.proteinT;
+			return uniprotGoGraph.uniprotGraph.proteinT;
 		}
 
 		@Override
 		public TitanGoTerm.TitanGoTermType targetType() {
-			return uniprotGoGraph.titanGoGraph.goTermT;
+			return uniprotGoGraph.goGraph.goTermT;
 		}
 
 		@Override

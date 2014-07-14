@@ -19,8 +19,6 @@ package com.bio4j.titan.programs;
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
-import com.era7.bioinfo.bioinfoutil.Executable;
-import com.era7.era7xmlapi.model.XMLElement;
 import com.ohnosequences.util.Executable;
 import com.ohnosequences.xml.api.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanFactory;

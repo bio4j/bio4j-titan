@@ -17,14 +17,14 @@ public abstract class TitanUniprotGoGraph implements
 		TitanTypedGraph, UniprotGoGraph {
 
 	protected TitanGraph rawGraph;
-	public TitanUniprotGraph titanUniprotGraph;
-	public TitanGoGraph titanGoGraph;
+	public TitanUniprotGraph uniprotGraph;
+	public TitanGoGraph goGraph;
 
 	TitanUniprotGoGraph(TitanGraph rawGraph) {
 
 		this.rawGraph = rawGraph;
-		this.titanUniprotGraph = new TitanUniprotGraphImpl(rawGraph);
-		this.titanGoGraph = new TitanGoGraphImpl(rawGraph);
+		this.uniprotGraph = new TitanUniprotGraphImpl(rawGraph);
+		this.goGraph = new TitanGoGraphImpl(rawGraph);
 
 	}
 

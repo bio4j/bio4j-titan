@@ -2,10 +2,11 @@ package com.bio4j.titan.model.enzyme.nodes;
 
 import com.bio4j.model.enzymedb.EnzymeDBGraph.EnzymeType;
 import com.bio4j.model.enzymedb.nodes.Enzyme;
-import com.bio4j.model.enzymedb.relationships.EnzymaticActivity;
 import com.bio4j.model.uniprot.nodes.Protein;
+import com.bio4j.model.uniprot_enzymedb.relationships.EnzymaticActivity;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
+import com.bio4j.titan.model.uniprot_enzyme.relationships.TitanEnzymaticActivity;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
@@ -63,6 +64,15 @@ public class TitanEnzyme extends
 		return get(enzymeDBGraph.enzymeT.prositeCrossReferences);
 	}
 
+	@Override
+	public List<? extends EnzymaticActivity> enzymaticActivity_in() {
+		return inFromMany(enzymeDBGraph.uniprotEnzymeDBGraph.enzymaticActivityT);
+	}
+
+	@Override
+	public List<? extends Protein> enzymaticActivity_inNodes() {
+		return inFromManyNodes(enzymeDBGraph.uniprotEnzymeDBGraph.enzymaticActivityT);
+	}
 
 	public static final class TitanEnzymeType
 			implements
@@ -206,17 +216,6 @@ public class TitanEnzyme extends
 
 				return enzymeDBGraph.enzymePrositeCrossReferencesKey;
 			}
-		}
-
-		@Override
-		public List<TitanEnzymaticActivity> enzymaticActivity_in() {
-			return null;
-		}
-
-		@Override
-		public List<TitanProtein> enzymaticActivity_inNodes() {
-			return null;
-			// inFromManyNodes(enzymeDBGraph.uniprotEnzymeDBGraph().enzymaticActivityT)
 		}
 
 	}
