@@ -38,7 +38,7 @@ import java.util.logging.SimpleFormatter;
 /**
 * Imports the Gene Ontology into Bio4j
 *
-* @author Pablo Pareja Tobes <ppareja@era7.com>
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
 */
 public class ImportGeneOntologyTitan implements Executable {
 
