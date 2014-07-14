@@ -13,6 +13,7 @@ import com.bio4j.titan.model.uniprot.nodes.TitanKegg.TitanKeggType;
 import com.bio4j.titan.model.uniprot.nodes.TitanPIR.TitanPIRType;
 import com.bio4j.titan.model.uniprot.nodes.TitanUniGene.TitanUniGeneType;
 import com.bio4j.titan.model.uniprot.nodes.TitanTaxon.TitanTaxonType;
+import com.bio4j.titan.model.uniprot.nodes.TitanRefSeq.TitanRefSeqType;
 import com.bio4j.titan.model.uniprot.nodes.TitanEnsembl.TitanEnsemblType;
 import com.bio4j.titan.model.uniprot.nodes.TitanReactomeTerm.TitanReactomeTermType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset.TitanProteinDatasetType;
@@ -23,6 +24,7 @@ import com.bio4j.titan.model.uniprot.relationships.TitanProteinPfam.TitanProtein
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinKegg.TitanProteinKeggType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinEMBL.TitanProteinEMBLType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinPIR.TitanProteinPIRType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinRefSeq.TitanProteinRefSeqType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinUniGene.TitanProteinUniGeneType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinEnsembl.TitanProteinEnsemblType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.TitanProteinReactomeTermType;
@@ -123,6 +125,11 @@ public class TitanUniprotGraph implements
 	public TitanKey taxonTKey;
 	public TitanKey taxonNameKey;
 	public final TitanTaxonType taxonT = new TitanTaxonType(this);
+	//---RefSeq---
+	public TitanKey refSeqTKey;
+	public TitanKey refSeqIdKey;
+	public TitanKey refSeqNucleotideSequenceIdKey;
+	public final TitanRefSeqType refSeqT = new TitanRefSeqType(this);
 
 
 
@@ -141,6 +148,7 @@ public class TitanUniprotGraph implements
 	public TitanNodeIndex.Unique<TitanUniGene,TitanUniGeneType, TitanUniGeneType.id,String> uniGeneIdIndex;
 	public TitanNodeIndex.Unique<TitanEnsembl,TitanEnsemblType, TitanEnsemblType.id,String> ensemblIdIndex;
 	public TitanNodeIndex.Unique<TitanTaxon,TitanTaxonType, TitanTaxonType.name,String> taxonNameIndex;
+	public TitanNodeIndex.Unique<TitanRefSeq,TitanRefSeqType, TitanRefSeqType.id,String> refSeqIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
@@ -170,4 +178,6 @@ public class TitanUniprotGraph implements
 	public TitanTaxonParentType taxonParentT = new TitanTaxonParentType(this);
 	public TitanLabel organismTaxonLabel;
 	public TitanOrganismTaxonType organismTaxonT = new TitanOrganismTaxonType(this);
+	public TitanLabel proteinRefSeqLabel;
+	public TitanProteinRefSeqType proteinRefSeqT = new TitanProteinRefSeqType(this);
 }

@@ -86,10 +86,13 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		proteinEMBLLabel = titanLabelForRelationshipType(proteinEMBLT);
 		// proteinEnsembl
 		proteinEnsemblLabel = titanLabelForRelationshipType(proteinEnsemblT);
+		// proteinRefSeq
+		proteinRefSeqLabel = titanLabelForRelationshipType(proteinRefSeqT);
 		// taxonParent
 		taxonParentLabel = titanLabelForRelationshipType(taxonParentT);
 		// organismTaxon
 		organismTaxonLabel = titanLabelForRelationshipType(organismTaxonT);
+
 
 	}
 
@@ -105,5 +108,7 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		pIRIdIndex = new TitanNodeIndex.DefaultUnique(this, pIRT.id);
 		keggIdIndex = new TitanNodeIndex.DefaultUnique(this, keggT.id);
 		ensemblIdIndex = new TitanNodeIndex.DefaultUnique(this, ensemblT.id);
+		taxonNameIndex = new TitanNodeIndex.DefaultUnique(this, taxonT.name);
+		refSeqIdIndex = new TitanNodeIndex.DefaultUnique(this, refSeqT.id);
 	}
 }

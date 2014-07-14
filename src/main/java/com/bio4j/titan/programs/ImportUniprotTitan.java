@@ -253,6 +253,7 @@ public class ImportUniprotTitan implements Executable {
 										ensembl.set(graph.ensemblT.proteinSequenceId, proteinSequenceIdSt);
 										ensembl.set(graph.ensemblT.moleculeId, moleculeIdSt);
 										ensembl.set(graph.ensemblT.geneId, geneIdSt);
+										g.commit();
 									}
 									protein.addOut(graph.proteinEnsemblT, ensembl);
 									break;
@@ -270,6 +271,7 @@ public class ImportUniprotTitan implements Executable {
 										pIR = graph.pIRT.from(graph.rawGraph().addVertex(null));
 										pIR.set(graph.pIRT.entryName, entryNameSt);
 										pIR.set(graph.pIRT.id, refId);
+										g.commit();
 									}
 									protein.addOut(graph.proteinPIRT, pIR);
 
@@ -280,6 +282,7 @@ public class ImportUniprotTitan implements Executable {
 									if(uniGene == null){
 										uniGene = graph.uniGeneT.from(graph.rawGraph().addVertex(null));
 										uniGene.set(graph.uniGeneT.id, refId);
+										g.commit();
 									}
 									protein.addOut(graph.proteinUniGeneT, uniGene);
 									break;
@@ -289,6 +292,7 @@ public class ImportUniprotTitan implements Executable {
 									if(kegg == null){
 										kegg = graph.keggT.from(graph.rawGraph().addVertex(null));
 										kegg.set(graph.keggT.id, refId);
+										g.commit();
 									}
 									protein.addOut(graph.proteinKeggT, kegg);
 									break;
@@ -312,6 +316,7 @@ public class ImportUniprotTitan implements Executable {
 										embl.set(graph.eMBLT.id, refId);
 										embl.set(graph.eMBLT.proteinSequenceId, proteinSequenceIdSt);
 										embl.set(graph.eMBLT.moleculeType, moleculeTypeSt);
+										g.commit();
 									}
 									protein.addOut(graph.proteinEMBLT, embl);
 									break;
@@ -319,12 +324,23 @@ public class ImportUniprotTitan implements Executable {
 									enzymeDBReferences.add(refId);
 									break;
 								case "RefSeq":
-									List<Element> children = dbReferenceElem.getChildren("property");
-									for (Element propertyElem : children) {
-										if (propertyElem.getAttributeValue("type").equals("nucleotide sequence ID")) {
-											refseqReferences.add(propertyElem.getAttributeValue("value"));
+									//looking for RefSeq node
+									TitanRefSeq refSeq = graph.refSeqIdIndex.getNode(refId);
+									if(refSeq == null){
+										String nucleotideSequenceIdSt = "";
+										List<Element> children = dbReferenceElem.getChildren("property");
+										for (Element propertyElem : children) {
+											if (propertyElem.getAttributeValue("type").equals("nucleotide sequence ID")) {
+												nucleotideSequenceIdSt = propertyElem.getAttributeValue("value");
+											}
 										}
+
+										refSeq = graph.refSeqT.from(graph.rawGraph().addVertex(null));
+										refSeq.set(graph.refSeqT.id, refId);
+										refSeq.set(graph.refSeqT.nucleotideSequenceId, nucleotideSequenceIdSt);
+										g.commit();
 									}
+									protein.addOut(graph.proteinRefSeqT, refSeq);
 									break;
 								case "Reactome":
 									Element propertyElem = dbReferenceElem.getChild("property");
@@ -357,20 +373,6 @@ public class ImportUniprotTitan implements Executable {
 //						}
 //						//-----------------------------------------
 
-
-						//--------------refseq associations----------------
-//						if (uniprotDataXML.getRefseq()) {
-//							for (String refseqReferenceSt : refseqReferences) {
-//								//System.out.println("refseqReferenceSt = " + refseqReferenceSt);
-//								IndexHits<Long> hits = genomeElementVersionIndex.get(GenomeElementNode.GENOME_ELEMENT_VERSION_INDEX, refseqReferenceSt);
-//								if (hits.hasNext()) {
-//									inserter.createRelationship(currentProteinId, hits.getSingle(), proteinGenomeElementRel, null);
-//								} else {
-//									logger.log(Level.INFO, ("GenomeElem not found for: " + currentAccessionId + " , " + refseqReferenceSt));
-//								}
-//
-//							}
-//						}
 
 						//--------------reactome associations----------------
 						if (uniprotDataXML.getReactome()) {
