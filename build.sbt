@@ -36,7 +36,7 @@ dependencyOverrides ++= Set(
 
 
 // fat jar assembly settings
-mainClass in assembly := Some("com.era7.bioinfo.bio4j.titan.program.ImportTitanDB")
+mainClass in assembly := Some("com.bio4j.titan.programs.ImportTitanDB")
 
 assemblyOption in assembly ~= { _.copy(includeScala = false) }
 
