@@ -21,13 +21,13 @@ implements
 {
 
 	protected TitanGraph rawGraph;
-	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph;
+	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph = null;
 
 	TitanEnzymeDBGraph(TitanGraph rawGraph) {
 
 		this.rawGraph = rawGraph;
-
 	}
+
 
 	@Override
 	public TitanGraph rawGraph() {
