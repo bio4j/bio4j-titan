@@ -47,13 +47,24 @@ public abstract class TitanUniprotGraph implements
 		UniprotGraph {
 
 	protected TitanGraph rawGraph;
-	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph;
+	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph = null;
 	public TitanUniprotGoGraph uniprotGoGraph;
 
 	TitanUniprotGraph(TitanGraph rawGraph) {
 
 		this.rawGraph = rawGraph;
 	}
+
+	/*
+		You can use this as `uniprotGraph.withEnzymeDB(new uniprotEnzymeDBGraph(raw, uniprotGraph, enzymeGraph))`
+	*/
+	public TitanUniprotGraph withEnzymeDB(TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph) {
+
+		this.uniprotEnzymeDBGraph = uniprotEnzymeDBGraph;
+
+		return this;
+	}
+
 
 	@Override
 	public TitanGraph rawGraph() {

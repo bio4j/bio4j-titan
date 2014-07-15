@@ -20,16 +20,16 @@ public abstract class TitanUniprotEnzymeDBGraph implements
 	public TitanUniprotGraph uniprotGraph;
 	public TitanEnzymeDBGraph enzymeDBGraph;
 
-	TitanUniprotEnzymeDBGraph(TitanGraph rawGraph) {
+	TitanUniprotEnzymeDBGraph(TitanGraph rawGraph, TitanUniprotGraph uniprotGraph, TitanEnzymeDBGraph enzymeDBGraph) {
 
 		this.rawGraph = rawGraph;
-		this.uniprotGraph = new TitanUniprotGraphImpl(rawGraph);
-		this.enzymeDBGraph = new TitanEnzymeDBGraphImpl(rawGraph);
-
+		this.uniprotGraph = uniprotGraph;
+		this.enzymeDBGraph = enzymeDBGraph;
 	}
 
 	@Override
 	public TitanGraph rawGraph() {
+		
 		return rawGraph;
 	}
 
