@@ -1,6 +1,9 @@
 package com.bio4j.titan.model.ncbiTaxonomy;
 
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
+import com.bio4j.titan.model.ncbiTaxonomy.nodes.TitanNCBITaxon;
+import com.bio4j.titan.model.ncbiTaxonomy.nodes.TitanNCBITaxon.TitanNCBITaxonType;
+import com.bio4j.titan.model.ncbiTaxonomy.relationships.TitanNCBITaxonParent.TitanNCBITaxonParentType;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -37,18 +40,18 @@ public abstract class TitanNCBITaxonomyGraph
 	public TitanKey nCBITaxonCommentKey;
 	public TitanKey nCBITaxonScientificNameKey;
 	public TitanKey nCBITaxonTaxonomicRankKey;
-	//public final TitanNCBITaxonType goTermT = new TitanNCBITaxonType(this);
+	public final TitanNCBITaxonType nCBITaxonT = new TitanNCBITaxonType(this);
 
 
 	//------------------INDICES----------------
 	//-----------------------------------------
-	//public TitanNodeIndex.Unique<TitanNCBITaxon,TitanNCBITaxonType, TitanNCBITaxonType.id,String> nCBITaxonIdIndex;
+	public TitanNodeIndex.Unique<TitanNCBITaxon,TitanNCBITaxonType, TitanNCBITaxonType.id,String> nCBITaxonIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
 
 	public TitanLabel nCBITaxonParentLabel;
-	//public NCBITaxonParentType nCBITaxonParentT = new NCBITaxonParentType(this);
+	public TitanNCBITaxonParentType nCBITaxonParentT = new TitanNCBITaxonParentType(this);
 
 
 }
