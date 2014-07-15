@@ -10,6 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -231,8 +232,9 @@ public class ImportUniprotTitan implements Executable {
 							switch (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE)) {
 								case "Ensembl":
 									//looking for Ensembl node
-									TitanEnsembl ensembl = graph.ensemblIdIndex.getNode(refId);
-									if(ensembl == null){
+									TitanEnsembl ensembl = null;
+									Optional<TitanEnsembl> ensemblOptional = graph.ensemblIdIndex.getNode(refId);
+									if(!ensemblOptional.isPresent()){
 										String moleculeIdSt = "";
 										String proteinSequenceIdSt = "";
 										String geneIdSt = "";
@@ -254,13 +256,16 @@ public class ImportUniprotTitan implements Executable {
 										ensembl.set(graph.ensemblT.moleculeId, moleculeIdSt);
 										ensembl.set(graph.ensemblT.geneId, geneIdSt);
 										g.commit();
+									}else{
+										ensembl = ensemblOptional.get();
 									}
 									protein.addOut(graph.proteinEnsemblT, ensembl);
 									break;
 								case "PIR":
 									//looking for PIR node
-									TitanPIR pIR = graph.pIRIdIndex.getNode(refId);
-									if(pIR == null){
+									TitanPIR pIR = null;
+									Optional<TitanPIR> optionalPIR = graph.pIRIdIndex.getNode(refId);
+									if(!optionalPIR.isPresent()){
 										String entryNameSt = "";
 										List<Element> children = dbReferenceElem.getChildren("property");
 										for (Element propertyElem : children) {
@@ -272,34 +277,43 @@ public class ImportUniprotTitan implements Executable {
 										pIR.set(graph.pIRT.entryName, entryNameSt);
 										pIR.set(graph.pIRT.id, refId);
 										g.commit();
+									}else{
+										pIR = optionalPIR.get();
 									}
 									protein.addOut(graph.proteinPIRT, pIR);
 
 									break;
 								case "UniGene":
 									//looking for UniGene node
-									TitanUniGene uniGene = graph.uniGeneIdIndex.getNode(refId);
-									if(uniGene == null){
+									TitanUniGene uniGene = null;
+									Optional<TitanUniGene> uniGeneOptional = graph.uniGeneIdIndex.getNode(refId);
+									if(!uniGeneOptional.isPresent()){
 										uniGene = graph.uniGeneT.from(graph.rawGraph().addVertex(null));
 										uniGene.set(graph.uniGeneT.id, refId);
 										g.commit();
+									}else{
+										uniGene = uniGeneOptional.get();
 									}
 									protein.addOut(graph.proteinUniGeneT, uniGene);
 									break;
 								case "KEGG":
 									//looking for Kegg node
-									TitanKegg kegg = graph.keggIdIndex.getNode(refId);
-									if(kegg == null){
+									TitanKegg kegg = null;
+									Optional<TitanKegg> optionalKegg = graph.keggIdIndex.getNode(refId);
+									if(!optionalKegg.isPresent()){
 										kegg = graph.keggT.from(graph.rawGraph().addVertex(null));
 										kegg.set(graph.keggT.id, refId);
 										g.commit();
+									}else{
+										kegg = optionalKegg.get();
 									}
 									protein.addOut(graph.proteinKeggT, kegg);
 									break;
 								case "EMBL":
 									//looking for EMBL node
-									TitanEMBL embl = graph.eMBLIdIndex.getNode(refId);
-									if(embl == null){
+									TitanEMBL embl = null;
+									Optional<TitanEMBL> optionalEMBL = graph.eMBLIdIndex.getNode(refId);
+									if(!optionalEMBL.isPresent()){
 										String moleculeTypeSt = "";
 										String proteinSequenceIdSt = "";
 										List<Element> children = dbReferenceElem.getChildren("property");
@@ -317,6 +331,8 @@ public class ImportUniprotTitan implements Executable {
 										embl.set(graph.eMBLT.proteinSequenceId, proteinSequenceIdSt);
 										embl.set(graph.eMBLT.moleculeType, moleculeTypeSt);
 										g.commit();
+									}else{
+										embl = optionalEMBL.get();
 									}
 									protein.addOut(graph.proteinEMBLT, embl);
 									break;
@@ -325,8 +341,9 @@ public class ImportUniprotTitan implements Executable {
 									break;
 								case "RefSeq":
 									//looking for RefSeq node
-									TitanRefSeq refSeq = graph.refSeqIdIndex.getNode(refId);
-									if(refSeq == null){
+									TitanRefSeq refSeq = null;
+									Optional<TitanRefSeq> optionalRefSeq = graph.refSeqIdIndex.getNode(refId);
+									if(!optionalRefSeq.isPresent()){
 										String nucleotideSequenceIdSt = "";
 										List<Element> children = dbReferenceElem.getChildren("property");
 										for (Element propertyElem : children) {
@@ -339,6 +356,8 @@ public class ImportUniprotTitan implements Executable {
 										refSeq.set(graph.refSeqT.id, refId);
 										refSeq.set(graph.refSeqT.nucleotideSequenceId, nucleotideSequenceIdSt);
 										g.commit();
+									}else{
+										refSeq = optionalRefSeq.get();
 									}
 									protein.addOut(graph.proteinRefSeqT, refSeq);
 									break;
@@ -378,35 +397,22 @@ public class ImportUniprotTitan implements Executable {
 						if (uniprotDataXML.getReactome()) {
 							for (String reactomeId : reactomeReferences.keySet()) {
 
-								TitanReactomeTerm reactomeTerm = graph.reactomeTermIdIndex.getNode(reactomeId);
+								TitanReactomeTerm reactomeTerm = null;
+								Optional<TitanReactomeTerm> optionalReactomeTerm = graph.reactomeTermIdIndex.getNode(reactomeId);
 
-								if (reactomeTerm == null) {
+								if (!optionalReactomeTerm.isPresent()) {
 									reactomeTerm = graph.reactomeTermT.from(graph.rawGraph().addVertex(null));
 									reactomeTerm.set(graph.reactomeTermT.id, reactomeId);
 									reactomeTerm.set(graph.reactomeTermT.pathwayName, reactomeReferences.get(reactomeId));
 									g.commit();
+								}else{
+									reactomeTerm = optionalReactomeTerm.get();
 								}
 								protein.addOut(graph.proteinReactomeTermT, reactomeTerm);
 							}
 						}
 						//-------------------------------------------------------
 
-						//--------------PIR associations----------------
-						if (uniprotDataXML.getReactome()) {
-							for (String reactomeId : reactomeReferences.keySet()) {
-
-								TitanReactomeTerm reactomeTerm = graph.reactomeTermIdIndex.getNode(reactomeId);
-
-								if (reactomeTerm == null) {
-									reactomeTerm = graph.reactomeTermT.from(graph.rawGraph().addVertex(null));
-									reactomeTerm.set(graph.reactomeTermT.id, reactomeId);
-									reactomeTerm.set(graph.reactomeTermT.pathwayName, reactomeReferences.get(reactomeId));
-									g.commit();
-								}
-								protein.addOut(graph.proteinReactomeTermT, reactomeTerm);
-							}
-						}
-						//-------------------------------------------------------
 
 //						//---------------enzyme db associations----------------------
 //						if (uniprotDataXML.getEnzymeDb()) {
@@ -438,12 +444,15 @@ public class ImportUniprotTitan implements Executable {
 						//--------------------------------datasets--------------------------------------------------
 						String proteinDataSetSt = entryXMLElem.asJDomElement().getAttributeValue(ENTRY_DATASET_ATTRIBUTE);
 
-						TitanDataset dataset = graph.datasetNameIndex.getNode(proteinDataSetSt);
+						TitanDataset dataset = null;
+						Optional<TitanDataset> optionalDataset = graph.datasetNameIndex.getNode(proteinDataSetSt);
 
-						if (dataset == null) {
+						if (!optionalDataset.isPresent()) {
 							dataset = graph.datasetT.from(graph.rawGraph().addVertex(null));
 							dataset.set(graph.datasetT.name, proteinDataSetSt);
 							g.commit();
+						}else{
+							dataset = optionalDataset.get();
 						}
 						protein.addOut(graph.proteinDatasetT, dataset);
 						//---------------------------------------------------------------------------------------------
@@ -465,13 +474,16 @@ public class ImportUniprotTitan implements Executable {
 								String keywordId = keywordElem.getAttributeValue(KEYWORD_ID_ATTRIBUTE);
 								String keywordName = keywordElem.getText();
 
-								TitanKeyword keyword = graph.keywordIdIndex.getNode(keywordId);
+								TitanKeyword keyword = null;
+								Optional<TitanKeyword> optionalKeyword = graph.keywordIdIndex.getNode(keywordId);
 
-								if (keyword == null) {
+								if (!optionalKeyword.isPresent()) {
 									keyword = graph.keywordT.from(graph.rawGraph().addVertex(null));
 									keyword.set(graph.keywordT.id, keywordId);
 									keyword.set(graph.keywordT.name, keywordName);
 									g.commit();
+								}else{
+									keyword = optionalKeyword.get();
 								}
 								protein.addOut(graph.proteinKeywordT, keyword);
 							}
@@ -487,9 +499,10 @@ public class ImportUniprotTitan implements Executable {
 								if (uniprotDataXML.getInterpro()) {
 									String interproId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
 
-									TitanInterpro interpro = graph.interproIdIndex.getNode(interproId);
+									TitanInterpro interpro = null;
+									Optional<TitanInterpro> optionalInterpro = graph.interproIdIndex.getNode(interproId);
 
-									if (interpro == null) {
+									if (!optionalInterpro.isPresent()) {
 
 										String interproEntryNameSt = "";
 										List<Element> properties = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
@@ -504,6 +517,8 @@ public class ImportUniprotTitan implements Executable {
 										interpro.set(graph.interproT.id, interproId);
 										interpro.set(graph.interproT.name, interproEntryNameSt);
 										g.commit();
+									}else{
+										interpro = optionalInterpro.get();
 									}
 
 									protein.addOut(graph.proteinInterproT, interpro);
@@ -515,9 +530,10 @@ public class ImportUniprotTitan implements Executable {
 								if (uniprotDataXML.getPfam()) {
 
 									String pfamId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
-									TitanPfam pfam = graph.pfamIdIndex.getNode(pfamId);
+									TitanPfam pfam = null;
+									Optional<TitanPfam> optionalPfam = graph.pfamIdIndex.getNode(pfamId);
 
-									if (pfam == null) {
+									if (!optionalPfam.isPresent()) {
 										String pfamEntryNameSt = "";
 										List<Element> properties = dbReferenceElem.getChildren(DB_REFERENCE_PROPERTY_TAG_NAME);
 										for (Element prop : properties) {
@@ -531,6 +547,8 @@ public class ImportUniprotTitan implements Executable {
 										pfam.set(graph.pfamT.id, pfamId);
 										pfam.set(graph.pfamT.name, pfamEntryNameSt);
 										g.commit();
+									}else{
+										pfam = optionalPfam.get();
 									}
 
 									protein.addOut(graph.proteinPfamT, pfam);
@@ -568,9 +586,10 @@ public class ImportUniprotTitan implements Executable {
 							}
 						}
 
-						TitanOrganism organism = graph.organismScientificNameIndex.getNode(scName);
+						TitanOrganism organism = null;
+						Optional<TitanOrganism> organismOptional = graph.organismScientificNameIndex.getNode(scName);
 
-						if (organism == null) {
+						if (!organismOptional.isPresent()) {
 
 							organism = graph.organismT.from(graph.rawGraph().addVertex(null));
 							organism.set(graph.organismT.scientificName, scName);
@@ -602,29 +621,35 @@ public class ImportUniprotTitan implements Executable {
 
 							Element firstTaxonElem = taxons.get(0);
 
-							TitanTaxon firstTaxon = graph.taxonNameIndex.getNode(firstTaxonElem.getText());
+							TitanTaxon firstTaxon = null;
+							Optional<TitanTaxon> firstTaxonOptional = graph.taxonNameIndex.getNode(firstTaxonElem.getText());
 
-							if (firstTaxon == null) {
+							if (!firstTaxonOptional.isPresent()) {
 
 								String firstTaxonName = firstTaxonElem.getText();
 								firstTaxon = graph.taxonT.from(graph.rawGraph().addVertex(null));
 								firstTaxon.set(graph.taxonT.name, firstTaxonName);
 								g.commit();
 
+							}else{
+								firstTaxon = firstTaxonOptional.get();
 							}
 
 							TitanTaxon lastTaxon = firstTaxon;
 
 							for (int i = 1; i < taxons.size(); i++) {
 								String taxonName = taxons.get(i).getText();
-								TitanTaxon currentTaxon = graph.taxonNameIndex.getNode(taxonName);
+								TitanTaxon currentTaxon = null;
+								Optional<TitanTaxon> currentTaxonOptional = graph.taxonNameIndex.getNode(taxonName);
 
-								if (currentTaxon == null) {
+								if (!currentTaxonOptional.isPresent()) {
 
 									currentTaxon = graph.taxonT.from(graph.rawGraph().addVertex(null));
 									currentTaxon.set(graph.taxonT.name, taxonName);
 									g.commit();
 									lastTaxon.addOut(graph.taxonParentT, currentTaxon);
+								}else{
+									currentTaxon = currentTaxonOptional.get();
 								}
 								lastTaxon = currentTaxon;
 							}
@@ -632,6 +657,8 @@ public class ImportUniprotTitan implements Executable {
 
 							organism.addOut(graph.organismTaxonT, lastTaxon);
 
+						}else{
+							organism = organismOptional.get();
 						}
 
 
