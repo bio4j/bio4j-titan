@@ -4,6 +4,7 @@ import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.nodes.TitanNCBITaxon;
 import com.bio4j.titan.model.ncbiTaxonomy.nodes.TitanNCBITaxon.TitanNCBITaxonType;
 import com.bio4j.titan.model.ncbiTaxonomy.relationships.TitanNCBITaxonParent.TitanNCBITaxonParentType;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -25,6 +26,7 @@ public abstract class TitanNCBITaxonomyGraph
 
 		this.rawGraph = rawGraph;
 	}
+
 
 	@Override
 	public TitanGraph rawGraph() {

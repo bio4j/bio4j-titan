@@ -1,7 +1,10 @@
 package com.bio4j.titan.programs;
 
+import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
 import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
+import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraphImpl;
 import com.ohnosequences.util.Executable;
 import com.ohnosequences.xml.api.model.XMLElement;
@@ -70,7 +73,9 @@ public class ImportUniprotGoTitan implements Executable {
 
 			//-------creating graph handlers---------------------
 			TitanGraph g = TitanFactory.open(conf);
-			TitanUniprotGoGraphImpl graph = new TitanUniprotGoGraphImpl(g);
+			TitanUniprotGraphImpl uniprotGraph = new TitanUniprotGraphImpl(g);
+			TitanGoGraphImpl goGraph = new TitanGoGraphImpl(g);
+			TitanUniprotGoGraphImpl graph = new TitanUniprotGoGraphImpl(g,uniprotGraph, goGraph);
 
 			BufferedWriter statsBuff = null;
 

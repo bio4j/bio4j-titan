@@ -48,7 +48,7 @@ public abstract class TitanUniprotGraph implements
 
 	protected TitanGraph rawGraph;
 	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph = null;
-	public TitanUniprotGoGraph uniprotGoGraph;
+	public TitanUniprotGoGraph uniprotGoGraph = null;
 
 	TitanUniprotGraph(TitanGraph rawGraph) {
 
