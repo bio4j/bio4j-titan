@@ -1,7 +1,9 @@
 package com.bio4j.titan.model.uniprot_go;
 
 
+import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
 import com.thinkaurelius.titan.core.TitanGraph;
 
@@ -10,10 +12,8 @@ import com.thinkaurelius.titan.core.TitanGraph;
  */
 public class TitanUniprotGoGraphImpl extends TitanUniprotGoGraph{
 
-	public TitanUniprotGoGraphImpl(TitanGraph graph) {
-		super(graph);
-		this.uniprotGraph = new TitanUniprotGraphImpl(rawGraph);
-		this.goGraph = new TitanGoGraphImpl(rawGraph);
+	public TitanUniprotGoGraphImpl(TitanGraph graph, TitanUniprotGraph uniprotGraph, TitanGoGraph goGraph) {
+		super(graph, uniprotGraph, goGraph);
 		initTypes();
 	}
 

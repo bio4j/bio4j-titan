@@ -20,8 +20,10 @@ public abstract class TitanUniprotGoGraph implements
 	public TitanUniprotGraph uniprotGraph;
 	public TitanGoGraph goGraph;
 
-	TitanUniprotGoGraph(TitanGraph rawGraph) {
+	TitanUniprotGoGraph(TitanGraph rawGraph, TitanUniprotGraph uniprotGraph, TitanGoGraph goGraph) {
 		this.rawGraph = rawGraph;
+		this.uniprotGraph = uniprotGraph;
+		this.goGraph = goGraph;
 	}
 
 	@Override

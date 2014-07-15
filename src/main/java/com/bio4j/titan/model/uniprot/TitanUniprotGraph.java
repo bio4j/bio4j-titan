@@ -65,6 +65,16 @@ public abstract class TitanUniprotGraph implements
 		return this;
 	}
 
+	/*
+		You can use this as `uniprotGraph.withGo(new uniprotGoGraph(raw, uniprotGraph, goGraph))`
+	*/
+	public TitanUniprotGraph withGo(TitanUniprotGoGraph uniprotGoGraph) {
+
+		this.uniprotGoGraph = uniprotGoGraph;
+
+		return this;
+	}
+
 
 	@Override
 	public TitanGraph rawGraph() {

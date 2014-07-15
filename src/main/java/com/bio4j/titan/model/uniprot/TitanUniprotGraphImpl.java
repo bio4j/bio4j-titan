@@ -12,8 +12,6 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 
 	public TitanUniprotGraphImpl(TitanGraph graph) {
 		super(graph);
-		// uniprotEnzymeDBGraph = new TitanUniprotEnzymeDBGraphImpl(rawGraph);
-		// uniprotGoGraph = new TitanUniprotGoGraphImpl(rawGraph);
 		initTypes();
 		initIndices();
 	}

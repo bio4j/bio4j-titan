@@ -12,7 +12,6 @@ public class TitanEnzymeDBGraphImpl extends TitanEnzymeDBGraph {
 
 	public TitanEnzymeDBGraphImpl(TitanGraph graph) {
 		super(graph);
-		// uniprotEnzymeDBGraph = new TitanUniprotEnzymeDBGraphImpl(rawGraph);
 		initTypes();
 		initIndices();
 	}
