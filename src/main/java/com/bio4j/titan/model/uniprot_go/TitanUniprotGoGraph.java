@@ -21,11 +21,7 @@ public abstract class TitanUniprotGoGraph implements
 	public TitanGoGraph goGraph;
 
 	TitanUniprotGoGraph(TitanGraph rawGraph) {
-
 		this.rawGraph = rawGraph;
-		this.uniprotGraph = new TitanUniprotGraphImpl(rawGraph);
-		this.goGraph = new TitanGoGraphImpl(rawGraph);
-
 	}
 
 	@Override

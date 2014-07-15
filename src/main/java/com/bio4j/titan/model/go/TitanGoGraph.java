@@ -34,9 +34,7 @@ implements
 	protected TitanGraph rawGraph;
 
 	TitanGoGraph(TitanGraph rawGraph) {
-
 		this.rawGraph = rawGraph;
-		this.uniprotGoGraph = new TitanUniprotGoGraphImpl(rawGraph);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.bio4j.titan.model.enzyme;
 
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraphImpl;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.thinkaurelius.titan.core.TitanGraph;
 
@@ -11,6 +12,7 @@ public class TitanEnzymeDBGraphImpl extends TitanEnzymeDBGraph {
 
 	public TitanEnzymeDBGraphImpl(TitanGraph graph) {
 		super(graph);
+		uniprotEnzymeDBGraph = new TitanUniprotEnzymeDBGraphImpl(rawGraph);
 		initTypes();
 		initIndices();
 	}

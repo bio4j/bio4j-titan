@@ -26,7 +26,7 @@ implements
 	TitanEnzymeDBGraph(TitanGraph rawGraph) {
 
 		this.rawGraph = rawGraph;
-		uniprotEnzymeDBGraph = new TitanUniprotEnzymeDBGraphImpl(rawGraph);
+
 	}
 
 	@Override
