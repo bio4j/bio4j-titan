@@ -219,10 +219,10 @@ public class ImportUniprotTitan implements Executable {
 						protein.set(graph.proteinT.sequence, sequenceSt);
 						protein.set(graph.proteinT.length, seqLength);
 						protein.set(graph.proteinT.mass, String.valueOf(seqMass));
+						g.commit();
 
 						//-----db references-------------
 						List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(DB_REFERENCE_TAG_NAME);
-						ArrayList<String> refseqReferences = new ArrayList<>();
 						ArrayList<String> enzymeDBReferences = new ArrayList<>();
 						ArrayList<String> ensemblPlantsReferences = new ArrayList<>();
 						HashMap<String, String> reactomeReferences = new HashMap<>();
@@ -294,6 +294,8 @@ public class ImportUniprotTitan implements Executable {
 									}else{
 										uniGene = uniGeneOptional.get();
 									}
+									System.out.println("protein is null --> " + (protein == null));
+									System.out.println("uniGene is null --> " + (uniGene == null));
 									protein.addOut(graph.proteinUniGeneT, uniGene);
 									break;
 								case "KEGG":
