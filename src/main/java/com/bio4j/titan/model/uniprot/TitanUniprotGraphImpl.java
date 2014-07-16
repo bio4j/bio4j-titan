@@ -121,6 +121,7 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		pfamIdIndex = new TitanNodeIndex.DefaultUnique(this, pfamT.id);
 		eMBLIdIndex = new TitanNodeIndex.DefaultUnique(this, eMBLT.id);
 		pIRIdIndex = new TitanNodeIndex.DefaultUnique(this, pIRT.id);
+		uniGeneIdIndex = new TitanNodeIndex.DefaultUnique(this, uniGeneT.id);
 		keggIdIndex = new TitanNodeIndex.DefaultUnique(this, keggT.id);
 		ensemblIdIndex = new TitanNodeIndex.DefaultUnique(this, ensemblT.id);
 		taxonNameIndex = new TitanNodeIndex.DefaultUnique(this, taxonT.name);
