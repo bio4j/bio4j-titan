@@ -67,6 +67,19 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		ensemblMoleculeIdKey = titanKeyForNodeProperty(ensemblT.moleculeId);
 		ensemblProteinSequenceIdKey = titanKeyForNodeProperty(ensemblT.proteinSequenceId);
 		ensemblGeneIdKey = titanKeyForNodeProperty(ensemblT.geneId);
+		//---UniGene---
+		uniGeneTKey = titanKeyForNodeType(uniGeneT.id);
+		uniGeneIdKey = uniGeneTKey;
+		//---Kegg---
+		keggTKey = titanKeyForNodeType(keggT.id);
+		keggIdKey = keggTKey;
+		//---Taxon---
+		taxonTKey = titanKeyForNodeType(taxonT.name);
+		taxonNameKey = taxonTKey;
+		//---RefSeq---
+		refSeqTKey = titanKeyForNodeType(refSeqT.id);
+		refSeqIdKey = refSeqTKey;
+		refSeqNucleotideSequenceIdKey = titanKeyForNodeProperty(refSeqT.nucleotideSequenceId);
 
 		// proteinDataset
 		proteinDatasetLabel = titanLabelForRelationshipType(proteinDatasetT);
