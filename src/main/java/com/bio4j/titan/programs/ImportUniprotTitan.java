@@ -219,7 +219,7 @@ public class ImportUniprotTitan implements Executable {
 						protein.set(graph.proteinT.sequence, sequenceSt);
 						protein.set(graph.proteinT.length, seqLength);
 						protein.set(graph.proteinT.mass, String.valueOf(seqMass));
-						
+
 						//-----db references-------------
 						List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(DB_REFERENCE_TAG_NAME);
 						ArrayList<String> enzymeDBReferences = new ArrayList<>();
@@ -247,7 +247,9 @@ public class ImportUniprotTitan implements Executable {
 											}
 										}
 										Element moleculeTag = dbReferenceElem.getChild("molecule");
-										moleculeIdSt = moleculeTag.getAttributeValue("id");
+										if(moleculeTag != null){
+											moleculeIdSt = moleculeTag.getAttributeValue("id");
+										}
 
 										ensembl = graph.ensemblT.from(graph.rawGraph().addVertex(null));
 										ensembl.set(graph.ensemblT.id, refId);
