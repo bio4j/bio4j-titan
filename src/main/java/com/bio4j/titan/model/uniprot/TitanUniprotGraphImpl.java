@@ -103,6 +103,8 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		proteinEnsemblLabel = titanLabelForRelationshipType(proteinEnsemblT);
 		// proteinRefSeq
 		proteinRefSeqLabel = titanLabelForRelationshipType(proteinRefSeqT);
+		// proteinUnigene
+		proteinUniGeneLabel = titanLabelForRelationshipType(proteinUniGeneT);
 		// taxonParent
 		taxonParentLabel = titanLabelForRelationshipType(taxonParentT);
 		// organismTaxon
