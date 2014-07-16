@@ -21,52 +21,52 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		// Protein keys
 		proteinTKey = titanKeyForNodeType(proteinT.accession);
 		proteinAccessionKey = proteinTKey;
-		proteinModifiedDateKey = titanKeyForNodeType(proteinT.modifiedDate);
-		proteinMassKey = titanKeyForNodeType(proteinT.mass);
-		proteinSequenceKey = titanKeyForNodeType(proteinT.sequence);
-		proteinNameKey = titanKeyForNodeType(proteinT.name);
-		proteinShortNameKey = titanKeyForNodeType(proteinT.shortName);
-		proteinFullNameKey = titanKeyForNodeType(proteinT.fullName);
-		proteinLengthKey = titanKeyForNodeType(proteinT.length);
+		proteinModifiedDateKey = titanKeyForNodeProperty(proteinT.modifiedDate);
+		proteinMassKey = titanKeyForNodeProperty(proteinT.mass);
+		proteinSequenceKey = titanKeyForNodeProperty(proteinT.sequence);
+		proteinNameKey = titanKeyForNodeProperty(proteinT.name);
+		proteinShortNameKey = titanKeyForNodeProperty(proteinT.shortName);
+		proteinFullNameKey = titanKeyForNodeProperty(proteinT.fullName);
+		proteinLengthKey = titanKeyForNodeProperty(proteinT.length);
 		// Dataset keys
 		datasetTKey = titanKeyForNodeType(datasetT.name);
 		datasetNameKey = datasetTKey;
 		// Organism keys
 		organismTKey = titanKeyForNodeType(organismT.scientificName);
 		organismScientificNameKey = organismTKey;
-		organismCommonNameKey = titanKeyForNodeType(organismT.commonName);
-		organismSynonymNameKey = titanKeyForNodeType(organismT.synonymName);
+		organismCommonNameKey = titanKeyForNodeProperty(organismT.commonName);
+		organismSynonymNameKey = titanKeyForNodeProperty(organismT.synonymName);
 		// Keyword keys
 		keywordTKey = titanKeyForNodeType(keywordT.id);
 		keywordIdKey = keywordTKey;
-		keywordNameKey = titanKeyForNodeType(keywordT.name);
+		keywordNameKey = titanKeyForNodeProperty(keywordT.name);
 		// Interpro keys
 		interproTKey = titanKeyForNodeType(interproT.id);
 		interproIdKey = interproTKey;
-		interproNameKey = titanKeyForNodeType(interproT.name);
+		interproNameKey = titanKeyForNodeProperty(interproT.name);
 		// ReactomeTerm keys
 		reactomeTermTKey = titanKeyForNodeType(reactomeTermT.id);
 		reactomeTermIdKey = reactomeTermTKey;
-		reactomeTermPathwayNameKey = titanKeyForNodeType(reactomeTermT.pathwayName);
+		reactomeTermPathwayNameKey = titanKeyForNodeProperty(reactomeTermT.pathwayName);
 		// Pfam keys
 		pfamTKey = titanKeyForNodeType(pfamT.id);
 		pfamIdKey = pfamTKey;
-		pfamNameKey = titanKeyForNodeType(pfamT.name);
+		pfamNameKey = titanKeyForNodeProperty(pfamT.name);
 		// EMBL keys
 		eMBLTKey = titanKeyForNodeType(eMBLT.id);
 		eMBLIdKey = eMBLTKey;
-		eMBLMoleculeTypeKey = titanKeyForNodeType(eMBLT.moleculeType);
-		eMBLProteinSequenceIdKey = titanKeyForNodeType(eMBLT.proteinSequenceId);
+		eMBLMoleculeTypeKey = titanKeyForNodeProperty(eMBLT.moleculeType);
+		eMBLProteinSequenceIdKey = titanKeyForNodeProperty(eMBLT.proteinSequenceId);
 		// PIR keys
 		pIRTKey = titanKeyForNodeType(pIRT.id);
 		pIRIdKey = pIRTKey;
-		pIREntryNameKey = titanKeyForNodeType(pIRT.entryName);
+		pIREntryNameKey = titanKeyForNodeProperty(pIRT.entryName);
 		// Ensembl keys
 		ensemblTKey = titanKeyForNodeType(ensemblT.id);
 		ensemblIdKey = ensemblTKey;
-		ensemblMoleculeIdKey = titanKeyForNodeType(ensemblT.moleculeId);
-		ensemblProteinSequenceIdKey = titanKeyForNodeType(ensemblT.proteinSequenceId);
-		ensemblGeneIdKey = titanKeyForNodeType(ensemblT.geneId);
+		ensemblMoleculeIdKey = titanKeyForNodeProperty(ensemblT.moleculeId);
+		ensemblProteinSequenceIdKey = titanKeyForNodeProperty(ensemblT.proteinSequenceId);
+		ensemblGeneIdKey = titanKeyForNodeProperty(ensemblT.geneId);
 
 		// proteinDataset
 		proteinDatasetLabel = titanLabelForRelationshipType(proteinDatasetT);
