@@ -249,6 +249,12 @@ public class ImportUniprotTitan implements Executable {
 										Element moleculeTag = dbReferenceElem.getChild("molecule");
 										if(moleculeTag != null){
 											moleculeIdSt = moleculeTag.getAttributeValue("id");
+											if(moleculeIdSt == null){
+												moleculeTag.getText();
+												if(moleculeIdSt == null){
+													moleculeIdSt = "";
+												}
+											}
 										}
 
 										ensembl = graph.ensemblT.from(graph.rawGraph().addVertex(null));

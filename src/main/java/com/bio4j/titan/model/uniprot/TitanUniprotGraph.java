@@ -13,10 +13,14 @@ import com.bio4j.titan.model.uniprot.nodes.TitanKegg.TitanKeggType;
 import com.bio4j.titan.model.uniprot.nodes.TitanPIR.TitanPIRType;
 import com.bio4j.titan.model.uniprot.nodes.TitanUniGene.TitanUniGeneType;
 import com.bio4j.titan.model.uniprot.nodes.TitanTaxon.TitanTaxonType;
+import com.bio4j.titan.model.uniprot.nodes.TitanCommentType.TitanCommentTypeType;
 import com.bio4j.titan.model.uniprot.nodes.TitanRefSeq.TitanRefSeqType;
 import com.bio4j.titan.model.uniprot.nodes.TitanEnsembl.TitanEnsemblType;
+import com.bio4j.titan.model.uniprot.nodes.TitanFeatureType.TitanFeatureTypeType;
 import com.bio4j.titan.model.uniprot.nodes.TitanReactomeTerm.TitanReactomeTermType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinComment.TitanProteinCommentType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinDataset.TitanProteinDatasetType;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinFeature.TitanProteinFeatureType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinInterpro.TitanProteinInterproType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinKeyword.TitanProteinKeywordType;
 import com.bio4j.titan.model.uniprot.relationships.TitanProteinOrganism.TitanProteinOrganismType;
@@ -31,7 +35,6 @@ import com.bio4j.titan.model.uniprot.relationships.TitanProteinReactomeTerm.Tita
 import com.bio4j.titan.model.uniprot.relationships.TitanTaxonParent.TitanTaxonParentType;
 import com.bio4j.titan.model.uniprot.relationships.TitanOrganismTaxon.TitanOrganismTaxonType;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraph;
-import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraphImpl;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
@@ -156,6 +159,14 @@ public abstract class TitanUniprotGraph implements
 	public TitanKey refSeqIdKey;
 	public TitanKey refSeqNucleotideSequenceIdKey;
 	public final TitanRefSeqType refSeqT = new TitanRefSeqType(this);
+	//---FeatureType---
+	public TitanKey featureTypeTKey;
+	public TitanKey featureTypeNameKey;
+	public final TitanFeatureTypeType featureTypeT = new TitanFeatureTypeType(this);
+	//---CommentType---
+	public TitanKey commentTypeTKey;
+	public TitanKey commentTypeNameKey;
+	public final TitanCommentTypeType commentTypeT = new TitanCommentTypeType(this);
 
 
 
@@ -206,4 +217,8 @@ public abstract class TitanUniprotGraph implements
 	public TitanOrganismTaxonType organismTaxonT = new TitanOrganismTaxonType(this);
 	public TitanLabel proteinRefSeqLabel;
 	public TitanProteinRefSeqType proteinRefSeqT = new TitanProteinRefSeqType(this);
+	public TitanLabel proteinFeatureLabel;
+	public TitanProteinFeatureType proteinFeatureT = new TitanProteinFeatureType(this);
+	public TitanLabel proteinCommentLabel;
+	public TitanProteinCommentType proteinCommentT = new TitanProteinCommentType(this);
 }
