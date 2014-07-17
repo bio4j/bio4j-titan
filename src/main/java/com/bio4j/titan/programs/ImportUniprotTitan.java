@@ -752,33 +752,33 @@ public class ImportUniprotTitan implements Executable {
 				feature = optionalFeature.get();
 			}
 
-			String featureDescSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_DESCRIPTION_ATTRIBUTE);
+			String featureDescSt = featureElem.getAttributeValue(FEATURE_DESCRIPTION_ATTRIBUTE);
 			if (featureDescSt == null) {
 				featureDescSt = "";
 			}
-			String featureIdSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_ID_ATTRIBUTE);
+			String featureIdSt = featureElem.getAttributeValue(FEATURE_ID_ATTRIBUTE);
 			if (featureIdSt == null) {
 				featureIdSt = "";
 			}
-			String featureStatusSt = featureElem.getAttributeValue(UniprotStuff.STATUS_ATTRIBUTE);
+			String featureStatusSt = featureElem.getAttributeValue(STATUS_ATTRIBUTE);
 			if (featureStatusSt == null) {
 				featureStatusSt = "";
 			}
-			String featureEvidenceSt = featureElem.getAttributeValue(UniprotStuff.EVIDENCE_ATTRIBUTE);
+			String featureEvidenceSt = featureElem.getAttributeValue(EVIDENCE_ATTRIBUTE);
 			if (featureEvidenceSt == null) {
 				featureEvidenceSt = "";
 			}
 
-			Element locationElem = featureElem.getChild(UniprotStuff.FEATURE_LOCATION_TAG_NAME);
-			Element positionElem = locationElem.getChild(UniprotStuff.FEATURE_POSITION_TAG_NAME);
+			Element locationElem = featureElem.getChild(FEATURE_LOCATION_TAG_NAME);
+			Element positionElem = locationElem.getChild(FEATURE_POSITION_TAG_NAME);
 			String beginFeatureSt;
 			String endFeatureSt;
 			if (positionElem != null) {
-				beginFeatureSt = positionElem.getAttributeValue(UniprotStuff.FEATURE_POSITION_POSITION_ATTRIBUTE);
+				beginFeatureSt = positionElem.getAttributeValue(FEATURE_POSITION_POSITION_ATTRIBUTE);
 				endFeatureSt = beginFeatureSt;
 			} else {
-				beginFeatureSt = locationElem.getChild(UniprotStuff.FEATURE_LOCATION_BEGIN_TAG_NAME).getAttributeValue(UniprotStuff.FEATURE_LOCATION_POSITION_ATTRIBUTE);
-				endFeatureSt = locationElem.getChild(UniprotStuff.FEATURE_LOCATION_END_TAG_NAME).getAttributeValue(UniprotStuff.FEATURE_LOCATION_POSITION_ATTRIBUTE);
+				beginFeatureSt = locationElem.getChild(FEATURE_LOCATION_BEGIN_TAG_NAME).getAttributeValue(FEATURE_LOCATION_POSITION_ATTRIBUTE);
+				endFeatureSt = locationElem.getChild(FEATURE_LOCATION_END_TAG_NAME).getAttributeValue(FEATURE_LOCATION_POSITION_ATTRIBUTE);
 			}
 
 			if (beginFeatureSt == null) {
@@ -788,18 +788,20 @@ public class ImportUniprotTitan implements Executable {
 				endFeatureSt = "";
 			}
 
-			String originalSt = featureElem.getChildText(UniprotStuff.FEATURE_ORIGINAL_TAG_NAME);
-			String variationSt = featureElem.getChildText(UniprotStuff.FEATURE_VARIATION_TAG_NAME);
+			String originalSt = featureElem.getChildText(FEATURE_ORIGINAL_TAG_NAME);
+			String variationSt = featureElem.getChildText(FEATURE_VARIATION_TAG_NAME);
 			if (originalSt == null) {
 				originalSt = "";
 			}
 			if (variationSt == null) {
 				variationSt = "";
 			}
-			String featureRefSt = featureElem.getAttributeValue(UniprotStuff.FEATURE_REF_ATTRIBUTE);
+			String featureRefSt = featureElem.getAttributeValue(FEATURE_REF_ATTRIBUTE);
 			if (featureRefSt == null) {
 				featureRefSt = "";
 			}
+
+			//TitanProteinFeature proteinFeature = protein.addOut(graph.proteinFeatureT, feature);
 
 			featureProperties.put(BasicFeatureRel.DESCRIPTION_PROPERTY, featureDescSt);
 			featureProperties.put(BasicFeatureRel.ID_PROPERTY, featureIdSt);
