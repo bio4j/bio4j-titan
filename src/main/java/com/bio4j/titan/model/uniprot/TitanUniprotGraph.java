@@ -186,6 +186,8 @@ public abstract class TitanUniprotGraph implements
 	public TitanNodeIndex.Unique<TitanEnsembl,TitanEnsemblType, TitanEnsemblType.id,String> ensemblIdIndex;
 	public TitanNodeIndex.Unique<TitanTaxon,TitanTaxonType, TitanTaxonType.name,String> taxonNameIndex;
 	public TitanNodeIndex.Unique<TitanRefSeq,TitanRefSeqType, TitanRefSeqType.id,String> refSeqIdIndex;
+	public TitanNodeIndex.Unique<TitanCommentType,TitanCommentTypeType, TitanCommentTypeType.name,String> commentTypeNameIndex;
+	public TitanNodeIndex.Unique<TitanFeatureType,TitanFeatureTypeType, TitanFeatureTypeType.name,String> featureTypeNameIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
