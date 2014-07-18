@@ -118,6 +118,23 @@ public class ImportUniprotTitan implements Executable {
 	public static final String FEATURE_DNA_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
 	public static final String FEATURE_DOMAIN_UNIPROT_ATTRIBUTE_VALUE = "";
 	public static final String FEATURE_HELIX_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_INTRAMEMBRANE_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_NON_CONSECUTIVE_RESIDUES_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_NUCLEOTIDE_PHOSPHATE_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_PROPEPTIDE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_REGION_OF_INTEREST_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_REPEAT_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_SHORT_SEQUENCE_MOTIF_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_SIGNAL_PEPTIDE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_SPLICE_VARIANT_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_STRAND_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_TOPOLOGICAL_DOMAIN_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_TRANSIT_PEPTIDE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_TRANSMEMBRANE_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_ZINC_FINGER_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_TURN_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_SEQUENCE_CONFLICT_UNIPROT_ATTRIBUTE_VALUE = "";
 
 	@Override
 	public void execute(ArrayList<String> array) {
@@ -903,55 +920,55 @@ public class ImportUniprotTitan implements Executable {
 				case FEATURE_HELIX_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, helixFeatureRel, featureProperties);
 					break;
-				case IntramembraneRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_INTRAMEMBRANE_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, intramembraneRegionFeatureRel, featureProperties);
 					break;
-				case NonConsecutiveResiduesFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_NON_CONSECUTIVE_RESIDUES_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, nonConsecutiveResiduesFeatureRel, featureProperties);
 					break;
-				case NucleotidePhosphateBindingRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_NUCLEOTIDE_PHOSPHATE_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, nucleotidePhosphateBindingRegionFeatureRel, featureProperties);
 					break;
-				case PropeptideFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_PROPEPTIDE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, propeptideFeatureRel, featureProperties);
 					break;
-				case RegionOfInterestFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_REGION_OF_INTEREST_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, regionOfInterestFeatureRel, featureProperties);
 					break;
-				case RepeatFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_REPEAT_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, repeatFeatureRel, featureProperties);
 					break;
-				case ShortSequenceMotifFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_SHORT_SEQUENCE_MOTIF_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, shortSequenceMotifFeatureRel, featureProperties);
 					break;
-				case SignalPeptideFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_SIGNAL_PEPTIDE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, signalPeptideFeatureRel, featureProperties);
 					break;
-				case SpliceVariantFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_SPLICE_VARIANT_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, spliceVariantFeatureRel, featureProperties);
 					break;
-				case StrandFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_STRAND_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, strandFeatureRel, featureProperties);
 					break;
-				case TopologicalDomainFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_TOPOLOGICAL_DOMAIN_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, topologicalDomainFeatureRel, featureProperties);
 					break;
-				case TransitPeptideFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_TRANSIT_PEPTIDE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, transitPeptideFeatureRel, featureProperties);
 					break;
-				case TransmembraneRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_TRANSMEMBRANE_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, transmembraneRegionFeatureRel, featureProperties);
 					break;
-				case ZincFingerRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_ZINC_FINGER_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, zincFingerRegionFeatureRel, featureProperties);
 					break;
-				case SiteFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_SITE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, siteFeatureRel, featureProperties);
 					break;
-				case TurnFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_TURN_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, turnFeatureRel, featureProperties);
 					break;
-				case SequenceConflictFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_SEQUENCE_CONFLICT_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, sequenceConflictFeatureRel, featureProperties);
 					break;
 			}
