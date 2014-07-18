@@ -96,6 +96,15 @@ public class ImportUniprotTitan implements Executable {
 	public static final String FEATURE_LOCATION_END_TAG_NAME = "end";
 	public static final String FEATURE_LOCATION_POSITION_ATTRIBUTE = "position";
 	public static final String FEATURE_POSITION_POSITION_ATTRIBUTE = "position";
+	public static final String FEATURE_ACTIVE_SITE_UNIPROT_ATTRIBUTE_VALUE = "active site";
+	public static final String FEATURE_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_CROSS_LINK_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_GLYCOSYLATION_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_INITIATOR_METHIONINE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_LIPID_MOIETY_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_METAL_ION_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_MODIFIED_RESIDUE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_NON_STANDARD_AMINOACID_UNIPROT_ATTRIBUTE_VALUE = "";
 
 	@Override
 	public void execute(ArrayList<String> array) {
@@ -772,21 +781,21 @@ public class ImportUniprotTitan implements Executable {
 
 			Element locationElem = featureElem.getChild(FEATURE_LOCATION_TAG_NAME);
 			Element positionElem = locationElem.getChild(FEATURE_POSITION_TAG_NAME);
-			String beginFeatureSt;
-			String endFeatureSt;
+			Integer beginFeature = null;
+			Integer endFeature = null;
 			if (positionElem != null) {
-				beginFeatureSt = positionElem.getAttributeValue(FEATURE_POSITION_POSITION_ATTRIBUTE);
-				endFeatureSt = beginFeatureSt;
+				beginFeature = Integer.parseInt(positionElem.getAttributeValue(FEATURE_POSITION_POSITION_ATTRIBUTE));
+				endFeature = beginFeature;
 			} else {
-				beginFeatureSt = locationElem.getChild(FEATURE_LOCATION_BEGIN_TAG_NAME).getAttributeValue(FEATURE_LOCATION_POSITION_ATTRIBUTE);
-				endFeatureSt = locationElem.getChild(FEATURE_LOCATION_END_TAG_NAME).getAttributeValue(FEATURE_LOCATION_POSITION_ATTRIBUTE);
+				beginFeature = Integer.parseInt(locationElem.getChild(FEATURE_LOCATION_BEGIN_TAG_NAME).getAttributeValue(FEATURE_LOCATION_POSITION_ATTRIBUTE));
+				endFeature = Integer.parseInt(locationElem.getChild(FEATURE_LOCATION_END_TAG_NAME).getAttributeValue(FEATURE_LOCATION_POSITION_ATTRIBUTE));
 			}
 
-			if (beginFeatureSt == null) {
-				beginFeatureSt = "";
+			if (beginFeature == null) {
+				beginFeature = -1;
 			}
-			if (endFeatureSt == null) {
-				endFeatureSt = "";
+			if (endFeature == null) {
+				endFeature = -1;
 			}
 
 			String originalSt = featureElem.getChildText(FEATURE_ORIGINAL_TAG_NAME);
@@ -804,43 +813,42 @@ public class ImportUniprotTitan implements Executable {
 
 			TitanProteinFeature proteinFeature = protein.addOut(graph.proteinFeatureT, feature);
 
-			proteinFeature.set(graph.proteinFeatureT.description);
+			proteinFeature.set(graph.proteinFeatureT.description, featureDescSt);
+			proteinFeature.set(graph.proteinFeatureT.id, featureIdSt);
+			proteinFeature.set(graph.proteinFeatureT.evidence, featureEvidenceSt);
+			proteinFeature.set(graph.proteinFeatureT.status, featureStatusSt);
+			proteinFeature.set(graph.proteinFeatureT.begin, beginFeature);
+			proteinFeature.set(graph.proteinFeatureT.end, endFeature);
+			proteinFeature.set(graph.proteinFeatureT.original, originalSt);
+			proteinFeature.set(graph.proteinFeatureT.variation, variationSt);
+			proteinFeature.set(graph.proteinFeatureT.ref, featureRefSt);
 
-			featureProperties.put(BasicFeatureRel.DESCRIPTION_PROPERTY, featureDescSt);
-			featureProperties.put(BasicFeatureRel.ID_PROPERTY, featureIdSt);
-			featureProperties.put(BasicFeatureRel.EVIDENCE_PROPERTY, featureEvidenceSt);
-			featureProperties.put(BasicFeatureRel.STATUS_PROPERTY, featureStatusSt);
-			featureProperties.put(BasicFeatureRel.BEGIN_PROPERTY, beginFeatureSt);
-			featureProperties.put(BasicFeatureRel.END_PROPERTY, endFeatureSt);
-			featureProperties.put(BasicFeatureRel.ORIGINAL_PROPERTY, originalSt);
-			featureProperties.put(BasicFeatureRel.VARIATION_PROPERTY, variationSt);
-			featureProperties.put(BasicFeatureRel.REF_PROPERTY, featureRefSt);
 			switch (featureTypeSt) {
-				case ActiveSiteFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_ACTIVE_SITE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, activeSiteFeatureRel, featureProperties);
 					break;
-				case BindingSiteFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, bindingSiteFeatureRel, featureProperties);
 					break;
-				case CrossLinkFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_CROSS_LINK_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, crossLinkFeatureRel, featureProperties);
 					break;
-				case GlycosylationSiteFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_GLYCOSYLATION_SITE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, glycosylationSiteFeatureRel, featureProperties);
 					break;
-				case InitiatorMethionineFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_INITIATOR_METHIONINE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, initiatorMethionineFeatureRel, featureProperties);
 					break;
-				case LipidMoietyBindingRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_LIPID_MOIETY_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, lipidMoietyBindingRegionFeatureRel, featureProperties);
 					break;
-				case MetalIonBindingSiteFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_METAL_ION_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, metalIonBindingSiteFeatureRel, featureProperties);
 					break;
-				case ModifiedResidueFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_MODIFIED_RESIDUE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, modifiedResidueFeatureRel, featureProperties);
 					break;
-				case NonStandardAminoAcidFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_NON_STANDARD_AMINOACID_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, nonStandardAminoAcidFeatureRel, featureProperties);
 					break;
 				case NonTerminalResidueFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:

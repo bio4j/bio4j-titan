@@ -130,7 +130,6 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.variation);
 		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.ref);
 
-
 	}
 
 	private void initIndices() {
