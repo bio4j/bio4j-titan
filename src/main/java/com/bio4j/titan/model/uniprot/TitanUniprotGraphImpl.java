@@ -120,6 +120,15 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		proteinCommentLabel = titanLabelForRelationshipType(proteinCommentT);
 		// proteinFeature
 		proteinFeatureLabel = titanLabelForRelationshipType(proteinFeatureT);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.id);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.description);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.evidence);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.status);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.begin);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.end);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.original);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.variation);
+		proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.ref);
 
 
 	}

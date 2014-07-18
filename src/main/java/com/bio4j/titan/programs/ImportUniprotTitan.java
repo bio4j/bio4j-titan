@@ -4,6 +4,7 @@ import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
 import com.bio4j.titan.model.uniprot.nodes.*;
+import com.bio4j.titan.model.uniprot.relationships.TitanProteinFeature;
 import com.ohnosequences.util.Executable;
 import com.ohnosequences.xml.model.bio4j.UniprotDataXML;
 import com.ohnosequences.xml.api.model.XMLElement;
@@ -801,7 +802,9 @@ public class ImportUniprotTitan implements Executable {
 				featureRefSt = "";
 			}
 
-			//TitanProteinFeature proteinFeature = protein.addOut(graph.proteinFeatureT, feature);
+			TitanProteinFeature proteinFeature = protein.addOut(graph.proteinFeatureT, feature);
+
+			proteinFeature.set(graph.proteinFeatureT.description);
 
 			featureProperties.put(BasicFeatureRel.DESCRIPTION_PROPERTY, featureDescSt);
 			featureProperties.put(BasicFeatureRel.ID_PROPERTY, featureIdSt);

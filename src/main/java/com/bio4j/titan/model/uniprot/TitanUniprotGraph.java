@@ -220,6 +220,15 @@ public abstract class TitanUniprotGraph implements
 	public TitanLabel proteinRefSeqLabel;
 	public TitanProteinRefSeqType proteinRefSeqT = new TitanProteinRefSeqType(this);
 	public TitanLabel proteinFeatureLabel;
+	public TitanKey proteinFeatureIdKey;
+	public TitanKey proteinFeatureDescriptionKey;
+	public TitanKey proteinFeatureEvidenceKey;
+	public TitanKey proteinFeatureStatusKey;
+	public TitanKey proteinFeatureBeginKey;
+	public TitanKey proteinFeatureEndKey;
+	public TitanKey proteinFeatureOriginalKey;
+	public TitanKey proteinFeatureVariationKey;
+	public TitanKey proteinFeatureRefKey;
 	public TitanProteinFeatureType proteinFeatureT = new TitanProteinFeatureType(this);
 	public TitanLabel proteinCommentLabel;
 	public TitanProteinCommentType proteinCommentT = new TitanProteinCommentType(this);
