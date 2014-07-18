@@ -99,12 +99,18 @@ public class ImportUniprotTitan implements Executable {
 	public static final String FEATURE_ACTIVE_SITE_UNIPROT_ATTRIBUTE_VALUE = "active site";
 	public static final String FEATURE_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
 	public static final String FEATURE_CROSS_LINK_UNIPROT_ATTRIBUTE_VALUE = "";
-	public static final String FEATURE_GLYCOSYLATION_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_GLYCOSYLATION_SITE_UNIPROT_ATTRIBUTE_VALUE = "glycosylation site";
 	public static final String FEATURE_INITIATOR_METHIONINE_UNIPROT_ATTRIBUTE_VALUE = "";
-	public static final String FEATURE_LIPID_MOIETY_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
-	public static final String FEATURE_METAL_ION_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_LIPID_MOIETY_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "lipid moiety-binding region";
+	public static final String FEATURE_METAL_ION_BINDING_SITE_UNIPROT_ATTRIBUTE_VALUE = "metal ion-binding site";
 	public static final String FEATURE_MODIFIED_RESIDUE_UNIPROT_ATTRIBUTE_VALUE = "";
 	public static final String FEATURE_NON_STANDARD_AMINOACID_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_NON_TERMINAL_RESIDUE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_PEPTIDE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_UNSURE_RESIDUE_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_MUTAGENESIS_SITE_UNIPROT_ATTRIBUTE_VALUE = "mutagenesis site";
+	public static final String FEATURE_SEQUENCE_VARIANT_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_CALCIUM_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
 
 	@Override
 	public void execute(ArrayList<String> array) {
@@ -851,22 +857,22 @@ public class ImportUniprotTitan implements Executable {
 				case FEATURE_NON_STANDARD_AMINOACID_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, nonStandardAminoAcidFeatureRel, featureProperties);
 					break;
-				case NonTerminalResidueFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_NON_TERMINAL_RESIDUE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, nonTerminalResidueFeatureRel, featureProperties);
 					break;
-				case PeptideFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_PEPTIDE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, peptideFeatureRel, featureProperties);
 					break;
-				case UnsureResidueFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_UNSURE_RESIDUE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, unsureResidueFeatureRel, featureProperties);
 					break;
-				case MutagenesisSiteFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_MUTAGENESIS_SITE_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, mutagenesisSiteFeatureRel, featureProperties);
 					break;
-				case SequenceVariantFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_SEQUENCE_VARIANT_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, sequenceVariantFeatureRel, featureProperties);
 					break;
-				case CalciumBindingRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_CALCIUM_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, calciumBindingRegionFeatureRel, featureProperties);
 					break;
 				case ChainFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
