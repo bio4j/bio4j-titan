@@ -111,6 +111,13 @@ public class ImportUniprotTitan implements Executable {
 	public static final String FEATURE_MUTAGENESIS_SITE_UNIPROT_ATTRIBUTE_VALUE = "mutagenesis site";
 	public static final String FEATURE_SEQUENCE_VARIANT_UNIPROT_ATTRIBUTE_VALUE = "";
 	public static final String FEATURE_CALCIUM_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_CHAIN_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_COILED_COIL_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_COMPOSITONALLY_BIASED_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_DISULFIDE_BOND_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_DNA_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_DOMAIN_UNIPROT_ATTRIBUTE_VALUE = "";
+	public static final String FEATURE_HELIX_UNIPROT_ATTRIBUTE_VALUE = "";
 
 	@Override
 	public void execute(ArrayList<String> array) {
@@ -872,28 +879,28 @@ public class ImportUniprotTitan implements Executable {
 				case FEATURE_SEQUENCE_VARIANT_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, sequenceVariantFeatureRel, featureProperties);
 					break;
-				case FEATURE_CALCIUM_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE
+				case FEATURE_CALCIUM_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, calciumBindingRegionFeatureRel, featureProperties);
 					break;
-				case ChainFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_CHAIN_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, chainFeatureRel, featureProperties);
 					break;
-				case CoiledCoilRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_COILED_COIL_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, coiledCoilRegionFeatureRel, featureProperties);
 					break;
-				case CompositionallyBiasedRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_COMPOSITONALLY_BIASED_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, compositionallyBiasedRegionFeatureRel, featureProperties);
 					break;
-				case DisulfideBondFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_DISULFIDE_BOND_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, disulfideBondFeatureRel, featureProperties);
 					break;
-				case DnaBindingRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_DNA_BINDING_REGION_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, dnaBindingRegionFeatureRel, featureProperties);
 					break;
-				case DomainFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_DOMAIN_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, domainFeatureRel, featureProperties);
 					break;
-				case HelixFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
+				case FEATURE_HELIX_UNIPROT_ATTRIBUTE_VALUE:
 					inserter.createRelationship(currentProteinId, featureTypeNodeId, helixFeatureRel, featureProperties);
 					break;
 				case IntramembraneRegionFeatureRel.UNIPROT_ATTRIBUTE_TYPE_VALUE:
