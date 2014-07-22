@@ -31,7 +31,7 @@ public final class TestABitOfEverything {
 		TitanGraph g = TitanFactory.open(conf);
 		TitanGoGraphImpl graph = new TitanGoGraphImpl(g);
 
-		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("GO:0000003");
+		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("GO:0000003").get();
 		System.out.println("is A relationships: ");
 		List<TitanIsA> list = tempGoTerm.isA_in();
 		for(TitanIsA rel : list){
