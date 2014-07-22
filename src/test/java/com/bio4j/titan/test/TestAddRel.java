@@ -39,8 +39,8 @@ public final class TestAddRel {
 		g.commit();
 
 
-		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("1");
-		TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode("2");
+		TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode("1").get();
+		TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode("2").get();
 
 		System.out.println("term 1: " + tempGoTerm.id());
 		System.out.println("term 2: " + tempGoTerm2.id());
