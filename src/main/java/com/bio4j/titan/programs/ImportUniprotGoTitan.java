@@ -125,12 +125,12 @@ public class ImportUniprotGoTitan implements Executable {
 							if (dbReferenceElem.getAttributeValue(DB_REFERENCE_TYPE_ATTRIBUTE).toUpperCase().equals(GO_DB_REFERENCE_TYPE)) {
 
 								if(protein == null){
-									protein = graph.uniprotGraph.proteinAccessionIndex.getNode(accessionSt);
+									protein = graph.uniprotGraph.proteinAccessionIndex.getNode(accessionSt).get();
 								}
 
 								String goId = dbReferenceElem.getAttributeValue(DB_REFERENCE_ID_ATTRIBUTE);
 
-								TitanGoTerm goTerm = graph.goGraph.goTermIdIndex.getNode(goId);
+								TitanGoTerm goTerm = graph.goGraph.goTermIdIndex.getNode(goId).get();
 
 								protein.addOut(graph.goAnnotationT, goTerm);
 
