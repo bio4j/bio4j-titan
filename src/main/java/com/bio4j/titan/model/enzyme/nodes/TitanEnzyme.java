@@ -65,12 +65,12 @@ public class TitanEnzyme extends
 	}
 
 	@Override
-	public List<? extends EnzymaticActivity> enzymaticActivity_in() {
+	public List<TitanEnzymaticActivity> enzymaticActivity_in() {
 		return inFromMany(enzymeDBGraph.uniprotEnzymeDBGraph.enzymaticActivityT);
 	}
 
 	@Override
-	public List<? extends Protein> enzymaticActivity_inNodes() {
+	public List<TitanProtein> enzymaticActivity_inNodes() {
 		return inFromManyNodes(enzymeDBGraph.uniprotEnzymeDBGraph.enzymaticActivityT);
 	}
 
