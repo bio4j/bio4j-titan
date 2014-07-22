@@ -13,7 +13,7 @@ import com.thinkaurelius.titan.core.TitanVertex;
 import java.util.List;
 
 /**
- * Created by ppareja on 7/22/2014.
+ * Created by ppareja on 7/22/2014
  */
 public class TitanUniRef50Cluster extends
 		TitanNode<TitanUniRef50Cluster, TitanUniRef50Cluster.TitanUniRef50ClusterType>
@@ -51,7 +51,7 @@ public class TitanUniRef50Cluster extends
 		return outToOne(uniRefGraph.uniprotUniRefGraph.uniRef50RepresentantT);
 	}
 	@Override
-	public TitanProtein uniRef50Representant_outNodes() {
+	public TitanProtein uniRef50Representant_outNode() {
 		return outToOneNode(uniRefGraph.uniprotUniRefGraph.uniRef50RepresentantT);
 	}
 
@@ -60,7 +60,7 @@ public class TitanUniRef50Cluster extends
 			TitanNode.Type<TitanUniRef50Cluster, TitanUniRef50Cluster.TitanUniRef50ClusterType>,
 			UniRefGraph.UniRef50ClusterType<TitanUniRef50Cluster, TitanUniRef50ClusterType> {
 
-		public TitanUniRef50ClusterType(TitanUniRef50ClusterType uniRefGraph) {
+		public TitanUniRef50ClusterType(TitanUniRefGraph uniRefGraph) {
 			this.uniRefGraph = uniRefGraph;
 		}
 
