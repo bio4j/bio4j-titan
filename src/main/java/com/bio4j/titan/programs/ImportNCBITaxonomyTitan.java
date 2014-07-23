@@ -100,7 +100,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
                          //node.setEmblCode(columns[3].trim()); TODO add emblCode??
 
 	                     //saving the parent of the node for later
-	                     nodeParentMap.put(id), columns[1].trim());
+	                     nodeParentMap.put(id, columns[1].trim());
 
                          taxonCounter++;
 
@@ -169,36 +169,36 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
                  logger.log(Level.INFO, "Done!");
 
-                 logger.log(Level.INFO, "reading merged file...");
-                 //------------reading merged file-----------------
-                 reader = new BufferedReader(new FileReader(mergedDumpFile));
-                 linesCounter = 0;
-                 while ((line = reader.readLine()) != null) {
-
-                     String[] columns = line.split("\\|");
-
-                     String oldId = columns[0].trim();
-                     String goodId = columns[1].trim();
-
-                     NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(goodId);
-                     if (goodNode != null) {
-                         goodNode.addOldTaxId(oldId);
-
-                         linesCounter++;
-                         if((linesCounter % limitForTransaction) == 0){
-                             graph.commit();
-                         }
-
-                     } else {
-                         logger.log(Level.WARNING, "Taxon ID " + goodId +
-                                    " is not found. Old ID " + oldId + " is not mapped to it.");
-                     }
-
-                 }
-                 reader.close();
-                 graph.commit();
-
-                 logger.log(Level.INFO, "done!");
+//                 logger.log(Level.INFO, "reading merged file...");
+//                 //------------reading merged file-----------------
+//                 reader = new BufferedReader(new FileReader(mergedDumpFile));
+//                 linesCounter = 0;
+//                 while ((line = reader.readLine()) != null) {
+//
+//                     String[] columns = line.split("\\|");
+//
+//                     String oldId = columns[0].trim();
+//                     String goodId = columns[1].trim();
+//
+//                     NCBITaxonNode goodNode = nodeRetriever.getNCBITaxonByTaxId(goodId);
+//                     if (goodNode != null) {
+//                         goodNode.addOldTaxId(oldId);
+//
+//                         linesCounter++;
+//                         if((linesCounter % limitForTransaction) == 0){
+//                             graph.commit();
+//                         }
+//
+//                     } else {
+//                         logger.log(Level.WARNING, "Taxon ID " + goodId +
+//                                    " is not found. Old ID " + oldId + " is not mapped to it.");
+//                     }
+//
+//                 }
+//                 reader.close();
+//                 graph.commit();
+//
+//                 logger.log(Level.INFO, "done!");
 
              } catch (Exception ex) {
                  Logger.getLogger(ImportNCBITaxonomyTitan.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,12 +206,12 @@ public class ImportNCBITaxonomyTitan implements Executable {
              } finally {
 
              	//committing last transaction
-             	graph.commit();
+             	ncbiTaxonomyGraph.rawGraph().commit();
                  //closing logger file handler
                  fh.close();
                  logger.log(Level.INFO, "Closing up inserter and index service....");
                  // shutdown, makes sure all changes are written to disk
-                 manager.shutDown();
+	             ncbiTaxonomyGraph.rawGraph().shutdown();
 
                  try {
 
@@ -237,17 +237,17 @@ public class ImportNCBITaxonomyTitan implements Executable {
          }
      }
 
-     private static void associateTaxonomy(Bio4jManager manager,
-             NodeRetrieverTitan nodeRetriever,
-             TitanGraph graph) {
-
-
-         Iterator<Vertex> organismIterator = manager.getGraph().getVertices(OrganismNode.NODE_TYPE_PROPERTY, OrganismNode.NODE_TYPE).iterator();
-
-         while (organismIterator.hasNext()) {
-             OrganismNode organismNode = new OrganismNode(organismIterator.next());
-             Vertex ncbiNode = nodeRetriever.getNCBITaxonByTaxId(organismNode.getNcbiTaxonomyId()).getNode();
-             graph.addEdge(null, organismNode.getNode(), ncbiNode, NCBITaxonRel.NAME);
-         }
-     }
+//     private static void associateTaxonomy(Bio4jManager manager,
+//             NodeRetrieverTitan nodeRetriever,
+//             TitanGraph graph) {
+//
+//
+//         Iterator<Vertex> organismIterator = manager.getGraph().getVertices(OrganismNode.NODE_TYPE_PROPERTY, OrganismNode.NODE_TYPE).iterator();
+//
+//         while (organismIterator.hasNext()) {
+//             OrganismNode organismNode = new OrganismNode(organismIterator.next());
+//             Vertex ncbiNode = nodeRetriever.getNCBITaxonByTaxId(organismNode.getNcbiTaxonomyId()).getNode();
+//             graph.addEdge(null, organismNode.getNode(), ncbiNode, NCBITaxonRel.NAME);
+//         }
+//     }
 }
