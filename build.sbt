@@ -17,10 +17,11 @@ bucketSuffix := "era7.com"
 
 libraryDependencies ++= Seq(
   "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
-  "ohnosequences" % "bioinfo-util" % "1.3.0",
+  "ohnosequences" % "bioinfo-util" % "1.4.0-SNAPSHOT",
   "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.4",
   "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0",
-  "junit" % "junit" % "3.8.1" % "test"
+  "junit" % "junit" % "3.8.1" % "test",
+  "net.sf.opencsv" % "opencsv" % "2.3"
 )
 
 dependencyOverrides ++= Set(
@@ -29,12 +30,13 @@ dependencyOverrides ++= Set(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.2",
   "com.fasterxml.jackson.core" % "jackson-annotations" % "2.1.1",
   "commons-beanutils" % "commons-beanutils" % "1.8.3",
-  "commons-beanutils" % "commons-beanutils-core" % "1.8.3"
+  "commons-beanutils" % "commons-beanutils-core" % "1.8.3",
+  "net.sf.opencsv" % "opencsv" % "2.3"
 )
 
 
 // fat jar assembly settings
-mainClass in assembly := Some("com.era7.bioinfo.bio4j.titan.program.ImportTitanDB")
+mainClass in assembly := Some("com.bio4j.titan.programs.ImportTitanDB")
 
 assemblyOption in assembly ~= { _.copy(includeScala = false) }
 
@@ -43,6 +45,7 @@ mergeStrategy in assembly ~= { old => {
     case PathList("META-INF", "LICENSES.txt")                     => MergeStrategy.rename
     case "log4j.properties"                                       => MergeStrategy.filterDistinctLines
     case PathList("org", "apache", "commons", "collections", _*)  => MergeStrategy.first
+	case PathList("org", "neo4j" , _*)                            => MergeStrategy.last
     case x                                                        => old(x)
   }
 }

@@ -19,8 +19,8 @@ package com.bio4j.titan.programs;
 import com.bio4j.titan.model.go.TitanGoGraphImpl;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
-import com.era7.bioinfo.bioinfoutil.Executable;
-import com.era7.era7xmlapi.model.XMLElement;
+import com.ohnosequences.util.Executable;
+import com.ohnosequences.xml.api.model.XMLElement;
 import com.thinkaurelius.titan.core.TitanFactory;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.tinkerpop.blueprints.Vertex;
@@ -38,7 +38,7 @@ import java.util.logging.SimpleFormatter;
 /**
 * Imports the Gene Ontology into Bio4j
 *
-* @author Pablo Pareja Tobes <ppareja@era7.com>
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
 */
 public class ImportGeneOntologyTitan implements Executable {
 
@@ -267,8 +267,8 @@ public class ImportGeneOntologyTitan implements Executable {
 	                     g.commit();
 
 	                     //----namespace---
-	                     TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(goId);
-	                     TitanSubOntologies titanSubontologies = graph.subOntologiesNameIndex.getNode(goNamespace);
+	                     TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(goId).get();
+	                     TitanSubOntologies titanSubontologies = graph.subOntologiesNameIndex.getNode(goNamespace).get();
 	                     tempGoTerm.addOut(graph.subOntologyT, titanSubontologies);
 
 
@@ -293,13 +293,13 @@ public class ImportGeneOntologyTitan implements Executable {
                  Set<String> keys = termParentsMap.keySet();
                  for (String key : keys) {
 
-	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key).get();
 	                 //System.out.println("id: " + tempGoTerm.id() + " name: " + tempGoTerm.name());
                      ArrayList<String> tempArray = termParentsMap.get(key);
 
                      for (String string : tempArray) {
 	                     //System.out.println("string: " + string);
-	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string).get();
 	                     //System.out.println("id2: " + tempGoTerm2.id() + " name2: " + tempGoTerm2.name());
 	                     tempGoTerm.addOut(graph.isAT, tempGoTerm2);
                      }
@@ -309,10 +309,10 @@ public class ImportGeneOntologyTitan implements Executable {
                  //-------------------'regulates' relationships----------------------
                  keys = regulatesMap.keySet();
                  for (String key : keys) {
-	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key).get();
                      ArrayList<String> tempArray = regulatesMap.get(key);
                      for (String string : tempArray) {
-	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string).get();
 	                     tempGoTerm.addOut(graph.regulatesT, tempGoTerm2);
                      }
                  }
@@ -321,10 +321,10 @@ public class ImportGeneOntologyTitan implements Executable {
                  //-------------------'negatively regulates' relationships----------------------
                  keys = negativelyRegulatesMap.keySet();
                  for (String key : keys) {
-	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key).get();
                      ArrayList<String> tempArray = negativelyRegulatesMap.get(key);
                      for (String string : tempArray) {
-	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string).get();
 	                     tempGoTerm.addOut(graph.negativelyRegulatesT, tempGoTerm2);
                      }
                  }
@@ -333,10 +333,10 @@ public class ImportGeneOntologyTitan implements Executable {
                  //-------------------'positively regulates' relationships----------------------
                  keys = positivelyRegulatesMap.keySet();
                  for (String key : keys) {
-	                 TitanGoTerm tempGoTerm =  graph.goTermIdIndex.getNode(key);
+	                 TitanGoTerm tempGoTerm =  graph.goTermIdIndex.getNode(key).get();
                      ArrayList<String> tempArray = positivelyRegulatesMap.get(key);
                      for (String string : tempArray) {
-	                     TitanGoTerm tempGoTerm2 =  graph.goTermIdIndex.getNode(string);
+	                     TitanGoTerm tempGoTerm2 =  graph.goTermIdIndex.getNode(string).get();
 	                     tempGoTerm.addOut(graph.positivelyRegulatesT, tempGoTerm2);
                      }
                  }
@@ -345,10 +345,10 @@ public class ImportGeneOntologyTitan implements Executable {
                  //-------------------'parf of' relationships----------------------
                  keys = partOfMap.keySet();
                  for (String key : keys) {
-	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
+	                 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key).get();
                      ArrayList<String> tempArray = partOfMap.get(key);
                      for (String string : tempArray) {
-	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string).get();
 	                     tempGoTerm.addOut(graph.partOfT, tempGoTerm2);
                      }
                  }
@@ -357,10 +357,10 @@ public class ImportGeneOntologyTitan implements Executable {
                  //-------------------'has part of' relationships----------------------
                  keys = hasPartMap.keySet();
                  for (String key : keys) {
-                	 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key);
+                	 TitanGoTerm tempGoTerm = graph.goTermIdIndex.getNode(key).get();
                      ArrayList<String> tempArray = hasPartMap.get(key);
                      for (String string : tempArray) {
-	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string);
+	                     TitanGoTerm tempGoTerm2 = graph.goTermIdIndex.getNode(string).get();
 	                     tempGoTerm.addOut(graph.hasPartOfT, tempGoTerm2);
                      }
                  }

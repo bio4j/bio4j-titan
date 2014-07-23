@@ -1,0 +1,9 @@
+<uniprot_data>
+	<keywords>true</keywords>
+	<interpro>true</interpro>
+	<pfam>true</pfam>
+	<features>true</features>
+	<reactome>true</reactome>
+	<isoforms>true</isoforms>
+	<subcellular_locations>true</subcellular_locations>
+</uniprot_data>

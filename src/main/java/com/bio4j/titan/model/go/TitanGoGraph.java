@@ -12,6 +12,8 @@ import com.bio4j.titan.model.go.relationships.TitanPartOf.TitanPartOfType;
 import com.bio4j.titan.model.go.relationships.TitanPositivelyRegulates.TitanPositivelyRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanSubOntology.TitanSubOntologyType;
+import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
+import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraphImpl;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -23,14 +25,15 @@ import com.thinkaurelius.titan.core.TitanLabel;
   Implementing the types with Titan
 */
 public abstract class TitanGoGraph
-		implements
-		TitanTypedGraph,
-		GoGraph {
+implements
+	TitanTypedGraph,
+	GoGraph 
+{
 
+	public TitanUniprotGoGraph uniprotGoGraph;
 	protected TitanGraph rawGraph;
 
 	TitanGoGraph(TitanGraph rawGraph) {
-
 		this.rawGraph = rawGraph;
 	}
 
