@@ -38,6 +38,8 @@ public class ImportUniprotTitan implements Executable {
 	public static final String ENTRY_ACCESSION_TAG_NAME = "accession";
 	public static final String ENTRY_NAME_TAG_NAME = "name";
 	public static final String ENTRY_MODIFIED_DATE_ATTRIBUTE = "modified";
+	public static final String ENTRY_CREATED_DATE_ATTRIBUTE = "created";
+	public static final String ENTRY_VERSION_ATTRIBUTE = "version";
 	public static final String ENTRY_DATASET_ATTRIBUTE = "dataset";
 	public static final String ENTRY_SEQUENCE_TAG_NAME = "sequence";
 
@@ -222,6 +224,8 @@ public class ImportUniprotTitan implements Executable {
 						entryStBuilder.delete(0, entryStBuilder.length());
 
 						String modifiedDateSt = entryXMLElem.asJDomElement().getAttributeValue(ENTRY_MODIFIED_DATE_ATTRIBUTE);
+						String createdDateSt = entryXMLElem.asJDomElement().getAttributeValue(ENTRY_CREATED_DATE_ATTRIBUTE);
+						Integer version = Integer.parseInt(entryXMLElem.asJDomElement().getAttributeValue(ENTRY_VERSION_ATTRIBUTE));
 
 						String accessionSt = entryXMLElem.asJDomElement().getChildText(ENTRY_ACCESSION_TAG_NAME);
 						String nameSt = entryXMLElem.asJDomElement().getChildText(ENTRY_NAME_TAG_NAME);
@@ -254,6 +258,7 @@ public class ImportUniprotTitan implements Executable {
 						TitanProtein protein = graph.proteinT.from(graph.rawGraph().addVertex(null));
 
 						protein.set(graph.proteinT.modifiedDate, modifiedDateSt);
+						protein.set(graph.proteinT.createdDate, createdDateSt);
 						protein.set(graph.proteinT.accession, accessionSt);
 						protein.set(graph.proteinT.name, nameSt);
 						protein.set(graph.proteinT.fullName, fullNameSt);
@@ -261,6 +266,7 @@ public class ImportUniprotTitan implements Executable {
 						protein.set(graph.proteinT.sequence, sequenceSt);
 						protein.set(graph.proteinT.length, seqLength);
 						protein.set(graph.proteinT.mass, String.valueOf(seqMass));
+						protein.set(graph.proteinT.version, version);
 
 						//-----db references-------------
 						List<Element> dbReferenceList = entryXMLElem.asJDomElement().getChildren(DB_REFERENCE_TAG_NAME);
