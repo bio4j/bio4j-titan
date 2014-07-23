@@ -5,10 +5,7 @@ import com.bio4j.model.uniprot.UniprotGraph.ProteinType;
 import com.bio4j.model.uniprot.nodes.*;
 import com.bio4j.model.uniprot.relationships.*;
 import com.bio4j.model.uniprot_enzymedb.relationships.EnzymaticActivity;
-import com.bio4j.model.uniprot_uniref.relationships.UniRef100Representant;
-import com.bio4j.model.uniprot_uniref.relationships.UniRef50Member;
-import com.bio4j.model.uniprot_uniref.relationships.UniRef50Representant;
-import com.bio4j.model.uniprot_uniref.relationships.UniRef90Member;
+import com.bio4j.model.uniprot_uniref.relationships.*;
 import com.bio4j.model.uniref.nodes.UniRef100Cluster;
 import com.bio4j.model.uniref.nodes.UniRef50Cluster;
 import com.bio4j.model.uniref.nodes.UniRef90Cluster;
@@ -16,10 +13,7 @@ import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot.relationships.*;
 import com.bio4j.titan.model.uniprot_enzyme.relationships.TitanEnzymaticActivity;
-import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef100Representant;
-import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef50Member;
-import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef50Representant;
-import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef90Member;
+import com.bio4j.titan.model.uniprot_uniref.relationships.*;
 import com.bio4j.titan.model.uniref.nodes.TitanUniRef100Cluster;
 import com.bio4j.titan.model.uniref.nodes.TitanUniRef50Cluster;
 import com.bio4j.titan.model.uniref.nodes.TitanUniRef90Cluster;
@@ -95,6 +89,36 @@ public class TitanProtein extends
 	}
 
 	@Override
+	public TitanUniRef50Representant uniref50Representant_in() {
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef50RepresentantT);
+	}
+
+	@Override
+	public TitanUniRef50Cluster uniref50Representant_inNode() {
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef50RepresentantT);
+	}
+
+	@Override
+	public TitanUniRef90Representant uniref90Representant_in() {
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef90RepresentantT);
+	}
+
+	@Override
+	public TitanUniRef90Cluster uniref90Representant_inNode() {
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef90RepresentantT);
+	}
+
+	@Override
+	public TitanUniRef100Member uniref100Member_in() {
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef100MemberT);
+	}
+
+	@Override
+	public TitanUniRef100Cluster uniref100Member_inNode() {
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef100MemberT);
+	}
+
+	@Override
 	public TitanUniRef50Member uniref50Member_in() {
 		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef50MemberT);
 	}
@@ -116,12 +140,12 @@ public class TitanProtein extends
 
 	@Override
 	public TitanUniRef100Representant uniref100Representant_in() {
-		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef100MemberT);
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef100RepresentantT);
 	}
 
 	@Override
 	public TitanUniRef100Cluster uniref100Representant_inNode() {
-		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef100MemberT);
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef100RepresentantT);
 	}
 
 	@Override
