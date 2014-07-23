@@ -1,5 +1,7 @@
 package com.bio4j.titan.programs;
 
+import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
+import com.bio4j.titan.model.uniprot.nodes.TitanProtein;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraphImpl;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
@@ -12,7 +14,9 @@ import com.ohnosequences.xml.api.model.XMLElement;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,15 +90,19 @@ public class ImportUniprotUniRefTitan implements Executable {
 
 				//-------creating graph handlers---------------------
 				g = TitanFactory.open(conf);
-				TitanUniprotUniRefGraph uniprotUniRefGraph = new TitanUniprotUniRefGraphImpl(g);
+				TitanUniprotGraphImpl uniprotGraph = new TitanUniprotGraphImpl(g);
+				TitanUniRefGraphImpl uniRefGraph = new TitanUniRefGraphImpl(g);
+				TitanUniprotUniRefGraph uniprotUniRefGraph = new TitanUniprotUniRefGraphImpl(g, uniprotGraph, uniRefGraph);
 
 				//------------------- UNIREF 100----------------------------
 				System.out.println("Reading Uniref 100 file...");
 				uniref100EntryCounter = importUniprotUniRefFile(uniprotUniRefGraph, uniref100File, 100);
 				System.out.println("Done! :)");
+				//------------------- UNIREF 90----------------------------
 				System.out.println("Reading Uniref 90 file...");
 				uniref90EntryCounter = importUniprotUniRefFile(uniprotUniRefGraph, uniref90File, 90);
 				System.out.println("Done! :)");
+				//------------------- UNIREF 50----------------------------
 				System.out.println("Reading Uniref 50 file...");
 				uniref50EntryCounter = importUniprotUniRefFile(uniprotUniRefGraph, uniref50File, 50);
 				System.out.println("Done! :)");
@@ -162,7 +170,7 @@ public class ImportUniprotUniRefTitan implements Executable {
 		return result;
 	}
 
-	private static int importUniprotUniRefFile(TitanUniRefGraph uniRefGraph,
+	private static int importUniprotUniRefFile(TitanUniprotUniRefGraph uniprotUniRefGraph,
 	                                    File unirefFile,
 	                                    int unirefClusterNumber) throws Exception {
 
@@ -191,16 +199,84 @@ public class ImportUniprotUniRefTitan implements Executable {
 				ArrayList<String> membersAccessionList = new ArrayList<String>();
 				Element representativeMember = entryXMLElem.asJDomElement().getChild("representativeMember");
 				String representantAccession = getRepresentantAccession(representativeMember);
+				//----obtaining cluster members---
+				List<Element> members = entryXMLElem.asJDomElement().getChildren("member");
+				for (Element member : members) {
+					Element memberDbReference = member.getChild("dbReference");
+					List<Element> memberProperties = memberDbReference.getChildren("property");
+					for (Element prop : memberProperties) {
+						if (prop.getAttributeValue("type").equals("UniProtKB accession")) {
+							String memberAccession = prop.getAttributeValue("value");
+							membersAccessionList.add(memberAccession);
+						}
+					}
+				}
+				//----retrieving TitanProtein members----
+				List<TitanProtein> proteinMembers = new LinkedList<>();
+				for (String proteinAccession : membersAccessionList){
+					Optional<TitanProtein> optionalProtein = uniprotUniRefGraph.uniprotGraph.proteinAccessionIndex.getNode(proteinAccession);
+					if(optionalProtein.isPresent()){
+						proteinMembers.add(optionalProtein.get());
+					}
+				}
+				//-----------------------------------------------------
 
 				if(unirefClusterNumber == 50){
-					TitanUniRef50Cluster cluster = uniRefGraph.(uniRefGraph.rawGraph().addVertex(null));
+					Optional<TitanUniRef50Cluster> optionalCluster = uniprotUniRefGraph.uniRefGraph.uniRef50ClusterIdIndex.getNode(representantAccession);
+					if(optionalCluster.isPresent()){
+						TitanUniRef50Cluster cluster = optionalCluster.get();
+
+						Optional<TitanProtein> optionalRepresentant = uniprotUniRefGraph.uniprotGraph.proteinAccessionIndex.getNode(representantAccession);
+						if(optionalRepresentant.isPresent()){
+							TitanProtein representant = optionalRepresentant.get();
+							cluster.addOut(uniprotUniRefGraph.uniRef50MemberT, representant);
+							cluster.addOut(uniprotUniRefGraph.uniRef50RepresentantT, representant);
+						}
+						for (TitanProtein protein : proteinMembers){
+							cluster.addOut(uniprotUniRefGraph.uniRef50MemberT, protein);
+						}
+
+					}else{
+
+					}
 
 				}else if(unirefClusterNumber == 90){
-					TitanUniRef90Cluster cluster = uniRefGraph.uniRef90ClusterT.from(uniRefGraph.rawGraph().addVertex(null));
+					Optional<TitanUniRef90Cluster> optionalCluster = uniprotUniRefGraph.uniRefGraph.uniRef90ClusterIdIndex.getNode(representantAccession);
+					if(optionalCluster.isPresent()){
+						TitanUniRef90Cluster cluster = optionalCluster.get();
+
+						Optional<TitanProtein> optionalRepresentant = uniprotUniRefGraph.uniprotGraph.proteinAccessionIndex.getNode(representantAccession);
+						if(optionalRepresentant.isPresent()){
+							TitanProtein representant = optionalRepresentant.get();
+							cluster.addOut(uniprotUniRefGraph.uniRef90MemberT, representant);
+							cluster.addOut(uniprotUniRefGraph.uniRef90RepresentantT, representant);
+						}
+						for (TitanProtein protein : proteinMembers){
+							cluster.addOut(uniprotUniRefGraph.uniRef90MemberT, protein);
+						}
+
+					}else{
+
+					}
 
 				}else if(unirefClusterNumber == 100){
-					TitanUniRef100Cluster cluster = uniRefGraph.uniRef100ClusterT.from(uniRefGraph.rawGraph().addVertex(null));
+					Optional<TitanUniRef100Cluster> optionalCluster = uniprotUniRefGraph.uniRefGraph.uniRef100ClusterIdIndex.getNode(representantAccession);
+					if(optionalCluster.isPresent()){
+						TitanUniRef100Cluster cluster = optionalCluster.get();
 
+						Optional<TitanProtein> optionalRepresentant = uniprotUniRefGraph.uniprotGraph.proteinAccessionIndex.getNode(representantAccession);
+						if(optionalRepresentant.isPresent()){
+							TitanProtein representant = optionalRepresentant.get();
+							cluster.addOut(uniprotUniRefGraph.uniRef100MemberT, representant);
+							cluster.addOut(uniprotUniRefGraph.uniRef100RepresentantT, representant);
+						}
+						for (TitanProtein protein : proteinMembers){
+							cluster.addOut(uniprotUniRefGraph.uniRef100MemberT, protein);
+						}
+
+					}else{
+
+					}
 				}
 
 			}

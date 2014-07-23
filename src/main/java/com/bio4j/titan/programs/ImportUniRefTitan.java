@@ -27,7 +27,7 @@ import org.jdom2.Element;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniref implements Executable {
+public class ImportUniRefTitan implements Executable {
 
 	public static final String ENTRY_TAG_NAME = "entry";
 
