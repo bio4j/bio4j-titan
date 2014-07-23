@@ -1,16 +1,14 @@
 package com.bio4j.titan.programs;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraphImpl;
+import com.bio4j.titan.model.ncbiTaxonomy.nodes.TitanNCBITaxon;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraphImpl;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.TitanFactory;
@@ -80,7 +78,7 @@ public class ImportNCBITaxonomyTitan implements Executable {
                  logger.setLevel(Level.ALL);
 
                  //---creating writer for stats file-----
-                 statsBuff = new BufferedWriter(new FileWriter(new File("ImportNCBITaxonomyStats.txt")));
+                 statsBuff = new BufferedWriter(new FileWriter(new File("ImportNCBITaxonomyTitanStats.txt")));
 
                  BufferedReader reader = new BufferedReader(new FileReader(nodesDumpFile));
                  String line;
@@ -94,23 +92,25 @@ public class ImportNCBITaxonomyTitan implements Executable {
                      if (line.trim().length() > 0) {
                          String[] columns = line.split("\\|");
 
-                         NCBITaxonNode node = new NCBITaxonNode(manager.createNode(NCBITaxonNode.NODE_TYPE));
-                         node.setTaxId(columns[0].trim());
-                         node.setRank(columns[2].trim());
-                         node.setEmblCode(columns[3].trim());
+	                     String id = columns[0].trim();
+	                     TitanNCBITaxon taxon = ncbiTaxonomyGraph.nCBITaxonT.from(ncbiTaxonomyGraph.rawGraph().addVertex(null));
+	                     taxon.set(ncbiTaxonomyGraph.nCBITaxonT.id, id);
+	                     taxon.set(ncbiTaxonomyGraph.nCBITaxonT.taxonomicRank, columns[2].trim());
+	                     //taxon.set(ncbiTaxonomyGraph.nCBITaxonT., columns[2].trim());
+                         //node.setEmblCode(columns[3].trim()); TODO add emblCode??
 
-                         //saving the parent of the node for later
-                         nodeParentMap.put(node.getTaxId(), columns[1].trim());
+	                     //saving the parent of the node for later
+	                     nodeParentMap.put(id), columns[1].trim());
 
                          taxonCounter++;
 
                          if((taxonCounter % limitForTransaction) == 0){
-                         	graph.commit();
+	                         ncbiTaxonomyGraph.rawGraph().commit();
                          }
                      }
                  }
                  reader.close();
-                 graph.commit();
+	             ncbiTaxonomyGraph.rawGraph().commit();
                  logger.log(Level.INFO, "done!");
 
                  logger.log(Level.INFO, "reading names file...");
@@ -124,21 +124,24 @@ public class ImportNCBITaxonomyTitan implements Executable {
                      if (columns[columns.length - 1].trim().equals("scientific name")) {
 
                          String taxId = columns[0].trim();
-                         String nameSt = columns[1].trim();
+                         String scientificNameSt = columns[1].trim();
 
-                         NCBITaxonNode node = nodeRetriever.getNCBITaxonByTaxId(taxId);
-                         node.setScientificName(nameSt);
+	                     Optional<TitanNCBITaxon> optionalTaxon = ncbiTaxonomyGraph.nCBITaxonIdIndex.getNode(taxId);
+	                     if(optionalTaxon.isPresent()){
+		                     TitanNCBITaxon taxon = optionalTaxon.get();
+		                     taxon.set(ncbiTaxonomyGraph.nCBITaxonT.scientificName, scientificNameSt);
+	                     }
 
                          linesCounter++;
                          if((linesCounter % limitForTransaction) == 0){
-                             graph.commit();
+	                         ncbiTaxonomyGraph.rawGraph().commit();
                          }
 
                      }
 
                  }
                  reader.close();
-                 graph.commit();
+	             ncbiTaxonomyGraph.rawGraph().commit();
                  logger.log(Level.INFO, "done!");
 
                  logger.log(Level.INFO, "storing relationships...");
@@ -149,30 +152,22 @@ public class ImportNCBITaxonomyTitan implements Executable {
 
                      String parentTaxId = nodeParentMap.get(nodeTaxId);
 
-                     NCBITaxonNode currentNode = nodeRetriever.getNCBITaxonByTaxId(nodeTaxId);
+	                 TitanNCBITaxon taxon = ncbiTaxonomyGraph.nCBITaxonIdIndex.getNode(nodeTaxId).get();
 
                      if (!nodeTaxId.equals(parentTaxId)) {
-                         NCBITaxonNode parentNode = nodeRetriever.getNCBITaxonByTaxId(parentTaxId);
-                         graph.addEdge(null, parentNode.getNode(), currentNode.getNode(), NCBITaxonParentRel.NAME);
+	                     TitanNCBITaxon parentTaxon = ncbiTaxonomyGraph.nCBITaxonIdIndex.getNode(parentTaxId).get();
+	                     parentTaxon.addOut(ncbiTaxonomyGraph.nCBITaxonParentT, taxon);
                      }
 
                      linesCounter++;
                      if((linesCounter % limitForTransaction) == 0){
-                         graph.commit();
+                         ncbiTaxonomyGraph.rawGraph().commit();
                      }
 
                  }
-                 graph.commit();
+	             ncbiTaxonomyGraph.rawGraph().commit();
 
                  logger.log(Level.INFO, "Done!");
-
-                 if (associateUniprotTaxonomy) {
-
-                     logger.log(Level.INFO, "Associating uniprot taxonomy...");
-                     associateTaxonomy(manager, nodeRetriever, graph);
-                     logger.log(Level.INFO, "Done!");
-                 }
-
 
                  logger.log(Level.INFO, "reading merged file...");
                  //------------reading merged file-----------------
