@@ -22,12 +22,14 @@ public class TitanUniprotGraphImpl extends TitanUniprotGraph {
 		proteinTKey = titanKeyForNodeType(proteinT.accession);
 		proteinAccessionKey = proteinTKey;
 		proteinModifiedDateKey = titanKeyForNodeProperty(proteinT.modifiedDate);
+		proteinCreatedDateKey = titanKeyForNodeProperty(proteinT.createdDate);
 		proteinMassKey = titanKeyForNodeProperty(proteinT.mass);
 		proteinSequenceKey = titanKeyForNodeProperty(proteinT.sequence);
 		proteinNameKey = titanKeyForNodeProperty(proteinT.name);
 		proteinShortNameKey = titanKeyForNodeProperty(proteinT.shortName);
 		proteinFullNameKey = titanKeyForNodeProperty(proteinT.fullName);
 		proteinLengthKey = titanKeyForNodeProperty(proteinT.length);
+		proteinVersionKey = titanKeyForNodeProperty(proteinT.version);
 		// Dataset keys
 		datasetTKey = titanKeyForNodeType(datasetT.name);
 		datasetNameKey = datasetTKey;

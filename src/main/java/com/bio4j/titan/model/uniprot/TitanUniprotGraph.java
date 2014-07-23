@@ -36,6 +36,7 @@ import com.bio4j.titan.model.uniprot.relationships.TitanTaxonParent.TitanTaxonPa
 import com.bio4j.titan.model.uniprot.relationships.TitanOrganismTaxon.TitanOrganismTaxonType;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.TitanGraph;
@@ -52,6 +53,7 @@ public abstract class TitanUniprotGraph implements
 	protected TitanGraph rawGraph;
 	public TitanUniprotEnzymeDBGraph uniprotEnzymeDBGraph = null;
 	public TitanUniprotGoGraph uniprotGoGraph = null;
+	public TitanUniprotUniRefGraph uniprotUniRefGraph = null;
 
 	TitanUniprotGraph(TitanGraph rawGraph) {
 
@@ -78,6 +80,16 @@ public abstract class TitanUniprotGraph implements
 		return this;
 	}
 
+	/*
+		You can use this as `uniprotGraph.withGo(new uniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
+	*/
+	public TitanUniprotGraph withGo(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+
+		this.uniprotUniRefGraph = uniprotUniRefGraph;
+
+		return this;
+	}
+
 
 	@Override
 	public TitanGraph rawGraph() {
@@ -92,7 +104,9 @@ public abstract class TitanUniprotGraph implements
 	public TitanKey proteinSequenceKey;
 	public TitanKey proteinMassKey;
 	public TitanKey proteinModifiedDateKey;
+	public TitanKey proteinCreatedDateKey;
 	public TitanKey proteinLengthKey;
+	public TitanKey proteinVersionKey;
 	public final TitanProteinType proteinT = new TitanProteinType(this);
 	//---dataset---
 	public TitanKey datasetTKey;

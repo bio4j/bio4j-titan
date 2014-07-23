@@ -5,10 +5,24 @@ import com.bio4j.model.uniprot.UniprotGraph.ProteinType;
 import com.bio4j.model.uniprot.nodes.*;
 import com.bio4j.model.uniprot.relationships.*;
 import com.bio4j.model.uniprot_enzymedb.relationships.EnzymaticActivity;
+import com.bio4j.model.uniprot_uniref.relationships.UniRef100Representant;
+import com.bio4j.model.uniprot_uniref.relationships.UniRef50Member;
+import com.bio4j.model.uniprot_uniref.relationships.UniRef50Representant;
+import com.bio4j.model.uniprot_uniref.relationships.UniRef90Member;
+import com.bio4j.model.uniref.nodes.UniRef100Cluster;
+import com.bio4j.model.uniref.nodes.UniRef50Cluster;
+import com.bio4j.model.uniref.nodes.UniRef90Cluster;
 import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot.relationships.*;
 import com.bio4j.titan.model.uniprot_enzyme.relationships.TitanEnzymaticActivity;
+import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef100Representant;
+import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef50Member;
+import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef50Representant;
+import com.bio4j.titan.model.uniprot_uniref.relationships.TitanUniRef90Member;
+import com.bio4j.titan.model.uniref.nodes.TitanUniRef100Cluster;
+import com.bio4j.titan.model.uniref.nodes.TitanUniRef50Cluster;
+import com.bio4j.titan.model.uniref.nodes.TitanUniRef90Cluster;
 import com.ohnosequences.typedGraphs.titan.TitanNode;
 import com.thinkaurelius.titan.core.TitanKey;
 import com.thinkaurelius.titan.core.TitanVertex;
@@ -33,11 +47,15 @@ public class TitanProtein extends
 	@Override
 	public String modifiedDate(){ return get(uniprotGraph.proteinT.modifiedDate);}
 	@Override
+	public String createdDate(){ return get(uniprotGraph.proteinT.createdDate);}
+	@Override
 	public String sequence(){ return get(uniprotGraph.proteinT.sequence);}
 	@Override
 	public String mass(){ return get(uniprotGraph.proteinT.mass);}
 	@Override
 	public int length(){ return get(uniprotGraph.proteinT.length);}
+	@Override
+	public int version(){ return get(uniprotGraph.proteinT.version);}
 
 	@Override
 	public List<TitanProteinInterpro> proteinIntepro_out() {
@@ -74,6 +92,36 @@ public class TitanProtein extends
 
 	@Override
 	public List<TitanEnzyme> enzymaticActivity_outNodes() { 	return outToManyNodes(uniprotGraph.uniprotEnzymeDBGraph.enzymaticActivityT);
+	}
+
+	@Override
+	public TitanUniRef50Member uniref50Member_in() {
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef50MemberT);
+	}
+
+	@Override
+	public TitanUniRef50Cluster uniref50Member_inNode() {
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef50MemberT);
+	}
+
+	@Override
+	public TitanUniRef90Member uniref90Member_in() {
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef90MemberT);
+	}
+
+	@Override
+	public TitanUniRef90Cluster uniref90Member_inNode() {
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef90MemberT);
+	}
+
+	@Override
+	public TitanUniRef100Representant uniref100Representant_in() {
+		return inFromOne(uniprotGraph.uniprotUniRefGraph.uniRef100MemberT);
+	}
+
+	@Override
+	public TitanUniRef100Cluster uniref100Representant_inNode() {
+		return inFromOneNode(uniprotGraph.uniprotUniRefGraph.uniRef100MemberT);
 	}
 
 	@Override
@@ -254,6 +302,25 @@ public class TitanProtein extends
 			}
 		}
 
+		public createdDate createdDate = new createdDate();
+		public final class createdDate
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanProtein, TitanProteinType, createdDate, String>,
+				Protein.createdDate<TitanProtein, TitanProteinType, createdDate> {
+
+			@Override
+			public TitanProteinType elementType() {
+
+				return TitanProteinType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return uniprotGraph.proteinCreatedDateKey;
+			}
+		}
+
 		public mass mass = new mass();
 		public final class mass
 				implements
@@ -289,6 +356,25 @@ public class TitanProtein extends
 			public TitanKey titanKey() {
 
 				return uniprotGraph.proteinLengthKey;
+			}
+		}
+
+		public version version = new version();
+		public final class version
+				implements
+				com.ohnosequences.typedGraphs.titan.TitanProperty<TitanProtein, TitanProteinType, version, Integer>,
+				Protein.version<TitanProtein, TitanProteinType, version> {
+
+			@Override
+			public TitanProteinType elementType() {
+
+				return TitanProteinType.this;
+			}
+
+			@Override
+			public TitanKey titanKey() {
+
+				return uniprotGraph.proteinVersionKey;
 			}
 		}
 
