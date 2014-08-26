@@ -1,6 +1,9 @@
 package com.bio4j.titan.model.go;
 
 import com.bio4j.model.go.GoGraph;
+import com.bio4j.model.go.nodes.GoTerm;
+import com.bio4j.model.go.nodes.SubOntologies;
+import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm;
 import com.bio4j.titan.model.go.nodes.TitanGoTerm.TitanGoTermType;
 import com.bio4j.titan.model.go.nodes.TitanSubOntologies;
@@ -13,6 +16,7 @@ import com.bio4j.titan.model.go.relationships.TitanPositivelyRegulates.TitanPosi
 import com.bio4j.titan.model.go.relationships.TitanRegulates.TitanRegulatesType;
 import com.bio4j.titan.model.go.relationships.TitanSubOntology.TitanSubOntologyType;
 import com.bio4j.titan.util.DefaultTitanGraph;
+import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
 import com.thinkaurelius.titan.core.*;
@@ -25,15 +29,15 @@ public class TitanGoGraph
 		extends
 		GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
-	protected TitanGraph rawGraph;
+	protected DefaultTitanGraph rawGraph;
 
-	TitanGoGraph(TitanGraph rawGraph) {
+	TitanGoGraph(DefaultTitanGraph rawGraph) {
 
 		this.rawGraph = rawGraph;
 	}
 
 	@Override
-	public TitanGraph rawGraph() {
+	public DefaultTitanGraph raw() {
 		return rawGraph;
 	}
 
@@ -61,9 +65,13 @@ public class TitanGoGraph
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
+    private TitanGoGraph.IsAType buh = this.new IsAType(null);
+	public TitanLabel isALabel = raw().titanLabelForEdgeType(buh);
+    private TitanGoGraph.IsAType isAType = new IsAType(isALabel);
+    @Override public IsAType IsA() {
+        return isAType;
+    }
 
-	public TitanLabel isA;
-	public TitanIsAType isAT = new TitanIsAType(this);
 	public TitanLabel partOfLabel;
 	public TitanPartOfType partOfT = new TitanPartOfType(this);
 	public TitanLabel hasPartOfLabel;
@@ -78,4 +86,64 @@ public class TitanGoGraph
 	public TitanSubOntologyType subOntologyT = new TitanSubOntologyType(this);
 
 
+    @Override
+    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph() {
+        return null;
+    }
+
+    @Override
+    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goTermIdIndex() {
+        return null;
+    }
+
+    @Override
+    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subontologiesNameIndex() {
+        return null;
+    }
+
+    @Override
+    public GoSlimsType GoSlims() {
+        return null;
+    }
+
+    @Override
+    public GoTermType GoTerm() {
+        return null;
+    }
+
+    @Override
+    public SubOntologiesType SubOntologies() {
+        return null;
+    }
+
+    @Override
+    public PartOfType PartOf() {
+        return null;
+    }
+
+    @Override
+    public HasPartOfType HasPartOf() {
+        return null;
+    }
+
+    @Override
+    public NegativelyRegulatesType NegativelyRegulates() {
+        return null;
+    }
+
+    @Override
+    public PositivelyRegulatesType PositivelyRegulates() {
+        return null;
+    }
+
+    @Override
+    public RegulatesType Regulates() {
+        return null;
+    }
+
+
+    @Override
+    public SubOntologyType SubOntology() {
+        return null;
+    }
 }
