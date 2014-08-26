@@ -25,21 +25,48 @@ import com.thinkaurelius.titan.core.*;
 /*
   Implementing the types with Titan
 */
-public class TitanGoGraph
+public final class TitanGoGraph
 		extends
 		GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
-	protected DefaultTitanGraph rawGraph;
+	private DefaultTitanGraph rawGraph;
+
+    private TitanLabel isALabel;
+    private IsAType isAType;
+    private TitanLabel partOfLabel;
+    private PartOfType partOfType;
+    private TitanLabel hasPartOfLabel;
+    private HasPartOfType hasPartOfType;
 
 	TitanGoGraph(DefaultTitanGraph rawGraph) {
-
+        super(rawGraph);
 		this.rawGraph = rawGraph;
+        initTypes();
+        initIndices();
 	}
 
 	@Override
 	public DefaultTitanGraph raw() {
 		return rawGraph;
 	}
+
+    private void initTypes(){
+
+        //-----------------------------------------------------------------------------------------
+        //--------------------------------RELATIONSHIPS--------------------------------------------
+
+        isALabel = raw().titanLabelForEdgeType(this.new IsAType(null));
+        isAType = new IsAType(isALabel);
+        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
+        partOfType = new PartOfType(partOfLabel);
+        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
+        hasPartOfType = new HasPartOfType(hasPartOfLabel);
+
+
+    }
+    private void initIndices(){
+
+    }
 
 	/*
 	  The type of a TitanGoTerm. This an inner class of the graph. The first key here represents the type of the node, while the rest are for properties of this term: `id` and `name` in this case.
@@ -63,19 +90,8 @@ public class TitanGoGraph
 	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subOntologiesNameIndex;
 
 
-	//-----------------------------------------------------------------------------------------
-	//--------------------------------RELATIONSHIPS--------------------------------------------
-    private TitanGoGraph.IsAType buh = this.new IsAType(null);
-	public TitanLabel isALabel = raw().titanLabelForEdgeType(buh);
-    private TitanGoGraph.IsAType isAType = new IsAType(isALabel);
-    @Override public IsAType IsA() {
-        return isAType;
-    }
 
-	public TitanLabel partOfLabel;
-	public TitanPartOfType partOfT = new TitanPartOfType(this);
-	public TitanLabel hasPartOfLabel;
-	public TitanHasPartOfType hasPartOfT = new TitanHasPartOfType(this);
+
 	public TitanLabel regulatesLabel;
 	public TitanRegulatesType regulatesT = new TitanRegulatesType(this);
 	public TitanLabel positivelyRegulatesLabel;
@@ -85,6 +101,9 @@ public class TitanGoGraph
 	public TitanLabel subOntologyLabel;
 	public TitanSubOntologyType subOntologyT = new TitanSubOntologyType(this);
 
+    @Override public IsAType IsA() {
+        return isAType;
+    }
 
     @Override
     public UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph() {
