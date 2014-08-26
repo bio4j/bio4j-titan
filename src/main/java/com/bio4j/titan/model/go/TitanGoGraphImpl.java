@@ -1,10 +1,11 @@
 package com.bio4j.titan.model.go;
 
+import com.bio4j.model.go.GoGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex;
 import com.thinkaurelius.titan.core.TitanGraph;
 import com.ohnosequences.typedGraphs.titan.TitanNodeIndex.DefaultUnique;
 
-public final class TitanGoGraphImpl extends TitanGoGraph {
+public final class TitanGoGraph extends GoGraph {
 
 	public TitanGoGraphImpl(TitanGraph graph) {
 		super(graph);
