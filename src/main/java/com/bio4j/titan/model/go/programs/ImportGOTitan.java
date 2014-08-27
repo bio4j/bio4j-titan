@@ -14,13 +14,13 @@
   * You should have received a copy of the GNU Affero General Public License
   * along with this program.  If not, see <http:www.gnu.org/licenses/>
   */
-package com.bio4j.titan.programs;
+package com.bio4j.titan.model.go.programs;
 
-import com.bio4j.model.uniprot.UniprotGraph;
-import com.bio4j.model.uniprot.programs.ImportUniprot;
+import com.bio4j.model.go.GoGraph;
+import com.bio4j.model.go.programs.ImportGO;
+import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
-import com.ohnosequences.typedGraphs.titan.*;
 import com.thinkaurelius.titan.core.*;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
@@ -29,22 +29,22 @@ import org.apache.commons.configuration.Configuration;
 import java.util.ArrayList;
 
 /**
- * Imports Uniprot into Bio4j
+ * Imports the Gene Ontology into Bio4j
  *
  * @author Pablo Pareja Tobes <ppareja@era7.com>
  */
-public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
+public class ImportGOTitan extends ImportGO<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
 
     @Override
-    protected UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
+    protected GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
         //----------DB configuration------------------
         Configuration conf = new BaseConfiguration();
         conf.setProperty("storage.directory", dbFolder);
         conf.setProperty("storage.backend", "local");
         conf.setProperty("autotype", "none");
         //-------creating graph handlers---------------------
-        TitanGraph graph = TitanFactory.open(conf);;
-        return new DefaultTitanGraph(graph);
+        TitanGraph graph = TitanFactory.open(conf);
+        return new TitanGoGraph(new DefaultTitanGraph(graph));
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVe
         for (int i = 0; i < array.size(); i++) {
             args[i] = array.get(i);
         }
-        importUniprot(args);
+        importGO(args);
     }
 
 }

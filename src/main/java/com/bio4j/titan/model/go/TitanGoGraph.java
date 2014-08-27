@@ -67,7 +67,7 @@ public final class TitanGoGraph
             DefaultTitanGraph> subOntologiesNameIndex;
 
 
-    TitanGoGraph(DefaultTitanGraph rawGraph) {
+    public TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
         initTypes();

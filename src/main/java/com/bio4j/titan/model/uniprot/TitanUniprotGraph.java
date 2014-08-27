@@ -105,11 +105,11 @@ public final class TitanUniprotGraph
     //---FeatureType---
     public TitanKey featureTypeTypeKey;
     public TitanKey featureTypeNameKey;
-    public FeatureType featureType;
+    public FeatureTypeType featureTypeType;
     //---CommentType---
     public TitanKey commentTypeTypeKey;
     public TitanKey commentTypeNameKey;
-    public CommentType commentType;
+    public CommentTypeType commentTypeType;
 
     //------------------INDICES----------------
     //-----------------------------------------
@@ -177,7 +177,7 @@ public final class TitanUniprotGraph
     public ProteinCommentType proteinCommentType;
 
 
-    TitanUniprotGraph(DefaultTitanGraph rawGraph) {
+    public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
         initTypes();
@@ -344,92 +344,92 @@ public final class TitanUniprotGraph
 
     @Override
     public ProteinPfamType ProteinPfam() {
-        return null;
+        return proteinPfamType;
     }
 
     @Override
     public ProteinPIRType ProteinPIR() {
-        return null;
+        return proteinPIRType;
     }
 
     @Override
     public ProteinReactomeTermType ProteinReactomeTerm() {
-        return null;
+        return proteinReactomeTermType;
     }
 
     @Override
     public ProteinSubcellularLocationType ProteinSubcellularLocation() {
-        return null;
+        return proteinSubcellularLocationType;
     }
 
     @Override
     public ProteinUniGeneType ProteinUniGene() {
-        return null;
+        return proteinUniGeneType;
     }
 
     @Override
     public ProteinRefSeqType ProteinRefSeq() {
-        return null;
+        return proteinRefSeqType;
     }
 
     @Override
     public ProteinReferenceType ProteinReference() {
-        return null;
+        return proteinReferenceType;
     }
 
     @Override
     public ReferenceArticleType ReferenceArticle() {
-        return null;
+        return referenceArticleType;
     }
 
     @Override
     public ReferenceBookType ReferenceBook() {
-        return null;
+        return referenceBookType;
     }
 
     @Override
     public ReferenceOnlineArticleType ReferenceOnlineArticle() {
-        return null;
+        return referenceOnlineArticleType;
     }
 
     @Override
     public ReferencePatentType ReferencePatent() {
-        return null;
+        return referencePatentType;
     }
 
     @Override
     public ReferenceThesisType ReferenceThesis() {
-        return null;
+        return referenceThesisType;
     }
 
     @Override
     public ReferenceSubmissionType ReferenceSubmission() {
-        return null;
+        return referenceSubmissionType;
     }
 
     @Override
     public ReferenceUnpublishedObservationType ReferenceUnpublishedObservation() {
-        return null;
+        return referenceUnpublishedObservationType;
     }
 
     @Override
     public SubmissionDBType SubmissionDB() {
-        return null;
+        return submissionDBType;
     }
 
     @Override
     public SubcellularLocationParentType SubcellularLocationParent() {
-        return null;
+        return subcellularLocationParentType;
     }
 
     @Override
     public TaxonParentType TaxonParent() {
-        return null;
+        return taxonParentType;
     }
 
     @Override
     public ThesisInstituteType ThesisInstitute() {
-        return null;
+        return thesisInstituteType;
     }
 
 
@@ -454,83 +454,97 @@ public final class TitanUniprotGraph
     }
 
     @Override
-    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ensemblIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ensemblIdIndex() {
+        return ensemblIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pIRIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pIRIdIndex() {
+        return pIRIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniGeneIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniGeneIdIndex() {
+        return uniGeneIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> keggIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> keggIdIndex() {
+        return keggIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> eMBLIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> eMBLIdIndex() {
+        return eMBLIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> refSeqIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> refSeqIdIndex() {
+        return refSeqIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> reactomeTermIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> reactomeTermIdIndex() {
+        return reactomeTermIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> datasetNameIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> datasetNameIndex() {
+        return datasetNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> keywordIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> keywordIdIndex() {
+        return keywordIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> interproIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> interproIdIndex() {
+        return interproIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pfamIdIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pfamIdIndex() {
+        return pfamIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> organismScientificNameIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> organismScientificNameIndex() {
+        return organismScientificNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> taxonNameIndex() {
-        return null;
+    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> taxonNameIndex() {
+        return taxonNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> featureTypeNameIndex() {
-        return null;
+    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> featureTypeNameIndex() {
+        return featureTypeNameIndex;
     }
 
     @Override
     public ArticleType Article() {
-        return null;
+        return articleType;
     }
 
     @Override
     public BookType Book() {
-        return null;
+        return bookType;
     }
 
     @Override
@@ -540,92 +554,92 @@ public final class TitanUniprotGraph
 
     @Override
     public CommentTypeType CommentType() {
-        return null;
+        return commentTypeType;
     }
 
     @Override
     public DatasetType Dataset() {
-        return null;
+        return datasetType;
     }
 
     @Override
     public CountryType Country() {
-        return null;
+        return countryType;
     }
 
     @Override
     public DBType DB() {
-        return null;
+        return dBType;
     }
 
     @Override
     public EMBLType EMBL() {
-        return null;
+        return eMBLType;
     }
 
     @Override
     public EnsemblType Ensembl() {
-        return null;
+        return ensemblType;
     }
 
     @Override
     public FeatureTypeType FeatureType() {
-        return null;
+        return featureTypeType;
     }
 
     @Override
     public InstituteType Institute() {
-        return null;
+        return instituteType;
     }
 
     @Override
     public InterproType Interpro() {
-        return null;
+        return interproType;
     }
 
     @Override
     public JournalType Journal() {
-        return null;
+        return journalType;
     }
 
     @Override
     public KeggType Kegg() {
-        return null;
+        return keggType;
     }
 
     @Override
     public KeywordType Keyword() {
-        return null;
+        return keywordType;
     }
 
     @Override
     public OnlineArticleType OnlineArticle() {
-        return null;
+        return onlineArticleType;
     }
 
     @Override
     public OrganismType Organism() {
-        return null;
+        return organismType;
     }
 
     @Override
     public OnlineJournalType OnlineJournal() {
-        return null;
+        return onlineJournalType;
     }
 
     @Override
     public PatentType Patent() {
-        return null;
+        return patentType;
     }
 
     @Override
     public PfamType Pfam() {
-        return null;
+        return pfamType;
     }
 
     @Override
     public PIRType PIR() {
-        return null;
+        return pIRType;
     }
 
     @Override
@@ -635,57 +649,57 @@ public final class TitanUniprotGraph
 
     @Override
     public PublisherType Publisher() {
-        return null;
+        return publisherType;
     }
 
     @Override
     public PubmedType Pubmed() {
-        return null;
+        return pubMedType;
     }
 
     @Override
     public ReactomeTermType ReactomeTerm() {
-        return null;
+        return reactomeTermType;
     }
 
     @Override
     public ReferenceType Reference() {
-        return null;
+        return referenceType;
     }
 
     @Override
     public RefSeqType RefSeq() {
-        return null;
+        return refSeqType;
     }
 
     @Override
     public SubcellularLocationType SubcellularLocation() {
-        return null;
+        return subcellularLocationType;
     }
 
     @Override
     public SubmissionType Submission() {
-        return null;
+        return submissionType;
     }
 
     @Override
     public TaxonType Taxon() {
-        return null;
+        return taxonType;
     }
 
     @Override
     public ThesisType Thesis() {
-        return null;
+        return thesisType;
     }
 
     @Override
     public UniGeneType UniGene() {
-        return null;
+        return uniGeneType;
     }
 
     @Override
     public UnpublishedObservationType UnpublishedObservation() {
-        return null;
+        return unpublishedObservationType;
     }
 
     @Override
