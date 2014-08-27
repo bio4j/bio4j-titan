@@ -6,6 +6,7 @@ import com.bio4j.model.go.nodes.SubOntologies;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
+import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
 
@@ -18,6 +19,9 @@ public final class TitanGoGraph
 
 	private DefaultTitanGraph rawGraph;
 
+
+    //-------------------VERTICES----------------------------
+
     public TitanKey goTermTypekey;
     public TitanKey goTermIdKey;
     public TitanKey goTermNameKey;
@@ -26,6 +30,11 @@ public final class TitanGoGraph
     public TitanKey goTermCommentKey;
     public TitanKey goTermSynonymKey;
     public GoTermType goTermType;
+
+    public TitanKey subOntologiesTypekey;
+    public TitanKey subOntologiesNameKey;
+
+    //---------------RELATIONSHIPS---------------------------
 
     private TitanLabel isALabel;
     private IsAType isAType;
@@ -41,6 +50,12 @@ public final class TitanGoGraph
     private NegativelyRegulatesType negativelyRegulatesType;
     private TitanLabel subOntologyLabel;
     private SubOntologyType subOntologyType;
+
+    //---------------INDICES---------------------------
+
+    TitanTypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,GoTermType, GoTermType.id,String, GoGraph> goTermIdIndex;
+    TitanTypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,SubOntologiesType, SubOntologiesType.name,String, GoGraph> subOntologiesNameIndex;
+    ;
 
 	TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
@@ -58,18 +73,23 @@ public final class TitanGoGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-        goTermTypekey = titanKeyForVertexType();
+        goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
         goTermIdKey = goTermTypekey;
-        goTermNameKey = titanKeyForNodeProperty(goTermT.name);
-        goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition);
-        goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete);
-        goTermCommentKey = titanKeyForNodeProperty(goTermT.comment);
-        goTermType = new GoTermType()
+        goTermNameKey = titanKeyForNodeProperty(GoTerm().name);
+        goTermDefinitionKey = titanKeyForNodeProperty(GoTerm().definition);
+        goTermObsoleteKey = titanKeyForNodeProperty(GoTerm().obsolete);
+        goTermCommentKey = titanKeyForNodeProperty(GoTerm().comment);
+        goTermSynonymKey = titanKeyForNodeProperty(GoTerm().synonym);
+        goTermType = new GoTermType(goTermTypekey);
+
+        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
+        subOntologiesNameKey = titanKeyForNodeProperty(SubOntologies().name);
+
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        isALabel = raw().titanLabelForEdgeType(this.new IsAType(null));
+        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
         isAType = new IsAType(isALabel);
         partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
         partOfType = new PartOfType(partOfLabel);
@@ -89,24 +109,6 @@ public final class TitanGoGraph
     private void initIndices(){
 
     }
-
-	/*
-	  The type of a TitanGoTerm. This an inner class of the graph. The first key here represents the type of the node, while the rest are for properties of this term: `id` and `name` in this case.
-	*/
-
-
-//	public TitanKey subOntologiesTKey;
-//	public TitanKey subOntologiesNameKey;
-//	public final TitanSubOntologiesType subOntologiesT = new TitanSubOntologiesType(this);
-
-	//------------------INDICES----------------
-	//-----------------------------------------
-//	public TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> goTermIdIndex;
-//	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subOntologiesNameIndex;
-//
-//
-//	public TitanLabel subOntologyLabel;
-//	public TitanSubOntologyType subOntologyT = new TitanSubOntologyType(this);
 
     @Override
     public IsAType IsA() {
@@ -165,12 +167,12 @@ public final class TitanGoGraph
 
     @Override
     public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goTermIdIndex() {
-        return null;
+        return goTermIdIndex;
     }
 
     @Override
     public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subontologiesNameIndex() {
-        return null;
+        return subOntologiesNameIndex;
     }
 
 

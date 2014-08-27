@@ -43,7 +43,7 @@ public class ImportGOTitan extends ImportGO<DefaultTitanGraph, TitanVertex, Tita
         conf.setProperty("storage.backend", "local");
         conf.setProperty("autotype", "none");
         //-------creating graph handlers---------------------
-        TitanGraph graph = TitanFactory.open(conf);;
+        TitanGraph graph = TitanFactory.open(conf);
         return new DefaultTitanGraph(graph);
     }
 
