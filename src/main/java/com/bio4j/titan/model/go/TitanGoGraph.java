@@ -18,7 +18,7 @@ public final class TitanGoGraph
 
 	private DefaultTitanGraph rawGraph;
 
-    public TitanKey goTermTkey;
+    public TitanKey goTermTypekey;
     public TitanKey goTermIdKey;
     public TitanKey goTermNameKey;
     public TitanKey goTermDefinitionKey;
@@ -58,13 +58,13 @@ public final class TitanGoGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-//        goTermTkey = titanKeyForVertex
-//        goTermIdKey = goTermTkey;
-//        goTermNameKey = titanKeyForNodeProperty(goTermT.name);
-//        goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition);
-//        goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete);
-//        goTermCommentKey = titanKeyForNodeProperty(goTermT.comment);
-//        goTermType = new GoTermType()
+        goTermTypekey = titanKeyForVertexType();
+        goTermIdKey = goTermTypekey;
+        goTermNameKey = titanKeyForNodeProperty(goTermT.name);
+        goTermDefinitionKey = titanKeyForNodeProperty(goTermT.definition);
+        goTermObsoleteKey = titanKeyForNodeProperty(goTermT.obsolete);
+        goTermCommentKey = titanKeyForNodeProperty(goTermT.comment);
+        goTermType = new GoTermType()
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
@@ -95,18 +95,18 @@ public final class TitanGoGraph
 	*/
 
 
-	public TitanKey subOntologiesTKey;
-	public TitanKey subOntologiesNameKey;
-	public final TitanSubOntologiesType subOntologiesT = new TitanSubOntologiesType(this);
+//	public TitanKey subOntologiesTKey;
+//	public TitanKey subOntologiesNameKey;
+//	public final TitanSubOntologiesType subOntologiesT = new TitanSubOntologiesType(this);
 
 	//------------------INDICES----------------
 	//-----------------------------------------
-	public TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> goTermIdIndex;
-	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subOntologiesNameIndex;
-
-
-	public TitanLabel subOntologyLabel;
-	public TitanSubOntologyType subOntologyT = new TitanSubOntologyType(this);
+//	public TitanNodeIndex.Unique<TitanGoTerm,TitanGoTermType, TitanGoTermType.id,String> goTermIdIndex;
+//	public TitanNodeIndex.Unique<TitanSubOntologies,TitanSubOntologiesType, TitanSubOntologiesType.name,String> subOntologiesNameIndex;
+//
+//
+//	public TitanLabel subOntologyLabel;
+//	public TitanSubOntologyType subOntologyT = new TitanSubOntologyType(this);
 
     @Override
     public IsAType IsA() {
@@ -114,7 +114,7 @@ public final class TitanGoGraph
     }
     @Override
     public GoSlimsType GoSlims() {
-        return goSlimsType;
+        return null;
     }
 
     @Override
@@ -124,7 +124,7 @@ public final class TitanGoGraph
 
     @Override
     public SubOntologiesType SubOntologies() {
-        return subOntologiesType;
+        return null;
     }
 
     @Override
