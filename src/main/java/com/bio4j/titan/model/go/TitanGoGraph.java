@@ -14,10 +14,10 @@ import com.thinkaurelius.titan.core.*;
   Implementing the types with Titan
 */
 public final class TitanGoGraph
-		extends
-		GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        extends
+        GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
-	private DefaultTitanGraph rawGraph;
+    private DefaultTitanGraph rawGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -53,23 +53,33 @@ public final class TitanGoGraph
 
     //---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,GoTermType, GoTermType.id,String, GoGraph> goTermIdIndex;
-    TitanTypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,SubOntologiesType, SubOntologiesType.name,String, GoGraph> subOntologiesNameIndex;
-    ;
+    TitanTypedVertexIndex.DefaultUnique<
+            GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            GoTermType,
+            GoTermType.id, String,
+            GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            DefaultTitanGraph
+            > goTermIdIndex;
+    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            SubOntologiesType,
+            SubOntologiesType.name, String,
+            GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            DefaultTitanGraph> subOntologiesNameIndex;
 
-	TitanGoGraph(DefaultTitanGraph rawGraph) {
+
+    TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
-		this.rawGraph = rawGraph;
+        this.rawGraph = rawGraph;
         initTypes();
         initIndices();
-	}
+    }
 
-	@Override
-	public DefaultTitanGraph raw() {
-		return rawGraph;
-	}
+    @Override
+    public DefaultTitanGraph raw() {
+        return rawGraph;
+    }
 
-    private void initTypes(){
+    private void initTypes() {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
@@ -106,14 +116,17 @@ public final class TitanGoGraph
 
 
     }
-    private void initIndices(){
 
+    private void initIndices() {
+        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique(this, GoTerm().id);
+        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique(this, SubOntologies().name);
     }
 
     @Override
     public IsAType IsA() {
         return isAType;
     }
+
     @Override
     public GoSlimsType GoSlims() {
         return null;

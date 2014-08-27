@@ -37,17 +37,130 @@ public final class TitanUniprotGraph
     public TitanKey proteinSequenceKey;
     public ProteinType proteinType;
 
-    public TitanKey pfamTypekey;
+    //---dataset---
+    public TitanKey datasetTypeKey;
+    public TitanKey datasetNameKey;
+    //---organism---
+    public TitanKey organismTypeKey;
+    public TitanKey organismScientificNameKey;
+    public TitanKey organismCommonNameKey;
+    public TitanKey organismSynonymNameKey;
+    //---keyword---
+    public TitanKey keywordTypeKey;
+    public TitanKey keywordNameKey;
+    public TitanKey keywordIdKey;
+    //---interpro---
+    public TitanKey interproTypeKey;
+    public TitanKey interproNameKey;
+    public TitanKey interproIdKey;
+    //---reactome term---
+    public TitanKey reactomeTermTypeKey;
+    public TitanKey reactomeTermPathwayNameKey;
+    public TitanKey reactomeTermIdKey;
+    //---pfam---
+    public TitanKey pfamTypeKey;
     public TitanKey pfamNameKey;
+    public TitanKey pfamIdKey;
+    //---kegg---
+    public TitanKey keggTypeKey;
+    public TitanKey keggIdKey;
+    //---EMBL---
+    public TitanKey eMBLTypeKey;
+    public TitanKey eMBLIdKey;
+    public TitanKey eMBLMoleculeTypeKey;
+    public TitanKey eMBLProteinSequenceIdKey;
+    //---PIR---
+    public TitanKey pIRTypeKey;
+    public TitanKey pIRIdKey;
+    public TitanKey pIREntryNameKey;
+    //---UniGene---
+    public TitanKey uniGeneTypeKey;
+    public TitanKey uniGeneIdKey;
+    //---Ensembl---
+    public TitanKey ensemblTypeKey;
+    public TitanKey ensemblIdKey;
+    public TitanKey ensemblMoleculeIdKey;
+    public TitanKey ensemblProteinSequenceIdKey;
+    public TitanKey ensemblGeneIdKey;
+    //---Taxon---
+    public TitanKey taxonTypeKey;
+    public TitanKey taxonNameKey;
+    //---RefSeq---
+    public TitanKey refSeqTypeKey;
+    public TitanKey refSeqIdKey;
+    public TitanKey refSeqNucleotideSequenceIdKey;
+    //---FeatureType---
+    public TitanKey featureTypeTypeKey;
+    public TitanKey featureTypeNameKey;
+    //---CommentType---
+    public TitanKey commentTypeTypeKey;
+    public TitanKey commentTypeNameKey;
 
-    //---------------RELATIONSHIPS---------------------------
-
-    private TitanLabel proteinOrganismLabel;
-    private ProteinOrganismType proteinOrganismType;
-
+    //------------------INDICES----------------
+    //-----------------------------------------
     //---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,ProteinType, ProteinType.accession,String> proteinAccessionIndex;
+    public TitanTypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> proteinAccessionIndex;
+    public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> datasetNameIndex;
+    public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> organismScientificNameIndex;
+    public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> keywordIdIndex;
+    public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> reactomeTermIdIndex;
+    public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> interproIdIndex;
+    public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> pfamIdIndex;
+    public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> keggIdIndex;
+    public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> eMBLIdIndex;
+    public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> pIRIdIndex;
+    public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> uniGeneIdIndex;
+    public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> ensemblIdIndex;
+    public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> taxonNameIndex;
+    public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> refSeqIdIndex;
+    public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> commentTypeNameIndex;
+    public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> featureTypeNameIndex;
+
+    //-----------------------------------------------------------------------------------------
+    //--------------------------------RELATIONSHIPS--------------------------------------------
+    public TitanLabel proteinDatasetLabel;
+    public ProteinDatasetType proteinDatasetType;
+    public TitanLabel proteinOrganismLabel;
+    public ProteinOrganismType proteinOrganismType;
+    public TitanLabel proteinKeywordLabel;
+    public ProteinKeywordType proteinKeywordType;
+    public TitanLabel proteinReactomeTermLabel;
+    public ProteinReactomeTermType proteinReactomeTermType;
+    public TitanLabel proteinInterproLabel;
+    public ProteinInterproType proteinInterproType;
+    public TitanLabel proteinPfamLabel;
+    public ProteinPfamType proteinPfamType;
+    public TitanLabel proteinKeggLabel;
+    public ProteinKeggType proteinKeggType;
+    public TitanLabel proteinEMBLLabel;
+    public ProteinEMBLType proteinEMBLType;
+    public TitanLabel proteinPIRLabel;
+    public ProteinPIRType proteinPIRType;
+    public TitanLabel proteinUniGeneLabel;
+    public ProteinUniGeneType proteinUniGeneType;
+    public TitanLabel proteinEnsemblLabel;
+    public ProteinEnsemblType proteinEnsemblType;
+    public TitanLabel taxonParentLabel;
+    public TaxonParentType taxonParentType;
+    public TitanLabel organismTaxonLabel;
+    public OrganismTaxonType organismTaxonType;
+    public TitanLabel proteinRefSeqLabel;
+    public ProteinRefSeqType proteinRefSeqType;
+    public TitanLabel proteinFeatureLabel;
+    public TitanKey proteinFeatureIdKey;
+    public TitanKey proteinFeatureDescriptionKey;
+    public TitanKey proteinFeatureEvidenceKey;
+    public TitanKey proteinFeatureStatusKey;
+    public TitanKey proteinFeatureBeginKey;
+    public TitanKey proteinFeatureEndKey;
+    public TitanKey proteinFeatureOriginalKey;
+    public TitanKey proteinFeatureVariationKey;
+    public TitanKey proteinFeatureRefKey;
+    public ProteinFeatureType proteinFeatureType;
+    public TitanLabel proteinCommentLabel;
+    public ProteinCommentType proteinCommentType;
+
 
     TitanUniprotGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
@@ -61,10 +174,12 @@ public final class TitanUniprotGraph
         return rawGraph;
     }
 
-    private void initTypes(){
+    private void initTypes() {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
+
+        // Protein keys
         proteinTypekey = raw().titanKeyForVertexType(Protein().accession);
         proteinAcessionKey = proteinTypekey;
         proteinNameKey = titanKeyForNodeProperty(Protein().name);
@@ -77,6 +192,105 @@ public final class TitanUniprotGraph
         proteinLengthKey = titanKeyForNodeProperty(Protein().length);
         proteinSequenceKey = titanKeyForNodeProperty(Protein().sequence);
         proteinType = new ProteinType(proteinTypekey);
+        // Dataset keys
+        datasetTKey = titanKeyForNodeType(datasetT.name);
+        datasetNameKey = datasetTKey;
+        // Organism keys
+        organismTKey = titanKeyForNodeType(organismT.scientificName);
+        organismScientificNameKey = organismTKey;
+        organismCommonNameKey = titanKeyForNodeProperty(organismT.commonName);
+        organismSynonymNameKey = titanKeyForNodeProperty(organismT.synonymName);
+        // Keyword keys
+        keywordTKey = titanKeyForNodeType(keywordT.id);
+        keywordIdKey = keywordTKey;
+        keywordNameKey = titanKeyForNodeProperty(keywordT.name);
+        // Interpro keys
+        interproTKey = titanKeyForNodeType(interproT.id);
+        interproIdKey = interproTKey;
+        interproNameKey = titanKeyForNodeProperty(interproT.name);
+        // ReactomeTerm keys
+        reactomeTermTKey = titanKeyForNodeType(reactomeTermT.id);
+        reactomeTermIdKey = reactomeTermTKey;
+        reactomeTermPathwayNameKey = titanKeyForNodeProperty(reactomeTermT.pathwayName);
+        // Pfam keys
+        pfamTKey = titanKeyForNodeType(pfamT.id);
+        pfamIdKey = pfamTKey;
+        pfamNameKey = titanKeyForNodeProperty(pfamT.name);
+        // EMBL keys
+        eMBLTKey = titanKeyForNodeType(eMBLT.id);
+        eMBLIdKey = eMBLTKey;
+        eMBLMoleculeTypeKey = titanKeyForNodeProperty(eMBLT.moleculeType);
+        eMBLProteinSequenceIdKey = titanKeyForNodeProperty(eMBLT.proteinSequenceId);
+        // PIR keys
+        pIRTKey = titanKeyForNodeType(pIRT.id);
+        pIRIdKey = pIRTKey;
+        pIREntryNameKey = titanKeyForNodeProperty(pIRT.entryName);
+        // Ensembl keys
+        ensemblTKey = titanKeyForNodeType(ensemblT.id);
+        ensemblIdKey = ensemblTKey;
+        ensemblMoleculeIdKey = titanKeyForNodeProperty(ensemblT.moleculeId);
+        ensemblProteinSequenceIdKey = titanKeyForNodeProperty(ensemblT.proteinSequenceId);
+        ensemblGeneIdKey = titanKeyForNodeProperty(ensemblT.geneId);
+        //---UniGene---
+        uniGeneTKey = titanKeyForNodeType(uniGeneT.id);
+        uniGeneIdKey = uniGeneTKey;
+        //---Kegg---
+        keggTKey = titanKeyForNodeType(keggT.id);
+        keggIdKey = keggTKey;
+        //---Taxon---
+        taxonTKey = titanKeyForNodeType(taxonT.name);
+        taxonNameKey = taxonTKey;
+        //---RefSeq---
+        refSeqTKey = titanKeyForNodeType(refSeqT.id);
+        refSeqIdKey = refSeqTKey;
+        refSeqNucleotideSequenceIdKey = titanKeyForNodeProperty(refSeqT.nucleotideSequenceId);
+        //---Comment---
+        commentTypeTKey = titanKeyForNodeType(commentTypeT.name);
+        commentTypeNameKey = commentTypeTKey;
+        //---Feature---
+        featureTypeTKey = titanKeyForNodeType(featureTypeT.name);
+        featureTypeNameKey = featureTypeTKey;
+        // proteinDataset
+        proteinDatasetLabel = titanLabelForRelationshipType(proteinDatasetT);
+        // proteinOrganism
+        proteinOrganismLabel = titanLabelForRelationshipType(proteinOrganismT);
+        // proteinKeyword
+        proteinKeywordLabel = titanLabelForRelationshipType(proteinKeywordT);
+        // proteinInterpro
+        proteinInterproLabel = titanLabelForRelationshipType(proteinInterproT);
+        // proteinReactomeTerm
+        proteinReactomeTermLabel = titanLabelForRelationshipType(proteinReactomeTermT);
+        // proteinPfam
+        proteinPfamLabel = titanLabelForRelationshipType(proteinPfamT);
+        // proteinKegg
+        proteinKeggLabel = titanLabelForRelationshipType(proteinKeggT);
+        // proteinKegg
+        proteinPIRLabel = titanLabelForRelationshipType(proteinPIRT);
+        // proteinEMBL
+        proteinEMBLLabel = titanLabelForRelationshipType(proteinEMBLT);
+        // proteinEnsembl
+        proteinEnsemblLabel = titanLabelForRelationshipType(proteinEnsemblT);
+        // proteinRefSeq
+        proteinRefSeqLabel = titanLabelForRelationshipType(proteinRefSeqT);
+        // proteinUnigene
+        proteinUniGeneLabel = titanLabelForRelationshipType(proteinUniGeneT);
+        // taxonParent
+        taxonParentLabel = titanLabelForRelationshipType(taxonParentT);
+        // organismTaxon
+        organismTaxonLabel = titanLabelForRelationshipType(organismTaxonT);
+        // proteinComment
+        proteinCommentLabel = titanLabelForRelationshipType(proteinCommentT);
+        // proteinFeature
+        proteinFeatureLabel = titanLabelForRelationshipType(proteinFeatureT);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.id);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.description);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.evidence);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.status);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.begin);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.end);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.original);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.variation);
+        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureT.ref);
 
 
         //-----------------------------------------------------------------------------------------
@@ -87,7 +301,8 @@ public final class TitanUniprotGraph
 
 
     }
-    private void initIndices(){
+
+    private void initIndices() {
 
     }
 
