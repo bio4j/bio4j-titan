@@ -267,36 +267,52 @@ public final class TitanUniprotGraph
         featureTypeNameKey = featureTypeTypeKey;
         // proteinDataset
         proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
+        proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
         // proteinOrganism
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
+        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
         // proteinKeyword
         proteinKeywordLabel = raw().titanLabelForEdgeType(this.new ProteinKeywordType(null));
+        proteinKeywordType = new ProteinKeywordType(proteinKeywordLabel);
         // proteinInterpro
         proteinInterproLabel = raw().titanLabelForEdgeType(this.new ProteinInterproType(null));
+        proteinInterproType = new ProteinInterproType(proteinInterproLabel);
         // proteinReactomeTerm
         proteinReactomeTermLabel = raw().titanLabelForEdgeType(this.new ProteinReactomeTermType(null));
+        proteinReactomeTermType = new ProteinReactomeTermType(proteinReactomeTermLabel);
         // proteinPfam
         proteinPfamLabel = raw().titanLabelForEdgeType(this.new ProteinPfamType(null));
+        proteinPfamType = new ProteinPfamType(proteinPfamLabel);
         // proteinKegg
         proteinKeggLabel = raw().titanLabelForEdgeType(this.new ProteinKeggType(null));
+        proteinKeggType = new ProteinKeggType(proteinKeggLabel);
         // proteinKegg
         proteinPIRLabel = raw().titanLabelForEdgeType(this.new ProteinPIRType(null));
+        proteinPIRType = new ProteinPIRType(proteinPIRLabel);
         // proteinEMBL
         proteinEMBLLabel = raw().titanLabelForEdgeType(this.new ProteinEMBLType(null));
+        proteinEMBLType = new ProteinEMBLType(proteinEMBLLabel);
         // proteinEnsembl
         proteinEnsemblLabel = raw().titanLabelForEdgeType(this.new ProteinEnsemblType(null));
+        proteinEnsemblType = new ProteinEnsemblType(proteinEnsemblLabel);
         // proteinRefSeq
         proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
+        proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
         // proteinUnigene
         proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
+        proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneLabel);
         // taxonParent
         taxonParentLabel = raw().titanLabelForEdgeType(this.new TaxonParentType(null));
+        taxonParentType = new TaxonParentType(taxonParentLabel);
         // organismTaxon
-        organismTaxonLabel = raw().titanLabelForEdgeType(this.new OganismTaxonType(null));
+        organismTaxonLabel = raw().titanLabelForEdgeType(this.new OrganismTaxonType(null));
+        organismTaxonType = new OrganismTaxonType(organismTaxonLabel);
         // proteinComment
-        proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentTypeType(null));
+        proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentType(null));
+        proteinCommentType = new ProteinCommentType(proteinCommentLabel);
         // proteinFeature
-        proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureTypeType(null));
+        proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
+        proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
         proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.id);
         proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.description);
         proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.evidence);
