@@ -31,7 +31,7 @@ import java.util.ArrayList;
 /**
  * Imports Uniprot into Bio4j
  *
- * @author Pablo Pareja Tobes <ppareja@era7.com>
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
 public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
 

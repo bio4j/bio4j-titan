@@ -10,8 +10,9 @@ import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
 
-/*
+/**
   Implementing the types with Titan
+  @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
 */
 public final class TitanGoGraph
         extends
