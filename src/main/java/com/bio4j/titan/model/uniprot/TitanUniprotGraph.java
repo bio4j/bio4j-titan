@@ -86,6 +86,14 @@ public final class TitanUniprotGraph
     public TitanKey journalTypeKey;
     public TitanKey journalNameKey;
     public JournalType journalType;
+    //---publisher---
+    public TitanKey publisherTypeKey;
+    public TitanKey publisherNameKey;
+    public PublisherType publisherType;
+    //---pubmed---
+    public TitanKey pubmedTypeKey;
+    public TitanKey pubmedIdKey;
+    public PubmedType pubmedType;
     //---reactome term---
     public TitanKey reactomeTermTypeKey;
     public TitanKey reactomeTermPathwayNameKey;
@@ -135,6 +143,14 @@ public final class TitanUniprotGraph
     public TitanKey thesisTypeKey;
     public TitanKey thesisNameKey;
     public ThesisType thesisType;
+    //----OnlineArticle-----
+    public TitanKey onlineArticleTypeKey;
+    public TitanKey onlineArticleTitleKey;
+    public OnlineArticleType onlineArticleType;
+    //----OnlineJournal-----
+    public TitanKey onlineJournalTypeKey;
+    public TitanKey onlineJournalNameKey;
+    public OnlineJournalType onlineJournalType;
     //---RefSeq---
     public TitanKey refSeqTypeKey;
     public TitanKey refSeqIdKey;
@@ -144,6 +160,14 @@ public final class TitanUniprotGraph
     public TitanKey referenceTypeKey;
     public TitanKey referenceNameKey;
     public ReferenceType referenceType;
+    //---SubcellularLocation----
+    public TitanKey subcellularLocationTypeKey;
+    public TitanKey subcellularLocationNameKey;
+    public SubcellularLocationType subcellularLocationType;
+    //---Submission----
+    public TitanKey submissionTypeKey;
+    public TitanKey submissionTitleKey;
+    public SubmissionType submissionType;
     //---FeatureType---
     public TitanKey featureTypeTypeKey;
     public TitanKey featureTypeNameKey;
@@ -152,6 +176,8 @@ public final class TitanUniprotGraph
     public TitanKey commentTypeTypeKey;
     public TitanKey commentTypeNameKey;
     public CommentTypeType commentTypeType;
+    //---UnpublishedObservation----
+    public UnpublishedObservationType unpublishedObservationType;
 
     //------------------INDICES----------------
     //-----------------------------------------
@@ -352,20 +378,40 @@ public final class TitanUniprotGraph
         interproIdKey = interproTypeKey;
         interproNameKey = titanKeyForVertexProperty(interproType.name);
         interproType = new InterproType(interproTypeKey);
-        // Country keys
+        // Journal keys
         journalTypeKey = titanKeyForVertexType(journalType.name);
         journalNameKey = journalTypeKey;
         journalType = new JournalType(journalTypeKey);
+        // OnlineArticle keys
+        onlineArticleTypeKey = titanKeyForVertexType(onlineArticleType.title);
+        onlineArticleTitleKey = onlineArticleTypeKey;
+        onlineArticleType = new OnlineArticleType(onlineArticleTypeKey);
+        // OnlineJournal keys
+        onlineJournalTypeKey = titanKeyForVertexType(onlineJournalType.name);
+        onlineJournalNameKey = onlineJournalTypeKey;
+        onlineJournalType = new OnlineJournalType(onlineJournalTypeKey);
         // ReactomeTerm keys
         reactomeTermTypeKey = titanKeyForVertexType(reactomeTermType.id);
         reactomeTermIdKey = reactomeTermTypeKey;
         reactomeTermPathwayNameKey = titanKeyForVertexProperty(reactomeTermType.pathwayName);
         reactomeTermType = new ReactomeTermType(reactomeTermTypeKey);
+        // Publisher keys
+        publisherTypeKey = titanKeyForVertexType(publisherType.name);
+        publisherNameKey = publisherTypeKey;
+        publisherType = new PublisherType(publisherTypeKey);
         // Pfam keys
         pfamTypeKey = titanKeyForVertexType(pfamType.id);
         pfamIdKey = pfamTypeKey;
         pfamNameKey = titanKeyForVertexProperty(pfamType.name);
         pfamType = new PfamType(pfamTypeKey);
+        // Pfam keys
+        pubmedTypeKey = titanKeyForVertexType(pubmedType.id);
+        pubmedIdKey = pubmedTypeKey;
+        pubmedType = new PubmedType(pubmedTypeKey);
+        // Submission keys
+        submissionTypeKey = titanKeyForVertexType(submissionType.title);
+        submissionTitleKey = submissionTypeKey;
+        submissionType = new SubmissionType(submissionTypeKey);
         // EMBL keys
         eMBLTypeKey = titanKeyForVertexType(eMBLType.id);
         eMBLIdKey = eMBLTypeKey;
@@ -393,6 +439,10 @@ public final class TitanUniprotGraph
         uniGeneTypeKey = titanKeyForVertexType(uniGeneType.id);
         uniGeneIdKey = uniGeneTypeKey;
         uniGeneType = new UniGeneType(uniGeneTypeKey);
+        //---SubcellularLocation---
+        subcellularLocationTypeKey = titanKeyForVertexType(subcellularLocationType.name);
+        subcellularLocationNameKey = subcellularLocationTypeKey;
+        subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeKey);
         //---Kegg---
         keggTypeKey = titanKeyForVertexType(keggType.id);
         keggIdKey = keggTypeKey;
@@ -414,6 +464,8 @@ public final class TitanUniprotGraph
         featureTypeTypeKey = titanKeyForVertexType(featureTypeType.name);
         featureTypeNameKey = featureTypeTypeKey;
         featureTypeType = new FeatureTypeType(featureTypeTypeKey);
+        //---UnpublishedObservation
+        //unpublishedObservationType = new UnpublishedObservationType(null);
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------EDGES--------------------------------------------
@@ -862,7 +914,7 @@ public final class TitanUniprotGraph
 
     @Override
     public PubmedType Pubmed() {
-        return pubMedType;
+        return pubmedType;
     }
 
     @Override
