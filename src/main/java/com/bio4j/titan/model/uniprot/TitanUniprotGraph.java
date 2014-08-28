@@ -37,6 +37,24 @@ public final class TitanUniprotGraph
     public TitanKey proteinSequenceKey;
     public ProteinType proteinType;
 
+
+
+    //---Db---
+    public TitanKey dbTypeKey;
+    public TitanKey dbNameKey;
+    public DBType dbType;
+    //---Book---
+    public TitanKey bookTypeKey;
+    public TitanKey bookNameKey;
+    public BookType bookType;
+    //---city---
+    public TitanKey cityTypeKey;
+    public TitanKey cityNameKey;
+    public CityType cityType;
+    //---country---
+    public TitanKey countryTypeKey;
+    public TitanKey countryNameKey;
+    public CountryType countryType;
     //---dataset---
     public TitanKey datasetTypeKey;
     public TitanKey datasetNameKey;
@@ -77,6 +95,11 @@ public final class TitanUniprotGraph
     public TitanKey eMBLMoleculeTypeKey;
     public TitanKey eMBLProteinSequenceIdKey;
     public EMBLType eMBLType;
+    //---Patent---
+    public TitanKey patentTypeKey;
+    public TitanKey patentTitleKey;
+    public TitanKey patentNumberKey;
+    public PatentType patentType;
     //---PIR---
     public TitanKey pIRTypeKey;
     public TitanKey pIRIdKey;
@@ -97,11 +120,19 @@ public final class TitanUniprotGraph
     public TitanKey taxonTypeKey;
     public TitanKey taxonNameKey;
     public TaxonType taxonType;
+    //---Thesis---
+    public TitanKey thesisTypeKey;
+    public TitanKey thesisNameKey;
+    public ThesisType thesisType;
     //---RefSeq---
     public TitanKey refSeqTypeKey;
     public TitanKey refSeqIdKey;
     public TitanKey refSeqNucleotideSequenceIdKey;
     public RefSeqType refSeqType;
+    //---Reference---
+    public TitanKey referenceTypeKey;
+    public TitanKey referenceNameKey;
+    public ReferenceType referenceType;
     //---FeatureType---
     public TitanKey featureTypeTypeKey;
     public TitanKey featureTypeNameKey;
@@ -207,6 +238,9 @@ public final class TitanUniprotGraph
         proteinLengthKey = titanKeyForNodeProperty(Protein().length);
         proteinSequenceKey = titanKeyForNodeProperty(Protein().sequence);
         proteinType = new ProteinType(proteinTypekey);
+        // Book keys
+        bookTypeKey = titanKeyForVertexType(bookType.name);
+        bookNameKey = bookTypeKey;
         // Dataset keys
         datasetTypeKey = titanKeyForVertexType(datasetType.name);
         datasetNameKey = datasetTypeKey;
@@ -240,6 +274,10 @@ public final class TitanUniprotGraph
         pIRTypeKey = titanKeyForVertexType(pIRType.id);
         pIRIdKey = pIRTypeKey;
         pIREntryNameKey = titanKeyForNodeProperty(pIRType.entryName);
+        // Patent keys
+        patentTypeKey = titanKeyForVertexType(patentType.number);
+        patentNumberKey = patentTypeKey;
+        patentTitleKey = titanKeyForNodeProperty(patentType.title);
         // Ensembl keys
         ensemblTypeKey = titanKeyForVertexType(ensemblType.id);
         ensemblIdKey = ensemblTypeKey;
@@ -314,14 +352,14 @@ public final class TitanUniprotGraph
         proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
         proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
         proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.id);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.description);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.evidence);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.status);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.begin);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.end);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.original);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.variation);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.ref);
+        proteinFeatureDescriptionKey = titanKeyForEdgeProperty(proteinFeatureType.description);
+        proteinFeatureEvidenceKey = titanKeyForEdgeProperty(proteinFeatureType.evidence);
+        proteinFeatureStatusKey = titanKeyForEdgeProperty(proteinFeatureType.status);
+        proteinFeatureBeginKey = titanKeyForEdgeProperty(proteinFeatureType.begin);
+        proteinFeatureEndKey = titanKeyForEdgeProperty(proteinFeatureType.end);
+        proteinFeatureOriginalKey = titanKeyForEdgeProperty(proteinFeatureType.original);
+        proteinFeatureVariationKey = titanKeyForEdgeProperty(proteinFeatureType.variation);
+        proteinFeatureRefKey = titanKeyForEdgeProperty(proteinFeatureType.ref);
 
 
         //-----------------------------------------------------------------------------------------
