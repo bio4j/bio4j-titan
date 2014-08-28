@@ -165,6 +165,7 @@ public final class TitanUniprotGraph
 
     //-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
+
     public TitanLabel proteinDatasetLabel;
     public ProteinDatasetType proteinDatasetType;
     public TitanLabel proteinOrganismLabel;
@@ -188,9 +189,6 @@ public final class TitanUniprotGraph
     public TitanLabel proteinEnsemblLabel;
     public ProteinEnsemblType proteinEnsemblType;
     public TitanLabel taxonParentLabel;
-    public TaxonParentType taxonParentType;
-    public TitanLabel organismTaxonLabel;
-    public OrganismTaxonType organismTaxonType;
     public TitanLabel proteinRefSeqLabel;
     public ProteinRefSeqType proteinRefSeqType;
     public TitanLabel proteinFeatureLabel;
@@ -206,6 +204,26 @@ public final class TitanUniprotGraph
     public ProteinFeatureType proteinFeatureType;
     public TitanLabel proteinCommentLabel;
     public ProteinCommentType proteinCommentType;
+    public TitanLabel proteinReferenceLabel;
+    public ProteinReferenceType proteinReferenceType;
+    public TaxonParentType taxonParentType;
+    public TitanLabel organismTaxonLabel;
+    public OrganismTaxonType organismTaxonType;
+    public TitanLabel referenceArticleLabel;
+    public ReferenceArticleType referenceArticleType;
+    public TitanLabel referenceBookLabel;
+    public ReferenceBookType referenceBookType;
+    public TitanLabel referenceThesisLabel;
+    public ReferenceThesisType referenceThesisType;
+    public TitanLabel referenceSubmissionLabel;
+    public ReferenceSubmissionType referenceSubmissionType;
+    public TitanLabel referenceOnlineArticleLabel;
+    public ReferenceOnlineArticleType referenceOnlineArticleType;
+    public TitanLabel referenceUnpublishedObservationLabel;
+    public ReferenceUnpublishedObservationType referenceUnpublishedObservationType;
+    public TitanLabel thesisInstituteLabel;
+    public ThesisInstituteType thesisInstituteType;
+
 
 
     public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
@@ -303,51 +321,71 @@ public final class TitanUniprotGraph
         //---Feature---
         featureTypeTypeKey = titanKeyForVertexType(featureTypeType.name);
         featureTypeNameKey = featureTypeTypeKey;
+
+        //-----------------------------------------------------------------------------------------
+        //--------------------------------EDGES--------------------------------------------
+
+
         // proteinDataset
         proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
         proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
+
         // proteinOrganism
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
+
         // proteinKeyword
         proteinKeywordLabel = raw().titanLabelForEdgeType(this.new ProteinKeywordType(null));
         proteinKeywordType = new ProteinKeywordType(proteinKeywordLabel);
+
         // proteinInterpro
         proteinInterproLabel = raw().titanLabelForEdgeType(this.new ProteinInterproType(null));
         proteinInterproType = new ProteinInterproType(proteinInterproLabel);
+
         // proteinReactomeTerm
         proteinReactomeTermLabel = raw().titanLabelForEdgeType(this.new ProteinReactomeTermType(null));
         proteinReactomeTermType = new ProteinReactomeTermType(proteinReactomeTermLabel);
+
         // proteinPfam
         proteinPfamLabel = raw().titanLabelForEdgeType(this.new ProteinPfamType(null));
         proteinPfamType = new ProteinPfamType(proteinPfamLabel);
+
         // proteinKegg
         proteinKeggLabel = raw().titanLabelForEdgeType(this.new ProteinKeggType(null));
         proteinKeggType = new ProteinKeggType(proteinKeggLabel);
+
         // proteinKegg
         proteinPIRLabel = raw().titanLabelForEdgeType(this.new ProteinPIRType(null));
         proteinPIRType = new ProteinPIRType(proteinPIRLabel);
+
         // proteinEMBL
         proteinEMBLLabel = raw().titanLabelForEdgeType(this.new ProteinEMBLType(null));
         proteinEMBLType = new ProteinEMBLType(proteinEMBLLabel);
+
         // proteinEnsembl
         proteinEnsemblLabel = raw().titanLabelForEdgeType(this.new ProteinEnsemblType(null));
         proteinEnsemblType = new ProteinEnsemblType(proteinEnsemblLabel);
+
         // proteinRefSeq
         proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
         proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
+
         // proteinUnigene
         proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
         proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneLabel);
+
         // taxonParent
         taxonParentLabel = raw().titanLabelForEdgeType(this.new TaxonParentType(null));
         taxonParentType = new TaxonParentType(taxonParentLabel);
+
         // organismTaxon
         organismTaxonLabel = raw().titanLabelForEdgeType(this.new OrganismTaxonType(null));
         organismTaxonType = new OrganismTaxonType(organismTaxonLabel);
+
         // proteinComment
         proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentType(null));
         proteinCommentType = new ProteinCommentType(proteinCommentLabel);
+
         // proteinFeature
         proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
         proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
@@ -361,13 +399,39 @@ public final class TitanUniprotGraph
         proteinFeatureVariationKey = titanKeyForEdgeProperty(proteinFeatureType.variation);
         proteinFeatureRefKey = titanKeyForEdgeProperty(proteinFeatureType.ref);
 
-
-        //-----------------------------------------------------------------------------------------
-        //--------------------------------RELATIONSHIPS--------------------------------------------
-
-        proteinOrganismLabel = raw().titanLabelForEdgeType(new ProteinOrganismType((TitanLabel) null));
+        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
 
+        proteinReferenceLabel = raw().titanLabelForEdgeType(this.new ProteinReferenceType(null));
+        proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
+
+        // referenceArticle
+        referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));
+        referenceArticleType = new ReferenceArticleType(referenceArticleLabel);
+
+        // referenceThesis
+        referenceThesisLabel = raw().titanLabelForEdgeType(this.new ReferenceThesisType(null));
+        referenceThesisType = new ReferenceThesisType(referenceThesisLabel);
+
+        // referenceSubmission
+        referenceSubmissionLabel = raw().titanLabelForEdgeType(this.new ReferenceSubmissionType(null));
+        referenceSubmissionType = new ReferenceSubmissionType(referenceSubmissionLabel);
+
+        // referenceOnlineArticle
+        referenceOnlineArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceOnlineArticleType(null));
+        referenceOnlineArticleType = new ReferenceOnlineArticleType(referenceOnlineArticleLabel);
+
+        // referenceBook
+        referenceBookLabel = raw().titanLabelForEdgeType(this.new ReferenceBookType(null));
+        referenceBookType = new ReferenceBookType(referenceBookLabel);
+
+        // referenceUnpublishedObservation
+        referenceUnpublishedObservationLabel = raw().titanLabelForEdgeType(this.new ReferenceUnpublishedObservationType(null));
+        referenceUnpublishedObservationType = new ReferenceUnpublishedObservationType(referenceUnpublishedObservationLabel);
+
+        // thesisInstitute
+        thesisInstituteLabel = raw().titanLabelForEdgeType(this.new ThesisInstituteType(null));
+        thesisInstituteType = new ThesisInstituteType(thesisInstituteLabel);
 
     }
 
