@@ -264,12 +264,27 @@ public final class TitanUniprotGraph
     // articlePubmed
     public TitanLabel articlePubmedLabel;
     public ArticlePubmedType articlePubmedType;
+    // articleJournal
+    public TitanLabel articleJournalLabel;
+    public ArticleJournalType articleJournalType;
+    // bookCity
+    public TitanLabel bookCityLabel;
+    public BookCityType bookCityType;
+    // bookPublisher
+    public TitanLabel bookPublisherLabel;
+    public BookPublisherType bookPublisherType;
+    // instituteCountry
+    public TitanLabel instituteCountryLabel;
+    public InstituteCountryType instituteCountryType;
     // taxonParent
     public TitanLabel taxonParentLabel;
     public TaxonParentType taxonParentType;
     // organismTaxon
     public TitanLabel organismTaxonLabel;
     public OrganismTaxonType organismTaxonType;
+    // onlineArticleOnlineJournal
+    public TitanLabel onlineArticleOnlineJournalLabel;
+    public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
     // referenceArticle
     public TitanLabel referenceArticleLabel;
     public ReferenceArticleType referenceArticleType;
@@ -474,6 +489,26 @@ public final class TitanUniprotGraph
         articlePubmedLabel = raw().titanLabelForEdgeType(this.new ArticlePubmedType(null));
         articlePubmedType = new ArticlePubmedType(articlePubmedLabel);
 
+        // articleJournal
+        articleJournalLabel = raw().titanLabelForEdgeType(this.new ArticleJournalType(null));
+        articleJournalType = new ArticleJournalType(articleJournalLabel);
+
+        // bookCity
+        bookCityLabel = raw().titanLabelForEdgeType(this.new BookCityType(null));
+        bookCityType = new BookCityType(bookCityLabel);
+
+        // bookPublisher
+        bookPublisherLabel = raw().titanLabelForEdgeType(this.new BookPublisherType(null));
+        bookPublisherType = new BookPublisherType(bookPublisherLabel);
+
+        // instituteCountry
+        instituteCountryLabel = raw().titanLabelForEdgeType(this.new InstituteCountryType(null));
+        instituteCountryType = new InstituteCountryType(instituteCountryLabel);
+
+        // onlineArticleOnlineJournal
+        onlineArticleOnlineJournalLabel = raw().titanLabelForEdgeType(this.new OnlineArticleOnlineJournalType(null));
+        onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalLabel);
+
         // proteinDataset
         proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
         proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
@@ -537,15 +572,15 @@ public final class TitanUniprotGraph
         // proteinFeature
         proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
         proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
-        proteinFeatureIdKey = titanKeyForEdgeProperty(proteinFeatureType.id);
-        proteinFeatureDescriptionKey = titanKeyForEdgeProperty(proteinFeatureType.description);
-        proteinFeatureEvidenceKey = titanKeyForEdgeProperty(proteinFeatureType.evidence);
-        proteinFeatureStatusKey = titanKeyForEdgeProperty(proteinFeatureType.status);
-        proteinFeatureBeginKey = titanKeyForEdgeProperty(proteinFeatureType.begin);
-        proteinFeatureEndKey = titanKeyForEdgeProperty(proteinFeatureType.end);
-        proteinFeatureOriginalKey = titanKeyForEdgeProperty(proteinFeatureType.original);
-        proteinFeatureVariationKey = titanKeyForEdgeProperty(proteinFeatureType.variation);
-        proteinFeatureRefKey = titanKeyForEdgeProperty(proteinFeatureType.ref);
+        proteinFeatureIdKey = titanKeyMakerForEdgeProperty(proteinFeatureType.id);
+        proteinFeatureDescriptionKey = titanKeyMakerForEdgeProperty(proteinFeatureType.description);
+        proteinFeatureEvidenceKey = titanKeyMakerForEdgeProperty(proteinFeatureType.evidence);
+        proteinFeatureStatusKey = titanKeyMakerForEdgeProperty(proteinFeatureType.status);
+        proteinFeatureBeginKey = titanKeyMakerForEdgeProperty(proteinFeatureType.begin);
+        proteinFeatureEndKey = titanKeyMakerForEdgeProperty(proteinFeatureType.end);
+        proteinFeatureOriginalKey = titanKeyMakerForEdgeProperty(proteinFeatureType.original);
+        proteinFeatureVariationKey = titanKeyMakerForEdgeProperty(proteinFeatureType.variation);
+        proteinFeatureRefKey = titanKeyMakerForEdgeProperty(proteinFeatureType.ref);
 
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
@@ -594,6 +629,23 @@ public final class TitanUniprotGraph
     }
 
     private void initIndices() {
+        
+        proteinAccessionIndex =  new TitanTypedVertexIndex.DefaultUnique(this, Protein().accession);
+        datasetNameIndex =  new TitanTypedVertexIndex.DefaultUnique(this, Dataset().name);
+        organismScientificNameIndex =  new TitanTypedVertexIndex.DefaultUnique(this, Organism().scientificName);
+        keywordIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Keyword().id);
+        interproIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Interpro().id);
+        reactomeTermIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, ReactomeTerm().id);
+        pfamIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Pfam().id);
+        keggIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Kegg().id);
+        eMBLIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, EMBL().id);
+        pIRIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, PIR().id);
+        uniGeneIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, UniGene().id);
+        ensemblIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Ensembl().id);
+        taxonNameIndex = new TitanTypedVertexIndex.DefaultUnique(this, Taxon().name);
+        refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, RefSeq().id);
+        commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique(this, CommentType().name);
+        featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique(this, FeatureType().name);
 
     }
 
@@ -964,82 +1016,78 @@ public final class TitanUniprotGraph
 
     @Override
     public ArticleJournalType ArticleJournal() {
-        return null;
+        return articleJournalType;
     }
 
     @Override
     public ArticlePubmedType ArticlePubmed() {
-        return null;
+        return articlePubmedType;
     }
 
-    @Override
-    public ArticleJournalType ArticleJournalType() {
-        return null;
-    }
 
     @Override
     public BookCityType BookCity() {
-        return null;
+        return bookCityType;
     }
 
     @Override
     public BookPublisherType BookPublisher() {
-        return null;
+        return bookPublisherType;
     }
 
     @Override
     public InstituteCountryType InstituteCountry() {
-        return null;
+        return instituteCountryType;
     }
 
     @Override
     public OnlineArticleOnlineJournalType OnlineArticleOnlineJournal() {
-        return null;
+        return onlineArticleOnlineJournalType;
     }
 
     @Override
     public OrganismTaxonType OrganismTaxon() {
-        return null;
+        return organismTaxonType;
     }
 
     @Override
     public ProteinCommentType ProteinComment() {
-        return null;
+        return proteinCommentType;
     }
 
     @Override
     public ProteinDatasetType ProteinDataset() {
-        return null;
+        return proteinDatasetType;
     }
 
     @Override
     public ProteinEMBLType ProteinEMBL() {
-        return null;
+        return proteinEMBLType;
     }
 
     @Override
     public ProteinEnsemblType ProteinEnsembl() {
-        return null;
+        return proteinEnsemblType;
     }
 
     @Override
     public ProteinFeatureType ProteinFeature() {
-        return null;
+        return proteinFeatureType;
     }
 
     @Override
     public ProteinInterproType ProteinInterpro() {
-        return null;
+        return proteinInterproType;
     }
 
     @Override
     public ProteinKeggType ProteinKegg() {
-        return null;
+        return proteinKeggType;
     }
 
     @Override
     public ProteinKeywordType ProteinKeyword() {
-        return null;
+        return proteinKeywordType;
     }
 
 

@@ -85,15 +85,15 @@ public final class TitanGoGraph
         //--------------------------------VERTICES--------------------------------------------
         goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
         goTermIdKey = goTermTypekey;
-        goTermNameKey = titanKeyForNodeProperty(GoTerm().name);
-        goTermDefinitionKey = titanKeyForNodeProperty(GoTerm().definition);
-        goTermObsoleteKey = titanKeyForNodeProperty(GoTerm().obsolete);
-        goTermCommentKey = titanKeyForNodeProperty(GoTerm().comment);
-        goTermSynonymKey = titanKeyForNodeProperty(GoTerm().synonym);
+        goTermNameKey = titanKeyForVertexProperty(GoTerm().name);
+        goTermDefinitionKey = titanKeyForVertexProperty(GoTerm().definition);
+        goTermObsoleteKey = titanKeyForVertexProperty(GoTerm().obsolete);
+        goTermCommentKey = titanKeyForVertexProperty(GoTerm().comment);
+        goTermSynonymKey = titanKeyForVertexProperty(GoTerm().synonym);
         goTermType = new GoTermType(goTermTypekey);
 
         subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
-        subOntologiesNameKey = titanKeyForNodeProperty(SubOntologies().name);
+        subOntologiesNameKey = titanKeyForVertexProperty(SubOntologies().name);
 
 
         //-----------------------------------------------------------------------------------------
