@@ -83,17 +83,17 @@ public final class TitanGoGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-        goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
+        goTermTypekey = raw().titanKeyMakerForVertexType(GoTerm().id).single().unique().make();
         goTermIdKey = goTermTypekey;
-        goTermNameKey = titanKeyForVertexProperty(GoTerm().name);
-        goTermDefinitionKey = titanKeyForVertexProperty(GoTerm().definition);
-        goTermObsoleteKey = titanKeyForVertexProperty(GoTerm().obsolete);
-        goTermCommentKey = titanKeyForVertexProperty(GoTerm().comment);
-        goTermSynonymKey = titanKeyForVertexProperty(GoTerm().synonym);
+        goTermNameKey = raw().titanKeyMakerForVertexProperty(GoTerm().name).single().make();
+        goTermDefinitionKey = raw().titanKeyMakerForVertexProperty(GoTerm().definition).single().make();
+        goTermObsoleteKey = raw().titanKeyMakerForVertexProperty(GoTerm().obsolete).single().make();
+        goTermCommentKey = raw().titanKeyMakerForVertexProperty(GoTerm().comment).single().make();
+        goTermSynonymKey = raw().titanKeyMakerForVertexProperty(GoTerm().synonym).single().make();
         goTermType = new GoTermType(goTermTypekey);
 
-        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
-        subOntologiesNameKey = titanKeyForVertexProperty(SubOntologies().name);
+        subOntologiesTypekey = raw().titanKeyMakerForVertexType(SubOntologies().name).single().unique().make();
+        subOntologiesNameKey = subOntologiesTypekey;
 
 
         //-----------------------------------------------------------------------------------------

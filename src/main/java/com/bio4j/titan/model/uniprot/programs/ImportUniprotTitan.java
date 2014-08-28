@@ -44,7 +44,7 @@ public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVe
         conf.setProperty("autotype", "none");
         //-------creating graph handlers---------------------
         TitanGraph graph = TitanFactory.open(conf);;
-        return new TitanUniprotGraph(DefaultTitanGraph(graph));
+        return new TitanUniprotGraph(new DefaultTitanGraph(graph));
     }
 
     @Override
