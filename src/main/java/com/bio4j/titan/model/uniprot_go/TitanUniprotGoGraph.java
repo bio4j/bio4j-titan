@@ -18,8 +18,8 @@ public final class TitanUniprotGoGraph
         UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph uniprotRawGraph;
-    private GoGraph goRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
+    private GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goRawGraph;
 
     //---------------RELATIONSHIPS---------------------------
 

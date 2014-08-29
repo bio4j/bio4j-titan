@@ -19,8 +19,8 @@ public final class TitanUniprotEnzymeGraph
         UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph uniprotRawGraph;
-    private EnzymeDBGraph enzymeDBRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
+    private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBRawGraph;
 
 
     public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph) {

@@ -18,8 +18,8 @@ public final class TitanUniprotUniRefGraph
         UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph uniprotRawGraph;
-    private UniRefGraph uniRefRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
+    private UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRefRawGraph;
 
     //---------------RELATIONSHIPS---------------------------
 
