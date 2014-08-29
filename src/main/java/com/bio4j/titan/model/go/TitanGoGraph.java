@@ -144,7 +144,7 @@ public final class TitanGoGraph
 
     @Override
     public SubOntologiesType SubOntologies() {
-        return null;
+        return subOntologiesType;
     }
 
     @Override
