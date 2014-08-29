@@ -1,7 +1,74 @@
 package com.bio4j.titan.model.uniprot_go;
 
+import com.bio4j.model.go.GoGraph;
+import com.bio4j.model.uniprot.UniprotGraph;
+import com.bio4j.model.uniprot_go.UniprotGoGraph;
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.util.DefaultTitanGraph;
+import com.thinkaurelius.titan.core.*;
+
+
 /**
- * Created by raquel on 27/08/14.
+ Implementing the types with Titan
+ @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class TitanUniprotGoGraph {
+public final class TitanUniprotGoGraph
+        extends
+        UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+
+    private DefaultTitanGraph rawGraph;
+    private UniprotGraph uniprotRawGraph;
+    private GoGraph goRawGraph;
+
+    //---------------RELATIONSHIPS---------------------------
+
+    private TitanLabel goAnnotationLabel;
+    private GoAnnotationType goAnnotationType;
+
+
+    public TitanUniprotGoGraph(DefaultTitanGraph rawGraph) {
+        super(rawGraph);
+        this.rawGraph = rawGraph;
+        this.uniprotRawGraph = new TitanUniprotGraph(rawGraph);
+        this.goRawGraph = new TitanGoGraph(rawGraph);
+        initTypes();
+        initIndices();
+    }
+
+    @Override
+    public DefaultTitanGraph raw() {
+        return rawGraph;
+    }
+
+    private void initTypes() {
+
+        //-----------------------------------------------------------------------------------------
+        //--------------------------------RELATIONSHIPS--------------------------------------------
+
+        goAnnotationLabel = raw().titanLabelForEdgeType(new GoAnnotationType((TitanLabel) null));
+        goAnnotationType = new GoAnnotationType(goAnnotationLabel);
+
+    }
+
+    private void initIndices() {
+
+    }
+
+
+    @Override
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+        return uniprotRawGraph;
+    }
+
+    @Override
+    public GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goGraph() {
+        return goRawGraph;
+    }
+
+    @Override
+    public GoAnnotationType GoAnnotation() {
+        return null;
+    }
+
 }
