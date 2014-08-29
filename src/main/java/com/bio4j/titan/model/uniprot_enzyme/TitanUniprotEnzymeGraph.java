@@ -3,6 +3,8 @@ package com.bio4j.titan.model.uniprot_enzyme;
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
+import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
@@ -17,15 +19,18 @@ public final class TitanUniprotEnzymeGraph
         UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
+    private UniprotGraph uniprotRawGraph;
+    private EnzymeDBGraph enzymeDBRawGraph;
 
 
-
-//    public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph) {
-//        super(rawGraph);
-//        this.rawGraph = rawGraph;
-//        initTypes();
-//        initIndices();
-//    }
+    public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph) {
+        super(rawGraph);
+        this.rawGraph = rawGraph;
+        this.uniprotRawGraph = new TitanUniprotGraph(rawGraph);
+        this.enzymeDBRawGraph = new TitanEnzymeDBGraph(rawGraph);
+        initTypes();
+        initIndices();
+    }
 
     @Override
     public DefaultTitanGraph raw() {
@@ -44,12 +49,12 @@ public final class TitanUniprotEnzymeGraph
 
     @Override
     public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
-        return null;
+        return uniprotRawGraph;
     }
 
     @Override
     public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBGraph() {
-        return null;
+        return enzymeDBRawGraph;
     }
 
     @Override

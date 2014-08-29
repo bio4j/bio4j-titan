@@ -1,47 +1,87 @@
-//package com.bio4j.titan.model.enzyme;
-//
-//import com.bio4j.model.enzymedb.EnzymeDBGraph;
-//import com.bio4j.titan.model.enzyme.relationships.TitanEnzymaticActivity.TitanEnzymaticActivityType;
-//import com.ohnosequences.typedGraphs.titan.TitanTypedGraph;
-//import com.thinkaurelius.titan.core.TitanGraph;
-//import com.thinkaurelius.titan.core.TitanKey;
-//import com.bio4j.titan.model.enzyme.nodes.TitanEnzyme.TitanEnzymeType;
-//import com.thinkaurelius.titan.core.TitanLabel;
-//
-///**
-// * Created by ppareja on 6/20/2014.
-// */
-//public abstract class TitanEnzymeDBGraph implements
-//		TitanTypedGraph,
-//		EnzymeDBGraph{
-//
-//	protected TitanGraph rawGraph;
-//
-//	TitanEnzymeDBGraph(TitanGraph rawGraph) {
-//
-//		this.rawGraph = rawGraph;
-//	}
-//
-//	@Override
-//	public TitanGraph rawGraph() {
-//		return rawGraph;
-//	}
-//
-//	public TitanKey enzymeTkey;
-//	public TitanKey enzymeIdKey;
-//	public TitanKey enzymeCofactorsKey;
-//	public TitanKey enzymeOfficialNameKey;
-//	public TitanKey enzymeCatalyticActivityKey;
-//	public TitanKey enzymeCommentKey;
-//	public TitanKey enzymePrositeCrossReferencesKey;
-//	public final TitanEnzymeType enzymeT = new TitanEnzymeType(this);
-//
-//	//------------------INDICES----------------
-//	//-----------------------------------------
-//
-//
-//	//-----------------------------------------------------------------------------------------
-//	//--------------------------------RELATIONSHIPS--------------------------------------------
-//	public TitanLabel enzymaticActivityLabel;
-//	public TitanEnzymaticActivityType enzymaticActivityT = new TitanEnzymaticActivityType(this);
-//}
+package com.bio4j.titan.model.enzyme;
+
+import com.bio4j.model.enzymedb.EnzymeDBGraph;
+import com.bio4j.model.enzymedb.nodes.Enzyme;
+import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
+import com.bio4j.titan.util.DefaultTitanGraph;
+import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
+import com.thinkaurelius.titan.core.*;
+
+
+/**
+ Implementing the types with Titan
+ @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
+ */
+public final class TitanEnzymeDBGraph
+        extends
+        EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+
+    private DefaultTitanGraph rawGraph;
+
+
+    //-------------------VERTICES----------------------------
+
+    public TitanKey enzymeTypekey;
+    public TitanKey enzymeIdkey;
+    public TitanKey enzymeCofactorskey;
+    public TitanKey enzymeOfficialNamekey;
+    public TitanKey enzymeAlternateNameskey;
+    public TitanKey enzymeCommentkey;
+    public TitanKey enzymeCatalyticActivitykey;
+    public TitanKey enzymePrositeCrossReferenceskey;
+    public EnzymeType enzymeType;
+
+    //---------------INDICES---------------------------
+
+    TitanTypedVertexIndex.DefaultUnique<
+            Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            EnzymeType,
+            EnzymeType.id, String,
+            EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            DefaultTitanGraph
+            > enzymeIdIndex;
+
+    public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
+        super(rawGraph);
+        this.rawGraph = rawGraph;
+        initTypes();
+        initIndices();
+    }
+
+    @Override
+    public DefaultTitanGraph raw() {
+        return rawGraph;
+    }
+
+    @Override
+    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph() {
+        return null;
+    }
+
+    @Override
+    public EnzymeType Enzyme() {
+        return enzymeType;
+    }
+
+    private void initTypes() {
+
+        //-----------------------------------------------------------------------------------------
+        //--------------------------------VERTICES--------------------------------------------
+        enzymeTypekey = raw().titanKeyMakerForVertexType(Enzyme().id).single().unique().make();
+        enzymeIdkey = enzymeTypekey;
+        enzymeCofactorskey = raw().titanKeyMakerForVertexType(Enzyme().cofactors).single().make();
+        enzymeOfficialNamekey = raw().titanKeyMakerForVertexType(Enzyme().officialName).single().make();
+        enzymeAlternateNameskey = raw().titanKeyMakerForVertexType(Enzyme().alternateNames).single().make();
+        enzymeCommentkey = raw().titanKeyMakerForVertexType(Enzyme().comment).single().make();
+        enzymeCatalyticActivitykey = raw().titanKeyMakerForVertexType(Enzyme().catalyticActivity).single().make();
+        enzymePrositeCrossReferenceskey = raw().titanKeyMakerForVertexType(Enzyme().prositeCrossReferences).single().make();
+        enzymeType = new EnzymeType(enzymeTypekey);
+
+
+    }
+
+    private void initIndices() {
+        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Enzyme().id);
+    }
+}
+
