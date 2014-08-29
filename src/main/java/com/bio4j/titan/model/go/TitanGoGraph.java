@@ -34,6 +34,7 @@ public final class TitanGoGraph
 
     public TitanKey subOntologiesTypekey;
     public TitanKey subOntologiesNameKey;
+    public SubOntologiesType subOntologiesType;
 
     //---------------RELATIONSHIPS---------------------------
 
@@ -95,6 +96,7 @@ public final class TitanGoGraph
 
         subOntologiesTypekey = raw().titanKeyMakerForVertexType(SubOntologies().name).single().unique().make();
         subOntologiesNameKey = subOntologiesTypekey;
+        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
 
 
         //-----------------------------------------------------------------------------------------
