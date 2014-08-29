@@ -100,25 +100,25 @@ public final class TitanGoGraph
         subOntologiesNameKey = subOntologiesTypekey;
 
 
-
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        isAType = new IsAType(isALabel);
-        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
-        partOfType = new PartOfType(partOfLabel);
-        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
-        hasPartOfType = new HasPartOfType(hasPartOfLabel);
-        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
-        regulatesType = new RegulatesType(regulatesLabel);
-        regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
-        positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
-        positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
-        negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
-        negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
-        subOntologyType = new SubOntologyType(subOntologyLabel);
-        subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
 
+        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
+        isAType = new IsAType(isALabel);
+        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
+        partOfType = new PartOfType(partOfLabel);
+        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
+        hasPartOfType = new HasPartOfType(hasPartOfLabel);
+        regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
+        regulatesType = new RegulatesType(regulatesLabel);
+        positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
+        positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
+        negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
+        negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
+
+        subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
+        subOntologyType = new SubOntologyType(subOntologyLabel);
 
     }
 
