@@ -85,6 +85,7 @@ public final class TitanGoGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
+        goTermType = new GoTermType(goTermTypekey);
         goTermTypekey = raw().titanKeyMakerForVertexType(GoTerm().id).single().unique().make();
         goTermIdKey = goTermTypekey;
         goTermNameKey = raw().titanKeyMakerForVertexProperty(GoTerm().name).single().make();
@@ -92,30 +93,31 @@ public final class TitanGoGraph
         goTermObsoleteKey = raw().titanKeyMakerForVertexProperty(GoTerm().obsolete).single().make();
         goTermCommentKey = raw().titanKeyMakerForVertexProperty(GoTerm().comment).single().make();
         goTermSynonymKey = raw().titanKeyMakerForVertexProperty(GoTerm().synonym).single().make();
-        goTermType = new GoTermType(goTermTypekey);
 
+
+        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
         subOntologiesTypekey = raw().titanKeyMakerForVertexType(SubOntologies().name).single().unique().make();
         subOntologiesNameKey = subOntologiesTypekey;
-        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
+
 
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
         isAType = new IsAType(isALabel);
-        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
+        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
         partOfType = new PartOfType(partOfLabel);
-        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
+        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
         hasPartOfType = new HasPartOfType(hasPartOfLabel);
-        regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
+        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
         regulatesType = new RegulatesType(regulatesLabel);
-        positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
+        regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
         positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
-        negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
+        positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
         negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
-        subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
+        negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
         subOntologyType = new SubOntologyType(subOntologyLabel);
+        subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
 
 
     }
