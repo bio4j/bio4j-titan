@@ -55,7 +55,7 @@ public final class TitanGoGraph
 
     //---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.DefaultUnique<
+    TitanTypedVertexIndex.Unique<
             GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
             GoTermType,
             GoTermType.id, String,
@@ -121,8 +121,8 @@ public final class TitanGoGraph
     }
 
     private void initIndices() {
-        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique(this, GoTerm().id);
-        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique(this, SubOntologies().name);
+        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, GoTerm().id);
+        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, SubOntologies().name);
     }
 
     @Override

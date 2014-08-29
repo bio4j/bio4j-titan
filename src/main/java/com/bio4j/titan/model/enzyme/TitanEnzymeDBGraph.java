@@ -81,7 +81,7 @@ public final class TitanEnzymeDBGraph
     }
 
     private void initIndices() {
-        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Enzyme().id);
+        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Enzyme().id);
     }
 }
 

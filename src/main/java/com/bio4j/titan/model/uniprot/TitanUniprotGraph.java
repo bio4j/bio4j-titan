@@ -630,22 +630,22 @@ public final class TitanUniprotGraph
 
     private void initIndices() {
 
-        proteinAccessionIndex =  new TitanTypedVertexIndex.DefaultUnique(this, Protein().accession);
-        datasetNameIndex =  new TitanTypedVertexIndex.DefaultUnique(this, Dataset().name);
-        organismScientificNameIndex =  new TitanTypedVertexIndex.DefaultUnique(this, Organism().scientificName);
-        keywordIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Keyword().id);
-        interproIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Interpro().id);
-        reactomeTermIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, ReactomeTerm().id);
-        pfamIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Pfam().id);
-        keggIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Kegg().id);
-        eMBLIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, EMBL().id);
-        pIRIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, PIR().id);
-        uniGeneIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, UniGene().id);
-        ensemblIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, Ensembl().id);
-        taxonNameIndex = new TitanTypedVertexIndex.DefaultUnique(this, Taxon().name);
-        refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique(this, RefSeq().id);
-        commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique(this, CommentType().name);
-        featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique(this, FeatureType().name);
+        proteinAccessionIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Protein().accession);
+        datasetNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Dataset().name);
+        organismScientificNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Organism().scientificName);
+        keywordIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Keyword().id);
+        interproIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Interpro().id);
+        reactomeTermIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, ReactomeTerm().id);
+        pfamIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Pfam().id);
+        keggIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Kegg().id);
+        eMBLIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, EMBL().id);
+        pIRIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, PIR().id);
+        uniGeneIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, UniGene().id);
+        ensemblIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Ensembl().id);
+        taxonNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Taxon().name);
+        refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, RefSeq().id);
+        commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, CommentType().name);
+        featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, FeatureType().name);
 
     }
 

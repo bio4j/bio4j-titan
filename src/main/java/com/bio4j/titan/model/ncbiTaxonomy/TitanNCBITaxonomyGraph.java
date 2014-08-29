@@ -59,7 +59,7 @@ public final class TitanNCBITaxonomyGraph
     }
 
     private void initIndices() {
-        nCBITaxonIdIndex =  new TitanTypedVertexIndex.DefaultUnique(this, NCBITaxon().id);
+        nCBITaxonIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, NCBITaxon().id);
     }
 
 
