@@ -396,13 +396,13 @@ public final class TitanUniprotGraph
 	    keywordType = new KeywordType(keywordTypeKey);
         keywordTypeKey = raw().titanKeyMakerForVertexType(keywordType.id).unique().single().make();
         keywordIdKey = keywordTypeKey;
-        keywordNameKey = raw().titanKeyMakerForVertexProperty(keywordType.name).unique().single().make();
+        keywordNameKey = raw().titanKeyMakerForVertexProperty(keywordType.name).single().make();
 
         // Interpro keys
 	    interproType = new InterproType(interproTypeKey);
         interproTypeKey = raw().titanKeyMakerForVertexType(interproType.id).unique().single().make();
         interproIdKey = interproTypeKey;
-        interproNameKey = raw().titanKeyMakerForVertexProperty(interproType.name).unique().single().make();
+        interproNameKey = raw().titanKeyMakerForVertexProperty(interproType.name).single().make();
 
         // Journal keys
 	    journalType = new JournalType(journalTypeKey);

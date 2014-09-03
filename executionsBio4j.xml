@@ -1,5 +1,5 @@
 <scheduled_executions>
-<!--
+
   <execution>
     <class_full_name>com.bio4j.titan.model.go.programs.ImportGOTitan</class_full_name>
     <arguments>      
@@ -7,6 +7,7 @@
 	  <argument>bio4j</argument>
     </arguments>
   </execution> 
+  <!--
   -->
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
