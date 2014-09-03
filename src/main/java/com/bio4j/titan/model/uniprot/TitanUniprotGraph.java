@@ -361,127 +361,154 @@ public final class TitanUniprotGraph
         bookNameKey = bookTypeKey;
 
         // City keys
+	    cityType = new CityType(cityTypeKey);
         cityTypeKey = raw().titanKeyMakerForVertexType(cityType.name).unique().single().make();
         cityNameKey = cityTypeKey;
-        cityType = new CityType(cityTypeKey);
+
         // Country keys
+	    countryType = new CountryType(countryTypeKey);
         countryTypeKey = raw().titanKeyMakerForVertexType(countryType.name).unique().single().make();
         countryNameKey = countryTypeKey;
-        countryType = new CountryType(countryTypeKey);
+
         // DB keys
+	    dbType = new DBType(dbTypeKey);
         dbTypeKey = raw().titanKeyMakerForVertexType(dbType.name).unique().single().make();
         dbNameKey = dbTypeKey;
-        dbType = new DBType(dbTypeKey);
+
         // Dataset keys
+	    datasetType = new DatasetType(datasetTypeKey);
         datasetTypeKey = raw().titanKeyMakerForVertexType(datasetType.name).unique().single().make();
         datasetNameKey = datasetTypeKey;
-        datasetType = new DatasetType(datasetTypeKey);
+
         // Institute keys
+	    instituteType = new InstituteType(instituteTypeKey);
         instituteTypeKey = raw().titanKeyMakerForVertexType(instituteType.name).unique().single().make();
         instituteNameKey = instituteTypeKey;
-        instituteType = new InstituteType(instituteTypeKey);
+
         // Organism keys
+	    organismType = new OrganismType(organismTypeKey);
         organismTypeKey = raw().titanKeyMakerForVertexType(organismType.scientificName).unique().single().make();
         organismScientificNameKey = organismTypeKey;
         organismCommonNameKey = raw().titanKeyMakerForVertexProperty(organismType.commonName).single().make();
         organismSynonymNameKey = raw().titanKeyMakerForVertexProperty(organismType.synonymName).single().make();
-        organismType = new OrganismType(organismTypeKey);
+
         // Keyword keys
+	    keywordType = new KeywordType(keywordTypeKey);
         keywordTypeKey = raw().titanKeyMakerForVertexType(keywordType.id).unique().single().make();
         keywordIdKey = keywordTypeKey;
         keywordNameKey = raw().titanKeyMakerForVertexProperty(keywordType.name).unique().single().make();
-        keywordType = new KeywordType(keywordTypeKey);
+
         // Interpro keys
+	    interproType = new InterproType(interproTypeKey);
         interproTypeKey = raw().titanKeyMakerForVertexType(interproType.id).unique().single().make();
         interproIdKey = interproTypeKey;
         interproNameKey = raw().titanKeyMakerForVertexProperty(interproType.name).unique().single().make();
-        interproType = new InterproType(interproTypeKey);
+
         // Journal keys
+	    journalType = new JournalType(journalTypeKey);
         journalTypeKey = raw().titanKeyMakerForVertexType(journalType.name).unique().single().make();
         journalNameKey = journalTypeKey;
-        journalType = new JournalType(journalTypeKey);
+
         // OnlineArticle keys
+	    onlineArticleType = new OnlineArticleType(onlineArticleTypeKey);
         onlineArticleTypeKey = raw().titanKeyMakerForVertexType(onlineArticleType.title).unique().single().make();
         onlineArticleTitleKey = onlineArticleTypeKey;
-        onlineArticleType = new OnlineArticleType(onlineArticleTypeKey);
+
         // OnlineJournal keys
+	    onlineJournalType = new OnlineJournalType(onlineJournalTypeKey);
         onlineJournalTypeKey = raw().titanKeyMakerForVertexType(onlineJournalType.name).unique().single().make();
         onlineJournalNameKey = onlineJournalTypeKey;
-        onlineJournalType = new OnlineJournalType(onlineJournalTypeKey);
+
         // ReactomeTerm keys
+	    reactomeTermType = new ReactomeTermType(reactomeTermTypeKey);
         reactomeTermTypeKey = raw().titanKeyMakerForVertexType(reactomeTermType.id).unique().single().make();
         reactomeTermIdKey = reactomeTermTypeKey;
         reactomeTermPathwayNameKey = raw().titanKeyMakerForVertexProperty(reactomeTermType.pathwayName).single().make();
-        reactomeTermType = new ReactomeTermType(reactomeTermTypeKey);
+
         // Publisher keys
+	    publisherType = new PublisherType(publisherTypeKey);
         publisherTypeKey = raw().titanKeyMakerForVertexType(publisherType.name).unique().single().make();
         publisherNameKey = publisherTypeKey;
-        publisherType = new PublisherType(publisherTypeKey);
+
         // Pfam keys
+	    pfamType = new PfamType(pfamTypeKey);
         pfamTypeKey = raw().titanKeyMakerForVertexType(pfamType.id).unique().single().make();
         pfamIdKey = pfamTypeKey;
         pfamNameKey = raw().titanKeyMakerForVertexProperty(pfamType.name).single().make();
-        pfamType = new PfamType(pfamTypeKey);
+
         // Pfam keys
+	    pubmedType = new PubmedType(pubmedTypeKey);
         pubmedTypeKey = raw().titanKeyMakerForVertexType(pubmedType.id).unique().single().make();
         pubmedIdKey = pubmedTypeKey;
-        pubmedType = new PubmedType(pubmedTypeKey);
+
         // Submission keys
+	    submissionType = new SubmissionType(submissionTypeKey);
         submissionTypeKey = raw().titanKeyMakerForVertexType(submissionType.title).unique().single().make();
         submissionTitleKey = submissionTypeKey;
-        submissionType = new SubmissionType(submissionTypeKey);
+
         // EMBL keys
+	    eMBLType = new EMBLType(eMBLTypeKey);
         eMBLTypeKey = raw().titanKeyMakerForVertexType(eMBLType.id).unique().single().make();
         eMBLIdKey = eMBLTypeKey;
         eMBLMoleculeTypeKey = raw().titanKeyMakerForVertexProperty(eMBLType.moleculeType).single().make();
         eMBLProteinSequenceIdKey = raw().titanKeyMakerForVertexProperty(eMBLType.proteinSequenceId).single().make();
-        eMBLType = new EMBLType(eMBLTypeKey);
+
         // PIR keys
+	    pIRType = new PIRType(pIRTypeKey);
         pIRTypeKey = raw().titanKeyMakerForVertexType(pIRType.id).unique().single().make();
         pIRIdKey = pIRTypeKey;
         pIREntryNameKey = raw().titanKeyMakerForVertexProperty(pIRType.entryName).single().make();
-        pIRType = new PIRType(pIRTypeKey);
+
         // Patent keys
+	    patentType = new PatentType(patentTypeKey);
         patentTypeKey = raw().titanKeyMakerForVertexType(patentType.number).unique().single().make();
         patentNumberKey = patentTypeKey;
         patentTitleKey = raw().titanKeyMakerForVertexProperty(patentType.title).single().make();
-        patentType = new PatentType(patentTypeKey);
+
         // Ensembl keys
+	    ensemblType = new EnsemblType(ensemblTypeKey);
         ensemblTypeKey = raw().titanKeyMakerForVertexType(ensemblType.id).unique().single().make();
         ensemblIdKey = ensemblTypeKey;
         ensemblMoleculeIdKey = raw().titanKeyMakerForVertexProperty(ensemblType.moleculeId).single().make();
         ensemblProteinSequenceIdKey = raw().titanKeyMakerForVertexProperty(ensemblType.proteinSequenceId).single().make();
         ensemblGeneIdKey = raw().titanKeyMakerForVertexProperty(ensemblType.geneId).single().make();
-        ensemblType = new EnsemblType(ensemblTypeKey);
+
         //---UniGene---
+	    uniGeneType = new UniGeneType(uniGeneTypeKey);
         uniGeneTypeKey = raw().titanKeyMakerForVertexType(uniGeneType.id).unique().single().make();
         uniGeneIdKey = uniGeneTypeKey;
-        uniGeneType = new UniGeneType(uniGeneTypeKey);
+
         //---SubcellularLocation---
+	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeKey);
         subcellularLocationTypeKey = raw().titanKeyMakerForVertexType(subcellularLocationType.name).unique().single().make();
         subcellularLocationNameKey = subcellularLocationTypeKey;
-        subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeKey);
+
         //---Kegg---
+	    keggType = new KeggType(keggTypeKey);
         keggTypeKey = raw().titanKeyMakerForVertexType(keggType.id).unique().single().make();
         keggIdKey = keggTypeKey;
-        keggType = new KeggType(keggTypeKey);
+
         //---Taxon---
+	    taxonType = new TaxonType(taxonTypeKey);
         taxonTypeKey = raw().titanKeyMakerForVertexType(taxonType.name).unique().single().make();
         taxonNameKey = taxonTypeKey;
-        taxonType = new TaxonType(taxonTypeKey);
+
         //---RefSeq---
+	    refSeqType = new RefSeqType(refSeqTypeKey);
         refSeqTypeKey = raw().titanKeyMakerForVertexType(refSeqType.id).unique().single().make();
         refSeqIdKey = refSeqTypeKey;
         refSeqNucleotideSequenceIdKey = raw().titanKeyMakerForVertexProperty(refSeqType.nucleotideSequenceId).single().make();
-        refSeqType = new RefSeqType(refSeqTypeKey);
+
         //---Comment---
+	    commentTypeType = new CommentTypeType(commentTypeTypeKey);
         commentTypeTypeKey = raw().titanKeyMakerForVertexType(commentTypeType.name).unique().single().make();
         commentTypeNameKey = commentTypeTypeKey;
-        commentTypeType = new CommentTypeType(commentTypeTypeKey);
+
         //---Feature---
+	    featureTypeType = new FeatureTypeType(featureTypeTypeKey);
         featureTypeTypeKey = raw().titanKeyMakerForVertexType(featureTypeType.name).unique().single().make();
         featureTypeNameKey = featureTypeTypeKey;
-        featureTypeType = new FeatureTypeType(featureTypeTypeKey);
+
         //---UnpublishedObservation
         //unpublishedObservationType = new UnpublishedObservationType(null);
 
