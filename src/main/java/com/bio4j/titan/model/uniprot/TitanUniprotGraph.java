@@ -336,9 +336,10 @@ public final class TitanUniprotGraph
         //--------------------------------VERTICES--------------------------------------------
 
         // Protein keys
-        proteinTypekey = raw().titanKeyMakerForVertexType(Protein().accession).unique().single().single().make();
+	    proteinType = new ProteinType(proteinTypekey);
+        proteinTypekey = raw().titanKeyMakerForVertexType(Protein().accession).unique().single().make();
         proteinAcessionKey = proteinTypekey;
-        proteinNameKey = raw().titanKeyMakerForVertexProperty(Protein().name).single().single().make();
+        proteinNameKey = raw().titanKeyMakerForVertexProperty(Protein().name).single().make();
         proteinShortNameKey = raw().titanKeyMakerForVertexProperty(Protein().shortName).single().make();
         proteinFullNameKey = raw().titanKeyMakerForVertexProperty(Protein().fullName).single().make();
         proteinModifiedDateKey = raw().titanKeyMakerForVertexProperty(Protein().modifiedDate).single().make();
@@ -347,16 +348,18 @@ public final class TitanUniprotGraph
         proteinVersionKey = raw().titanKeyMakerForVertexProperty(Protein().version).single().make();
         proteinLengthKey = raw().titanKeyMakerForVertexProperty(Protein().length).single().make();
         proteinSequenceKey = raw().titanKeyMakerForVertexProperty(Protein().sequence).single().make();
-        proteinType = new ProteinType(proteinTypekey);
+
         // Article keys
+	    articleType = new ArticleType(articleTypeKey);
         articleTypeKey = raw().titanKeyMakerForVertexType(articleType.title).unique().single().make();
         articleTitleKey = articleTypeKey;
         articleDoIdKey = raw().titanKeyMakerForVertexProperty(articleType.doId).single().make();
-        articleType = new ArticleType(articleTypeKey);
+
         // Book keys
+	    bookType = new BookType(bookTypeKey);
         bookTypeKey = raw().titanKeyMakerForVertexType(bookType.name).unique().single().make();
         bookNameKey = bookTypeKey;
-        bookType = new BookType(bookTypeKey);
+
         // City keys
         cityTypeKey = raw().titanKeyMakerForVertexType(cityType.name).unique().single().make();
         cityNameKey = cityTypeKey;
