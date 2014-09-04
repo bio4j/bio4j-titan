@@ -14,11 +14,11 @@
   * You should have received a copy of the GNU Affero General Public License
   * along with this program.  If not, see <http:www.gnu.org/licenses/>
   */
-package com.bio4j.titan.model.ncbiTaxonomy.programs;
+package com.bio4j.titan.model.uniref.programs;
 
-import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
-import com.bio4j.model.ncbiTaxonomy.programs.ImportNCBITaxonomy;
-import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
+import com.bio4j.model.uniref.UniRefGraph;
+import com.bio4j.model.uniref.programs.ImportUniRef;
+import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -29,14 +29,14 @@ import org.apache.commons.configuration.Configuration;
 import java.util.ArrayList;
 
 /**
- * Imports NCBI taxonomy into Bio4j
+ * Imports UniRef clusters into Bio4j
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
+public class ImportUniRefTitan extends ImportUniRef<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
 
 	@Override
-	protected NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
+	protected UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -44,7 +44,7 @@ public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGrap
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanNCBITaxonomyGraph(new DefaultTitanGraph(graph));
+		return new TitanUniRefGraph(new DefaultTitanGraph(graph));
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGrap
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importNCBITaxonomy(args);
+		importUniRef(args);
 	}
 
 }
