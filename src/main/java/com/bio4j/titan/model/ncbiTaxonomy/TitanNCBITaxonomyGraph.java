@@ -3,6 +3,7 @@ package com.bio4j.titan.model.ncbiTaxonomy;
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
 import com.bio4j.titan.util.DefaultTitanGraph;
+import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
@@ -47,7 +48,12 @@ public final class TitanNCBITaxonomyGraph
         return rawGraph;
     }
 
-    private void initTypes() {
+	@Override
+	public TypedVertexIndex.Unique<NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, NCBITaxonType, NCBITaxonType.id, String, NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> nCBITaxonIdIndex() {
+		return nCBITaxonIdIndex;
+	}
+
+	private void initTypes() {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
