@@ -601,6 +601,7 @@ public final class TitanUniprotGraph
 
         // proteinFeature
         proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
+	    proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
         proteinFeatureIdKey = raw().titanKeyMakerForEdgeProperty(proteinFeatureType.id).single().make();
         proteinFeatureDescriptionKey = raw().titanKeyMakerForEdgeProperty(proteinFeatureType.description).single().make();
         proteinFeatureEvidenceKey = raw().titanKeyMakerForEdgeProperty(proteinFeatureType.evidence).single().make();
@@ -610,7 +611,6 @@ public final class TitanUniprotGraph
         proteinFeatureOriginalKey = raw().titanKeyMakerForEdgeProperty(proteinFeatureType.original).single().make();
         proteinFeatureVariationKey = raw().titanKeyMakerForEdgeProperty(proteinFeatureType.variation).single().make();
         proteinFeatureRefKey = raw().titanKeyMakerForEdgeProperty(proteinFeatureType.ref).single().make();
-        proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
 
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
