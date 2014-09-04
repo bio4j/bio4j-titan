@@ -18,6 +18,7 @@ package com.bio4j.titan.model.enzyme.programs;
 
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.enzymedb.programs.ImportEnzymeDB;
+import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
@@ -44,7 +45,7 @@ public class ImportEnzymeDBTitan extends ImportEnzymeDB<DefaultTitanGraph, Titan
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanNCBITaxonomyGraph(new DefaultTitanGraph(graph));
+		return new TitanEnzymeDBGraph(new DefaultTitanGraph(graph));
 	}
 
 	@Override
