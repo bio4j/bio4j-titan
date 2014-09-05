@@ -16,9 +16,9 @@
   */
 package com.bio4j.titan.model.uniprot_go.programs;
 
-import com.bio4j.model.go.GoGraph;
-import com.bio4j.model.go.programs.ImportGO;
-import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.model.uniprot_go.UniprotGoGraph;
+import com.bio4j.model.uniprot_go.programs.ImportUniprotGo;
+import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -33,10 +33,10 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniprotGOTitan extends ImportUniprotGO<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
+public class ImportUniprotGoTitan extends ImportUniprotGo<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
 
 	@Override
-	protected GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
+	protected UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -44,7 +44,7 @@ public class ImportUniprotGOTitan extends ImportUniprotGO<DefaultTitanGraph, Tit
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanGoGraph(new DefaultTitanGraph(graph));
+		return new TitanUniprotGoGraph(new DefaultTitanGraph(graph));
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class ImportUniprotGOTitan extends ImportUniprotGO<DefaultTitanGraph, Tit
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importUniprotGO(args);
+		importUniprotGo(args);
 	}
 
 }
