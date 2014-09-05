@@ -1,6 +1,7 @@
 package com.bio4j.titan.model.uniprot_uniref.programs;
 
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
+import com.bio4j.model.uniprot_uniref.programs.ImportUniprotUniRef;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
