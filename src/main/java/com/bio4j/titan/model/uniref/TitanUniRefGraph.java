@@ -6,6 +6,7 @@ import com.bio4j.model.uniref.nodes.UniRef100Cluster;
 import com.bio4j.model.uniref.nodes.UniRef50Cluster;
 import com.bio4j.model.uniref.nodes.UniRef90Cluster;
 import com.bio4j.titan.util.DefaultTitanGraph;
+import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
@@ -104,7 +105,22 @@ public final class TitanUniRefGraph
         return null;
     }
 
-    @Override
+	@Override
+	public TypedVertexIndex.Unique<UniRef50Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniRef50ClusterType, UniRef50ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRef50ClusterIdIndex() {
+		return uniRef50ClusterIdIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<UniRef90Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniRef90ClusterType, UniRef90ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRef90ClusterIdIndex() {
+		return uniRef90ClusterIdIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<UniRef100Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniRef100ClusterType, UniRef100ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRef100ClusterIdIndex() {
+		return uniRef100ClusterIdIndex;
+	}
+
+	@Override
     public UniRef50ClusterType UniRef50Cluster() {
         return uniRef50ClusterType;
     }
