@@ -38,12 +38,12 @@ public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVe
     @Override
     protected UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
         //----------DB configuration------------------
-        Configuration conf = new BaseConfiguration();
-        conf.setProperty("storage.directory", dbFolder);
-        conf.setProperty("storage.backend", "local");
-        conf.setProperty("autotype", "none");
-        //-------creating graph handlers---------------------
-        TitanGraph graph = TitanFactory.open(conf);;
+	    Configuration conf = new BaseConfiguration();
+	    conf.setProperty("storage.directory", dbFolder);
+	    conf.setProperty("storage.backend", "local");
+	    conf.setProperty("autotype", "none");
+	    //-------creating graph handlers---------------------
+	    TitanGraph graph = TitanFactory.open(conf);
         return new TitanUniprotGraph(new DefaultTitanGraph(graph));
     }
 
