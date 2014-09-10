@@ -90,6 +90,10 @@ public final class TitanUniprotGraph
     public TitanKey journalTypeKey;
     public TitanKey journalNameKey;
     public JournalType journalType;
+	//---person---
+	public TitanKey personTypeKey;
+	public TitanKey personNameKey;
+	public PersonType personType;
     //---publisher---
     public TitanKey publisherTypeKey;
     public TitanKey publisherNameKey;
@@ -309,6 +313,12 @@ public final class TitanUniprotGraph
     // onlineArticleOnlineJournal
     public TitanLabel onlineArticleOnlineJournalLabel;
     public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
+	// referenceAuthorPerson
+	public TitanLabel referenceAuthorPersonLabel;
+	public ReferenceAuthorPersonType referenceAuthorPersonType;
+	// referenceAuthorConsortium
+	public TitanLabel referenceAuthorConsortiumLabel;
+	public ReferenceAuthorConsortiumType referenceAuthorConsortiumType;
     // referenceArticle
     public TitanLabel referenceArticleLabel;
     public ReferenceArticleType referenceArticleType;
@@ -655,6 +665,14 @@ public final class TitanUniprotGraph
         referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));
         referenceArticleType = new ReferenceArticleType(referenceArticleLabel);
 
+	    // referenceAuthorPerson
+	    referenceAuthorPersonLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorPersonType(null));
+	    referenceAuthorPersonType = new ReferenceAuthorPersonType(referenceAuthorPersonLabel);
+
+	    // referenceAuthorConsortium
+	    referenceAuthorConsortiumLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorConsortiumType(null));
+	    referenceAuthorConsortiumType = new ReferenceAuthorConsortiumType(referenceAuthorConsortiumLabel);
+
         // referenceThesis
         referenceThesisLabel = raw().titanLabelForEdgeType(this.new ReferenceThesisType(null));
         referenceThesisType = new ReferenceThesisType(referenceThesisLabel);
@@ -768,12 +786,12 @@ public final class TitanUniprotGraph
 
 	@Override
 	public ReferenceAuthorPersonType ReferenceAuthorPerson() {
-		return null;
+		return referenceAuthorPersonType;
 	}
 
 	@Override
 	public ReferenceAuthorConsortiumType ReferenceAuthorConsortium() {
-		return null;
+		return referenceAuthorConsortiumType;
 	}
 
 	@Override
@@ -1123,7 +1141,7 @@ public final class TitanUniprotGraph
 
 	@Override
 	public PersonType Person() {
-		return null;
+		return personType;
 	}
 
 	@Override
