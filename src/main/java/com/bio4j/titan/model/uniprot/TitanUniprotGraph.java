@@ -208,6 +208,8 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> thesisTitleIndex;
 	public TitanTypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> consortiumNameIndex;
 	public TitanTypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> instituteNameIndex;
+	public TitanTypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> submissionTitleIndex;
+	public TitanTypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> patentNumberIndex;
 
     //-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
@@ -685,6 +687,10 @@ public final class TitanUniprotGraph
         refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, RefSeq().id);
         commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, CommentType().name);
         featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, FeatureType().name);
+	    consortiumNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Consortium().name);
+	    personNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Person().name);
+	    patentNumberIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Patent().number);
+	    submissionTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Submission().title);
 
     }
 
@@ -861,12 +867,12 @@ public final class TitanUniprotGraph
 
 	@Override
 	public TypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> patentNumberIndex() {
-		return null;
+		return patentNumberIndex;
 	}
 
 	@Override
 	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> submissionTitleIndex() {
-		return null;
+		return submissionTitleIndex;
 	}
 
 	@Override
