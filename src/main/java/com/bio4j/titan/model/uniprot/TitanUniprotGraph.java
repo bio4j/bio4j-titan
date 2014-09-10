@@ -469,13 +469,18 @@ public final class TitanUniprotGraph
         publisherTypeKey = raw().titanKeyMakerForVertexType(publisherType.name).unique().single().make();
         publisherNameKey = publisherTypeKey;
 
+	    // Person keys
+	    personType = new PersonType(personTypeKey);
+	    personTypeKey = raw().titanKeyMakerForVertexType(personType.name).unique().single().make();
+	    personNameKey = personTypeKey;
+
         // Pfam keys
 	    pfamType = new PfamType(pfamTypeKey);
         pfamTypeKey = raw().titanKeyMakerForVertexType(pfamType.id).unique().single().make();
         pfamIdKey = pfamTypeKey;
         pfamNameKey = raw().titanKeyMakerForVertexProperty(pfamType.name).single().make();
 
-        // Pfam keys
+        // Pubmed keys
 	    pubmedType = new PubmedType(pubmedTypeKey);
         pubmedTypeKey = raw().titanKeyMakerForVertexType(pubmedType.id).unique().single().make();
         pubmedIdKey = pubmedTypeKey;
