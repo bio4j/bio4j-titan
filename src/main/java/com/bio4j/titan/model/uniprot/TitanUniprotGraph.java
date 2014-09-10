@@ -213,6 +213,8 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> cityNameIndex;
 	public TitanTypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> countryNameIndex;
 	public TitanTypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> publisherNameIndex;
+	public TitanTypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> bookNameIndex;
+	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> dbNameIndex;
 
 
 	//-----------------------------------------------------------------------------------------
@@ -703,6 +705,8 @@ public final class TitanUniprotGraph
 	    cityNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, City().name);
 	    countryNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Country().name);
 	    publisherNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Publisher().name);
+	    bookNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Book().name);
+	    dbNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, DB().name);
 
     }
 
@@ -864,17 +868,17 @@ public final class TitanUniprotGraph
 
 	@Override
 	public TypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> bookNameIndex() {
-		return null;
+		return bookNameIndex;
 	}
 
 	@Override
 	public TypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> dbNameIndex() {
-		return null;
+		return dbNameIndex;
 	}
 
 	@Override
 	public TypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> countryNameIndex() {
-		return null;
+		return countryNameIndex;
 	}
 
 	@Override
