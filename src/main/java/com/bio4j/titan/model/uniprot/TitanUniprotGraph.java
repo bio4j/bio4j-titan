@@ -166,7 +166,7 @@ public final class TitanUniprotGraph
     public RefSeqType refSeqType;
     //---Reference---
     public TitanKey referenceTypeKey;
-    public TitanKey referenceNameKey;
+    public TitanKey referenceDateKey;
     public ReferenceType referenceType;
     //---SubcellularLocation----
     public TitanKey subcellularLocationTypeKey;
@@ -457,6 +457,11 @@ public final class TitanUniprotGraph
 	    onlineJournalType = new OnlineJournalType(onlineJournalTypeKey);
         onlineJournalTypeKey = raw().titanKeyMakerForVertexType(onlineJournalType.name).unique().single().make();
         onlineJournalNameKey = onlineJournalTypeKey;
+
+	    // Reference keys
+	    referenceType = new ReferenceType(referenceTypeKey);
+	    referenceTypeKey = raw().titanKeyMakerForVertexType(referenceType.date).single().make();
+	    referenceDateKey = referenceTypeKey;
 
         // ReactomeTerm keys
 	    reactomeTermType = new ReactomeTermType(reactomeTermTypeKey);
