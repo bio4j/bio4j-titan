@@ -54,6 +54,10 @@ public final class TitanUniprotGraph
     public TitanKey cityTypeKey;
     public TitanKey cityNameKey;
     public CityType cityType;
+	//---consortium---
+	public TitanKey consortiumTypeKey;
+	public TitanKey consortiumNameKey;
+	public ConsortiumType consortiumType;
     //---country---
     public TitanKey countryTypeKey;
     public TitanKey countryNameKey;
@@ -287,6 +291,9 @@ public final class TitanUniprotGraph
     // bookCity
     public TitanLabel bookCityLabel;
     public BookCityType bookCityType;
+	// bookEditor
+	public TitanLabel bookEditorLabel;
+	public BookEditorType bookEditorType;
     // bookPublisher
     public TitanLabel bookPublisherLabel;
     public BookPublisherType bookPublisherType;
@@ -379,8 +386,13 @@ public final class TitanUniprotGraph
 
         // City keys
 	    cityType = new CityType(cityTypeKey);
-        cityTypeKey = raw().titanKeyMakerForVertexType(cityType.name).unique().single().make();
-        cityNameKey = cityTypeKey;
+	    cityTypeKey = raw().titanKeyMakerForVertexType(cityType.name).unique().single().make();
+	    cityNameKey = cityTypeKey;
+
+	    // Consortium keys
+	    consortiumType = new ConsortiumType(consortiumTypeKey);
+	    consortiumTypeKey = raw().titanKeyMakerForVertexType(consortiumType.name).unique().single().make();
+	    consortiumNameKey = consortiumTypeKey;
 
         // Country keys
 	    countryType = new CountryType(countryTypeKey);
@@ -543,6 +555,10 @@ public final class TitanUniprotGraph
         // bookCity
         bookCityLabel = raw().titanLabelForEdgeType(this.new BookCityType(null));
         bookCityType = new BookCityType(bookCityLabel);
+
+	    // bookEditor
+	    bookEditorLabel = raw().titanLabelForEdgeType(this.new BookEditorType(null));
+	    bookEditorType = new BookEditorType(bookEditorLabel);
 
         // bookPublisher
         bookPublisherLabel = raw().titanLabelForEdgeType(this.new BookPublisherType(null));
@@ -1017,7 +1033,7 @@ public final class TitanUniprotGraph
 
     @Override
     public CityType City() {
-        return null;
+        return cityType;
     }
 
     @Override
@@ -1027,7 +1043,7 @@ public final class TitanUniprotGraph
 
 	@Override
 	public ConsortiumType Consortium() {
-		return null;
+		return consortiumType;
 	}
 
 	@Override
@@ -1203,7 +1219,7 @@ public final class TitanUniprotGraph
 
 	@Override
 	public BookEditorType BookEditor() {
-		return null;
+		return bookEditorType;
 	}
 
 	@Override
