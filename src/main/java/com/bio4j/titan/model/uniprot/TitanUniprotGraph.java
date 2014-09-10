@@ -757,6 +757,7 @@ public final class TitanUniprotGraph
 	    bookNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Book().name);
 	    dbNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, DB().name);
 	    articleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Article().title);
+	    journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Journal().name);
 
     }
 
