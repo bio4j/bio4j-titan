@@ -149,7 +149,7 @@ public final class TitanUniprotGraph
     public TaxonType taxonType;
     //---Thesis---
     public TitanKey thesisTypeKey;
-    public TitanKey thesisNameKey;
+    public TitanKey thesisTitleKey;
     public ThesisType thesisType;
     //----OnlineArticle-----
     public TitanKey onlineArticleTypeKey;
@@ -489,6 +489,11 @@ public final class TitanUniprotGraph
 	    submissionType = new SubmissionType(submissionTypeKey);
         submissionTypeKey = raw().titanKeyMakerForVertexType(submissionType.title).unique().single().make();
         submissionTitleKey = submissionTypeKey;
+
+	    // Thesis keys
+	    thesisType = new ThesisType(thesisTypeKey);
+	    thesisTypeKey = raw().titanKeyMakerForVertexType(thesisType.title).unique().single().make();
+	    thesisTitleKey = thesisTypeKey;
 
         // EMBL keys
 	    eMBLType = new EMBLType(eMBLTypeKey);
