@@ -199,6 +199,12 @@ public final class TitanUniprotGraph
     public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> refSeqIdIndex;
     public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> commentTypeNameIndex;
     public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> featureTypeNameIndex;
+	public TitanTypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> journalNameIndex;
+	public TitanTypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> articleTitleIndex;
+	public TitanTypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> onlineJournalNameIndex;
+	public TitanTypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> onlineArticleTitleIndex;
+	public TitanTypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> pubmedIdIndex;
+	public TitanTypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> personNameIndex;
 
     //-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
@@ -719,7 +725,17 @@ public final class TitanUniprotGraph
         return proteinReferenceType;
     }
 
-    @Override
+	@Override
+	public ReferenceAuthorPersonType ReferenceAuthorPerson() {
+		return null;
+	}
+
+	@Override
+	public ReferenceAuthorConsortiumType ReferenceAuthorConsortium() {
+		return null;
+	}
+
+	@Override
     public ReferenceArticleType ReferenceArticle() {
         return referenceArticleType;
     }
@@ -796,6 +812,81 @@ public final class TitanUniprotGraph
     }
 
 	@Override
+	public TypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> journalNameIndex() {
+		return journalNameIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> articleTitleIndex() {
+		return articleTitleIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> onlineJournalNameIndex() {
+		return onlineJournalNameIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> onlineArticleTitleIndex() {
+		return onlineArticleTitleIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> cityNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> publisherNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> bookNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> dbNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> countryNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> patentNumberIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> submissionTitleIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> instituteNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> consortiumNameIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> thesisTitleIndex() {
+		return null;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> personNameIndex() {
+		return personNameIndex;
+	}
+
+	@Override
 	public TypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> proteinAccessionIndex() {
 		return proteinAccessionIndex;
 	}
@@ -812,7 +903,12 @@ public final class TitanUniprotGraph
         return pIRIdIndex;
     }
 
-    @Override
+	@Override
+	public TypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pubmedIdIndex() {
+		return pubmedIdIndex;
+	}
+
+	@Override
     public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
             UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniGeneIdIndex() {
         return uniGeneIdIndex;
@@ -904,7 +1000,12 @@ public final class TitanUniprotGraph
         return commentTypeType;
     }
 
-    @Override
+	@Override
+	public ConsortiumType Consortium() {
+		return null;
+	}
+
+	@Override
     public DatasetType Dataset() {
         return datasetType;
     }
@@ -979,7 +1080,12 @@ public final class TitanUniprotGraph
         return patentType;
     }
 
-    @Override
+	@Override
+	public PersonType Person() {
+		return null;
+	}
+
+	@Override
     public PfamType Pfam() {
         return pfamType;
     }
@@ -1070,7 +1176,12 @@ public final class TitanUniprotGraph
         return bookPublisherType;
     }
 
-    @Override
+	@Override
+	public BookEditorType BookEditor() {
+		return null;
+	}
+
+	@Override
     public InstituteCountryType InstituteCountry() {
         return instituteCountryType;
     }
