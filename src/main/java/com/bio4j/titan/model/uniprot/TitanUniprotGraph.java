@@ -292,6 +292,9 @@ public final class TitanUniprotGraph
     // articleJournal
     public TitanLabel articleJournalLabel;
     public ArticleJournalType articleJournalType;
+	public TitanKey articleJournalVolumeKey;
+	public TitanKey articleJournalFirstKey;
+	public TitanKey articleJournalLastKey;
     // bookCity
     public TitanLabel bookCityLabel;
     public BookCityType bookCityType;
@@ -576,6 +579,9 @@ public final class TitanUniprotGraph
         // articleJournal
         articleJournalLabel = raw().titanLabelForEdgeType(this.new ArticleJournalType(null));
         articleJournalType = new ArticleJournalType(articleJournalLabel);
+	    articleJournalVolumeKey = raw().titanKeyMakerForEdgeProperty(articleJournalType.volume).single().make();
+	    articleJournalFirstKey = raw().titanKeyMakerForEdgeProperty(articleJournalType.first).single().make();
+	    articleJournalLastKey = raw().titanKeyMakerForEdgeProperty(articleJournalType.last).single().make();
 
         // bookCity
         bookCityLabel = raw().titanLabelForEdgeType(this.new BookCityType(null));
