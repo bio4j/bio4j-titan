@@ -726,6 +726,10 @@ public final class TitanUniprotGraph
         subcellularLocationParentLabel = raw().titanLabelForEdgeType(this.new SubcellularLocationParentType(null));
         subcellularLocationParentType = new SubcellularLocationParentType(subcellularLocationParentLabel);
 
+	    // submissionDB
+	    submissionDBLabel = raw().titanLabelForEdgeType(this.new SubmissionDBType(null));
+	    submissionDBType = new SubmissionDBType(submissionDBLabel);
+
 
 
     }
