@@ -4,6 +4,7 @@ import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.enzymedb.nodes.Enzyme;
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
+import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
@@ -41,7 +42,12 @@ public final class TitanEnzymeDBGraph
             DefaultTitanGraph
             > enzymeIdIndex;
 
-    public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
+	@Override
+	public TypedVertexIndex.Unique<Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EnzymeType, EnzymeType.id, String, EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeIdIndex() {
+		return enzymeIdIndex;
+	}
+
+	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
         initTypes();

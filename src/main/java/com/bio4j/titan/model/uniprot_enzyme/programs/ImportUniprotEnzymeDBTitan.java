@@ -17,10 +17,8 @@
 package com.bio4j.titan.model.uniprot_enzyme.programs;
 
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
-import com.bio4j.model.uniprot_go.UniprotGoGraph;
-import com.bio4j.model.uniprot_go.programs.ImportUniprotGo;
+import com.bio4j.model.uniprot_enzymedb.programs.ImportUniprotEnzymeDB;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
-import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;

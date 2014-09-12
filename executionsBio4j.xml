@@ -48,5 +48,20 @@
 	  <argument>uniprot_data.xml</argument>
     </arguments>
   </execution>  
-  
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotEnzymeTitan</class_full_name>
+    <arguments>      
+      <argument>uniprot_sprot.xml</argument>
+	  <argument>bio4j</argument>
+	  <argument>uniprot_data.xml</argument>
+    </arguments>
+  </execution>  
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
+    <arguments>      
+      <argument>uniprot_trembl.xml</argument>
+	  <argument>bio4j</argument>
+	  <argument>uniprot_data.xml</argument>
+    </arguments>
+  </execution> 
 </scheduled_executions>
