@@ -705,6 +705,10 @@ public final class TitanUniprotGraph
         proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
         proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
 
+	    // proteinSubcellularLocation
+	    proteinSubcellularLocationLabel = raw().titanLabelForEdgeType(this.new ProteinSubcellularLocationType(null));
+	    proteinSubcellularLocationType = new ProteinSubcellularLocationType(proteinSubcellularLocationLabel);
+
         // proteinUnigene
         proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
         proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneLabel);
