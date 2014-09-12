@@ -5,6 +5,7 @@ import com.bio4j.model.uniref.UniRefGraph;
 import com.bio4j.model.uniref.nodes.UniRef100Cluster;
 import com.bio4j.model.uniref.nodes.UniRef50Cluster;
 import com.bio4j.model.uniref.nodes.UniRef90Cluster;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
@@ -20,6 +21,7 @@ public final class TitanUniRefGraph
         UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
+	private UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -66,6 +68,7 @@ public final class TitanUniRefGraph
     public TitanUniRefGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
+	    uniprotUniRefGraph = new TitanUniprotUniRefGraph(rawGraph);
         initTypes();
         initIndices();
     }

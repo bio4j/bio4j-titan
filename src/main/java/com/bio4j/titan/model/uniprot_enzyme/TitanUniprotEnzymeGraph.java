@@ -6,7 +6,6 @@ import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
-import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
 
@@ -21,6 +20,14 @@ public final class TitanUniprotEnzymeGraph
     private DefaultTitanGraph rawGraph;
     private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
     private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBRawGraph;
+
+
+	//-----------------------------------------------------------------------------------------
+	//--------------------------------RELATIONSHIPS--------------------------------------------
+
+	// enzymaticActivity
+	public TitanLabel enzymaticActivityLabel;
+	public EnzymaticActivityType enzymaticActivityType;
 
 
     public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph) {
@@ -39,6 +46,11 @@ public final class TitanUniprotEnzymeGraph
 
     private void initTypes() {
 
+	    //-----------------------------------------------------------------------------------------
+	    //--------------------------------RELATIONSHIPS--------------------------------------------
+
+	    enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((TitanLabel) null));
+	    enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityLabel);
 
     }
 
