@@ -20,7 +20,7 @@ public final class TitanEnzymeDBGraph
         EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
+	private TitanUniprotEnzymeGraph uniprotEnzymeGraph = null;
 
 
     //-------------------VERTICES----------------------------
@@ -53,7 +53,6 @@ public final class TitanEnzymeDBGraph
 	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-		uniprotEnzymeGraph = new TitanUniprotEnzymeGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }
@@ -93,5 +92,15 @@ public final class TitanEnzymeDBGraph
     private void initIndices() {
         enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Enzyme().id);
     }
+
+	/*
+		You can use this as `enzymeDBGraph.withUniprot(new TitanUniprotEnzymeDBGraph(raw, uniprotGraph, enzymeGraph))`
+	*/
+	public TitanEnzymeDBGraph withUniprot(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
+
+		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
+
+		return this;
+	}
 }
 

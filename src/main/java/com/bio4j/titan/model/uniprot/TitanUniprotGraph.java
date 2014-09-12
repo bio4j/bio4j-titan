@@ -29,10 +29,10 @@ public final class TitanUniprotGraph
 
     private DefaultTitanGraph rawGraph;
 
-	private UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph;
-	private UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph;
-	private UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph;
-	private UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph;
+	private TitanUniprotGoGraph uniprotGoGraph;
+	private TitanUniprotUniRefGraph uniprotUniRefGraph;
+	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
+	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -386,10 +386,6 @@ public final class TitanUniprotGraph
     public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-	    uniprotEnzymeDBGraph = new TitanUniprotEnzymeGraph(rawGraph, this, new TitanEnzymeDBGraph(rawGraph));
-	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph, this, new TitanGoGraph(rawGraph));
-	    uniprotUniRefGraph = new TitanUniprotUniRefGraph(rawGraph, this, new TitanUniRefGraph(rawGraph));
-	    uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(rawGraph, this, new TitanNCBITaxonomyGraph(rawGraph));
         initTypes();
         initIndices();
     }
@@ -1395,5 +1391,33 @@ public final class TitanUniprotGraph
         return proteinKeywordType;
     }
 
+	/*
+		You can use this as `uniprotGraph.withGo(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
+	*/
+	public TitanUniprotGraph withGo(TitanUniprotGoGraph uniprotGoGraph) {
+		this.uniprotGoGraph = uniprotGoGraph;
+		return this;
+	}
+	/*
+		You can use this as `uniprotGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniprotGraph, enzymeGraph))`
+	*/
+	public TitanUniprotGraph withEnzymeDB(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
+		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
+		return this;
+	}
+	/*
+		You can use this as `uniprotGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
+	*/
+	public TitanUniprotGraph withNCBITaxonomy(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
+		return this;
+	}
+	/*
+		You can use this as `uniprotGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
+	*/
+	public TitanUniprotGraph withUniRef(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+		this.uniprotUniRefGraph = uniprotUniRefGraph;
+		return this;
+	}
 
 }

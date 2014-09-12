@@ -22,7 +22,7 @@ public final class TitanUniRefGraph
         UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-	private UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph;
+	private TitanUniprotUniRefGraph uniprotUniRefGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -69,7 +69,6 @@ public final class TitanUniRefGraph
     public TitanUniRefGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-	    uniprotUniRefGraph = new TitanUniprotUniRefGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }
@@ -138,4 +137,14 @@ public final class TitanUniRefGraph
     public UniRef100ClusterType UniRef100Cluster() {
         return uniRef100ClusterType;
     }
+
+	/*
+		You can use this as `uniRefGraph.withUniprot(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
+	*/
+	public TitanUniRefGraph withUniprot(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+
+		this.uniprotUniRefGraph = uniprotUniRefGraph;
+
+		return this;
+	}
 }

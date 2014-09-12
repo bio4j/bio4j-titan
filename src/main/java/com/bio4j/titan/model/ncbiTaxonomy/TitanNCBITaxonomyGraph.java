@@ -19,7 +19,7 @@ public final class TitanNCBITaxonomyGraph
         NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
+	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
 
 
     //-------------------VERTICES----------------------------
@@ -27,6 +27,11 @@ public final class TitanNCBITaxonomyGraph
     public TitanKey nCBITaxonTypekey;
     public TitanKey nCBITaxonIdkey;
     public NCBITaxonType nCBITaxonType;
+
+	//---------------RELATIONSHIPS---------------------------
+
+	private TitanLabel nCBITaxonParentLabel;
+	private NCBITaxonParentType ncbiTaxonParentType;
 
 
     //---------------INDICES---------------------------
@@ -42,7 +47,6 @@ public final class TitanNCBITaxonomyGraph
     public TitanNCBITaxonomyGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-	    uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }
@@ -65,6 +69,11 @@ public final class TitanNCBITaxonomyGraph
         nCBITaxonTypekey = raw().titanKeyMakerForVertexType(NCBITaxon().id).single().unique().make();
         nCBITaxonIdkey = nCBITaxonTypekey;
 
+		//-----------------------------------------------------------------------------------------
+		//--------------------------------RELATIONSHIPS--------------------------------------------
+		nCBITaxonParentLabel = raw().titanLabelForEdgeType(new NCBITaxonParentType((TitanLabel) null));
+		ncbiTaxonParentType = new NCBITaxonParentType(nCBITaxonParentLabel);
+
 
     }
 
@@ -82,4 +91,14 @@ public final class TitanNCBITaxonomyGraph
     public NCBITaxonParentType NCBITaxonParent() {
         return null;
     }
+
+	/*
+		You can use this as `ncbiTaxonomyGraph.withUniprot(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
+	*/
+	public TitanNCBITaxonomyGraph withUniprot(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+
+		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
+
+		return this;
+	}
 }

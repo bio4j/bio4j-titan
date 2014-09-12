@@ -21,7 +21,7 @@ public final class TitanGoGraph
         GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-	private UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph;
+	private TitanUniprotGoGraph uniprotGoGraph = null;
 
     //-------------------VERTICES----------------------------
 
@@ -74,7 +74,6 @@ public final class TitanGoGraph
     public TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }
@@ -195,6 +194,16 @@ public final class TitanGoGraph
     public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subontologiesNameIndex() {
         return subOntologiesNameIndex;
     }
+
+	/*
+		You can use this as `goGraph.withUniprot(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
+	*/
+	public TitanGoGraph withUniprot(TitanUniprotGoGraph uniprotGoGraph) {
+
+		this.uniprotGoGraph = uniprotGoGraph;
+
+		return this;
+	}
 
 
 }
