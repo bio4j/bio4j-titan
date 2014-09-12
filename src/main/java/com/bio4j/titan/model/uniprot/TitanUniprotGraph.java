@@ -301,6 +301,22 @@ public final class TitanUniprotGraph
     // proteinComment
     public TitanLabel proteinCommentLabel;
     public ProteinCommentType proteinCommentType;
+	public TitanKey proteinCommentTextKey;
+	public TitanKey proteinCommentStatusKey;
+	public TitanKey proteinCommentEvidenceKey;
+	public TitanKey proteinCommentBeginKey;
+	public TitanKey proteinCommentEndKey;
+	public TitanKey proteinCommentMethodKey;
+	public TitanKey proteinCommentMassKey;
+	public TitanKey proteinCommentAbsorptionMaxKey;
+	public TitanKey proteinCommentAbsorptionTextKey;
+	public TitanKey proteinCommentKineticsXMLKey;
+	public TitanKey proteinCommentPhDependenceKey;
+	public TitanKey proteinCommentPositionKey;
+	public TitanKey proteinCommentRedoxPotentialKey;
+	public TitanKey proteinCommentRedoxPotentialEvidenceKey;
+	public TitanKey proteinCommentTemperatureDependenceKey;
+
 	// proteinDisease
 	public TitanLabel proteinDiseaseLabel;
 	public ProteinDiseaseType proteinDiseaseType;
@@ -704,6 +720,21 @@ public final class TitanUniprotGraph
         // proteinComment
         proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentType(null));
         proteinCommentType = new ProteinCommentType(proteinCommentLabel);
+	    proteinCommentEvidenceKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.evidence).single().make();
+	    proteinCommentStatusKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.status).single().make();
+	    proteinCommentTextKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.text).single().make();
+	    proteinCommentBeginKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.begin).single().make();
+	    proteinCommentEndKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.end).single().make();
+	    proteinCommentMassKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.mass).single().make();
+	    proteinCommentMethodKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.method).single().make();
+	    proteinCommentAbsorptionMaxKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.absorptionMax).single().make();
+	    proteinCommentAbsorptionTextKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.absorptionText).single().make();
+	    proteinCommentKineticsXMLKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.kineticsXML).single().make();
+	    proteinCommentPhDependenceKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.phDependence).single().make();
+	    proteinCommentPositionKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.position).single().make();
+	    proteinCommentRedoxPotentialKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.redoxPotential).single().make();
+	    proteinCommentRedoxPotentialEvidenceKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.redoxPotentialEvidence).single().make();
+	    proteinCommentTemperatureDependenceKey = raw().titanKeyMakerForEdgeProperty(proteinCommentType.temperatureDependence).single().make();
 
         // proteinFeature
         proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
@@ -933,7 +964,7 @@ public final class TitanUniprotGraph
 
     @Override
     public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph() {
-        return uniprotEnzymeDBGraph;
+        return uniprotEnzymeGraph;
     }
 
     @Override
