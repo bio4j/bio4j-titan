@@ -6,10 +6,14 @@ import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
+import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
+import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
@@ -382,10 +386,10 @@ public final class TitanUniprotGraph
     public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-	    uniprotEnzymeDBGraph = new TitanUniprotEnzymeGraph(rawGraph);
-	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph);
-	    uniprotUniRefGraph = new TitanUniprotUniRefGraph(rawGraph);
-	    uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(rawGraph);
+	    uniprotEnzymeDBGraph = new TitanUniprotEnzymeGraph(rawGraph, this, new TitanEnzymeDBGraph(rawGraph));
+	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph, this, new TitanGoGraph(rawGraph));
+	    uniprotUniRefGraph = new TitanUniprotUniRefGraph(rawGraph, this, new TitanUniRefGraph(rawGraph));
+	    uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(rawGraph, this, new TitanNCBITaxonomyGraph(rawGraph));
         initTypes();
         initIndices();
     }

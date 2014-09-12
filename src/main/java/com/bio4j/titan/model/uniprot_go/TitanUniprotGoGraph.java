@@ -27,11 +27,11 @@ public final class TitanUniprotGoGraph
     private GoAnnotationType goAnnotationType;
 
 
-    public TitanUniprotGoGraph(DefaultTitanGraph rawGraph) {
+    public TitanUniprotGoGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanGoGraph titanGoGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-        this.uniprotRawGraph = new TitanUniprotGraph(rawGraph);
-        this.goRawGraph = new TitanGoGraph(rawGraph);
+        this.uniprotRawGraph = titanUniprotGraph;
+        this.goRawGraph = titanGoGraph;
         initTypes();
         initIndices();
     }

@@ -30,11 +30,11 @@ public final class TitanUniprotEnzymeGraph
 	public EnzymaticActivityType enzymaticActivityType;
 
 
-    public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph) {
+    public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanEnzymeDBGraph titanEnzymeDBGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-        this.uniprotRawGraph = new TitanUniprotGraph(rawGraph);
-        this.enzymeDBRawGraph = new TitanEnzymeDBGraph(rawGraph);
+        this.uniprotRawGraph = titanUniprotGraph;
+        this.enzymeDBRawGraph = titanEnzymeDBGraph;
         initTypes();
         initIndices();
     }

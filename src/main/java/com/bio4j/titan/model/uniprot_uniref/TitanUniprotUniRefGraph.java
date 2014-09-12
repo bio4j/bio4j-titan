@@ -37,11 +37,11 @@ public final class TitanUniprotUniRefGraph
     private UniRef100RepresentantType uniRef100RepresentantType;
 
 
-    public TitanUniprotUniRefGraph(DefaultTitanGraph rawGraph) {
+    public TitanUniprotUniRefGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanUniRefGraph titanUniRefGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-        this.uniprotRawGraph = new TitanUniprotGraph(rawGraph);
-        this.uniRefRawGraph = new TitanUniRefGraph(rawGraph);
+        this.uniprotRawGraph = titanUniprotGraph;
+        this.uniRefRawGraph = titanUniRefGraph;
         initTypes();
         initIndices();
     }

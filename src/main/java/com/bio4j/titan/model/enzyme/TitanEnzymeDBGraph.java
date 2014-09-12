@@ -3,6 +3,8 @@ package com.bio4j.titan.model.enzyme;
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.enzymedb.nodes.Enzyme;
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
@@ -18,6 +20,7 @@ public final class TitanEnzymeDBGraph
         EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
+	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -50,6 +53,7 @@ public final class TitanEnzymeDBGraph
 	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
+		uniprotEnzymeGraph = new TitanUniprotEnzymeGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }

@@ -4,6 +4,7 @@ import com.bio4j.model.go.GoGraph;
 import com.bio4j.model.go.nodes.GoTerm;
 import com.bio4j.model.go.nodes.SubOntologies;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
@@ -73,7 +74,7 @@ public final class TitanGoGraph
     public TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph);
+	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }

@@ -2,6 +2,8 @@ package com.bio4j.titan.model.ncbiTaxonomy;
 
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
@@ -17,6 +19,7 @@ public final class TitanNCBITaxonomyGraph
         NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
+	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -39,6 +42,7 @@ public final class TitanNCBITaxonomyGraph
     public TitanNCBITaxonomyGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
+	    uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(rawGraph, new TitanUniprotGraph(rawGraph), this);
         initTypes();
         initIndices();
     }

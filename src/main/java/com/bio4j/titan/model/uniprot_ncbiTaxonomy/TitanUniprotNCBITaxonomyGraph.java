@@ -26,11 +26,11 @@ public final class TitanUniprotNCBITaxonomyGraph
     private TitanLabel proteinNCBITaxonLabel;
     private ProteinNCBITaxonType proteinNCBITaxonType;
 
-    public TitanUniprotNCBITaxonomyGraph(DefaultTitanGraph rawGraph) {
+    public TitanUniprotNCBITaxonomyGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-        this.uniprotRawGraph = new TitanUniprotGraph(rawGraph);
-        this.ncbiTaxonomyRawGraph = new TitanNCBITaxonomyGraph(rawGraph);
+        this.uniprotRawGraph = titanUniprotGraph;
+        this.ncbiTaxonomyRawGraph = titanNCBITaxonomyGraph;
         initTypes();
         initIndices();
     }
