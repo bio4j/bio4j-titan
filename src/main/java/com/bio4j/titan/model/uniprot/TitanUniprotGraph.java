@@ -25,10 +25,10 @@ public final class TitanUniprotGraph
 
     private DefaultTitanGraph rawGraph;
 
-	private UniprotGoGraph uniprotGoGraph;
-	private UniprotUniRefGraph uniprotUniRefGraph;
-	private UniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
-	private UniprotEnzymeDBGraph uniprotEnzymeDBGraph;
+	private UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph;
+	private UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph;
+	private UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph;
+	private UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph;
 
 
     //-------------------VERTICES----------------------------

@@ -20,7 +20,7 @@ public final class TitanGoGraph
         GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
-	private UniprotGoGraph uniprotGoGraph;
+	private UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph;
 
     //-------------------VERTICES----------------------------
 
