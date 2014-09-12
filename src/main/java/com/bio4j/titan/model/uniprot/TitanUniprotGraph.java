@@ -329,6 +329,10 @@ public final class TitanUniprotGraph
     // proteinSubcellularLocation
     public TitanLabel proteinSubcellularLocationLabel;
     public ProteinSubcellularLocationType proteinSubcellularLocationType;
+	public TitanKey proteinSubcellularLocationStatusKey;
+	public TitanKey proteinSubcellularLocationEvidenceKey;
+	public TitanKey proteinSubcellularLocationTopologyKey;
+	public TitanKey proteinSubcellularLocationTopologyStatusKey;
 
     // articlePubmed
     public TitanLabel articlePubmedLabel;
@@ -708,6 +712,10 @@ public final class TitanUniprotGraph
 	    // proteinSubcellularLocation
 	    proteinSubcellularLocationLabel = raw().titanLabelForEdgeType(this.new ProteinSubcellularLocationType(null));
 	    proteinSubcellularLocationType = new ProteinSubcellularLocationType(proteinSubcellularLocationLabel);
+	    proteinSubcellularLocationStatusKey = raw().titanKeyMakerForEdgeProperty(proteinSubcellularLocationType.status).single().make();
+	    proteinSubcellularLocationEvidenceKey = raw().titanKeyMakerForEdgeProperty(proteinSubcellularLocationType.evidence).single().make();
+	    proteinSubcellularLocationTopologyKey = raw().titanKeyMakerForEdgeProperty(proteinSubcellularLocationType.topology).single().make();
+	    proteinSubcellularLocationTopologyStatusKey = raw().titanKeyMakerForEdgeProperty(proteinSubcellularLocationType.topologyStatus).single().make();
 
         // proteinUnigene
         proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
