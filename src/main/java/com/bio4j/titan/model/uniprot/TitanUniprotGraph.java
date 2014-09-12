@@ -6,6 +6,10 @@ import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
+import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
+import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
@@ -20,6 +24,11 @@ public final class TitanUniprotGraph
         UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
 
     private DefaultTitanGraph rawGraph;
+
+	private UniprotGoGraph uniprotGoGraph;
+	private UniprotUniRefGraph uniprotUniRefGraph;
+	private UniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
+	private UniprotEnzymeDBGraph uniprotEnzymeDBGraph;
 
 
     //-------------------VERTICES----------------------------
@@ -66,6 +75,12 @@ public final class TitanUniprotGraph
     public TitanKey datasetTypeKey;
     public TitanKey datasetNameKey;
     public DatasetType datasetType;
+	//---disease---
+	public TitanKey diseaseTypeKey;
+	public TitanKey diseaseNameKey;
+	public TitanKey diseaseIdKey;
+	public TitanKey diseaseAcronymKey;
+	public DiseaseType diseaseType;
     //---organism---
     public TitanKey organismTypeKey;
     public TitanKey organismScientificNameKey;
@@ -223,6 +238,9 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> publisherNameIndex;
 	public TitanTypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> bookNameIndex;
 	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> dbNameIndex;
+	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> diseaseIdIndex;
+	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
+
 
 
 	//-----------------------------------------------------------------------------------------
@@ -279,6 +297,12 @@ public final class TitanUniprotGraph
     // proteinComment
     public TitanLabel proteinCommentLabel;
     public ProteinCommentType proteinCommentType;
+	// proteinDisease
+	public TitanLabel proteinDiseaseLabel;
+	public ProteinDiseaseType proteinDiseaseType;
+	public TitanKey proteinDiseaseTextKey;
+	public TitanKey proteinDiseaseStatusKey;
+	public TitanKey proteinDiseaseEvidenceKey;
     // proteinReference
     public TitanLabel proteinReferenceLabel;
     public ProteinReferenceType proteinReferenceType;
@@ -358,6 +382,10 @@ public final class TitanUniprotGraph
     public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
+	    uniprotEnzymeDBGraph = new TitanUniprotEnzymeGraph(rawGraph);
+	    uniprotGoGraph = new TitanUniprotGoGraph(rawGraph);
+	    uniprotUniRefGraph = new TitanUniprotUniRefGraph(rawGraph);
+	    uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(rawGraph);
         initTypes();
         initIndices();
     }
@@ -421,6 +449,13 @@ public final class TitanUniprotGraph
 	    datasetType = new DatasetType(datasetTypeKey);
         datasetTypeKey = raw().titanKeyMakerForVertexType(datasetType.name).unique().single().make();
         datasetNameKey = datasetTypeKey;
+
+	    // Disease keys
+	    diseaseType = new DiseaseType(diseaseTypeKey);
+	    diseaseTypeKey = raw().titanKeyMakerForVertexType(diseaseType.id).unique().single().make();
+	    diseaseIdKey = diseaseTypeKey;
+	    diseaseNameKey = raw().titanKeyMakerForVertexProperty(diseaseType.name).single().make();
+	    diseaseAcronymKey = raw().titanKeyMakerForVertexProperty(diseaseType.acronym).single().make();
 
         // Institute keys
 	    instituteType = new InstituteType(instituteTypeKey);
@@ -607,6 +642,13 @@ public final class TitanUniprotGraph
         proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
         proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
 
+	    // proteinDisease
+	    proteinDiseaseLabel = raw().titanLabelForEdgeType(this.new ProteinDiseaseType(null));
+	    proteinDiseaseType = new ProteinDiseaseType(proteinDiseaseLabel);
+	    proteinDiseaseTextKey = raw().titanKeyMakerForEdgeProperty(proteinDiseaseType.text).single().make();
+	    proteinDiseaseStatusKey = raw().titanKeyMakerForEdgeProperty(proteinDiseaseType.status).single().make();
+	    proteinDiseaseEvidenceKey = raw().titanKeyMakerForEdgeProperty(proteinDiseaseType.evidence).single().make();
+
         // proteinOrganism
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
@@ -768,6 +810,8 @@ public final class TitanUniprotGraph
 	    dbNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, DB().name);
 	    articleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Article().title);
 	    journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Journal().name);
+	    diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Disease().id);
+	    subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
 
     }
 
@@ -879,23 +923,28 @@ public final class TitanUniprotGraph
 
     @Override
     public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph() {
-        return null;
+        return uniprotUniRefGraph;
     }
 
     @Override
     public UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph() {
-        return null;
+        return uniprotGoGraph;
     }
 
     @Override
     public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph() {
-        return null;
+        return uniprotEnzymeDBGraph;
     }
 
     @Override
     public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph() {
-        return null;
+        return uniprotNCBITaxonomyGraph;
     }
+
+	@Override
+	public TypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> diseaseIdIndex() {
+		return diseaseIdIndex;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> journalNameIndex() {
@@ -950,6 +999,11 @@ public final class TitanUniprotGraph
 	@Override
 	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> submissionTitleIndex() {
 		return submissionTitleIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subcellularLocationNameIndex() {
+		return subcellularLocationNameIndex;
 	}
 
 	@Override
@@ -1066,7 +1120,12 @@ public final class TitanUniprotGraph
         return featureTypeNameIndex;
     }
 
-    @Override
+	@Override
+	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> commentTypeNameIndex() {
+		return commentTypeNameIndex;
+	}
+
+	@Override
     public ArticleType Article() {
         return articleType;
     }
@@ -1081,7 +1140,12 @@ public final class TitanUniprotGraph
         return cityType;
     }
 
-    @Override
+	@Override
+	public DiseaseType Disease() {
+		return diseaseType;
+	}
+
+	@Override
     public CommentTypeType CommentType() {
         return commentTypeType;
     }
@@ -1292,7 +1356,12 @@ public final class TitanUniprotGraph
         return proteinDatasetType;
     }
 
-    @Override
+	@Override
+	public ProteinDiseaseType ProteinDisease() {
+		return proteinDiseaseType;
+	}
+
+	@Override
     public ProteinEMBLType ProteinEMBL() {
         return proteinEMBLType;
     }
