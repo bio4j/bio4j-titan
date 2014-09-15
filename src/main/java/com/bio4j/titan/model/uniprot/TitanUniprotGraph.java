@@ -184,7 +184,6 @@ public final class TitanUniprotGraph
     public TitanKey refSeqNucleotideSequenceIdKey;
     public RefSeqType refSeqType;
     //---Reference---
-    public TitanKey referenceTypeKey;
     public TitanKey referenceDateKey;
     public ReferenceType referenceType;
     //---SubcellularLocation----
@@ -517,9 +516,9 @@ public final class TitanUniprotGraph
         onlineJournalNameKey = onlineJournalTypeKey;
 
 	    // Reference keys
-	    referenceType = new ReferenceType(referenceTypeKey);
-	    referenceTypeKey = raw().titanKeyMakerForVertexType(referenceType.date).single().make();
-	    referenceDateKey = referenceTypeKey;
+	    referenceType = new ReferenceType(null);
+	    referenceDateKey = raw().titanKeyMakerForVertexProperty(referenceType.date).single().make();
+
 
         // ReactomeTerm keys
 	    reactomeTermType = new ReactomeTermType(reactomeTermTypeKey);
@@ -622,7 +621,7 @@ public final class TitanUniprotGraph
         featureTypeNameKey = featureTypeTypeKey;
 
         //---UnpublishedObservation
-        //unpublishedObservationType = new UnpublishedObservationType(null);
+        unpublishedObservationType = new UnpublishedObservationType(null);
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------EDGES--------------------------------------------
