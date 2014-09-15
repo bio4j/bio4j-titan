@@ -84,6 +84,7 @@ public final class TitanUniprotGraph
 	public TitanKey diseaseNameKey;
 	public TitanKey diseaseIdKey;
 	public TitanKey diseaseAcronymKey;
+	public TitanKey diseaseDescriptionKey;
 	public DiseaseType diseaseType;
     //---organism---
     public TitanKey organismTypeKey;
@@ -475,6 +476,7 @@ public final class TitanUniprotGraph
 	    diseaseIdKey = diseaseTypeKey;
 	    diseaseNameKey = raw().titanKeyMakerForVertexProperty(diseaseType.name).single().make();
 	    diseaseAcronymKey = raw().titanKeyMakerForVertexProperty(diseaseType.acronym).single().make();
+	    diseaseDescriptionKey = raw().titanKeyMakerForVertexProperty(diseaseType.description).single().make();
 
         // Institute keys
 	    instituteType = new InstituteType(instituteTypeKey);
