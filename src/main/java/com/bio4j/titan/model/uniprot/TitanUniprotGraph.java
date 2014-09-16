@@ -204,7 +204,9 @@ public final class TitanUniprotGraph
     public TitanKey commentTypeNameKey;
     public CommentTypeType commentTypeType;
     //---UnpublishedObservation----
+    public TitanKey unpublishedObservationScopeKey;
     public UnpublishedObservationType unpublishedObservationType;
+
 
     //------------------INDICES----------------
     //-----------------------------------------
@@ -624,6 +626,7 @@ public final class TitanUniprotGraph
 
         //---UnpublishedObservation
         unpublishedObservationType = new UnpublishedObservationType(null);
+	    unpublishedObservationScopeKey = raw().titanKeyMakerForVertexProperty(unpublishedObservationType.scope).single().make();
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------EDGES--------------------------------------------
