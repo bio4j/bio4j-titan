@@ -366,6 +366,7 @@ public final class TitanUniprotGraph
     // onlineArticleOnlineJournal
     public TitanLabel onlineArticleOnlineJournalLabel;
     public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
+	public TitanKey onlineArticleOnlineJournalLocatorKey;
 	// referenceAuthorPerson
 	public TitanLabel referenceAuthorPersonLabel;
 	public ReferenceAuthorPersonType referenceAuthorPersonType;
@@ -661,6 +662,7 @@ public final class TitanUniprotGraph
         // onlineArticleOnlineJournal
         onlineArticleOnlineJournalLabel = raw().titanLabelForEdgeType(this.new OnlineArticleOnlineJournalType(null));
         onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalLabel);
+	    onlineArticleOnlineJournalLocatorKey = raw().titanKeyMakerForEdgeProperty(onlineArticleOnlineJournalType.locator).single().make();
 
         // proteinDataset
         proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
