@@ -26,6 +26,8 @@ public final class TitanNCBITaxonomyGraph
 
     public TitanKey nCBITaxonTypekey;
     public TitanKey nCBITaxonIdkey;
+	public TitanKey nCBITaxonScientificNamekey;
+	public TitanKey nCBITaxonTaxonomicRankkey;
     public NCBITaxonType nCBITaxonType;
 
 	//---------------RELATIONSHIPS---------------------------
@@ -67,6 +69,8 @@ public final class TitanNCBITaxonomyGraph
         //--------------------------------VERTICES--------------------------------------------
 	    nCBITaxonType = new NCBITaxonType(nCBITaxonTypekey);
         nCBITaxonTypekey = raw().titanKeyMakerForVertexType(NCBITaxon().id).single().unique().make();
+		nCBITaxonTaxonomicRankkey = raw().titanKeyMakerForVertexProperty(NCBITaxon().taxonomicRank).single().make();
+		nCBITaxonScientificNamekey = raw().titanKeyMakerForVertexProperty(NCBITaxon().scientificName).single().make();
         nCBITaxonIdkey = nCBITaxonTypekey;
 
 		//-----------------------------------------------------------------------------------------
