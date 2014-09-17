@@ -76,6 +76,7 @@ public final class TitanEnzymeDBGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
+	    enzymeType = new EnzymeType(enzymeTypekey);
         enzymeTypekey = raw().titanKeyMakerForVertexType(Enzyme().id).single().unique().make();
         enzymeIdkey = enzymeTypekey;
         enzymeCofactorskey = raw().titanKeyMakerForVertexType(Enzyme().cofactors).single().make();
@@ -84,8 +85,6 @@ public final class TitanEnzymeDBGraph
         enzymeCommentkey = raw().titanKeyMakerForVertexType(Enzyme().comment).single().make();
         enzymeCatalyticActivitykey = raw().titanKeyMakerForVertexType(Enzyme().catalyticActivity).single().make();
         enzymePrositeCrossReferenceskey = raw().titanKeyMakerForVertexType(Enzyme().prositeCrossReferences).single().make();
-        enzymeType = new EnzymeType(enzymeTypekey);
-
 
     }
 
