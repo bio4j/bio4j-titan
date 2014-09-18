@@ -102,6 +102,13 @@ public final class TitanUniprotGraph
     public TitanKey interproNameKey;
     public TitanKey interproIdKey;
     public InterproType interproType;
+	//---interpro---
+	public TitanKey isoformTypeKey;
+	public TitanKey isoformNameKey;
+	public TitanKey isoformIdKey;
+	public TitanKey isoformSequenceKey;
+	public TitanKey isoformNoteKey;
+	public IsoformType isoformType;
     //----institute-----
     public TitanKey instituteTypeKey;
     public TitanKey instituteNameKey;
@@ -246,6 +253,8 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> dbNameIndex;
 	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> diseaseIdIndex;
 	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
+	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> isoformIdIndex;
+
 
 
 
@@ -504,6 +513,14 @@ public final class TitanUniprotGraph
         interproTypeKey = raw().titanKeyMakerForVertexType(interproType.id).unique().single().make();
         interproIdKey = interproTypeKey;
         interproNameKey = raw().titanKeyMakerForVertexProperty(interproType.name).single().make();
+
+	    // Isoform keys
+	    isoformType = new IsoformType(isoformTypeKey);
+	    isoformTypeKey = raw().titanKeyMakerForVertexType(isoformType.id).unique().single().make();
+	    isoformIdKey = isoformTypeKey;
+	    isoformNameKey = raw().titanKeyMakerForVertexProperty(isoformType.name).single().make();
+	    isoformSequenceKey = raw().titanKeyMakerForVertexProperty(isoformType.sequence).single().make();
+	    isoformNoteKey = raw().titanKeyMakerForVertexProperty(isoformType.note).single().make();
 
         // Journal keys
 	    journalType = new JournalType(journalTypeKey);
@@ -861,6 +878,7 @@ public final class TitanUniprotGraph
 	    journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Journal().name);
 	    diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Disease().id);
 	    subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
+	    isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().name);
 
     }
 
@@ -1243,6 +1261,11 @@ public final class TitanUniprotGraph
     public InterproType Interpro() {
         return interproType;
     }
+
+	@Override
+	public IsoformType Isoform() {
+		return isoformType;
+	}
 
     @Override
     public JournalType Journal() {

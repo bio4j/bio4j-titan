@@ -93,7 +93,7 @@ public final class TitanUniRefGraph
 	    uniRef50ClusterType = new UniRef50ClusterType(uniRef50ClusterTypekey);
         uniRef50ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef50Cluster().id).single().unique().make();
         uniRef50ClusterIdkey = uniRef50ClusterTypekey;
-        
+
     }
 
     private void initIndices() {
