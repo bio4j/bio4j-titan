@@ -1,4 +1,4 @@
-package com.bio4j.titan.model.uniprot_go;
+package com.bio4j.titan.model.uniprotgo;
 
 import com.bio4j.model.go.GoGraph;
 import com.bio4j.model.uniprot.UniprotGraph;

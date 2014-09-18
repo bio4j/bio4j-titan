@@ -1,4 +1,4 @@
-package com.bio4j.titan.model.uniprot_ncbiTaxonomy;
+package com.bio4j.titan.model.uniprotncbitaxonomy;
 
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.model.uniprot.UniprotGraph;

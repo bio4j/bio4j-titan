@@ -6,14 +6,10 @@ import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
-import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
-import com.bio4j.titan.model.go.TitanGoGraph;
-import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
-import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
-import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
-import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
-import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
-import com.bio4j.titan.model.uniref.TitanUniRefGraph;
+import com.bio4j.titan.model.uniprotenzyme.TitanUniprotEnzymeGraph;
+import com.bio4j.titan.model.uniprotgo.TitanUniprotGoGraph;
+import com.bio4j.titan.model.uniprotncbitaxonomy.TitanUniprotNCBITaxonomyGraph;
+import com.bio4j.titan.model.uniprotuniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
@@ -909,7 +905,7 @@ public final class TitanUniprotGraph
 	    journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Journal().name);
 	    diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Disease().id);
 	    subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
-	    isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().name);
+	    isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().id);
 
     }
 

@@ -14,11 +14,13 @@
   * You should have received a copy of the GNU Affero General Public License
   * along with this program.  If not, see <http:www.gnu.org/licenses/>
   */
-package com.bio4j.titan.model.uniprot_enzyme.programs;
+package com.bio4j.titan.model.uniprotenzyme.programs;
 
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.model.uniprot_enzymedb.programs.ImportUniprotEnzymeDB;
-import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
+import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprotenzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -44,7 +46,8 @@ public class ImportUniprotEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTit
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanUniprotEnzymeGraph(new DefaultTitanGraph(graph));
+		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
+		return new TitanUniprotEnzymeGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanEnzymeDBGraph(defGraph));
 	}
 
 	@Override

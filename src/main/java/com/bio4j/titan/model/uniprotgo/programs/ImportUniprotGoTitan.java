@@ -14,11 +14,13 @@
   * You should have received a copy of the GNU Affero General Public License
   * along with this program.  If not, see <http:www.gnu.org/licenses/>
   */
-package com.bio4j.titan.model.uniprot_go.programs;
+package com.bio4j.titan.model.uniprotgo.programs;
 
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.model.uniprot_go.programs.ImportUniprotGo;
-import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
+import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprotgo.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -44,7 +46,8 @@ public class ImportUniprotGoTitan extends ImportUniprotGo<DefaultTitanGraph, Tit
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanUniprotGoGraph(new DefaultTitanGraph(graph));
+		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
+		return new TitanUniprotGoGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanGoGraph(defGraph));
 	}
 
 	@Override
