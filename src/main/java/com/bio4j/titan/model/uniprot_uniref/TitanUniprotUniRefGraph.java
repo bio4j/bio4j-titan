@@ -1,4 +1,4 @@
-package com.bio4j.titan.model.uniprotuniref;
+package com.bio4j.titan.model.uniprot_uniref;
 
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;

@@ -14,13 +14,13 @@
   * You should have received a copy of the GNU Affero General Public License
   * along with this program.  If not, see <http:www.gnu.org/licenses/>
   */
-package com.bio4j.titan.model.uniprotgo.programs;
+package com.bio4j.titan.model.uniprot_enzyme.programs;
 
-import com.bio4j.model.uniprot_go.UniprotGoGraph;
-import com.bio4j.model.uniprot_go.programs.ImportUniprotGo;
-import com.bio4j.titan.model.go.TitanGoGraph;
+import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
+import com.bio4j.model.uniprot_enzymedb.programs.ImportUniprotEnzymeDB;
+import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
-import com.bio4j.titan.model.uniprotgo.TitanUniprotGoGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -31,14 +31,14 @@ import org.apache.commons.configuration.Configuration;
 import java.util.ArrayList;
 
 /**
- * Imports the Gene Ontology into Bio4j
+ * Imports Enzyme database links to Uniprot into Bio4j
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniprotGoTitan extends ImportUniprotGo<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
+public class ImportUniprotEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
 
 	@Override
-	protected UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
+	protected UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -47,7 +47,7 @@ public class ImportUniprotGoTitan extends ImportUniprotGo<DefaultTitanGraph, Tit
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
-		return new TitanUniprotGoGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanGoGraph(defGraph));
+		return new TitanUniprotEnzymeGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanEnzymeDBGraph(defGraph));
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class ImportUniprotGoTitan extends ImportUniprotGo<DefaultTitanGraph, Tit
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importUniprotGo(args);
+		importUniprotEnzymeDB(args);
 	}
 
 }

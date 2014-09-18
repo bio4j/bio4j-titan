@@ -1,4 +1,4 @@
-package com.bio4j.titan.model.uniprotenzyme;
+package com.bio4j.titan.model.uniprot_enzyme;
 
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.uniprot.UniprotGraph;
