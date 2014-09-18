@@ -82,18 +82,18 @@ public final class TitanUniRefGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
+	    uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusterTypekey);
         uniRef100ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef100Cluster().id).single().unique().make();
         uniRef100ClusterIdkey = uniRef100ClusterTypekey;
-        uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusterTypekey);
 
+	    uniRef90ClusterType = new UniRef90ClusterType(uniRef90ClusterTypekey);
         uniRef90ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef90Cluster().id).single().unique().make();
         uniRef90ClusterIdkey = uniRef90ClusterTypekey;
-        uniRef90ClusterType = new UniRef90ClusterType(uniRef90ClusterTypekey);
 
+	    uniRef50ClusterType = new UniRef50ClusterType(uniRef50ClusterTypekey);
         uniRef50ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef50Cluster().id).single().unique().make();
         uniRef50ClusterIdkey = uniRef50ClusterTypekey;
-        uniRef50ClusterType = new UniRef50ClusterType(uniRef50ClusterTypekey);
-
+        
     }
 
     private void initIndices() {
