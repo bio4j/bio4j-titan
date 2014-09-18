@@ -194,6 +194,10 @@ public final class TitanUniprotGraph
     //---Reference---
     public TitanKey referenceDateKey;
     public ReferenceType referenceType;
+	//---SequenceCaution----
+	public TitanKey sequenceCautionTypeKey;
+	public TitanKey sequenceCautionNameKey;
+	public SequenceCautionType sequenceCautionType;
     //---SubcellularLocation----
     public TitanKey subcellularLocationTypeKey;
     public TitanKey subcellularLocationNameKey;
@@ -254,6 +258,7 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> diseaseIdIndex;
 	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
 	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> isoformIdIndex;
+	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> sequenceCautionNameIndex;
 
 
 
@@ -344,6 +349,16 @@ public final class TitanUniprotGraph
 	public TitanKey proteinSubcellularLocationEvidenceKey;
 	public TitanKey proteinSubcellularLocationTopologyKey;
 	public TitanKey proteinSubcellularLocationTopologyStatusKey;
+	// proteinSequenceCaution
+	public TitanLabel proteinSequenceCautionLabel;
+	public ProteinSequenceCautionType proteinSequenceCautionType;
+	public TitanKey proteinSequenceCautionIdKey;
+	public TitanKey proteinSequenceCautionEvidenceKey;
+	public TitanKey proteinSequenceCautionStatusKey;
+	public TitanKey proteinSequenceCautionTextKey;
+	public TitanKey proteinSequenceCautionResourceKey;
+	public TitanKey proteinSequenceCautionVersionKey;
+	public TitanKey proteinSequenceCautionPositionKey;
 
     // articlePubmed
     public TitanLabel articlePubmedLabel;
@@ -632,6 +647,11 @@ public final class TitanUniprotGraph
         refSeqIdKey = refSeqTypeKey;
         refSeqNucleotideSequenceIdKey = raw().titanKeyMakerForVertexProperty(refSeqType.nucleotideSequenceId).single().make();
 
+	    //---SequenceCaution---
+	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeKey);
+	    sequenceCautionTypeKey = raw().titanKeyMakerForVertexType(sequenceCautionType.name).unique().single().make();
+	    sequenceCautionNameKey = sequenceCautionTypeKey;
+
         //---Comment---
 	    commentTypeType = new CommentTypeType(commentTypeTypeKey);
         commentTypeTypeKey = raw().titanKeyMakerForVertexType(commentTypeType.name).unique().single().make();
@@ -731,6 +751,17 @@ public final class TitanUniprotGraph
         // proteinRefSeq
         proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
         proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
+
+	    // proteinSequenceCaution
+	    proteinSequenceCautionLabel = raw().titanLabelForEdgeType(this.new ProteinSequenceCautionType(null));
+	    proteinSequenceCautionType = new ProteinSequenceCautionType(proteinSequenceCautionLabel);
+	    proteinSequenceCautionStatusKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.status).single().make();
+	    proteinSequenceCautionIdKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.id).single().make();
+	    proteinSequenceCautionEvidenceKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.evidence).single().make();
+	    proteinSequenceCautionVersionKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.version).single().make();
+	    proteinSequenceCautionPositionKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.position).single().make();
+	    proteinSequenceCautionResourceKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.resource).single().make();
+	    proteinSequenceCautionTextKey = raw().titanKeyMakerForEdgeProperty(proteinSequenceCautionType.text).single().make();
 
 	    // proteinSubcellularLocation
 	    proteinSubcellularLocationLabel = raw().titanLabelForEdgeType(this.new ProteinSubcellularLocationType(null));
@@ -923,6 +954,11 @@ public final class TitanUniprotGraph
     }
 
 	@Override
+	public ProteinSequenceCautionType ProteinSequenceCaution() {
+		return proteinSequenceCautionType;
+	}
+
+	@Override
 	public ReferenceAuthorPersonType ReferenceAuthorPerson() {
 		return referenceAuthorPersonType;
 	}
@@ -1064,6 +1100,11 @@ public final class TitanUniprotGraph
 	}
 
 	@Override
+	public TypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> sequenceCautionNameIndex() {
+		return sequenceCautionNameIndex;
+	}
+
+	@Override
 	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> submissionTitleIndex() {
 		return submissionTitleIndex;
 	}
@@ -1076,6 +1117,11 @@ public final class TitanUniprotGraph
 	@Override
 	public TypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> instituteNameIndex() {
 		return instituteNameIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> isoformIdIndex() {
+		return isoformIdIndex;
 	}
 
 	@Override
@@ -1305,6 +1351,11 @@ public final class TitanUniprotGraph
 	@Override
 	public PersonType Person() {
 		return personType;
+	}
+
+	@Override
+	public SequenceCautionType SequenceCaution() {
+		return sequenceCautionType;
 	}
 
 	@Override
