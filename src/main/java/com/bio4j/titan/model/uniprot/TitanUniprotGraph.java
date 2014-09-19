@@ -9,7 +9,7 @@ import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
-import com.bio4j.titan.model.uniprotuniref.TitanUniprotUniRefGraph;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
 import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
