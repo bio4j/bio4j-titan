@@ -445,7 +445,7 @@ public final class TitanUniprotGraph
 
 
         // Protein keys
-	    proteinType = new ProteinType(proteinTypekey);
+	    proteinType = new ProteinType((TitanKey) null);
         proteinTypekey = raw().titanKeyForVertexType(proteinType.accession);
         proteinAcessionKey = proteinTypekey;
         proteinNameKey = raw().titanKeyForVertexPropertySingle(proteinType.name);

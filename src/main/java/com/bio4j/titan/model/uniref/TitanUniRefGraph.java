@@ -116,7 +116,7 @@ public final class TitanUniRefGraph
 
     @Override
     public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph() {
-        return null;
+        return uniprotUniRefGraph;
     }
 
 	@Override
