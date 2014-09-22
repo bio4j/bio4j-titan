@@ -88,22 +88,22 @@ public final class TitanUniRefGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
 	    uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusterTypekey);
-        uniRef100ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef100Cluster().id).single().unique().make();
+        uniRef100ClusterTypekey = raw().titanKeyForVertexType(UniRef100Cluster().id);
         uniRef100ClusterIdkey = uniRef100ClusterTypekey;
 	    uniRef100ClusterUpdatedDatekey = raw().titanKeyMakerForVertexProperty(UniRef100Cluster().updatedDate).single().make();
-	    uniRef100ClusterNamekey = raw().titanKeyMakerForVertexProperty(UniRef100Cluster().name).single().make();
+	    uniRef100ClusterNamekey = raw().titanKeyForVertexPropertySingle(UniRef100Cluster().name);
 
 	    uniRef90ClusterType = new UniRef90ClusterType(uniRef90ClusterTypekey);
-        uniRef90ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef90Cluster().id).single().unique().make();
+        uniRef90ClusterTypekey = raw().titanKeyForVertexType(UniRef90Cluster().id);
         uniRef90ClusterIdkey = uniRef90ClusterTypekey;
 	    uniRef90ClusterUpdatedDatekey = raw().titanKeyMakerForVertexProperty(UniRef90Cluster().updatedDate).single().make();
-	    uniRef90ClusterNamekey = raw().titanKeyMakerForVertexProperty(UniRef90Cluster().name).single().make();
+	    uniRef90ClusterNamekey = raw().titanKeyForVertexPropertySingle(UniRef90Cluster().name);
 
 	    uniRef50ClusterType = new UniRef50ClusterType(uniRef50ClusterTypekey);
-        uniRef50ClusterTypekey = raw().titanKeyMakerForVertexType(UniRef50Cluster().id).single().unique().make();
+        uniRef50ClusterTypekey = raw().titanKeyForVertexType(UniRef50Cluster().id);
         uniRef50ClusterIdkey = uniRef50ClusterTypekey;
 	    uniRef50ClusterUpdatedDatekey = raw().titanKeyMakerForVertexProperty(UniRef50Cluster().updatedDate).single().make();
-	    uniRef50ClusterNamekey = raw().titanKeyMakerForVertexProperty(UniRef50Cluster().name).single().make();
+	    uniRef50ClusterNamekey = raw().titanKeyForVertexPropertySingle(UniRef50Cluster().name);
 
     }
 

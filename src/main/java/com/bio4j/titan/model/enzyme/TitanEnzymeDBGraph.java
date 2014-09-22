@@ -76,14 +76,14 @@ public final class TitanEnzymeDBGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
 	    enzymeType = new EnzymeType(enzymeTypekey);
-        enzymeTypekey = raw().titanKeyMakerForVertexType(Enzyme().id).single().unique().make();
+        enzymeTypekey = raw().titanKeyForVertexType(Enzyme().id);
         enzymeIdkey = enzymeTypekey;
-        enzymeCofactorskey = raw().titanKeyMakerForVertexProperty(Enzyme().cofactors).single().make();
-        enzymeOfficialNamekey = raw().titanKeyMakerForVertexProperty(Enzyme().officialName).single().make();
-        enzymeAlternateNameskey = raw().titanKeyMakerForVertexProperty(Enzyme().alternateNames).single().make();
-        enzymeCommentkey = raw().titanKeyMakerForVertexProperty(Enzyme().comment).single().make();
-        enzymeCatalyticActivitykey = raw().titanKeyMakerForVertexProperty(Enzyme().catalyticActivity).single().make();
-        enzymePrositeCrossReferenceskey = raw().titanKeyMakerForVertexProperty(Enzyme().prositeCrossReferences).single().make();
+        enzymeCofactorskey = raw().titanKeyForVertexPropertySingle(Enzyme().cofactors);
+        enzymeOfficialNamekey = raw().titanKeyForVertexPropertySingle(Enzyme().officialName);
+        enzymeAlternateNameskey = raw().titanKeyForVertexPropertySingle(Enzyme().alternateNames);
+        enzymeCommentkey = raw().titanKeyForVertexPropertySingle(Enzyme().comment);
+        enzymeCatalyticActivitykey = raw().titanKeyForVertexPropertySingle(Enzyme().catalyticActivity);
+        enzymePrositeCrossReferenceskey = raw().titanKeyForVertexPropertySingle(Enzyme().prositeCrossReferences);
 
     }
 
