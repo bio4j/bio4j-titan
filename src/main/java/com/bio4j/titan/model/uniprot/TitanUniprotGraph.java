@@ -907,6 +907,7 @@ public final class TitanUniprotGraph
 	    diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Disease().id);
 	    subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
 	    isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().id);
+	    sequenceCautionNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SequenceCaution().name);
 
     }
 
