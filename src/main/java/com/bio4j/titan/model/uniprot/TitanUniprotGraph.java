@@ -329,6 +329,15 @@ public final class TitanUniprotGraph
 	public TitanKey proteinCommentRedoxPotentialEvidenceKey;
 	public TitanKey proteinCommentTemperatureDependenceKey;
 
+	// proteinProteinInteraction
+	public TitanLabel proteinProteinInteractionLabel;
+	public ProteinProteinInteractionType proteinProteinInteractionType;
+	// proteinIsoformInteraction
+	public TitanLabel proteinIsoformInteractionLabel;
+	public ProteinIsoformInteractionType proteinIsoformInteractionType;
+	// isoformProteinInteraction
+	public TitanLabel isoformProteinInteractionLabel;
+	public IsoformProteinInteractionType isoformProteinInteractionType;
 	// proteinDisease
 	public TitanLabel proteinDiseaseLabel;
 	public ProteinDiseaseType proteinDiseaseType;
@@ -815,6 +824,15 @@ public final class TitanUniprotGraph
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
 
+	    proteinProteinInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinProteinInteractionType(null));
+	    proteinProteinInteractionType = new ProteinProteinInteractionType(proteinProteinInteractionLabel);
+
+	    proteinIsoformInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformInteractionType(null));
+	    proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionLabel);
+
+	    isoformProteinInteractionLabel = raw().titanLabelForEdgeType(this.new IsoformProteinInteractionType(null));
+	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionLabel);
+
         proteinReferenceLabel = raw().titanLabelForEdgeType(this.new ProteinReferenceType(null));
         proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
 
@@ -926,7 +944,22 @@ public final class TitanUniprotGraph
         return proteinPIRType;
     }
 
-    @Override
+	@Override
+	public ProteinProteinInteractionType ProteinProteinInteraction() {
+		return proteinProteinInteractionType;
+	}
+
+	@Override
+	public ProteinIsoformInteractionType ProteinIsoformInteraction() {
+		return proteinIsoformInteractionType;
+	}
+
+	@Override
+	public IsoformProteinInteractionType IsoformProteinInteraction() {
+		return isoformProteinInteractionType;
+	}
+
+	@Override
     public ProteinReactomeTermType ProteinReactomeTerm() {
         return proteinReactomeTermType;
     }
