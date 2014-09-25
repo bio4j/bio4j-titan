@@ -1,6 +1,6 @@
 <scheduled_executions>
 
-
+<!--
   <execution>
     <class_full_name>com.bio4j.titan.model.go.programs.ImportGOTitan</class_full_name>
     <arguments>      
@@ -35,7 +35,7 @@
 	  <argument>uniprot_data.xml</argument>
     </arguments>
   </execution> 
- <!--
+ 
   
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
@@ -78,7 +78,7 @@
     </arguments>
   </execution>
   -->
-  <!--
+  
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy.programs.ImportNCBITaxonomyTitan</class_full_name>
     <arguments>    
@@ -88,7 +88,7 @@
 	  <argument>bio4j_ncbi_taxonomy</argument>
     </arguments>
   </execution>
-  
+  <!--
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniprotUniRefTitan</class_full_name>
     <arguments>    

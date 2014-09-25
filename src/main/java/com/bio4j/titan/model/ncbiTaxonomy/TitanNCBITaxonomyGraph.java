@@ -2,6 +2,7 @@ package com.bio4j.titan.model.ncbiTaxonomy;
 
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
+import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;
@@ -62,6 +63,11 @@ public final class TitanNCBITaxonomyGraph
 		return nCBITaxonIdIndex;
 	}
 
+	@Override
+	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph() {
+		return uniprotNCBITaxonomyGraph;
+	}
+
 	private void initTypes() {
 
         //-----------------------------------------------------------------------------------------
@@ -93,7 +99,7 @@ public final class TitanNCBITaxonomyGraph
 
     @Override
     public NCBITaxonParentType NCBITaxonParent() {
-        return null;
+        return ncbiTaxonParentType;
     }
 
 	/*
