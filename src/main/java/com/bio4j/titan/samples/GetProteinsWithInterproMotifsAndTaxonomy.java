@@ -12,9 +12,7 @@ import com.thinkaurelius.titan.core.*;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -37,82 +35,113 @@ public class GetProteinsWithInterproMotifsAndTaxonomy {
 
 
 			String dbFolder = args[0];
-			String interproIdsFile = args[1];
-			String ncbiTaxonIdsFile = args[2];
+			String interproIdsFileSt = args[1];
+			String ncbiTaxonIdsFileSt = args[2];
 			String outFileSt = args[3];
 
 			try{
 
-//				//----------DB configuration------------------
-//				Configuration conf = new BaseConfiguration();
-//				conf.setProperty("storage.directory", dbFolder);
-//				conf.setProperty("storage.backend", "local");
-//				conf.setProperty("autotype", "none");
-//				//-------creating graph handlers---------------------
-//				TitanGraph graph = TitanFactory.open(conf);
-//				DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
-//
-//				System.out.println("Creating the graph manager....");
-//				TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanNCBITaxonomyGraph(defGraph));
-//
-//				System.out.println("Retrieving NCBI taxon provided...");
-//				Optional<NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> ncbiTaxonOptional = uniprotNCBITaxonomyGraph.ncbiTaxonomyGraph().nCBITaxonIdIndex().getVertex(ncbiTaxonId);
-//
-//				BufferedWriter outBuff = new BufferedWriter(new FileWriter(new File(outFileSt)));
-//				outBuff.write(HEADER + "\n");
-//
-//				if(!ncbiTaxonOptional.isPresent()){
-//
-//					System.out.println("There was no NCBI taxon found for the ID provided... :(");
-//
-//				}else{
-//
-//					NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxon = ncbiTaxonOptional.get();
-//					List<NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> taxonChildren = ncbiTaxon.ncbiTaxonParent_inV();
-//					Set<String> interproMotifs = new HashSet<>();
-//					Set<String> repeatedInterproMotifs = new HashSet<>();
-//
-//					System.out.println("Retrieving shared motifs...");
-//
-//					for (NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempTaxon : taxonChildren){
-//
-//						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteinList = tempTaxon.proteinNCBITaxon_inV();
-//						for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempProtein : proteinList){
-//							List<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproList = tempProtein.proteinInterpro_outNodes();
-//							for (Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempInterpro : interproList){
-//								String tempId = tempInterpro.id();
-//								if(interproMotifs.contains(tempId)){
-//									repeatedInterproMotifs.add(tempId);
-//								}
-//								interproMotifs.add(tempId);
-//							}
-//						}
-//					}
-//
-//					System.out.println("Looking for motifs which are unique...");
-//
-//					for (NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempTaxon : taxonChildren){
-//
-//						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteinList = tempTaxon.proteinNCBITaxon_inV();
-//
-//						for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempProtein : proteinList){
-//
-//							List<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproList = tempProtein.proteinInterpro_outNodes();
-//							for (Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempInterpro : interproList){
-//								String tempId = tempInterpro.id();
-//								if(!repeatedInterproMotifs.contains(tempId)){
-//									outBuff.write(tempTaxon.id() + "\t" + tempTaxon.scientificName() + "\t" + tempInterpro.id() + "\t" + tempInterpro.name() + "\n");
-//								}
-//							}
-//						}
-//					}
-//				}
-//
-//				System.out.println("Closing output file...");
-//				outBuff.close();
-//
-//				System.out.println("Closing the manager....");
-//				uniprotNCBITaxonomyGraph.raw().shutdown();
+				List<String> interproIds = new LinkedList<>();
+				List<String> ncbiTaxonIds = new LinkedList<>();
+				List<String> proteinsFulfillingInterpro = new LinkedList<>();
+				List<String> finalListOfProteins = new LinkedList<>();
+
+				File interproFile = new File(interproIdsFileSt);
+				File ncbiTaxonFile = new File(ncbiTaxonIdsFileSt);
+				File outFile = new File(outFileSt);
+
+
+				System.out.println("Reading interpro IDs....");
+				BufferedReader reader = new BufferedReader(new FileReader(interproFile));
+				String line;
+				while((line = reader.readLine()) != null){
+					interproIds.add(line.trim());
+				}
+				reader.close();
+
+				System.out.println("Reading NCBI taxon IDs....");
+				reader = new BufferedReader(new FileReader(ncbiTaxonFile));
+				while((line = reader.readLine()) != null){
+					ncbiTaxonIds.add(line.trim());
+				}
+				reader.close();
+
+				BufferedWriter outBuff = new BufferedWriter(new FileWriter(outFile));
+				outBuff.write(HEADER + "\n");
+
+				//----------DB configuration------------------
+				Configuration conf = new BaseConfiguration();
+				conf.setProperty("storage.directory", dbFolder);
+				conf.setProperty("storage.backend", "local");
+				conf.setProperty("autotype", "none");
+				//-------creating graph handlers---------------------
+				TitanGraph graph = TitanFactory.open(conf);
+				DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
+
+				System.out.println("Creating the graph manager....");
+				TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanNCBITaxonomyGraph(defGraph));
+
+				boolean firstInterpro = true;
+
+				for (String interproId : interproIds){
+					Optional<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproOptional = uniprotNCBITaxonomyGraph.uniprotGraph().interproIdIndex().getVertex(interproId);
+					if(interproOptional.isPresent()){
+						Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> interpro = interproOptional.get();
+						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteins = interpro.proteinInterpro_inNodes();
+						if(firstInterpro){
+							firstInterpro = false;
+							for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> protein : proteins){
+								proteinsFulfillingInterpro.add(protein.accession());
+							}
+						}
+
+						List<String> tempProteins = new LinkedList<>();
+						for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> protein : proteins){
+							tempProteins.add(protein.accession());
+						}
+						for (String tempProteinId : tempProteins){
+							if(!proteinsFulfillingInterpro.contains(tempProteinId)){
+								tempProteins.remove(tempProteinId);
+								break;
+							}
+						}
+
+					}else{
+						throw new Exception("The interpro ID provided: " + interproId + " does not exist... Finishing the program... :(");
+					}
+				}
+
+				//Here we already have the set of proteins that fulfill the interpro links provided
+				//Now it's time to check their taxonomy
+
+				System.out.println("Checking up proteins taxonomy...");
+				for (String proteinId : proteinsFulfillingInterpro){
+					Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> protein = uniprotNCBITaxonomyGraph.uniprotGraph().proteinAccessionIndex().getVertex(proteinId).get();
+					NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> taxon = protein.proteinNCBITaxon_outV();
+					if(ncbiTaxonIds.contains(taxon.id())){
+						finalListOfProteins.add(proteinId);
+					}else{
+						while(taxon.ncbiTaxonParent_outV() != null){
+							taxon = taxon.ncbiTaxonParent_outV();
+							if(ncbiTaxonIds.contains(taxon.id())){
+								finalListOfProteins.add(proteinId);
+								break;
+							}
+						}
+					}
+				}
+
+				System.out.println("Writing output file....");
+
+				for(String proteinId : finalListOfProteins){
+					outBuff.write(proteinId + "\n");
+				}
+
+				System.out.println("Closing output file...");
+				outBuff.close();
+
+				System.out.println("Closing the manager....");
+				uniprotNCBITaxonomyGraph.raw().shutdown();
 
 			}catch(Exception e){
 				e.printStackTrace();
