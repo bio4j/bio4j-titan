@@ -670,7 +670,7 @@ public final class TitanUniprotGraph
 
         //---UnpublishedObservation
         unpublishedObservationType = new UnpublishedObservationType(null);
-	    unpublishedObservationScopeKey = raw().titanKeyForVertexType(unpublishedObservationType.scope);
+	    unpublishedObservationScopeKey = raw().titanKeyForVertexPropertySingle(unpublishedObservationType.scope);
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------EDGES--------------------------------------------
