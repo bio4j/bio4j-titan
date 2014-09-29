@@ -75,6 +75,10 @@ public final class TitanUniprotGraph
     public TitanKey datasetTypeKey;
     public TitanKey datasetNameKey;
     public DatasetType datasetType;
+	//---gene location---
+	public TitanKey geneLocationTypeKey;
+	public TitanKey geneLocationNameKey;
+	public GeneLocationType geneLocationType;
 	//---disease---
 	public TitanKey diseaseTypeKey;
 	public TitanKey diseaseNameKey;
@@ -255,6 +259,7 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
 	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> isoformIdIndex;
 	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> sequenceCautionNameIndex;
+	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> geneLocationNameIndex;
 
 
 
@@ -262,6 +267,9 @@ public final class TitanUniprotGraph
 	//-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
 
+	// proteinGeneLocation
+	public TitanLabel proteinGeneLocationLabel;
+	public ProteinGeneLocationType proteinGeneLocationType;
     // proteinDataset
     public TitanLabel proteinDatasetLabel;
     public ProteinDatasetType proteinDatasetType;
@@ -482,6 +490,11 @@ public final class TitanUniprotGraph
 	    cityType = new CityType(cityTypeKey);
 	    cityTypeKey = raw().titanKeyForVertexType(cityType.name);
 	    cityNameKey = cityTypeKey;
+
+	    // GeneLocation keys
+	    geneLocationType = new GeneLocationType(geneLocationTypeKey);
+	    geneLocationTypeKey = raw().titanKeyForVertexType(geneLocationType.name);
+	    geneLocationNameKey = geneLocationTypeKey;
 
 	    // Consortium keys
 	    consortiumType = new ConsortiumType(consortiumTypeKey);
@@ -726,6 +739,10 @@ public final class TitanUniprotGraph
         proteinKeywordLabel = raw().titanLabelForEdgeType(this.new ProteinKeywordType(null));
         proteinKeywordType = new ProteinKeywordType(proteinKeywordLabel);
 
+	    // proteinGeneLocation
+	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
+	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
+
         // proteinInterpro
         proteinInterproLabel = raw().titanLabelForEdgeType(this.new ProteinInterproType(null));
         proteinInterproType = new ProteinInterproType(proteinInterproLabel);
@@ -926,6 +943,7 @@ public final class TitanUniprotGraph
 	    subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
 	    isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().id);
 	    sequenceCautionNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SequenceCaution().name);
+	    geneLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GeneLocation().name);
 
     }
 
@@ -1074,6 +1092,11 @@ public final class TitanUniprotGraph
     public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph() {
         return uniprotNCBITaxonomyGraph;
     }
+
+	@Override
+	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> geneLocationNameIndex() {
+		return geneLocationNameIndex;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> diseaseIdIndex() {
@@ -1329,7 +1352,12 @@ public final class TitanUniprotGraph
         return featureTypeType;
     }
 
-    @Override
+	@Override
+	public GeneLocationType GeneLocation() {
+		return geneLocationType;
+	}
+
+	@Override
     public InstituteType Institute() {
         return instituteType;
     }
@@ -1530,7 +1558,12 @@ public final class TitanUniprotGraph
         return proteinFeatureType;
     }
 
-    @Override
+	@Override
+	public ProteinGeneLocationType ProteinGeneLocation() {
+		return proteinGeneLocationType;
+	}
+
+	@Override
     public ProteinInterproType ProteinInterpro() {
         return proteinInterproType;
     }
