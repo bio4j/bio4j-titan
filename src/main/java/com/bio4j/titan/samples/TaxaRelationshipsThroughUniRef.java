@@ -68,7 +68,20 @@ public class TaxaRelationshipsThroughUniRef {
 				System.out.println("Creating the graph manager....");
 				TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = new TitanUniprotNCBITaxonomyGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanNCBITaxonomyGraph(defGraph));
 
-				boolean firstInterpro = true;
+
+				for(String ncbiTaxonId : ncbiTaxonIds){
+
+					Optional<NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> optionalTaxon = uniprotNCBITaxonomyGraph.ncbiTaxonomyGraph().nCBITaxonIdIndex().getVertex(ncbiTaxonId);
+
+					if(optionalTaxon.isPresent()){
+
+						NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempTaxon = optionalTaxon.get();
+						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteins = tempTaxon.proteinNCBITaxon_inV();
+
+					}else{
+						throw new Exception("The ID provided: " + ncbiTaxonId + "  was not found... :( \nExiting the program....");
+					}
+				}
 
 
 				System.out.println("Closing output file...");
