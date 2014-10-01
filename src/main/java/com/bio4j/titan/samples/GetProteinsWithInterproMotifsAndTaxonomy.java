@@ -25,7 +25,7 @@ public class GetProteinsWithInterproMotifsAndTaxonomy {
 	public static final String HEADER = "Protein accession\tProtein name";
 
 	public static void main(String[] args){
-		if(args.length != 3){
+		if(args.length != 4){
 			System.out.println("This program expects the following arguments: \n" +
 					"1. Bio4j folder \n" +
 					"2. TXT file including Interpro motifs \n" +
