@@ -1,9 +1,7 @@
 package com.bio4j.titan.samples;
 
 import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
-import com.bio4j.model.uniprot.nodes.Interpro;
 import com.bio4j.model.uniprot.nodes.Protein;
-import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
@@ -23,7 +21,7 @@ import java.util.*;
 public class TaxaRelationshipsThroughUniRef {
 
 	public static final String HEADER = "NCBITaxon1 ID\tNCBITaxon1 name\tNCBITaxon2 ID\tNCBITaxon2 name\tNumber of protein pairs from both taxa shared in UniRef clusters";
-	public static final String EXTENDED_HEADER = "NCBITaxon1 ID\tNCBITaxon1 name\tProtein1 ID\tGeneLocation 1\tGeneLocation1 name\tNCBITaxon2 ID\tNCBITaxon2 name\tProtein2 ID\tGeneLocation2\tGeneLocation2 name"
+	public static final String EXTENDED_HEADER = "NCBITaxon1 ID\tNCBITaxon1 name\tProtein1 ID\tGeneLocation 1\tGeneLocation1 name\tNCBITaxon2 ID\tNCBITaxon2 name\tProtein2 ID\tGeneLocation2\tGeneLocation2 name";
 
 	public static void main(String[] args){
 		if(args.length != 3){
