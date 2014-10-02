@@ -97,7 +97,7 @@ public final class TitanGoGraph
 
 
         subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
-        subOntologiesTypekey = raw().titanKeyMakerForVertexType(SubOntologies().name).single().unique().make();
+        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
         subOntologiesNameKey = subOntologiesTypekey;
 
 
