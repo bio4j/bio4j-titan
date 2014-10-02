@@ -8,9 +8,9 @@ fatArtifactSettings
 
 organization := "bio4j"
 
-name := "titandb"
+name := "bio4j-titan"
 
-description := "titandb implementation of the Bio4j model"
+description := "Titan implementation of the Bio4j model"
 
 bucketSuffix := "era7.com"
 
