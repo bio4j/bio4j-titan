@@ -13,5 +13,5 @@ To use it in you sbt-project, add this to you `build.sbt`:
 ```scala
 resolvers += "Era7 maven releases" at "http://releases.era7.com.s3.amazonaws.com"
 
-libraryDependencies += "bio4j" %% "titandb" % "0.3.1"
+libraryDependencies += "bio4j" %% "bio4j-titan" % "0.3.1"
 ```
