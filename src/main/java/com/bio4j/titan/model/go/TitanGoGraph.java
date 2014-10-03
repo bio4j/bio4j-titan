@@ -1,8 +1,8 @@
 package com.bio4j.titan.model.go;
 
 import com.bio4j.model.go.GoGraph;
-import com.bio4j.model.go.nodes.GoTerm;
-import com.bio4j.model.go.nodes.SubOntologies;
+import com.bio4j.model.go.vertices.GoTerm;
+import com.bio4j.model.go.vertices.SubOntologies;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;

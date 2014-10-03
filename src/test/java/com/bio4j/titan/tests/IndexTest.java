@@ -1,7 +1,7 @@
 package com.bio4j.titan.tests;
 
-import com.bio4j.model.uniprot.nodes.EMBL;
-import com.bio4j.model.uniprot.nodes.RefSeq;
+import com.bio4j.model.uniprot.vertices.EMBL;
+import com.bio4j.model.uniprot.vertices.RefSeq;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;

@@ -1,8 +1,8 @@
 package com.bio4j.titan.samples;
 
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
-import com.bio4j.model.uniprot.nodes.Interpro;
-import com.bio4j.model.uniprot.nodes.Protein;
+import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
+import com.bio4j.model.uniprot.vertices.Interpro;
+import com.bio4j.model.uniprot.vertices.Protein;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
@@ -87,7 +87,7 @@ public class GetProteinsWithInterproMotifsAndTaxonomy {
 					Optional<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproOptional = uniprotNCBITaxonomyGraph.uniprotGraph().interproIdIndex().getVertex(interproId);
 					if(interproOptional.isPresent()){
 						Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> interpro = interproOptional.get();
-						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteins = interpro.proteinInterpro_inNodes();
+						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteins = interpro.proteinInterpro_inV();
 						if(firstInterpro){
 							firstInterpro = false;
 							for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> protein : proteins){

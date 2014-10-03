@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.ncbiTaxonomy;
 
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
+import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;

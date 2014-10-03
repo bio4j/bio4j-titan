@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.enzyme;
 
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
-import com.bio4j.model.enzymedb.nodes.Enzyme;
+import com.bio4j.model.enzymedb.vertices.Enzyme;
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;

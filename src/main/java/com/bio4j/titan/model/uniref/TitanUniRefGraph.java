@@ -2,9 +2,9 @@ package com.bio4j.titan.model.uniref;
 
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
 import com.bio4j.model.uniref.UniRefGraph;
-import com.bio4j.model.uniref.nodes.UniRef100Cluster;
-import com.bio4j.model.uniref.nodes.UniRef50Cluster;
-import com.bio4j.model.uniref.nodes.UniRef90Cluster;
+import com.bio4j.model.uniref.vertices.UniRef100Cluster;
+import com.bio4j.model.uniref.vertices.UniRef50Cluster;
+import com.bio4j.model.uniref.vertices.UniRef90Cluster;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.typedGraphs.TypedVertexIndex;

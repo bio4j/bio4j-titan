@@ -1,9 +1,9 @@
 package com.bio4j.titan.samples;
 
-import com.bio4j.model.enzymedb.nodes.Enzyme;
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
-import com.bio4j.model.uniprot.nodes.Interpro;
-import com.bio4j.model.uniprot.nodes.Protein;
+import com.bio4j.model.enzymedb.vertices.Enzyme;
+import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
+import com.bio4j.model.uniprot.vertices.Interpro;
+import com.bio4j.model.uniprot.vertices.Protein;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
@@ -74,7 +74,7 @@ public class GetEnzymeSetPerTaxon {
 					System.out.println("Retrieving associated proteins...");
 
 					for(Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> protein : proteinList){
-						List<Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> enzymes = protein.enzymaticActivity_outNodes();
+						List<Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> enzymes = protein.enzymaticActivity_outV();
 						for (Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzyme : enzymes){
 							enzymeSet.add(enzyme.id());
 						}

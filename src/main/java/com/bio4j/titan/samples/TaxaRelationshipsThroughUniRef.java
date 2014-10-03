@@ -1,10 +1,10 @@
 package com.bio4j.titan.samples;
 
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
-import com.bio4j.model.uniprot.nodes.GeneLocation;
-import com.bio4j.model.uniprot.nodes.Protein;
-import com.bio4j.model.uniprot.relationships.ProteinGeneLocation;
-import com.bio4j.model.uniref.nodes.UniRef100Cluster;
+import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
+import com.bio4j.model.uniprot.vertices.GeneLocation;
+import com.bio4j.model.uniprot.vertices.Protein;
+import com.bio4j.model.uniprot.edges.ProteinGeneLocation;
+import com.bio4j.model.uniref.vertices.UniRef100Cluster;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;

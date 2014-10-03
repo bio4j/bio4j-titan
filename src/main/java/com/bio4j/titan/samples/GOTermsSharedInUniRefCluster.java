@@ -1,18 +1,12 @@
 package com.bio4j.titan.samples;
 
-import com.bio4j.model.enzymedb.nodes.Enzyme;
-import com.bio4j.model.go.nodes.GoTerm;
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
-import com.bio4j.model.uniprot.nodes.Interpro;
-import com.bio4j.model.uniprot.nodes.Protein;
-import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
-import com.bio4j.model.uniref.nodes.UniRef100Cluster;
-import com.bio4j.model.uniref.nodes.UniRef50Cluster;
-import com.bio4j.model.uniref.nodes.UniRef90Cluster;
+import com.bio4j.model.go.vertices.GoTerm;
+import com.bio4j.model.uniprot.vertices.Protein;
+import com.bio4j.model.uniref.vertices.UniRef100Cluster;
+import com.bio4j.model.uniref.vertices.UniRef50Cluster;
+import com.bio4j.model.uniref.vertices.UniRef90Cluster;
 import com.bio4j.titan.model.go.TitanGoGraph;
-import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
-import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
@@ -141,7 +135,7 @@ public class GOTermsSharedInUniRefCluster {
 		HashMap<String, Integer> goMap = new HashMap<>();
 
 		for(Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> protein : proteins){
-			List<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> terms = protein.goAnnotation_outNodes();
+			List<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> terms = protein.goAnnotation_outV();
 			for(GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> term : terms){
 				Integer value = goMap.get(term.id());
 				if(value == null){

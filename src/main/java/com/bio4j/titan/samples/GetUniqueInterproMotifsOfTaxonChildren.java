@@ -1,9 +1,8 @@
 package com.bio4j.titan.samples;
 
-import com.bio4j.model.ncbiTaxonomy.nodes.NCBITaxon;
-import com.bio4j.model.uniprot.nodes.Interpro;
-import com.bio4j.model.uniprot.nodes.Protein;
-import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
+import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
+import com.bio4j.model.uniprot.vertices.Interpro;
+import com.bio4j.model.uniprot.vertices.Protein;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
@@ -76,7 +75,7 @@ public class GetUniqueInterproMotifsOfTaxonChildren {
 
 						List<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> proteinList = tempTaxon.proteinNCBITaxon_inV();
 						for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempProtein : proteinList){
-							List<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproList = tempProtein.proteinInterpro_outNodes();
+							List<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproList = tempProtein.proteinInterpro_outV();
 							for (Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempInterpro : interproList){
 								String tempId = tempInterpro.id();
 								if(interproMotifs.contains(tempId)){
@@ -95,7 +94,7 @@ public class GetUniqueInterproMotifsOfTaxonChildren {
 
 						for (Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempProtein : proteinList){
 
-							List<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproList = tempProtein.proteinInterpro_outNodes();
+							List<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> interproList = tempProtein.proteinInterpro_outV();
 							for (Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> tempInterpro : interproList){
 								String tempId = tempInterpro.id();
 								if(!repeatedInterproMotifs.contains(tempId)){
