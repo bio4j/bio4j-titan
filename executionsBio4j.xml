@@ -23,7 +23,7 @@
     <arguments>      
       <argument>/mnt/disk1/uniprot_sprot.xml</argument>
 	  <argument>bio4j</argument>
-	  <argument>uniprot_data.xml</argument>
+	  <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution>  
   
@@ -32,7 +32,7 @@
     <arguments>      
       <argument>/mnt/disk1/uniprot_trembl.xml</argument>
 	  <argument>bio4j</argument>
-	  <argument>uniprot_data.xml</argument>
+	  <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
  <!--

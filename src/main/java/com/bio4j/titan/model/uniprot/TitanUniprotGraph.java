@@ -306,6 +306,10 @@ public final class TitanUniprotGraph
     // proteinRefSeq
     public TitanLabel proteinRefSeqLabel;
     public ProteinRefSeqType proteinRefSeqType;
+	// proteinGeneLocation
+	public TitanLabel proteinGeneLocationLabel;
+	public TitanKey proteinGeneLocationNameKey;
+	public ProteinGeneLocationType proteinGeneLocationType;
     // proteinFeature
     public TitanLabel proteinFeatureLabel;
     public TitanKey proteinFeatureIdKey;
@@ -851,7 +855,11 @@ public final class TitanUniprotGraph
 	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionLabel);
 
         proteinReferenceLabel = raw().titanLabelForEdgeType(this.new ProteinReferenceType(null));
-        proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
+	    proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
+
+	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
+	    proteinGeneLocationNameKey = raw().titanKeyForEdgePropertySingle(proteinGeneLocationType.name);
+	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
 
         // referenceArticle
         referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));
