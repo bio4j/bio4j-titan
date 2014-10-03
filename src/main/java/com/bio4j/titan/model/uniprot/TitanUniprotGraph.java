@@ -267,9 +267,6 @@ public final class TitanUniprotGraph
 	//-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
 
-	// proteinGeneLocation
-	public TitanLabel proteinGeneLocationLabel;
-	public ProteinGeneLocationType proteinGeneLocationType;
     // proteinDataset
     public TitanLabel proteinDatasetLabel;
     public ProteinDatasetType proteinDatasetType;
