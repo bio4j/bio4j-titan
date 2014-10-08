@@ -46,6 +46,10 @@ public final class TitanUniprotGraph
     public TitanKey proteinSequenceKey;
     public ProteinType proteinType;
 
+	//---AlternativeProduct---
+	public TitanKey alternativeProductTypeKey;
+	public TitanKey alternativeProductNameKey;
+	public AlternativeProductType alternativeProductType;
     //---Article---
     public TitanKey articleTypeKey;
     public TitanKey articleTitleKey;
@@ -260,6 +264,7 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> isoformIdIndex;
 	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> sequenceCautionNameIndex;
 	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> geneLocationNameIndex;
+	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> alternativeProductNameIndex;
 
 
 
@@ -267,6 +272,9 @@ public final class TitanUniprotGraph
 	//-----------------------------------------------------------------------------------------
     //--------------------------------RELATIONSHIPS--------------------------------------------
 
+	// isoformEventGenerator
+	public TitanLabel isoformEventGeneratorLabel;
+	public IsoformEventGeneratorType isoformEventGeneratorType;
     // proteinDataset
     public TitanLabel proteinDatasetLabel;
     public ProteinDatasetType proteinDatasetType;
@@ -475,6 +483,11 @@ public final class TitanUniprotGraph
         proteinVersionKey = raw().titanKeyForVertexPropertySingle(proteinType.version);
         proteinLengthKey = raw().titanKeyForVertexPropertySingle(proteinType.length);
         proteinSequenceKey = raw().titanKeyForVertexPropertySingle(proteinType.sequence);
+
+	    // Alternative Product keys
+	    alternativeProductType = new AlternativeProductType(cityTypeKey);
+	    alternativeProductTypeKey = raw().titanKeyForVertexType(alternativeProductType.name);
+	    alternativeProductNameKey = alternativeProductTypeKey;
 
         // Article keys
 	    articleType = new ArticleType(articleTypeKey);
@@ -716,6 +729,10 @@ public final class TitanUniprotGraph
         instituteCountryLabel = raw().titanLabelForEdgeType(this.new InstituteCountryType(null));
         instituteCountryType = new InstituteCountryType(instituteCountryLabel);
 
+	    // isoformEventGenerator
+	    isoformEventGeneratorLabel = raw().titanLabelForEdgeType(this.new IsoformEventGeneratorType(null));
+	    isoformEventGeneratorType = new IsoformEventGeneratorType(isoformEventGeneratorLabel);
+
         // onlineArticleOnlineJournal
         onlineArticleOnlineJournalLabel = raw().titanLabelForEdgeType(this.new OnlineArticleOnlineJournalType(null));
         onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalLabel);
@@ -949,6 +966,7 @@ public final class TitanUniprotGraph
 	    isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().id);
 	    sequenceCautionNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SequenceCaution().name);
 	    geneLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GeneLocation().name);
+	    alternativeProductNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, AlternativeProduct().name);
 
     }
 
@@ -1097,6 +1115,11 @@ public final class TitanUniprotGraph
     public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph() {
         return uniprotNCBITaxonomyGraph;
     }
+
+	@Override
+	public TypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> alternativeProductNameIndex() {
+		return alternativeProductNameIndex;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> geneLocationNameIndex() {
@@ -1298,6 +1321,11 @@ public final class TitanUniprotGraph
 	}
 
 	@Override
+	public AlternativeProductType AlternativeProduct() {
+		return alternativeProductType;
+	}
+
+	@Override
     public ArticleType Article() {
         return articleType;
     }
@@ -1492,7 +1520,12 @@ public final class TitanUniprotGraph
         return unpublishedObservationType;
     }
 
-    @Override
+	@Override
+	public IsoformEventGeneratorType IsoformEventGenerator() {
+		return isoformEventGeneratorType;
+	}
+
+	@Override
     public ArticleJournalType ArticleJournal() {
         return articleJournalType;
     }
