@@ -90,19 +90,19 @@ public final class TitanUniRefGraph
 	    uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusterTypekey);
         uniRef100ClusterTypekey = raw().titanKeyForVertexType(UniRef100Cluster().id);
         uniRef100ClusterIdkey = uniRef100ClusterTypekey;
-	    uniRef100ClusterUpdatedDatekey = raw().titanKeyMakerForVertexProperty(UniRef100Cluster().updatedDate).single().make();
+	    uniRef100ClusterUpdatedDatekey = raw().titanKeyForVertexPropertySingle(UniRef100Cluster().updatedDate);
 	    uniRef100ClusterNamekey = raw().titanKeyForVertexPropertySingle(UniRef100Cluster().name);
 
 	    uniRef90ClusterType = new UniRef90ClusterType(uniRef90ClusterTypekey);
         uniRef90ClusterTypekey = raw().titanKeyForVertexType(UniRef90Cluster().id);
         uniRef90ClusterIdkey = uniRef90ClusterTypekey;
-	    uniRef90ClusterUpdatedDatekey = raw().titanKeyMakerForVertexProperty(UniRef90Cluster().updatedDate).single().make();
+	    uniRef90ClusterUpdatedDatekey = raw().titanKeyForVertexPropertySingle(UniRef90Cluster().updatedDate);
 	    uniRef90ClusterNamekey = raw().titanKeyForVertexPropertySingle(UniRef90Cluster().name);
 
 	    uniRef50ClusterType = new UniRef50ClusterType(uniRef50ClusterTypekey);
         uniRef50ClusterTypekey = raw().titanKeyForVertexType(UniRef50Cluster().id);
         uniRef50ClusterIdkey = uniRef50ClusterTypekey;
-	    uniRef50ClusterUpdatedDatekey = raw().titanKeyMakerForVertexProperty(UniRef50Cluster().updatedDate).single().make();
+	    uniRef50ClusterUpdatedDatekey = raw().titanKeyForVertexPropertySingle(UniRef50Cluster().updatedDate);
 	    uniRef50ClusterNamekey = raw().titanKeyForVertexPropertySingle(UniRef50Cluster().name);
 
     }
