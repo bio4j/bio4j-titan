@@ -1,6 +1,6 @@
 package com.bio4j.titan.util;
 
-import com.ohnosequences.typedGraphs.titan.TitanUntypedGraph;
+import com.bio4j.angulillos.titan.TitanUntypedGraph;
 import com.thinkaurelius.titan.core.*;
 
 /**
