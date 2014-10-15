@@ -1,13 +1,13 @@
 package com.bio4j.titan.model.go;
 
+import com.bio4j.angulillos.TypedVertexIndex;
+import com.bio4j.angulillos.titan.TitanTypedVertexIndex;
 import com.bio4j.model.go.GoGraph;
 import com.bio4j.model.go.vertices.GoTerm;
 import com.bio4j.model.go.vertices.SubOntologies;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
-import com.ohnosequences.typedGraphs.TypedVertexIndex;
-import com.ohnosequences.typedGraphs.titan.TitanTypedVertexIndex;
 import com.thinkaurelius.titan.core.*;
 
 
