@@ -17,10 +17,10 @@
 package com.bio4j.titan.model.ncbiTaxonomy_geninfo.programs;
 
 import com.bio4j.model.ncbiTaxonomy_geninfo.NCBITaxonomyGenInfoGraph;
-import com.bio4j.model.ncbiTaxonomy_geninfo.programs.ImportNCBITaxonGenInfoIndex;
+import com.bio4j.model.ncbiTaxonomy_geninfo.programs.ImportGenInfoNCBITaxonIndex;
+import com.bio4j.titan.model.geninfo.TitanGenInfoGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy_geninfo.TitanNCBITaxonomyGenInfoGraph;
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -35,7 +35,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportNCBITaxonGenInfoIndexTitan extends ImportNCBITaxonGenInfoIndex<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
+public class ImportGenInfoNCBITaxonIndexTitan extends ImportGenInfoNCBITaxonIndex<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> implements Executable {
 
 	@Override
 	protected NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> config(String dbFolder) {
@@ -56,7 +56,7 @@ public class ImportNCBITaxonGenInfoIndexTitan extends ImportNCBITaxonGenInfoInde
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importNCBITaxonGenInfoIndex(args);
+		importGenInfoNCBITaxonIndex(args);
 	}
 
 }
