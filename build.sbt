@@ -19,7 +19,6 @@ libraryDependencies ++= Seq(
   "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
   "bio4j" % "angulillos-titan" % "0.1.0-SNAPSHOT",
   "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.4",
-  "com.tinkerpop.blueprints" % "blueprints-core" % "2.4.0",
   "junit" % "junit" % "3.8.1" % "test"
 )
 
