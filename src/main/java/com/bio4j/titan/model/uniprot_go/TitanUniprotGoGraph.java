@@ -68,7 +68,7 @@ public final class TitanUniprotGoGraph
 
     @Override
     public GoAnnotationType GoAnnotation() {
-        return null;
+        return goAnnotationType;
     }
 
 }
