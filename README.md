@@ -15,3 +15,6 @@ To use it in you sbt-project, add the following dependency to your `build.sbt` f
 ```scala
 libraryDependencies += "bio4j" % "bio4j-titan" % "0.4.0-SNAPSHOT"
 ```
+
+[### Importing Titan Bio4j](/docs/ImportingTitanBio4j)
+
