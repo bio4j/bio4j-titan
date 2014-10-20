@@ -1,17 +1,16 @@
-## Bio4j Titan DB backend
+## Bio4j Titan 
 
-This is an implementation of the [Bio4j model](https://github.com/bio4j/bio4j) using the [Titan database](https://github.com/thinkaurelius/titan). 
+This is the Titan [Titan database](https://github.com/thinkaurelius/titan) distribution of  [Bio4j](https://github.com/bio4j/bio4j)
 
 > Titan is a highly scalable graph database optimized for storing and querying large graphs with billions of vertices and edges distributed across a multi-machine cluster. Titan is a transactional database that can support thousands of concurrent users.
 
-We reuse here the default [blueprints implementation](https://github.com/bio4j/blueprints), but also take advantage of the technology specific features of Titan, which allow us to improve the way we import and store the data. For example, we use [Titan types](https://github.com/thinkaurelius/titan/wiki/Type-Definition-Overview) for representing the rich structure of the Bio4j domain model and [vertex-centric indices](https://github.com/thinkaurelius/titan/wiki/Vertex-Centric-Indices) for effective local indexing which allows to avoid the supe-node problem.
+We use here our open source library [angulillos-titan](https://github.com/bio4j/angulillos-titan) which in turn depends on [angulillos](https://github.com/bio4j/angulillos), _a Java 8 library for working with strongly typed graph data in a generic way_. This allows us to keep in different layers Titan technology-specific stuff and logic regarding how to deal with graphs in a generic way. Thanks to that we have an effective and organized way to import and store the data. 
+In the specific case of Titan, we use [Titan types](https://github.com/thinkaurelius/titan/wiki/Type-Definition-Overview) for representing the rich structure of the Bio4j domain model and [vertex-centric indices](https://github.com/thinkaurelius/titan/wiki/Vertex-Centric-Indices) for effective local indexing which allows to avoid the supe-node problem.
 
 ### SBT dependency
 
-To use it in you sbt-project, add this to you `build.sbt`:
+To use it in you sbt-project, add the following dependency to your `build.sbt` file:
 
 ```scala
-resolvers += "Era7 maven releases" at "http://releases.era7.com.s3.amazonaws.com"
-
-libraryDependencies += "bio4j" %% "bio4j-titan" % "0.3.1"
+libraryDependencies += "bio4j" % "bio4j-titan" % "0.4.0-SNAPSHOT"
 ```
