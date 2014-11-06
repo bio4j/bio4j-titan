@@ -126,3 +126,21 @@ java -d64 -Xmx40G -jar bio4j-titan-0.4.0-SNAPSHOT-fat.jar executionsBio4jTitan.x
 ```
 
 Different log files will be created at jar folder level regarding the progress of the data importation
+
+### Importing process time 
+
+> This test was performed on a **hi1.4xlarge** instance using 40G of memory for the Java process
+
+GO | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | 
+--- | --- | --- | --- | --- | --- | 
+1m 14s | 3s | - | | - | | - | | - | 
+
+#### SwissProt times for combined modules
+
+UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
+--- | --- | --- | 
+
+#### TrEMBL times for combined modules
+
+UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
+--- | --- | --- | 
