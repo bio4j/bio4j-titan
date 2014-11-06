@@ -138,7 +138,7 @@ GO | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRe
 #### SwissProt times for combined modules
 
 UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
---- | --- | --- | 
+2h 20m 35s | --- | --- | 
 
 #### TrEMBL times for combined modules
 
