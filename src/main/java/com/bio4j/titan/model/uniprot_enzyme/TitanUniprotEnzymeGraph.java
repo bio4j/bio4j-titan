@@ -71,6 +71,6 @@ public final class TitanUniprotEnzymeGraph
 
     @Override
     public EnzymaticActivityType EnzymaticActivity() {
-        return null;
+        return enzymaticActivityType;
     }
 }

@@ -63,7 +63,7 @@ public final class TitanEnzymeDBGraph
 
     @Override
     public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph() {
-        return null;
+        return uniprotEnzymeGraph;
     }
 
     @Override
