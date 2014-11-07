@@ -133,7 +133,7 @@ Different log files will be created at jar folder level regarding the progress o
 
 GO | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | 
 --- | --- | --- | --- | --- | --- | 
-1m 14s | 3s | - | | 2h 22m 22s | | - | | - | 
+1m 14s | 3s | - | 2h 22m 22s | - | - |  
 
 #### SwissProt times for combined modules
 
