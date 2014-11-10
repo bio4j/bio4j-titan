@@ -157,4 +157,4 @@ _None of the following programs use in any way any neither SwissProt nor TrEMBL 
 
 UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences |
 --- | --- | --- |
--| - | - |
+-|  1h 5m 23s | - |
