@@ -131,13 +131,13 @@ Different log files will be created at jar folder level regarding the progress o
 
 > This test was performed on a **hi1.4xlarge** instance using 40G of memory for the Java process
 
-GO | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | 
---- | --- | --- | --- | --- | --- | 
-1m 14s | 3s | 8m 13s | 2h 22m 22s | - | - |  
+GO | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProte) | Protein Interactions (TrEMBL) |
+--- | --- | --- | --- | --- | --- | --- | --- | 
+1m 14s | 3s | 8m 13s | 2h 22m 22s | - | - | - | - | 
 
 #### SwissProt times for combined modules
 
-UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
+UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy |
 --- | --- | --- |
 2h 20m 35s | 6m 28s | 6m 32s | 
 
@@ -145,8 +145,10 @@ UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy |
 
 UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
 --- | --- | --- | 
---- | --- | --- | 
+- | - | - | 
 
-UniprotUniRef |
---- |
----|
+#### Combined modules that are not imported using Uniprot XML files
+
+UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences |
+--- | --- | --- |
+-| - | - |
