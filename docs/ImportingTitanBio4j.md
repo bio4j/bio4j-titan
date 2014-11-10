@@ -131,7 +131,7 @@ Different log files will be created at jar folder level regarding the progress o
 
 > This test was performed on a **hi1.4xlarge** instance using 40G of memory for the Java process
 
-GO | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProte) | Protein Interactions (TrEMBL) |
+Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProte) | Protein Interactions (TrEMBL) |
 --- | --- | --- | --- | --- | --- | --- | --- | 
 1m 14s | 3s | 8m 13s | 2h 22m 22s | - | - | - | - | 
 
