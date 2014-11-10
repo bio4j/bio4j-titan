@@ -139,22 +139,22 @@ Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMB
 
 _Time spent by the following programs when using SwissProt XML file as source file._
 
-UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy |
---- | --- | --- |
-2h 20m 35s | 6m 28s | 6m 32s | 
+UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
+--- | --- | --- | --- |
+2h 20m 35s | 6m 28s | 6m 32s | 2h 33m 35s |
 
 #### TrEMBL times for combined modules
 
 _Time spent by the following programs when using TrEMBL XML file as source file._
 
-UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
---- | --- | --- | 
-- | - | - | 
+UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
+--- | --- | --- | --- |
+- | - | - | - |
 
 #### Combined modules that are not imported using Uniprot XML files
 
 _None of the following programs use in any way any neither SwissProt nor TrEMBL XML files._
 
-UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences |
---- | --- | --- |
--|  1h 5m 23s | - |
+UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences | Total time |
+--- | --- | --- | --- |
+-|  1h 5m 23s | - | - |
