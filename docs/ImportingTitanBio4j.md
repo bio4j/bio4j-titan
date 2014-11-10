@@ -145,3 +145,8 @@ UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy |
 
 UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
 --- | --- | --- | 
+--- | --- | --- | 
+
+UniprotUniRef |
+--- |
+---|
