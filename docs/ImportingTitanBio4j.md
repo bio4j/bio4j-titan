@@ -129,7 +129,7 @@ Different log files will be created at jar folder level regarding the progress o
 
 ### Importing process expected time
 
-> This test was performed on a **hi1.4xlarge** instance using 40G of memory for the Java process
+> All these tests were performed on a **hi1.4xlarge** instance using 40G of memory for the Java process
 
 Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProt) | Protein Interactions (TrEMBL) |
 --- | --- | --- | --- | --- | --- | --- | --- | 
@@ -137,17 +137,23 @@ Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMB
 
 #### SwissProt times for combined modules
 
+_Time spent by the following programs when using SwissProt XML file as source file._
+
 UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy |
 --- | --- | --- |
 2h 20m 35s | 6m 28s | 6m 32s | 
 
 #### TrEMBL times for combined modules
 
+_Time spent by the following programs when using TrEMBL XML file as source file._
+
 UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | 
 --- | --- | --- | 
 - | - | - | 
 
 #### Combined modules that are not imported using Uniprot XML files
+
+_None of the following programs use in any way any neither SwissProt nor TrEMBL XML files._
 
 UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences |
 --- | --- | --- |
