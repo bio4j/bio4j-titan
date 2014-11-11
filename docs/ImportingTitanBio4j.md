@@ -129,7 +129,7 @@ Different log files will be created at jar folder level regarding the progress o
 
 ### Importing process expected time
 
-> All these tests were performed on a **hi1.4xlarge** instance using 40G of memory for the Java process
+> All these tests were performed on a **hi1.4xlarge** instance using 40G of memory for the Java process. The only configuration value that was changed was "autotype" = "none"
 
 Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProt) | Protein Interactions (TrEMBL) |
 --- | --- | --- | --- | --- | --- | --- | --- | 
