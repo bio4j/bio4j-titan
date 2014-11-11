@@ -44,6 +44,8 @@ public class ImportUniprotEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTit
 		conf.setProperty("storage.directory", dbFolder);
 		conf.setProperty("storage.backend", "local");
 		conf.setProperty("autotype", "none");
+		conf.setProperty("storage.batch-loading","true"); //We can add this configuration parameter since we are not creating any nodes here
+
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
