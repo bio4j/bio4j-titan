@@ -28,7 +28,8 @@ dependencyOverrides ++= Set(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.2",
   "com.fasterxml.jackson.core" % "jackson-annotations" % "2.1.1",
   "commons-beanutils" % "commons-beanutils" % "1.8.3",
-  "commons-beanutils" % "commons-beanutils-core" % "1.8.3"
+  "commons-beanutils" % "commons-beanutils-core" % "1.8.3",
+  "com.tinkerpop.blueprints" % "blueprints-core" % "2.5.0"
 )
 
 
