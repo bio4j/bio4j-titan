@@ -21,6 +21,7 @@ public class IndexTest {
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", "IndexTestDB");
 		conf.setProperty("storage.backend", "local");
+		conf.setProperty("storage.transactions", "false");
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanUniprotGraph graph = new TitanUniprotGraph(new DefaultTitanGraph(TitanFactory.open(conf)));
@@ -31,13 +32,14 @@ public class IndexTest {
 		EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> embl = null;
 
 
+
 		refSeq = graph.RefSeq().from(graph.raw().addVertex(null));
 		refSeq.set(graph.RefSeq().id, idSt);
-		graph.raw().commit();
+		//graph.raw().commit();
 
 		embl = graph.EMBL().from(graph.raw().addVertex(null));
 		embl.set(graph.EMBL().id, idSt);
-		graph.raw().commit();
+		//graph.raw().commit();
 
 		Optional<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> optionalRefSeq = graph.refSeqIdIndex().getVertex(idSt);
 		if(!optionalRefSeq.isPresent()){
