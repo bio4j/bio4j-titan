@@ -18,7 +18,7 @@ bucketSuffix := "era7.com"
 libraryDependencies ++= Seq(
   "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
   "bio4j" % "angulillos-titan" % "0.2.0-SNAPSHOT",
-  "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.5.1",
+  "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.4",
   "junit" % "junit" % "3.8.1" % "test"
 )
 
