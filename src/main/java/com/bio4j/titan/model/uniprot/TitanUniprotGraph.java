@@ -359,6 +359,10 @@ public final class TitanUniprotGraph
 	// proteinIsoformInteraction
 	public TitanLabel proteinIsoformInteractionLabel;
 	public ProteinIsoformInteractionType proteinIsoformInteractionType;
+	public TitanKey proteinIsoformInteractionExperimentsKey;
+	public TitanKey proteinIsoformInteractionOrganismsDifferKey;
+	public TitanKey proteinIsoformInteractionIntActId1Key;
+	public TitanKey proteinIsoformInteractionIntActId2Key;
 	// isoformProteinInteraction
 	public TitanLabel isoformProteinInteractionLabel;
 	public IsoformProteinInteractionType isoformProteinInteractionType;
@@ -879,6 +883,10 @@ public final class TitanUniprotGraph
 
 	    proteinIsoformInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformInteractionType(null));
 	    proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionLabel);
+	    proteinIsoformInteractionExperimentsKey = raw().titanKeyForEdgePropertySingle(proteinIsoformInteractionType.experiments);
+	    proteinIsoformInteractionOrganismsDifferKey = raw().titanKeyForEdgePropertySingle(proteinIsoformInteractionType.organismsDiffer);
+	    proteinIsoformInteractionIntActId1Key = raw().titanKeyForEdgePropertySingle(proteinIsoformInteractionType.intActId1);
+	    proteinIsoformInteractionIntActId2Key = raw().titanKeyForEdgePropertySingle(proteinIsoformInteractionType.intActId2);
 
 	    proteinIsoformLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformType(null));
 	    proteinIsoformType = new ProteinIsoformType(proteinIsoformLabel);
