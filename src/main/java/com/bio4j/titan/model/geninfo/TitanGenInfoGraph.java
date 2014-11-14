@@ -8,6 +8,7 @@ import com.bio4j.model.ncbiTaxonomy_geninfo.NCBITaxonomyGenInfoGraph;
 import com.bio4j.titan.model.ncbiTaxonomy_geninfo.TitanNCBITaxonomyGenInfoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,7 +16,7 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanGenInfoGraph
 		extends
-		GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+		GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
 	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
@@ -23,22 +24,22 @@ public final class TitanGenInfoGraph
 
 	//-------------------VERTICES----------------------------
 
-	public TitanKey genInfoTypeKey;
-	public TitanKey genInfoIdkey;
+	public PropertyKey genInfoTypeKey;
+	public PropertyKey genInfoIdkey;
 	public GenInfoType genInfoType;
 
 	//---------------INDICES---------------------------
 
 	TitanTypedVertexIndex.DefaultUnique<
-			GenInfo<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+			GenInfo<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
 			GenInfoType,
 			GenInfoType.id, String,
-			GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+			GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
 			DefaultTitanGraph
 			> genInfoIdIndex;
 
 	@Override
-	public TypedVertexIndex.Unique<GenInfo<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GenInfoType, GenInfoType.id, String, GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> genInfoIdIndex() {
+	public TypedVertexIndex.Unique<GenInfo<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GenInfoType, GenInfoType.id, String, GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> genInfoIdIndex() {
 		return genInfoIdIndex;
 	}
 
@@ -55,7 +56,7 @@ public final class TitanGenInfoGraph
 	}
 
 	@Override
-	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGenInfoGraph() {
+	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGenInfoGraph() {
 		return null;
 	}
 

@@ -7,6 +7,7 @@ import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,25 +16,25 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotUniRefGraph
         extends
-        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
-    private UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRefRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotRawGraph;
+    private UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRefRawGraph;
 
     //---------------RELATIONSHIPS---------------------------
 
-    private TitanLabel uniRef50MemberLabel;
+    private EdgeLabel uniRef50MemberLabel;
     private UniRef50MemberType uniRef50MemberType;
-    private TitanLabel uniRef90MemberLabel;
+    private EdgeLabel uniRef90MemberLabel;
     private UniRef90MemberType uniRef90MemberType;
-    private TitanLabel uniRef100MemberLabel;
+    private EdgeLabel uniRef100MemberLabel;
     private UniRef100MemberType uniRef100MemberType;
-    private TitanLabel uniRef50RepresentantLabel;
+    private EdgeLabel uniRef50RepresentantLabel;
     private UniRef50RepresentantType uniRef50RepresentantType;
-    private TitanLabel uniRef90RepresentantLabel;
+    private EdgeLabel uniRef90RepresentantLabel;
     private UniRef90RepresentantType uniRef90RepresentantType;
-    private TitanLabel uniRef100RepresentantLabel;
+    private EdgeLabel uniRef100RepresentantLabel;
     private UniRef100RepresentantType uniRef100RepresentantType;
 
 
@@ -56,19 +57,19 @@ public final class TitanUniprotUniRefGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        uniRef50MemberLabel = raw().titanLabelForEdgeType(new UniRef50MemberType((TitanLabel) null));
+        uniRef50MemberLabel = raw().titanLabelForEdgeType(new UniRef50MemberType((EdgeLabel) null));
         uniRef50MemberType = new UniRef50MemberType(uniRef50MemberLabel);
-        uniRef90MemberLabel = raw().titanLabelForEdgeType(new UniRef90MemberType((TitanLabel) null));
+        uniRef90MemberLabel = raw().titanLabelForEdgeType(new UniRef90MemberType((EdgeLabel) null));
         uniRef90MemberType = new UniRef90MemberType(uniRef90MemberLabel);
-        uniRef100MemberLabel = raw().titanLabelForEdgeType(new UniRef100MemberType((TitanLabel) null));
+        uniRef100MemberLabel = raw().titanLabelForEdgeType(new UniRef100MemberType((EdgeLabel) null));
         uniRef100MemberType = new UniRef100MemberType(uniRef100MemberLabel);
 
 
-        uniRef50RepresentantLabel = raw().titanLabelForEdgeType(new UniRef50RepresentantType((TitanLabel) null));
+        uniRef50RepresentantLabel = raw().titanLabelForEdgeType(new UniRef50RepresentantType((EdgeLabel) null));
         uniRef50RepresentantType = new UniRef50RepresentantType(uniRef50RepresentantLabel);
-        uniRef90RepresentantLabel = raw().titanLabelForEdgeType(new UniRef90RepresentantType((TitanLabel) null));
+        uniRef90RepresentantLabel = raw().titanLabelForEdgeType(new UniRef90RepresentantType((EdgeLabel) null));
         uniRef90RepresentantType = new UniRef90RepresentantType(uniRef90RepresentantLabel);
-        uniRef100RepresentantLabel = raw().titanLabelForEdgeType(new UniRef100RepresentantType((TitanLabel) null));
+        uniRef100RepresentantLabel = raw().titanLabelForEdgeType(new UniRef100RepresentantType((EdgeLabel) null));
         uniRef100RepresentantType = new UniRef100RepresentantType(uniRef100RepresentantLabel);
 
     }
@@ -79,12 +80,12 @@ public final class TitanUniprotUniRefGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRefGraph() {
+    public UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRefGraph() {
         return uniRefRawGraph;
     }
 

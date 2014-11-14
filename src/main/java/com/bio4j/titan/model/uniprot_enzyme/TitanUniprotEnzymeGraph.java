@@ -7,6 +7,7 @@ import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,18 +16,18 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotEnzymeGraph
         extends
-        UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
-    private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotRawGraph;
+    private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> enzymeDBRawGraph;
 
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
 
 	// enzymaticActivity
-	public TitanLabel enzymaticActivityLabel;
+	public EdgeLabel enzymaticActivityLabel;
 	public EnzymaticActivityType enzymaticActivityType;
 
 
@@ -49,7 +50,7 @@ public final class TitanUniprotEnzymeGraph
 	    //-----------------------------------------------------------------------------------------
 	    //--------------------------------RELATIONSHIPS--------------------------------------------
 
-	    enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((TitanLabel) null));
+	    enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((EdgeLabel) null));
 	    enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityLabel);
 
     }
@@ -60,12 +61,12 @@ public final class TitanUniprotEnzymeGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBGraph() {
+    public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> enzymeDBGraph() {
         return enzymeDBRawGraph;
     }
 

@@ -7,6 +7,7 @@ import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,7 +16,7 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotGoGraph
         extends
-        UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
     private TitanUniprotGraph uniprotRawGraph;
@@ -23,7 +24,7 @@ public final class TitanUniprotGoGraph
 
     //---------------RELATIONSHIPS---------------------------
 
-    private TitanLabel goAnnotationLabel;
+    private EdgeLabel goAnnotationLabel;
     private GoAnnotationType goAnnotationType;
 
 
@@ -46,7 +47,7 @@ public final class TitanUniprotGoGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        goAnnotationLabel = raw().titanLabelForEdgeType(new GoAnnotationType((TitanLabel) null));
+        goAnnotationLabel = raw().titanLabelForEdgeType(new GoAnnotationType((EdgeLabel) null));
         goAnnotationType = new GoAnnotationType(goAnnotationLabel);
 
     }
@@ -57,12 +58,12 @@ public final class TitanUniprotGoGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goGraph() {
+    public GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> goGraph() {
         return goRawGraph;
     }
 

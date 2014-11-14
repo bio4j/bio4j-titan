@@ -14,6 +14,7 @@ import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /*
@@ -21,7 +22,7 @@ import com.thinkaurelius.titan.core.*;
 */
 public final class TitanUniprotGraph
         extends
-        UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
 
@@ -33,193 +34,193 @@ public final class TitanUniprotGraph
 
     //-------------------VERTICES----------------------------
 
-    public TitanKey proteinTypekey;
-    public TitanKey proteinAcessionKey;
-    public TitanKey proteinNameKey;
-    public TitanKey proteinShortNameKey;
-    public TitanKey proteinFullNameKey;
-    public TitanKey proteinModifiedDateKey;
-    public TitanKey proteinCreatedDateKey;
-    public TitanKey proteinMassKey;
-    public TitanKey proteinVersionKey;
-    public TitanKey proteinLengthKey;
-    public TitanKey proteinSequenceKey;
+    public PropertyKey proteinTypekey;
+    public PropertyKey proteinAcessionKey;
+    public PropertyKey proteinNameKey;
+    public PropertyKey proteinShortNameKey;
+    public PropertyKey proteinFullNameKey;
+    public PropertyKey proteinModifiedDateKey;
+    public PropertyKey proteinCreatedDateKey;
+    public PropertyKey proteinMassKey;
+    public PropertyKey proteinVersionKey;
+    public PropertyKey proteinLengthKey;
+    public PropertyKey proteinSequenceKey;
     public ProteinType proteinType;
 
 	//---AlternativeProduct---
-	public TitanKey alternativeProductTypeKey;
-	public TitanKey alternativeProductNameKey;
+	public PropertyKey alternativeProductTypeKey;
+	public PropertyKey alternativeProductNameKey;
 	public AlternativeProductType alternativeProductType;
     //---Article---
-    public TitanKey articleTypeKey;
-    public TitanKey articleTitleKey;
-    public TitanKey articleDoIdKey;
+    public PropertyKey articleTypeKey;
+    public PropertyKey articleTitleKey;
+    public PropertyKey articleDoIdKey;
     public ArticleType articleType;
     //---Db---
-    public TitanKey dbTypeKey;
-    public TitanKey dbNameKey;
+    public PropertyKey dbTypeKey;
+    public PropertyKey dbNameKey;
     public DBType dbType;
     //---Book---
-    public TitanKey bookTypeKey;
-    public TitanKey bookNameKey;
+    public PropertyKey bookTypeKey;
+    public PropertyKey bookNameKey;
     public BookType bookType;
     //---city---
-    public TitanKey cityTypeKey;
-    public TitanKey cityNameKey;
+    public PropertyKey cityTypeKey;
+    public PropertyKey cityNameKey;
     public CityType cityType;
 	//---consortium---
-	public TitanKey consortiumTypeKey;
-	public TitanKey consortiumNameKey;
+	public PropertyKey consortiumTypeKey;
+	public PropertyKey consortiumNameKey;
 	public ConsortiumType consortiumType;
     //---country---
-    public TitanKey countryTypeKey;
-    public TitanKey countryNameKey;
+    public PropertyKey countryTypeKey;
+    public PropertyKey countryNameKey;
     public CountryType countryType;
     //---dataset---
-    public TitanKey datasetTypeKey;
-    public TitanKey datasetNameKey;
+    public PropertyKey datasetTypeKey;
+    public PropertyKey datasetNameKey;
     public DatasetType datasetType;
 	//---gene location---
-	public TitanKey geneLocationTypeKey;
-	public TitanKey geneLocationNameKey;
+	public PropertyKey geneLocationTypeKey;
+	public PropertyKey geneLocationNameKey;
 	public GeneLocationType geneLocationType;
 	//---disease---
-	public TitanKey diseaseTypeKey;
-	public TitanKey diseaseNameKey;
-	public TitanKey diseaseIdKey;
-	public TitanKey diseaseAcronymKey;
-	public TitanKey diseaseDescriptionKey;
+	public PropertyKey diseaseTypeKey;
+	public PropertyKey diseaseNameKey;
+	public PropertyKey diseaseIdKey;
+	public PropertyKey diseaseAcronymKey;
+	public PropertyKey diseaseDescriptionKey;
 	public DiseaseType diseaseType;
     //---organism---
-    public TitanKey organismTypeKey;
-    public TitanKey organismScientificNameKey;
-    public TitanKey organismCommonNameKey;
-    public TitanKey organismSynonymNameKey;
+    public PropertyKey organismTypeKey;
+    public PropertyKey organismScientificNameKey;
+    public PropertyKey organismCommonNameKey;
+    public PropertyKey organismSynonymNameKey;
     public OrganismType organismType;
     //---keyword---
-    public TitanKey keywordTypeKey;
-    public TitanKey keywordNameKey;
-    public TitanKey keywordIdKey;
+    public PropertyKey keywordTypeKey;
+    public PropertyKey keywordNameKey;
+    public PropertyKey keywordIdKey;
     public KeywordType keywordType;
     //---interpro---
-    public TitanKey interproTypeKey;
-    public TitanKey interproNameKey;
-    public TitanKey interproIdKey;
+    public PropertyKey interproTypeKey;
+    public PropertyKey interproNameKey;
+    public PropertyKey interproIdKey;
     public InterproType interproType;
 	//---interpro---
-	public TitanKey isoformTypeKey;
-	public TitanKey isoformNameKey;
-	public TitanKey isoformIdKey;
-	public TitanKey isoformSequenceKey;
-	public TitanKey isoformNoteKey;
+	public PropertyKey isoformTypeKey;
+	public PropertyKey isoformNameKey;
+	public PropertyKey isoformIdKey;
+	public PropertyKey isoformSequenceKey;
+	public PropertyKey isoformNoteKey;
 	public IsoformType isoformType;
     //----institute-----
-    public TitanKey instituteTypeKey;
-    public TitanKey instituteNameKey;
+    public PropertyKey instituteTypeKey;
+    public PropertyKey instituteNameKey;
     public InstituteType instituteType;
     //---journal---
-    public TitanKey journalTypeKey;
-    public TitanKey journalNameKey;
+    public PropertyKey journalTypeKey;
+    public PropertyKey journalNameKey;
     public JournalType journalType;
 	//---person---
-	public TitanKey personTypeKey;
-	public TitanKey personNameKey;
+	public PropertyKey personTypeKey;
+	public PropertyKey personNameKey;
 	public PersonType personType;
     //---publisher---
-    public TitanKey publisherTypeKey;
-    public TitanKey publisherNameKey;
+    public PropertyKey publisherTypeKey;
+    public PropertyKey publisherNameKey;
     public PublisherType publisherType;
     //---pubmed---
-    public TitanKey pubmedTypeKey;
-    public TitanKey pubmedIdKey;
+    public PropertyKey pubmedTypeKey;
+    public PropertyKey pubmedIdKey;
     public PubmedType pubmedType;
     //---reactome term---
-    public TitanKey reactomeTermTypeKey;
-    public TitanKey reactomeTermPathwayNameKey;
-    public TitanKey reactomeTermIdKey;
+    public PropertyKey reactomeTermTypeKey;
+    public PropertyKey reactomeTermPathwayNameKey;
+    public PropertyKey reactomeTermIdKey;
     public ReactomeTermType reactomeTermType;
     //---pfam---
-    public TitanKey pfamTypeKey;
-    public TitanKey pfamNameKey;
-    public TitanKey pfamIdKey;
+    public PropertyKey pfamTypeKey;
+    public PropertyKey pfamNameKey;
+    public PropertyKey pfamIdKey;
     public PfamType pfamType;
     //---kegg---
-    public TitanKey keggTypeKey;
-    public TitanKey keggIdKey;
+    public PropertyKey keggTypeKey;
+    public PropertyKey keggIdKey;
     public KeggType keggType;
     //---EMBL---
-    public TitanKey eMBLTypeKey;
-    public TitanKey eMBLIdKey;
-    public TitanKey eMBLMoleculeTypeKey;
-    public TitanKey eMBLProteinSequenceIdKey;
+    public PropertyKey eMBLTypeKey;
+    public PropertyKey eMBLIdKey;
+    public PropertyKey eMBLMoleculeTypeKey;
+    public PropertyKey eMBLProteinSequenceIdKey;
     public EMBLType eMBLType;
     //---Patent---
-    public TitanKey patentTypeKey;
-    public TitanKey patentTitleKey;
-    public TitanKey patentNumberKey;
+    public PropertyKey patentTypeKey;
+    public PropertyKey patentTitleKey;
+    public PropertyKey patentNumberKey;
     public PatentType patentType;
     //---PIR---
-    public TitanKey pIRTypeKey;
-    public TitanKey pIRIdKey;
-    public TitanKey pIREntryNameKey;
+    public PropertyKey pIRTypeKey;
+    public PropertyKey pIRIdKey;
+    public PropertyKey pIREntryNameKey;
     public PIRType pIRType;
     //---UniGene---
-    public TitanKey uniGeneTypeKey;
-    public TitanKey uniGeneIdKey;
+    public PropertyKey uniGeneTypeKey;
+    public PropertyKey uniGeneIdKey;
     public UniGeneType uniGeneType;
     //---Ensembl---
-    public TitanKey ensemblTypeKey;
-    public TitanKey ensemblIdKey;
-    public TitanKey ensemblMoleculeIdKey;
-    public TitanKey ensemblProteinSequenceIdKey;
-    public TitanKey ensemblGeneIdKey;
+    public PropertyKey ensemblTypeKey;
+    public PropertyKey ensemblIdKey;
+    public PropertyKey ensemblMoleculeIdKey;
+    public PropertyKey ensemblProteinSequenceIdKey;
+    public PropertyKey ensemblGeneIdKey;
     public EnsemblType ensemblType;
     //---Taxon---
-    public TitanKey taxonTypeKey;
-    public TitanKey taxonNameKey;
+    public PropertyKey taxonTypeKey;
+    public PropertyKey taxonNameKey;
     public TaxonType taxonType;
     //---Thesis---
-    public TitanKey thesisTypeKey;
-    public TitanKey thesisTitleKey;
+    public PropertyKey thesisTypeKey;
+    public PropertyKey thesisTitleKey;
     public ThesisType thesisType;
     //----OnlineArticle-----
-    public TitanKey onlineArticleTypeKey;
-    public TitanKey onlineArticleTitleKey;
+    public PropertyKey onlineArticleTypeKey;
+    public PropertyKey onlineArticleTitleKey;
     public OnlineArticleType onlineArticleType;
     //----OnlineJournal-----
-    public TitanKey onlineJournalTypeKey;
-    public TitanKey onlineJournalNameKey;
+    public PropertyKey onlineJournalTypeKey;
+    public PropertyKey onlineJournalNameKey;
     public OnlineJournalType onlineJournalType;
     //---RefSeq---
-    public TitanKey refSeqTypeKey;
-    public TitanKey refSeqIdKey;
-    public TitanKey refSeqNucleotideSequenceIdKey;
+    public PropertyKey refSeqTypeKey;
+    public PropertyKey refSeqIdKey;
+    public PropertyKey refSeqNucleotideSequenceIdKey;
     public RefSeqType refSeqType;
     //---Reference---
-    public TitanKey referenceDateKey;
+    public PropertyKey referenceDateKey;
     public ReferenceType referenceType;
 	//---SequenceCaution----
-	public TitanKey sequenceCautionTypeKey;
-	public TitanKey sequenceCautionNameKey;
+	public PropertyKey sequenceCautionTypeKey;
+	public PropertyKey sequenceCautionNameKey;
 	public SequenceCautionType sequenceCautionType;
     //---SubcellularLocation----
-    public TitanKey subcellularLocationTypeKey;
-    public TitanKey subcellularLocationNameKey;
+    public PropertyKey subcellularLocationTypeKey;
+    public PropertyKey subcellularLocationNameKey;
     public SubcellularLocationType subcellularLocationType;
     //---Submission----
-    public TitanKey submissionTypeKey;
-    public TitanKey submissionTitleKey;
+    public PropertyKey submissionTypeKey;
+    public PropertyKey submissionTitleKey;
     public SubmissionType submissionType;
     //---FeatureType---
-    public TitanKey featureTypeTypeKey;
-    public TitanKey featureTypeNameKey;
+    public PropertyKey featureTypeTypeKey;
+    public PropertyKey featureTypeNameKey;
     public FeatureTypeType featureTypeType;
     //---CommentType---
-    public TitanKey commentTypeTypeKey;
-    public TitanKey commentTypeNameKey;
+    public PropertyKey commentTypeTypeKey;
+    public PropertyKey commentTypeNameKey;
     public CommentTypeType commentTypeType;
     //---UnpublishedObservation----
-    public TitanKey unpublishedObservationScopeKey;
+    public PropertyKey unpublishedObservationScopeKey;
     public UnpublishedObservationType unpublishedObservationType;
 
 
@@ -227,44 +228,44 @@ public final class TitanUniprotGraph
     //-----------------------------------------
     //---------------INDICES---------------------------
 
-    public TitanTypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> proteinAccessionIndex;
-    public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> datasetNameIndex;
-    public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> organismScientificNameIndex;
-    public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> keywordIdIndex;
-    public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> reactomeTermIdIndex;
-    public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> interproIdIndex;
-    public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> pfamIdIndex;
-    public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> keggIdIndex;
-    public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> eMBLIdIndex;
-    public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> pIRIdIndex;
-    public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> uniGeneIdIndex;
-    public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> ensemblIdIndex;
-    public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> taxonNameIndex;
-    public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> refSeqIdIndex;
-    public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> commentTypeNameIndex;
-    public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> featureTypeNameIndex;
-	public TitanTypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> journalNameIndex;
-	public TitanTypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> articleTitleIndex;
-	public TitanTypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> onlineJournalNameIndex;
-	public TitanTypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> onlineArticleTitleIndex;
-	public TitanTypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> pubmedIdIndex;
-	public TitanTypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> personNameIndex;
-	public TitanTypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> thesisTitleIndex;
-	public TitanTypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> consortiumNameIndex;
-	public TitanTypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> instituteNameIndex;
-	public TitanTypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> submissionTitleIndex;
-	public TitanTypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> patentNumberIndex;
-	public TitanTypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> cityNameIndex;
-	public TitanTypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> countryNameIndex;
-	public TitanTypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> publisherNameIndex;
-	public TitanTypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> bookNameIndex;
-	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> dbNameIndex;
-	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> diseaseIdIndex;
-	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
-	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> isoformIdIndex;
-	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> sequenceCautionNameIndex;
-	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> geneLocationNameIndex;
-	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph> alternativeProductNameIndex;
+    public TitanTypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> proteinAccessionIndex;
+    public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> datasetNameIndex;
+    public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> organismScientificNameIndex;
+    public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> keywordIdIndex;
+    public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> reactomeTermIdIndex;
+    public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> interproIdIndex;
+    public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> pfamIdIndex;
+    public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> keggIdIndex;
+    public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> eMBLIdIndex;
+    public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> pIRIdIndex;
+    public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> uniGeneIdIndex;
+    public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> ensemblIdIndex;
+    public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> taxonNameIndex;
+    public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> refSeqIdIndex;
+    public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> commentTypeNameIndex;
+    public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> featureTypeNameIndex;
+	public TitanTypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> journalNameIndex;
+	public TitanTypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> articleTitleIndex;
+	public TitanTypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> onlineJournalNameIndex;
+	public TitanTypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> onlineArticleTitleIndex;
+	public TitanTypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> pubmedIdIndex;
+	public TitanTypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> personNameIndex;
+	public TitanTypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> thesisTitleIndex;
+	public TitanTypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> consortiumNameIndex;
+	public TitanTypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> instituteNameIndex;
+	public TitanTypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> submissionTitleIndex;
+	public TitanTypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> patentNumberIndex;
+	public TitanTypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> cityNameIndex;
+	public TitanTypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> countryNameIndex;
+	public TitanTypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> publisherNameIndex;
+	public TitanTypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> bookNameIndex;
+	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> dbNameIndex;
+	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> diseaseIdIndex;
+	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
+	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> isoformIdIndex;
+	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> sequenceCautionNameIndex;
+	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> geneLocationNameIndex;
+	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> alternativeProductNameIndex;
 
 
 
@@ -273,184 +274,184 @@ public final class TitanUniprotGraph
     //--------------------------------RELATIONSHIPS--------------------------------------------
 
 	// isoformEventGenerator
-	public TitanLabel isoformEventGeneratorLabel;
+	public EdgeLabel isoformEventGeneratorLabel;
 	public IsoformEventGeneratorType isoformEventGeneratorType;
     // proteinDataset
-    public TitanLabel proteinDatasetLabel;
+    public EdgeLabel proteinDatasetLabel;
     public ProteinDatasetType proteinDatasetType;
     // proteinOrganism
-    public TitanLabel proteinOrganismLabel;
+    public EdgeLabel proteinOrganismLabel;
     public ProteinOrganismType proteinOrganismType;
     // proteinKeyword
-    public TitanLabel proteinKeywordLabel;
+    public EdgeLabel proteinKeywordLabel;
     public ProteinKeywordType proteinKeywordType;
     // proteinReactomeTerm
-    public TitanLabel proteinReactomeTermLabel;
+    public EdgeLabel proteinReactomeTermLabel;
     public ProteinReactomeTermType proteinReactomeTermType;
     // proteinInterpro
-    public TitanLabel proteinInterproLabel;
+    public EdgeLabel proteinInterproLabel;
     public ProteinInterproType proteinInterproType;
     // proteinPfam
-    public TitanLabel proteinPfamLabel;
+    public EdgeLabel proteinPfamLabel;
     public ProteinPfamType proteinPfamType;
     // proteinKegg
-    public TitanLabel proteinKeggLabel;
+    public EdgeLabel proteinKeggLabel;
     public ProteinKeggType proteinKeggType;
     // proteinEMBL
-    public TitanLabel proteinEMBLLabel;
+    public EdgeLabel proteinEMBLLabel;
     public ProteinEMBLType proteinEMBLType;
     // proteinPIR
-    public TitanLabel proteinPIRLabel;
+    public EdgeLabel proteinPIRLabel;
     public ProteinPIRType proteinPIRType;
     // proteinUniGene
-    public TitanLabel proteinUniGeneLabel;
+    public EdgeLabel proteinUniGeneLabel;
     public ProteinUniGeneType proteinUniGeneType;
     // proteinEnsembl
-    public TitanLabel proteinEnsemblLabel;
+    public EdgeLabel proteinEnsemblLabel;
     public ProteinEnsemblType proteinEnsemblType;
     // proteinRefSeq
-    public TitanLabel proteinRefSeqLabel;
+    public EdgeLabel proteinRefSeqLabel;
     public ProteinRefSeqType proteinRefSeqType;
 	// proteinGeneLocation
-	public TitanLabel proteinGeneLocationLabel;
-	public TitanKey proteinGeneLocationNameKey;
+	public EdgeLabel proteinGeneLocationLabel;
+	public PropertyKey proteinGeneLocationNameKey;
 	public ProteinGeneLocationType proteinGeneLocationType;
     // proteinFeature
-    public TitanLabel proteinFeatureLabel;
-    public TitanKey proteinFeatureIdKey;
-    public TitanKey proteinFeatureDescriptionKey;
-    public TitanKey proteinFeatureEvidenceKey;
-    public TitanKey proteinFeatureStatusKey;
-    public TitanKey proteinFeatureBeginKey;
-    public TitanKey proteinFeatureEndKey;
-    public TitanKey proteinFeatureOriginalKey;
-    public TitanKey proteinFeatureVariationKey;
-    public TitanKey proteinFeatureRefKey;
+    public EdgeLabel proteinFeatureLabel;
+    public PropertyKey proteinFeatureIdKey;
+    public PropertyKey proteinFeatureDescriptionKey;
+    public PropertyKey proteinFeatureEvidenceKey;
+    public PropertyKey proteinFeatureStatusKey;
+    public PropertyKey proteinFeatureBeginKey;
+    public PropertyKey proteinFeatureEndKey;
+    public PropertyKey proteinFeatureOriginalKey;
+    public PropertyKey proteinFeatureVariationKey;
+    public PropertyKey proteinFeatureRefKey;
     public ProteinFeatureType proteinFeatureType;
     // proteinComment
-    public TitanLabel proteinCommentLabel;
+    public EdgeLabel proteinCommentLabel;
     public ProteinCommentType proteinCommentType;
-	public TitanKey proteinCommentTextKey;
-	public TitanKey proteinCommentStatusKey;
-	public TitanKey proteinCommentEvidenceKey;
-	public TitanKey proteinCommentBeginKey;
-	public TitanKey proteinCommentEndKey;
-	public TitanKey proteinCommentMethodKey;
-	public TitanKey proteinCommentMassKey;
-	public TitanKey proteinCommentAbsorptionMaxKey;
-	public TitanKey proteinCommentAbsorptionTextKey;
-	public TitanKey proteinCommentKineticsXMLKey;
-	public TitanKey proteinCommentPhDependenceKey;
-	public TitanKey proteinCommentPositionKey;
-	public TitanKey proteinCommentRedoxPotentialKey;
-	public TitanKey proteinCommentRedoxPotentialEvidenceKey;
-	public TitanKey proteinCommentTemperatureDependenceKey;
+	public PropertyKey proteinCommentTextKey;
+	public PropertyKey proteinCommentStatusKey;
+	public PropertyKey proteinCommentEvidenceKey;
+	public PropertyKey proteinCommentBeginKey;
+	public PropertyKey proteinCommentEndKey;
+	public PropertyKey proteinCommentMethodKey;
+	public PropertyKey proteinCommentMassKey;
+	public PropertyKey proteinCommentAbsorptionMaxKey;
+	public PropertyKey proteinCommentAbsorptionTextKey;
+	public PropertyKey proteinCommentKineticsXMLKey;
+	public PropertyKey proteinCommentPhDependenceKey;
+	public PropertyKey proteinCommentPositionKey;
+	public PropertyKey proteinCommentRedoxPotentialKey;
+	public PropertyKey proteinCommentRedoxPotentialEvidenceKey;
+	public PropertyKey proteinCommentTemperatureDependenceKey;
 
 	// proteinProteinInteraction
-	public TitanLabel proteinProteinInteractionLabel;
+	public EdgeLabel proteinProteinInteractionLabel;
 	public ProteinProteinInteractionType proteinProteinInteractionType;
 	// proteinIsoform
-	public TitanLabel proteinIsoformLabel;
+	public EdgeLabel proteinIsoformLabel;
 	public ProteinIsoformType proteinIsoformType;
 	// proteinIsoformInteraction
-	public TitanLabel proteinIsoformInteractionLabel;
+	public EdgeLabel proteinIsoformInteractionLabel;
 	public ProteinIsoformInteractionType proteinIsoformInteractionType;
 	// isoformProteinInteraction
-	public TitanLabel isoformProteinInteractionLabel;
+	public EdgeLabel isoformProteinInteractionLabel;
 	public IsoformProteinInteractionType isoformProteinInteractionType;
 	// proteinDisease
-	public TitanLabel proteinDiseaseLabel;
+	public EdgeLabel proteinDiseaseLabel;
 	public ProteinDiseaseType proteinDiseaseType;
-	public TitanKey proteinDiseaseTextKey;
-	public TitanKey proteinDiseaseStatusKey;
-	public TitanKey proteinDiseaseEvidenceKey;
+	public PropertyKey proteinDiseaseTextKey;
+	public PropertyKey proteinDiseaseStatusKey;
+	public PropertyKey proteinDiseaseEvidenceKey;
     // proteinReference
-    public TitanLabel proteinReferenceLabel;
+    public EdgeLabel proteinReferenceLabel;
     public ProteinReferenceType proteinReferenceType;
     // proteinSubcellularLocation
-    public TitanLabel proteinSubcellularLocationLabel;
+    public EdgeLabel proteinSubcellularLocationLabel;
     public ProteinSubcellularLocationType proteinSubcellularLocationType;
-	public TitanKey proteinSubcellularLocationStatusKey;
-	public TitanKey proteinSubcellularLocationEvidenceKey;
-	public TitanKey proteinSubcellularLocationTopologyKey;
-	public TitanKey proteinSubcellularLocationTopologyStatusKey;
+	public PropertyKey proteinSubcellularLocationStatusKey;
+	public PropertyKey proteinSubcellularLocationEvidenceKey;
+	public PropertyKey proteinSubcellularLocationTopologyKey;
+	public PropertyKey proteinSubcellularLocationTopologyStatusKey;
 	// proteinSequenceCaution
-	public TitanLabel proteinSequenceCautionLabel;
+	public EdgeLabel proteinSequenceCautionLabel;
 	public ProteinSequenceCautionType proteinSequenceCautionType;
-	public TitanKey proteinSequenceCautionIdKey;
-	public TitanKey proteinSequenceCautionEvidenceKey;
-	public TitanKey proteinSequenceCautionStatusKey;
-	public TitanKey proteinSequenceCautionTextKey;
-	public TitanKey proteinSequenceCautionResourceKey;
-	public TitanKey proteinSequenceCautionVersionKey;
-	public TitanKey proteinSequenceCautionPositionKey;
+	public PropertyKey proteinSequenceCautionIdKey;
+	public PropertyKey proteinSequenceCautionEvidenceKey;
+	public PropertyKey proteinSequenceCautionStatusKey;
+	public PropertyKey proteinSequenceCautionTextKey;
+	public PropertyKey proteinSequenceCautionResourceKey;
+	public PropertyKey proteinSequenceCautionVersionKey;
+	public PropertyKey proteinSequenceCautionPositionKey;
 
     // articlePubmed
-    public TitanLabel articlePubmedLabel;
+    public EdgeLabel articlePubmedLabel;
     public ArticlePubmedType articlePubmedType;
     // articleJournal
-    public TitanLabel articleJournalLabel;
+    public EdgeLabel articleJournalLabel;
     public ArticleJournalType articleJournalType;
-	public TitanKey articleJournalVolumeKey;
-	public TitanKey articleJournalFirstKey;
-	public TitanKey articleJournalLastKey;
+	public PropertyKey articleJournalVolumeKey;
+	public PropertyKey articleJournalFirstKey;
+	public PropertyKey articleJournalLastKey;
     // bookCity
-    public TitanLabel bookCityLabel;
+    public EdgeLabel bookCityLabel;
     public BookCityType bookCityType;
 	// bookEditor
-	public TitanLabel bookEditorLabel;
+	public EdgeLabel bookEditorLabel;
 	public BookEditorType bookEditorType;
     // bookPublisher
-    public TitanLabel bookPublisherLabel;
+    public EdgeLabel bookPublisherLabel;
     public BookPublisherType bookPublisherType;
     // instituteCountry
-    public TitanLabel instituteCountryLabel;
+    public EdgeLabel instituteCountryLabel;
     public InstituteCountryType instituteCountryType;
     // taxonParent
-    public TitanLabel taxonParentLabel;
+    public EdgeLabel taxonParentLabel;
     public TaxonParentType taxonParentType;
     // organismTaxon
-    public TitanLabel organismTaxonLabel;
+    public EdgeLabel organismTaxonLabel;
     public OrganismTaxonType organismTaxonType;
     // onlineArticleOnlineJournal
-    public TitanLabel onlineArticleOnlineJournalLabel;
+    public EdgeLabel onlineArticleOnlineJournalLabel;
     public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
-	public TitanKey onlineArticleOnlineJournalLocatorKey;
+	public PropertyKey onlineArticleOnlineJournalLocatorKey;
 	// referenceAuthorPerson
-	public TitanLabel referenceAuthorPersonLabel;
+	public EdgeLabel referenceAuthorPersonLabel;
 	public ReferenceAuthorPersonType referenceAuthorPersonType;
 	// referenceAuthorConsortium
-	public TitanLabel referenceAuthorConsortiumLabel;
+	public EdgeLabel referenceAuthorConsortiumLabel;
 	public ReferenceAuthorConsortiumType referenceAuthorConsortiumType;
     // referenceArticle
-    public TitanLabel referenceArticleLabel;
+    public EdgeLabel referenceArticleLabel;
     public ReferenceArticleType referenceArticleType;
     // referenceBook
-    public TitanLabel referenceBookLabel;
+    public EdgeLabel referenceBookLabel;
     public ReferenceBookType referenceBookType;
     // referenceThesis
-    public TitanLabel referenceThesisLabel;
+    public EdgeLabel referenceThesisLabel;
     public ReferenceThesisType referenceThesisType;
     // referenceSubmission
-    public TitanLabel referenceSubmissionLabel;
+    public EdgeLabel referenceSubmissionLabel;
     public ReferenceSubmissionType referenceSubmissionType;
     // referencePatent
-    public TitanLabel referencePatentLabel;
+    public EdgeLabel referencePatentLabel;
     public ReferencePatentType referencePatentType;
     // referenceOnlineArticle
-    public TitanLabel referenceOnlineArticleLabel;
+    public EdgeLabel referenceOnlineArticleLabel;
     public ReferenceOnlineArticleType referenceOnlineArticleType;
     // referenceUnpublishedObservation
-    public TitanLabel referenceUnpublishedObservationLabel;
+    public EdgeLabel referenceUnpublishedObservationLabel;
     public ReferenceUnpublishedObservationType referenceUnpublishedObservationType;
     // thesisInstitute
-    public TitanLabel thesisInstituteLabel;
+    public EdgeLabel thesisInstituteLabel;
     public ThesisInstituteType thesisInstituteType;
     // submissionDB
-    public TitanLabel submissionDBLabel;
+    public EdgeLabel submissionDBLabel;
     public SubmissionDBType submissionDBType;
     // subcellularLocation
-    public TitanLabel subcellularLocationParentLabel;
+    public EdgeLabel subcellularLocationParentLabel;
     public SubcellularLocationParentType subcellularLocationParentType;
 
 
@@ -474,7 +475,7 @@ public final class TitanUniprotGraph
 
 
         // Protein keys
-	    proteinType = new ProteinType((TitanKey) null);
+	    proteinType = new ProteinType((PropertyKey) null);
         proteinTypekey = raw().titanKeyForVertexType(proteinType.accession);
         proteinAcessionKey = proteinTypekey;
         proteinNameKey = raw().titanKeyForVertexPropertySingle(proteinType.name);
@@ -1108,226 +1109,226 @@ public final class TitanUniprotGraph
 
 
     @Override
-    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph() {
+    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotUniRefGraph() {
         return uniprotUniRefGraph;
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph() {
+    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
     @Override
-    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph() {
+    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotEnzymeDBGraph() {
         return uniprotEnzymeGraph;
     }
 
     @Override
-    public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph() {
+    public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotNCBITaxonomyGraph() {
         return uniprotNCBITaxonomyGraph;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> alternativeProductNameIndex() {
+	public TypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> alternativeProductNameIndex() {
 		return alternativeProductNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> geneLocationNameIndex() {
+	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> geneLocationNameIndex() {
 		return geneLocationNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> diseaseIdIndex() {
+	public TypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> diseaseIdIndex() {
 		return diseaseIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> journalNameIndex() {
+	public TypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> journalNameIndex() {
 		return journalNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> articleTitleIndex() {
+	public TypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> articleTitleIndex() {
 		return articleTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> onlineJournalNameIndex() {
+	public TypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> onlineJournalNameIndex() {
 		return onlineJournalNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> onlineArticleTitleIndex() {
+	public TypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> onlineArticleTitleIndex() {
 		return onlineArticleTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> cityNameIndex() {
+	public TypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> cityNameIndex() {
 		return cityNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> publisherNameIndex() {
+	public TypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> publisherNameIndex() {
 		return publisherNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> bookNameIndex() {
+	public TypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> bookNameIndex() {
 		return bookNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> dbNameIndex() {
+	public TypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> dbNameIndex() {
 		return dbNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> countryNameIndex() {
+	public TypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> countryNameIndex() {
 		return countryNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> patentNumberIndex() {
+	public TypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> patentNumberIndex() {
 		return patentNumberIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> sequenceCautionNameIndex() {
+	public TypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> sequenceCautionNameIndex() {
 		return sequenceCautionNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> submissionTitleIndex() {
+	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> submissionTitleIndex() {
 		return submissionTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subcellularLocationNameIndex() {
+	public TypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> subcellularLocationNameIndex() {
 		return subcellularLocationNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> instituteNameIndex() {
+	public TypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> instituteNameIndex() {
 		return instituteNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> isoformIdIndex() {
+	public TypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> isoformIdIndex() {
 		return isoformIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> consortiumNameIndex() {
+	public TypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> consortiumNameIndex() {
 		return consortiumNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> thesisTitleIndex() {
+	public TypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> thesisTitleIndex() {
 		return thesisTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> personNameIndex() {
+	public TypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> personNameIndex() {
 		return personNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> proteinAccessionIndex() {
+	public TypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> proteinAccessionIndex() {
 		return proteinAccessionIndex;
 	}
 
 	@Override
-    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ensemblIdIndex() {
+    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ensemblIdIndex() {
         return ensemblIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pIRIdIndex() {
+    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> pIRIdIndex() {
         return pIRIdIndex;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pubmedIdIndex() {
+	public TypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> pubmedIdIndex() {
 		return pubmedIdIndex;
 	}
 
 	@Override
-    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniGeneIdIndex() {
+    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniGeneIdIndex() {
         return uniGeneIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> keggIdIndex() {
+    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> keggIdIndex() {
         return keggIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> eMBLIdIndex() {
+    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> eMBLIdIndex() {
         return eMBLIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> refSeqIdIndex() {
+    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> refSeqIdIndex() {
         return refSeqIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> reactomeTermIdIndex() {
+    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> reactomeTermIdIndex() {
         return reactomeTermIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> datasetNameIndex() {
+    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> datasetNameIndex() {
         return datasetNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> keywordIdIndex() {
+    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> keywordIdIndex() {
         return keywordIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> interproIdIndex() {
+    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> interproIdIndex() {
         return interproIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> pfamIdIndex() {
+    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> pfamIdIndex() {
         return pfamIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> organismScientificNameIndex() {
+    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> organismScientificNameIndex() {
         return organismScientificNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> taxonNameIndex() {
+    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> taxonNameIndex() {
         return taxonNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
-            FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> featureTypeNameIndex() {
+    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> featureTypeNameIndex() {
         return featureTypeNameIndex;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> commentTypeNameIndex() {
+	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> commentTypeNameIndex() {
 		return commentTypeNameIndex;
 	}
 

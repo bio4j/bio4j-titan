@@ -9,6 +9,7 @@ import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -17,7 +18,7 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanNCBITaxonomyGraph
         extends
-        NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
@@ -25,25 +26,25 @@ public final class TitanNCBITaxonomyGraph
 
     //-------------------VERTICES----------------------------
 
-    public TitanKey nCBITaxonTypekey;
-    public TitanKey nCBITaxonIdkey;
-	public TitanKey nCBITaxonScientificNamekey;
-	public TitanKey nCBITaxonTaxonomicRankkey;
+    public PropertyKey nCBITaxonTypekey;
+    public PropertyKey nCBITaxonIdkey;
+	public PropertyKey nCBITaxonScientificNamekey;
+	public PropertyKey nCBITaxonTaxonomicRankkey;
     public NCBITaxonType nCBITaxonType;
 
 	//---------------RELATIONSHIPS---------------------------
 
-	private TitanLabel nCBITaxonParentLabel;
+	private EdgeLabel nCBITaxonParentLabel;
 	private NCBITaxonParentType ncbiTaxonParentType;
 
 
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.DefaultUnique<
-            NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             NCBITaxonType,
             NCBITaxonType.id, String,
-            NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             DefaultTitanGraph
             > nCBITaxonIdIndex;
 
@@ -60,17 +61,17 @@ public final class TitanNCBITaxonomyGraph
     }
 
 	@Override
-	public TypedVertexIndex.Unique<NCBITaxon<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, NCBITaxonType, NCBITaxonType.id, String, NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> nCBITaxonIdIndex() {
+	public TypedVertexIndex.Unique<NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, NCBITaxonType, NCBITaxonType.id, String, NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> nCBITaxonIdIndex() {
 		return nCBITaxonIdIndex;
 	}
 
 	@Override
-	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotNCBITaxonomyGraph() {
+	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
 	@Override
-	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGenInfoGraph() {
+	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGenInfoGraph() {
 		return ncbiTaxonomyGenInfoGraph();
 	}
 
@@ -87,7 +88,7 @@ public final class TitanNCBITaxonomyGraph
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
-		nCBITaxonParentLabel = raw().titanLabelForEdgeType(new NCBITaxonParentType((TitanLabel) null));
+		nCBITaxonParentLabel = raw().titanLabelForEdgeType(new NCBITaxonParentType((EdgeLabel) null));
 		ncbiTaxonParentType = new NCBITaxonParentType(nCBITaxonParentLabel);
 
 

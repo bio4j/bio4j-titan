@@ -7,6 +7,7 @@ import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,15 +16,15 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotNCBITaxonomyGraph
         extends
-        UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
-    private NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotRawGraph;
+    private NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyRawGraph;
 
 
     //---------------RELATIONSHIPS---------------------------
-    private TitanLabel proteinNCBITaxonLabel;
+    private EdgeLabel proteinNCBITaxonLabel;
     private ProteinNCBITaxonType proteinNCBITaxonType;
 
     public TitanUniprotNCBITaxonomyGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph) {
@@ -45,7 +46,7 @@ public final class TitanUniprotNCBITaxonomyGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        proteinNCBITaxonLabel = raw().titanLabelForEdgeType(new ProteinNCBITaxonType((TitanLabel) null));
+        proteinNCBITaxonLabel = raw().titanLabelForEdgeType(new ProteinNCBITaxonType((EdgeLabel) null));
         proteinNCBITaxonType = new ProteinNCBITaxonType(proteinNCBITaxonLabel);
 
     }
@@ -56,12 +57,12 @@ public final class TitanUniprotNCBITaxonomyGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGraph() {
+    public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGraph() {
         return ncbiTaxonomyRawGraph;
     }
 

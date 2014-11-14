@@ -7,6 +7,7 @@ import com.bio4j.titan.model.geninfo.TitanGenInfoGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,7 +16,7 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanNCBITaxonomyGenInfoGraph
 		extends
-		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
 	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGraph ncbiTaxonomyRawGraph;
@@ -23,7 +24,7 @@ public final class TitanNCBITaxonomyGenInfoGraph
 
 	//---------------RELATIONSHIPS---------------------------
 
-	private TitanLabel genInfoNCBITaxonLabel;
+	private EdgeLabel genInfoNCBITaxonLabel;
 	private GenInfoNCBITaxonType genInfoNCBITaxonType;
 
 
@@ -46,7 +47,7 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
 
-		genInfoNCBITaxonLabel = raw().titanLabelForEdgeType(new GenInfoNCBITaxonType((TitanLabel) null));
+		genInfoNCBITaxonLabel = raw().titanLabelForEdgeType(new GenInfoNCBITaxonType((EdgeLabel) null));
 		genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonLabel);
 
 	}
@@ -57,12 +58,12 @@ public final class TitanNCBITaxonomyGenInfoGraph
 
 
 	@Override
-	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGraph() {
+	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGraph() {
 		return ncbiTaxonomyRawGraph;
 	}
 
 	@Override
-	public GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> genInfoGraph() {
+	public GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> genInfoGraph() {
 		return genInfoRawGraph;
 	}
 

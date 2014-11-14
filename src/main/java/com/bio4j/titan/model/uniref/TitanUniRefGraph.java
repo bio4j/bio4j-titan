@@ -10,6 +10,7 @@ import com.bio4j.model.uniref.vertices.UniRef90Cluster;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -18,7 +19,7 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniRefGraph
         extends
-        UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotUniRefGraph uniprotUniRefGraph;
@@ -26,22 +27,22 @@ public final class TitanUniRefGraph
 
     //-------------------VERTICES----------------------------
 
-    public TitanKey uniRef100ClusterTypekey;
-    public TitanKey uniRef100ClusterIdkey;
-	public TitanKey uniRef100ClusterNamekey;
-	public TitanKey uniRef100ClusterUpdatedDatekey;
+    public PropertyKey uniRef100ClusterTypekey;
+    public PropertyKey uniRef100ClusterIdkey;
+	public PropertyKey uniRef100ClusterNamekey;
+	public PropertyKey uniRef100ClusterUpdatedDatekey;
     public UniRef100ClusterType uniRef100ClusterType;
 
-    public TitanKey uniRef90ClusterTypekey;
-    public TitanKey uniRef90ClusterIdkey;
-	public TitanKey uniRef90ClusterNamekey;
-	public TitanKey uniRef90ClusterUpdatedDatekey;
+    public PropertyKey uniRef90ClusterTypekey;
+    public PropertyKey uniRef90ClusterIdkey;
+	public PropertyKey uniRef90ClusterNamekey;
+	public PropertyKey uniRef90ClusterUpdatedDatekey;
     public UniRef90ClusterType uniRef90ClusterType;
 
-    public TitanKey uniRef50ClusterTypekey;
-    public TitanKey uniRef50ClusterIdkey;
-	public TitanKey uniRef50ClusterNamekey;
-	public TitanKey uniRef50ClusterUpdatedDatekey;
+    public PropertyKey uniRef50ClusterTypekey;
+    public PropertyKey uniRef50ClusterIdkey;
+	public PropertyKey uniRef50ClusterNamekey;
+	public PropertyKey uniRef50ClusterUpdatedDatekey;
     public UniRef50ClusterType uniRef50ClusterType;
 
 
@@ -49,24 +50,24 @@ public final class TitanUniRefGraph
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.DefaultUnique<
-            UniRef100Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniRef100Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             UniRef100ClusterType,
             UniRef100ClusterType.id, String,
-            UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             DefaultTitanGraph
             > uniRef100ClusterIdIndex;
     TitanTypedVertexIndex.DefaultUnique<
-            UniRef90Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniRef90Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             UniRef90ClusterType,
             UniRef90ClusterType.id, String,
-            UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             DefaultTitanGraph
             > uniRef90ClusterIdIndex;
     TitanTypedVertexIndex.DefaultUnique<
-            UniRef50Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniRef50Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             UniRef50ClusterType,
             UniRef50ClusterType.id, String,
-            UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             DefaultTitanGraph
             > uniRef50ClusterIdIndex;
 
@@ -115,22 +116,22 @@ public final class TitanUniRefGraph
 
 
     @Override
-    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotUniRefGraph() {
+    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotUniRefGraph() {
         return uniprotUniRefGraph;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<UniRef50Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniRef50ClusterType, UniRef50ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRef50ClusterIdIndex() {
+	public TypedVertexIndex.Unique<UniRef50Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniRef50ClusterType, UniRef50ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRef50ClusterIdIndex() {
 		return uniRef50ClusterIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<UniRef90Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniRef90ClusterType, UniRef90ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRef90ClusterIdIndex() {
+	public TypedVertexIndex.Unique<UniRef90Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniRef90ClusterType, UniRef90ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRef90ClusterIdIndex() {
 		return uniRef90ClusterIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<UniRef100Cluster<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, UniRef100ClusterType, UniRef100ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRef100ClusterIdIndex() {
+	public TypedVertexIndex.Unique<UniRef100Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniRef100ClusterType, UniRef100ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRef100ClusterIdIndex() {
 		return uniRef100ClusterIdIndex;
 	}
 

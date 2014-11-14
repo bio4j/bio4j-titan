@@ -9,6 +9,7 @@ import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -17,56 +18,56 @@ import com.thinkaurelius.titan.core.*;
 */
 public final class TitanGoGraph
         extends
-        GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotGoGraph uniprotGoGraph = null;
 
     //-------------------VERTICES----------------------------
 
-    public TitanKey goTermTypekey;
-    public TitanKey goTermIdKey;
-    public TitanKey goTermNameKey;
-    public TitanKey goTermDefinitionKey;
-    public TitanKey goTermObsoleteKey;
-    public TitanKey goTermCommentKey;
-    public TitanKey goTermSynonymKey;
+    public PropertyKey goTermTypekey;
+    public PropertyKey goTermIdKey;
+    public PropertyKey goTermNameKey;
+    public PropertyKey goTermDefinitionKey;
+    public PropertyKey goTermObsoleteKey;
+    public PropertyKey goTermCommentKey;
+    public PropertyKey goTermSynonymKey;
     public GoTermType goTermType;
 
-    public TitanKey subOntologiesTypekey;
-    public TitanKey subOntologiesNameKey;
+    public PropertyKey subOntologiesTypekey;
+    public PropertyKey subOntologiesNameKey;
     public SubOntologiesType subOntologiesType;
 
     //---------------RELATIONSHIPS---------------------------
 
-    private TitanLabel isALabel;
+    private EdgeLabel isALabel;
     private IsAType isAType;
-    private TitanLabel partOfLabel;
+    private EdgeLabel partOfLabel;
     private PartOfType partOfType;
-    private TitanLabel hasPartOfLabel;
+    private EdgeLabel hasPartOfLabel;
     private HasPartOfType hasPartOfType;
-    private TitanLabel regulatesLabel;
+    private EdgeLabel regulatesLabel;
     private RegulatesType regulatesType;
-    private TitanLabel positivelyRegulatesLabel;
+    private EdgeLabel positivelyRegulatesLabel;
     private PositivelyRegulatesType positivelyRegulatesType;
-    private TitanLabel negativelyRegulatesLabel;
+    private EdgeLabel negativelyRegulatesLabel;
     private NegativelyRegulatesType negativelyRegulatesType;
-    private TitanLabel subOntologyLabel;
+    private EdgeLabel subOntologyLabel;
     private SubOntologyType subOntologyType;
 
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.Unique<
-            GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            GoTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             GoTermType,
             GoTermType.id, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             DefaultTitanGraph
             > goTermIdIndex;
-    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             SubOntologiesType,
             SubOntologiesType.name, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
             DefaultTitanGraph> subOntologiesNameIndex;
 
 
@@ -105,7 +106,7 @@ public final class TitanGoGraph
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
 
-        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
+        isALabel = raw().titanLabelForEdgeType(new IsAType((EdgeLabel) null));
         isAType = new IsAType(isALabel);
         partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
         partOfType = new PartOfType(partOfLabel);
@@ -180,17 +181,17 @@ public final class TitanGoGraph
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph() {
+    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
     @Override
-    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goTermIdIndex() {
+    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> goTermIdIndex() {
         return goTermIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subontologiesNameIndex() {
+    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> subontologiesNameIndex() {
         return subOntologiesNameIndex;
     }
 
