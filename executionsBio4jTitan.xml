@@ -1,5 +1,5 @@
 <scheduled_executions>
-
+<!--
   
   <execution>
     <class_full_name>com.bio4j.titan.model.go.programs.ImportGOTitan</class_full_name>
@@ -8,16 +8,16 @@
 	  <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution> 
-  
+  -->
   <execution>
     <class_full_name>com.bio4j.titan.model.enzyme.programs.ImportEnzymeDBTitan</class_full_name>
     <arguments>      
 	  <argument>/mnt/disk1/enzyme.dat</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+	  <argument>bio4j_sprot_enzyme_test</argument>
     </arguments>
   </execution> 
   
-  
+  <!--
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
     <arguments>      
@@ -26,7 +26,7 @@
 	  <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution>  
- <!--
+ 
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
     <arguments>      
@@ -35,7 +35,7 @@
 	  <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
-  -->
+  
    
 
   <execution>
@@ -45,7 +45,7 @@
 	  <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>  
-<!--
+
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
     <arguments>      
@@ -53,7 +53,7 @@
 	  <argument>bio4j</argument>
     </arguments>
   </execution>  
-  --> 
+   
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_enzyme.programs.ImportUniprotEnzymeDBTitan</class_full_name>
     <arguments>      
@@ -61,7 +61,7 @@
 	  <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>  
-
+-->
      
   <!--
   
@@ -72,7 +72,7 @@
 	  <argument>bio4j</argument>
     </arguments>
   </execution> 
-   -->
+  
    
   <execution>
     <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
@@ -104,6 +104,7 @@
 	  <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
+   -->
    <!-- 
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomyTitan</class_full_name>
@@ -112,7 +113,7 @@
 	  <argument>bio4j</argument>
     </arguments>
   </execution>
-  -->
+  
  
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniprotUniRefTitan</class_full_name>
@@ -123,7 +124,7 @@
 	  <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
-  
+  -->
    <!--
   
    <execution>
@@ -133,7 +134,7 @@
 	  <argument>bio4jtests</argument>
     </arguments>
   </execution> 
-    -->
+   
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy_geninfo.programs.ImportGenInfoNCBITaxonIndexTitan</class_full_name>
     <arguments>   
@@ -141,6 +142,6 @@
 	  <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
-
+ -->
   
 </scheduled_executions>

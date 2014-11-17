@@ -69,9 +69,9 @@ public final class TitanGenInfoGraph
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------VERTICES--------------------------------------------
-		genInfoType = new GenInfoType(genInfoTypeKey);
-		genInfoTypeKey = raw().titanKeyForVertexType(GenInfo().id);
-		genInfoIdkey = genInfoTypeKey;
+//		genInfoType = new GenInfoType(genInfoTypeKey);
+//		genInfoTypeKey = raw().titanKeyForVertexType(GenInfo().id);
+//		genInfoIdkey = genInfoTypeKey;
 
 	}
 

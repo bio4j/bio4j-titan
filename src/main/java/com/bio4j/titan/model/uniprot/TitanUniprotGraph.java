@@ -690,63 +690,63 @@ extends
         pIREntryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().entryName ).cardinality(Cardinality.SINGLE));
 
         // Patent keys
-	    patentType = new PatentType(patentTypeLabel);
-        patentTypeLabel = raw().titanKeyForVertexType(patentType.number);
-        patentNumberKey = patentTypeLabel;
-        patentTitleKey = raw().titanKeyForVertexPropertySingle(patentType.title);
-
-        // Ensembl keys
-	    ensemblType = new EnsemblType(ensemblTypeLabel);
-        ensemblTypeLabel = raw().titanKeyForVertexType(ensemblType.id);
-        ensemblIdKey = ensemblTypeLabel;
-        ensemblMoleculeIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.moleculeId);
-        ensemblProteinSequenceIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.proteinSequenceId);
-        ensemblGeneIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.geneId);
-
-        //---UniGene---
-	    uniGeneType = new UniGeneType(uniGeneTypeLabel);
-        uniGeneTypeLabel = raw().titanKeyForVertexType(uniGeneType.id);
-        uniGeneIdKey = uniGeneTypeLabel;
-
-        //---SubcellularLocation---
-	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeLabel);
-        subcellularLocationTypeLabel = raw().titanKeyForVertexType(subcellularLocationType.name);
-        subcellularLocationNameKey = subcellularLocationTypeLabel;
-
-        //---Kegg---
-	    keggType = new KeggType(keggTypeLabel);
-        keggTypeLabel = raw().titanKeyForVertexType(keggType.id);
-        keggIdKey = keggTypeLabel;
-
-        //---Taxon---
-	    taxonType = new TaxonType(taxonTypeLabel);
-        taxonTypeLabel = raw().titanKeyForVertexType(taxonType.name);
-        taxonNameKey = taxonTypeLabel;
-
-        //---RefSeq---
-	    refSeqType = new RefSeqType(refSeqTypeLabel);
-        refSeqTypeLabel = raw().titanKeyForVertexType(refSeqType.id);
-        refSeqIdKey = refSeqTypeLabel;
-        refSeqNucleotideSequenceIdKey = raw().titanKeyForVertexPropertySingle(refSeqType.nucleotideSequenceId);
-
-	    //---SequenceCaution---
-	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeLabel);
-	    sequenceCautionTypeLabel = raw().titanKeyForVertexType(sequenceCautionType.name);
-	    sequenceCautionNameKey = sequenceCautionTypeLabel;
-
-        //---Comment---
-	    commentTypeType = new CommentTypeType(commentTypeTypeLabel);
-        commentTypeTypeLabel = raw().titanKeyForVertexType(commentTypeType.name);
-        commentTypeNameKey = commentTypeTypeLabel;
-
-        //---Feature---
-	    featureTypeType = new FeatureTypeType(featureTypeTypeLabel);
-        featureTypeTypeLabel = raw().titanKeyForVertexType(featureTypeType.name);
-        featureTypeNameKey = featureTypeTypeLabel;
-
-        //---UnpublishedObservation
-        unpublishedObservationType = new UnpublishedObservationType(null);
-	    unpublishedObservationScopeKey = raw().titanKeyForVertexPropertySingle(unpublishedObservationType.scope);
+//	    patentType = new PatentType(patentTypeLabel);
+//        patentTypeLabel = raw().titanKeyForVertexType(patentType.number);
+//        patentNumberKey = patentTypeLabel;
+//        patentTitleKey = raw().titanKeyForVertexPropertySingle(patentType.title);
+//
+//        // Ensembl keys
+//	    ensemblType = new EnsemblType(ensemblTypeLabel);
+//        ensemblTypeLabel = raw().titanKeyForVertexType(ensemblType.id);
+//        ensemblIdKey = ensemblTypeLabel;
+//        ensemblMoleculeIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.moleculeId);
+//        ensemblProteinSequenceIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.proteinSequenceId);
+//        ensemblGeneIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.geneId);
+//
+//        //---UniGene---
+//	    uniGeneType = new UniGeneType(uniGeneTypeLabel);
+//        uniGeneTypeLabel = raw().titanKeyForVertexType(uniGeneType.id);
+//        uniGeneIdKey = uniGeneTypeLabel;
+//
+//        //---SubcellularLocation---
+//	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeLabel);
+//        subcellularLocationTypeLabel = raw().titanKeyForVertexType(subcellularLocationType.name);
+//        subcellularLocationNameKey = subcellularLocationTypeLabel;
+//
+//        //---Kegg---
+//	    keggType = new KeggType(keggTypeLabel);
+//        keggTypeLabel = raw().titanKeyForVertexType(keggType.id);
+//        keggIdKey = keggTypeLabel;
+//
+//        //---Taxon---
+//	    taxonType = new TaxonType(taxonTypeLabel);
+//        taxonTypeLabel = raw().titanKeyForVertexType(taxonType.name);
+//        taxonNameKey = taxonTypeLabel;
+//
+//        //---RefSeq---
+//	    refSeqType = new RefSeqType(refSeqTypeLabel);
+//        refSeqTypeLabel = raw().titanKeyForVertexType(refSeqType.id);
+//        refSeqIdKey = refSeqTypeLabel;
+//        refSeqNucleotideSequenceIdKey = raw().titanKeyForVertexPropertySingle(refSeqType.nucleotideSequenceId);
+//
+//	    //---SequenceCaution---
+//	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeLabel);
+//	    sequenceCautionTypeLabel = raw().titanKeyForVertexType(sequenceCautionType.name);
+//	    sequenceCautionNameKey = sequenceCautionTypeLabel;
+//
+//        //---Comment---
+//	    commentTypeType = new CommentTypeType(commentTypeTypeLabel);
+//        commentTypeTypeLabel = raw().titanKeyForVertexType(commentTypeType.name);
+//        commentTypeNameKey = commentTypeTypeLabel;
+//
+//        //---Feature---
+//	    featureTypeType = new FeatureTypeType(featureTypeTypeLabel);
+//        featureTypeTypeLabel = raw().titanKeyForVertexType(featureTypeType.name);
+//        featureTypeNameKey = featureTypeTypeLabel;
+//
+//        //---UnpublishedObservation
+//        unpublishedObservationType = new UnpublishedObservationType(null);
+//	    unpublishedObservationScopeKey = raw().titanKeyForVertexPropertySingle(unpublishedObservationType.scope);
 
 	  // TODO: keep going
 
@@ -760,174 +760,174 @@ extends
         // articleJournal
         articleJournalLabel = raw().titanLabelForEdgeType(this.new ArticleJournalType(null));
         articleJournalType = new ArticleJournalType(articleJournalLabel);
-	    articleJournalVolumeKey = raw().titanKeyForEdgePropertySingle(articleJournalType.volume);
-	    articleJournalFirstKey = raw().titanKeyForEdgePropertySingle(articleJournalType.first);
-	    articleJournalLastKey = raw().titanKeyForEdgePropertySingle(articleJournalType.last);
-
-        // bookCity
-        bookCityLabel = raw().titanLabelForEdgeType(this.new BookCityType(null));
-        bookCityType = new BookCityType(bookCityLabel);
-
-	    // bookEditor
-	    bookEditorLabel = raw().titanLabelForEdgeType(this.new BookEditorType(null));
-	    bookEditorType = new BookEditorType(bookEditorLabel);
-
-        // bookPublisher
-        bookPublisherLabel = raw().titanLabelForEdgeType(this.new BookPublisherType(null));
-        bookPublisherType = new BookPublisherType(bookPublisherLabel);
-
-        // instituteCountry
-        instituteCountryLabel = raw().titanLabelForEdgeType(this.new InstituteCountryType(null));
-        instituteCountryType = new InstituteCountryType(instituteCountryLabel);
-
-	    // isoformEventGenerator
-	    isoformEventGeneratorLabel = raw().titanLabelForEdgeType(this.new IsoformEventGeneratorType(null));
-	    isoformEventGeneratorType = new IsoformEventGeneratorType(isoformEventGeneratorLabel);
-
-        // onlineArticleOnlineJournal
-        onlineArticleOnlineJournalLabel = raw().titanLabelForEdgeType(this.new OnlineArticleOnlineJournalType(null));
-        onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalLabel);
-	    onlineArticleOnlineJournalLocatorKey = raw().titanKeyForEdgePropertySingle(onlineArticleOnlineJournalType.locator);
-
-        // proteinDataset
-        proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
-        proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
-
-	    // proteinDisease
-	    proteinDiseaseLabel = raw().titanLabelForEdgeType(this.new ProteinDiseaseType(null));
-	    proteinDiseaseType = new ProteinDiseaseType(proteinDiseaseLabel);
-	    proteinDiseaseTextKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.text);
-	    proteinDiseaseStatusKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.status);
-	    proteinDiseaseEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.evidence);
-
-        // proteinOrganism
-        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
-        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
-
-        // proteinKeyword
-        proteinKeywordLabel = raw().titanLabelForEdgeType(this.new ProteinKeywordType(null));
-        proteinKeywordType = new ProteinKeywordType(proteinKeywordLabel);
-
-	    // proteinGeneLocation
-	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
-	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
-
-        // proteinInterpro
-        proteinInterproLabel = raw().titanLabelForEdgeType(this.new ProteinInterproType(null));
-        proteinInterproType = new ProteinInterproType(proteinInterproLabel);
-
-        // proteinReactomeTerm
-        proteinReactomeTermLabel = raw().titanLabelForEdgeType(this.new ProteinReactomeTermType(null));
-        proteinReactomeTermType = new ProteinReactomeTermType(proteinReactomeTermLabel);
-
-        // proteinPfam
-        proteinPfamLabel = raw().titanLabelForEdgeType(this.new ProteinPfamType(null));
-        proteinPfamType = new ProteinPfamType(proteinPfamLabel);
-
-        // proteinKegg
-        proteinKeggLabel = raw().titanLabelForEdgeType(this.new ProteinKeggType(null));
-        proteinKeggType = new ProteinKeggType(proteinKeggLabel);
-
-        // proteinKegg
-        proteinPIRLabel = raw().titanLabelForEdgeType(this.new ProteinPIRType(null));
-        proteinPIRType = new ProteinPIRType(proteinPIRLabel);
-
-        // proteinEMBL
-        proteinEMBLLabel = raw().titanLabelForEdgeType(this.new ProteinEMBLType(null));
-        proteinEMBLType = new ProteinEMBLType(proteinEMBLLabel);
-
-        // proteinEnsembl
-        proteinEnsemblLabel = raw().titanLabelForEdgeType(this.new ProteinEnsemblType(null));
-        proteinEnsemblType = new ProteinEnsemblType(proteinEnsemblLabel);
-
-        // proteinRefSeq
-        proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
-        proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
-
-	    // proteinSequenceCaution
-	    proteinSequenceCautionLabel = raw().titanLabelForEdgeType(this.new ProteinSequenceCautionType(null));
-	    proteinSequenceCautionType = new ProteinSequenceCautionType(proteinSequenceCautionLabel);
-	    proteinSequenceCautionStatusKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.status);
-	    proteinSequenceCautionIdKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.id);
-	    proteinSequenceCautionEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.evidence);
-	    proteinSequenceCautionVersionKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.version);
-	    proteinSequenceCautionPositionKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.position);
-	    proteinSequenceCautionResourceKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.resource);
-	    proteinSequenceCautionTextKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.text);
-
-	    // proteinSubcellularLocation
-	    proteinSubcellularLocationLabel = raw().titanLabelForEdgeType(this.new ProteinSubcellularLocationType(null));
-	    proteinSubcellularLocationType = new ProteinSubcellularLocationType(proteinSubcellularLocationLabel);
-	    proteinSubcellularLocationStatusKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.status);
-	    proteinSubcellularLocationEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.evidence);
-	    proteinSubcellularLocationTopologyKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.topology);
-	    proteinSubcellularLocationTopologyStatusKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.topologyStatus);
-
-        // proteinUnigene
-        proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
-        proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneLabel);
-
-        // taxonParent
-        taxonParentLabel = raw().titanLabelForEdgeType(this.new TaxonParentType(null));
-        taxonParentType = new TaxonParentType(taxonParentLabel);
-
-        // organismTaxon
-        organismTaxonLabel = raw().titanLabelForEdgeType(this.new OrganismTaxonType(null));
-        organismTaxonType = new OrganismTaxonType(organismTaxonLabel);
-
-        // proteinComment
-        proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentType(null));
-        proteinCommentType = new ProteinCommentType(proteinCommentLabel);
-	    proteinCommentEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.evidence);
-	    proteinCommentStatusKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.status);
-	    proteinCommentTextKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.text);
-	    proteinCommentBeginKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.begin);
-	    proteinCommentEndKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.end);
-	    proteinCommentMassKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.mass);
-	    proteinCommentMethodKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.method);
-	    proteinCommentAbsorptionMaxKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.absorptionMax);
-	    proteinCommentAbsorptionTextKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.absorptionText);
-	    proteinCommentKineticsXMLKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.kineticsXML);
-	    proteinCommentPhDependenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.phDependence);
-	    proteinCommentPositionKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.position);
-	    proteinCommentRedoxPotentialKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.redoxPotential);
-	    proteinCommentRedoxPotentialEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.redoxPotentialEvidence);
-	    proteinCommentTemperatureDependenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.temperatureDependence);
-
-        // proteinFeature
-        proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
-	    proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
-        proteinFeatureIdKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.id);
-        proteinFeatureDescriptionKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.description);
-        proteinFeatureEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.evidence);
-        proteinFeatureStatusKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.status);
-        proteinFeatureBeginKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.begin);
-        proteinFeatureEndKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.end);
-        proteinFeatureOriginalKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.original);
-        proteinFeatureVariationKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.variation);
-        proteinFeatureRefKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.ref);
-
-        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
-        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
-
-	    proteinProteinInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinProteinInteractionType(null));
-	    proteinProteinInteractionType = new ProteinProteinInteractionType(proteinProteinInteractionLabel);
-
-	    proteinIsoformInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformInteractionType(null));
-	    proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionLabel);
-
-	    proteinIsoformLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformType(null));
-	    proteinIsoformType = new ProteinIsoformType(proteinIsoformLabel);
-
-	    isoformProteinInteractionLabel = raw().titanLabelForEdgeType(this.new IsoformProteinInteractionType(null));
-	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionLabel);
-
-        proteinReferenceLabel = raw().titanLabelForEdgeType(this.new ProteinReferenceType(null));
-	    proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
-
-	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
-	    proteinGeneLocationNameKey = raw().titanKeyForEdgePropertySingle(proteinGeneLocationType.name);
-	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
+//	    articleJournalVolumeKey = raw().titanKeyForEdgePropertySingle(articleJournalType.volume);
+//	    articleJournalFirstKey = raw().titanKeyForEdgePropertySingle(articleJournalType.first);
+//	    articleJournalLastKey = raw().titanKeyForEdgePropertySingle(articleJournalType.last);
+//
+//        // bookCity
+//        bookCityLabel = raw().titanLabelForEdgeType(this.new BookCityType(null));
+//        bookCityType = new BookCityType(bookCityLabel);
+//
+//	    // bookEditor
+//	    bookEditorLabel = raw().titanLabelForEdgeType(this.new BookEditorType(null));
+//	    bookEditorType = new BookEditorType(bookEditorLabel);
+//
+//        // bookPublisher
+//        bookPublisherLabel = raw().titanLabelForEdgeType(this.new BookPublisherType(null));
+//        bookPublisherType = new BookPublisherType(bookPublisherLabel);
+//
+//        // instituteCountry
+//        instituteCountryLabel = raw().titanLabelForEdgeType(this.new InstituteCountryType(null));
+//        instituteCountryType = new InstituteCountryType(instituteCountryLabel);
+//
+//	    // isoformEventGenerator
+//	    isoformEventGeneratorLabel = raw().titanLabelForEdgeType(this.new IsoformEventGeneratorType(null));
+//	    isoformEventGeneratorType = new IsoformEventGeneratorType(isoformEventGeneratorLabel);
+//
+//        // onlineArticleOnlineJournal
+//        onlineArticleOnlineJournalLabel = raw().titanLabelForEdgeType(this.new OnlineArticleOnlineJournalType(null));
+//        onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalLabel);
+//	    onlineArticleOnlineJournalLocatorKey = raw().titanKeyForEdgePropertySingle(onlineArticleOnlineJournalType.locator);
+//
+//        // proteinDataset
+//        proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
+//        proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
+//
+//	    // proteinDisease
+//	    proteinDiseaseLabel = raw().titanLabelForEdgeType(this.new ProteinDiseaseType(null));
+//	    proteinDiseaseType = new ProteinDiseaseType(proteinDiseaseLabel);
+//	    proteinDiseaseTextKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.text);
+//	    proteinDiseaseStatusKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.status);
+//	    proteinDiseaseEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.evidence);
+//
+//        // proteinOrganism
+//        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
+//        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
+//
+//        // proteinKeyword
+//        proteinKeywordLabel = raw().titanLabelForEdgeType(this.new ProteinKeywordType(null));
+//        proteinKeywordType = new ProteinKeywordType(proteinKeywordLabel);
+//
+//	    // proteinGeneLocation
+//	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
+//	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
+//
+//        // proteinInterpro
+//        proteinInterproLabel = raw().titanLabelForEdgeType(this.new ProteinInterproType(null));
+//        proteinInterproType = new ProteinInterproType(proteinInterproLabel);
+//
+//        // proteinReactomeTerm
+//        proteinReactomeTermLabel = raw().titanLabelForEdgeType(this.new ProteinReactomeTermType(null));
+//        proteinReactomeTermType = new ProteinReactomeTermType(proteinReactomeTermLabel);
+//
+//        // proteinPfam
+//        proteinPfamLabel = raw().titanLabelForEdgeType(this.new ProteinPfamType(null));
+//        proteinPfamType = new ProteinPfamType(proteinPfamLabel);
+//
+//        // proteinKegg
+//        proteinKeggLabel = raw().titanLabelForEdgeType(this.new ProteinKeggType(null));
+//        proteinKeggType = new ProteinKeggType(proteinKeggLabel);
+//
+//        // proteinKegg
+//        proteinPIRLabel = raw().titanLabelForEdgeType(this.new ProteinPIRType(null));
+//        proteinPIRType = new ProteinPIRType(proteinPIRLabel);
+//
+//        // proteinEMBL
+//        proteinEMBLLabel = raw().titanLabelForEdgeType(this.new ProteinEMBLType(null));
+//        proteinEMBLType = new ProteinEMBLType(proteinEMBLLabel);
+//
+//        // proteinEnsembl
+//        proteinEnsemblLabel = raw().titanLabelForEdgeType(this.new ProteinEnsemblType(null));
+//        proteinEnsemblType = new ProteinEnsemblType(proteinEnsemblLabel);
+//
+//        // proteinRefSeq
+//        proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
+//        proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
+//
+//	    // proteinSequenceCaution
+//	    proteinSequenceCautionLabel = raw().titanLabelForEdgeType(this.new ProteinSequenceCautionType(null));
+//	    proteinSequenceCautionType = new ProteinSequenceCautionType(proteinSequenceCautionLabel);
+//	    proteinSequenceCautionStatusKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.status);
+//	    proteinSequenceCautionIdKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.id);
+//	    proteinSequenceCautionEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.evidence);
+//	    proteinSequenceCautionVersionKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.version);
+//	    proteinSequenceCautionPositionKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.position);
+//	    proteinSequenceCautionResourceKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.resource);
+//	    proteinSequenceCautionTextKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.text);
+//
+//	    // proteinSubcellularLocation
+//	    proteinSubcellularLocationLabel = raw().titanLabelForEdgeType(this.new ProteinSubcellularLocationType(null));
+//	    proteinSubcellularLocationType = new ProteinSubcellularLocationType(proteinSubcellularLocationLabel);
+//	    proteinSubcellularLocationStatusKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.status);
+//	    proteinSubcellularLocationEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.evidence);
+//	    proteinSubcellularLocationTopologyKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.topology);
+//	    proteinSubcellularLocationTopologyStatusKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.topologyStatus);
+//
+//        // proteinUnigene
+//        proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
+//        proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneLabel);
+//
+//        // taxonParent
+//        taxonParentLabel = raw().titanLabelForEdgeType(this.new TaxonParentType(null));
+//        taxonParentType = new TaxonParentType(taxonParentLabel);
+//
+//        // organismTaxon
+//        organismTaxonLabel = raw().titanLabelForEdgeType(this.new OrganismTaxonType(null));
+//        organismTaxonType = new OrganismTaxonType(organismTaxonLabel);
+//
+//        // proteinComment
+//        proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentType(null));
+//        proteinCommentType = new ProteinCommentType(proteinCommentLabel);
+//	    proteinCommentEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.evidence);
+//	    proteinCommentStatusKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.status);
+//	    proteinCommentTextKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.text);
+//	    proteinCommentBeginKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.begin);
+//	    proteinCommentEndKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.end);
+//	    proteinCommentMassKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.mass);
+//	    proteinCommentMethodKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.method);
+//	    proteinCommentAbsorptionMaxKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.absorptionMax);
+//	    proteinCommentAbsorptionTextKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.absorptionText);
+//	    proteinCommentKineticsXMLKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.kineticsXML);
+//	    proteinCommentPhDependenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.phDependence);
+//	    proteinCommentPositionKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.position);
+//	    proteinCommentRedoxPotentialKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.redoxPotential);
+//	    proteinCommentRedoxPotentialEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.redoxPotentialEvidence);
+//	    proteinCommentTemperatureDependenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.temperatureDependence);
+//
+//        // proteinFeature
+//        proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
+//	    proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
+//        proteinFeatureIdKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.id);
+//        proteinFeatureDescriptionKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.description);
+//        proteinFeatureEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.evidence);
+//        proteinFeatureStatusKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.status);
+//        proteinFeatureBeginKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.begin);
+//        proteinFeatureEndKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.end);
+//        proteinFeatureOriginalKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.original);
+//        proteinFeatureVariationKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.variation);
+//        proteinFeatureRefKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.ref);
+//
+//        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
+//        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
+//
+//	    proteinProteinInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinProteinInteractionType(null));
+//	    proteinProteinInteractionType = new ProteinProteinInteractionType(proteinProteinInteractionLabel);
+//
+//	    proteinIsoformInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformInteractionType(null));
+//	    proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionLabel);
+//
+//	    proteinIsoformLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformType(null));
+//	    proteinIsoformType = new ProteinIsoformType(proteinIsoformLabel);
+//
+//	    isoformProteinInteractionLabel = raw().titanLabelForEdgeType(this.new IsoformProteinInteractionType(null));
+//	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionLabel);
+//
+//        proteinReferenceLabel = raw().titanLabelForEdgeType(this.new ProteinReferenceType(null));
+//	    proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
+//
+//	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
+//	    proteinGeneLocationNameKey = raw().titanKeyForEdgePropertySingle(proteinGeneLocationType.name);
+//	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
 
         // referenceArticle
         referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));

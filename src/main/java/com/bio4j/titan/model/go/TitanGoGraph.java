@@ -89,20 +89,20 @@ public final class TitanGoGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-        goTermType = new GoTermType(goTermTypekey);
-	    goTermLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(goTermType) );
-        goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
-        goTermIdKey = goTermTypekey;
-        goTermNameKey = raw().titanKeyForVertexPropertySingle(GoTerm().name);
-        goTermDefinitionKey = raw().titanKeyForVertexPropertySingle(GoTerm().definition);
-        goTermObsoleteKey = raw().titanKeyForVertexPropertySingle(GoTerm().obsolete);
-        goTermCommentKey = raw().titanKeyForVertexPropertySingle(GoTerm().comment);
-        goTermSynonymKey = raw().titanKeyForVertexPropertySingle(GoTerm().synonym);
-
-
-        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
-        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
-        subOntologiesNameKey = subOntologiesTypekey;
+//        goTermType = new GoTermType(goTermTypekey);
+//	    goTermLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(goTermType) );
+//        goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
+//        goTermIdKey = goTermTypekey;
+//        goTermNameKey = raw().titanKeyForVertexPropertySingle(GoTerm().name);
+//        goTermDefinitionKey = raw().titanKeyForVertexPropertySingle(GoTerm().definition);
+//        goTermObsoleteKey = raw().titanKeyForVertexPropertySingle(GoTerm().obsolete);
+//        goTermCommentKey = raw().titanKeyForVertexPropertySingle(GoTerm().comment);
+//        goTermSynonymKey = raw().titanKeyForVertexPropertySingle(GoTerm().synonym);
+//
+//
+//        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
+//        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
+//        subOntologiesNameKey = subOntologiesTypekey;
 
 
         //-----------------------------------------------------------------------------------------

@@ -79,11 +79,11 @@ public final class TitanNCBITaxonomyGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-	    nCBITaxonType = new NCBITaxonType(nCBITaxonTypekey);
-        nCBITaxonTypekey = raw().titanKeyForVertexType(NCBITaxon().id);
-		nCBITaxonIdkey = nCBITaxonTypekey;
-		nCBITaxonTaxonomicRankkey = raw().titanKeyForVertexPropertySingle(NCBITaxon().taxonomicRank);
-		nCBITaxonScientificNamekey = raw().titanKeyForVertexPropertySingle(NCBITaxon().scientificName);
+//	    nCBITaxonType = new NCBITaxonType(nCBITaxonTypekey);
+//        nCBITaxonTypekey = raw().titanKeyForVertexType(NCBITaxon().id);
+//		nCBITaxonIdkey = nCBITaxonTypekey;
+//		nCBITaxonTaxonomicRankkey = raw().titanKeyForVertexPropertySingle(NCBITaxon().taxonomicRank);
+//		nCBITaxonScientificNamekey = raw().titanKeyForVertexPropertySingle(NCBITaxon().scientificName);
 
 
 		//-----------------------------------------------------------------------------------------
