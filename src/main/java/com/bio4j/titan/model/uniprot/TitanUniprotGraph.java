@@ -602,93 +602,92 @@ extends
 
         // Keyword keys
 	    keywordType = new KeywordType(keywordTypeLabel);
-        keywordTypeLabel = raw().titanKeyForVertexType(keywordType.id);
-        keywordIdKey = keywordTypeLabel;
-        keywordNameKey = raw().titanKeyForVertexPropertySingle(keywordType.name);
+        keywordTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(keywordType));
+        keywordIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().id ).cardinality(Cardinality.SINGLE));
+        keywordNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().name ).cardinality(Cardinality.SINGLE));
 
         // Interpro keys
 	    interproType = new InterproType(interproTypeLabel);
-        interproTypeLabel = raw().titanKeyForVertexType(interproType.id);
-        interproIdKey = interproTypeLabel;
-        interproNameKey = raw().titanKeyForVertexPropertySingle(interproType.name);
+        interproTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(interproType));
+        interproIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().id ).cardinality(Cardinality.SINGLE));
+        interproNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().name ).cardinality(Cardinality.SINGLE));
 
 	    // Isoform keys
 	    isoformType = new IsoformType(isoformTypeLabel);
-	    isoformTypeLabel = raw().titanKeyForVertexType(isoformType.id);
-	    isoformIdKey = isoformTypeLabel;
-	    isoformNameKey = raw().titanKeyForVertexPropertySingle(isoformType.name);
-	    isoformSequenceKey = raw().titanKeyForVertexPropertySingle(isoformType.sequence);
-	    isoformNoteKey = raw().titanKeyForVertexPropertySingle(isoformType.note);
+	    isoformTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(isoformType));
+	    isoformIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().id ).cardinality(Cardinality.SINGLE));
+	    isoformNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().name ).cardinality(Cardinality.SINGLE));
+	    isoformSequenceKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().sequence ).cardinality(Cardinality.SINGLE));
+	    isoformNoteKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().note ).cardinality(Cardinality.SINGLE));
 
         // Journal keys
 	    journalType = new JournalType(journalTypeLabel);
-        journalTypeLabel = raw().titanKeyForVertexType(journalType.name);
-        journalNameKey = journalTypeLabel;
+        journalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(journalType));
+        journalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Journal().name ).cardinality(Cardinality.SINGLE));
 
         // OnlineArticle keys
 	    onlineArticleType = new OnlineArticleType(onlineArticleTypeLabel);
-        onlineArticleTypeLabel = raw().titanKeyForVertexType(onlineArticleType.title);
-        onlineArticleTitleKey = onlineArticleTypeLabel;
+        onlineArticleTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineArticleType));
+        onlineArticleTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineArticle().title ).cardinality(Cardinality.SINGLE));
 
         // OnlineJournal keys
 	    onlineJournalType = new OnlineJournalType(onlineJournalTypeLabel);
-        onlineJournalTypeLabel = raw().titanKeyForVertexType(onlineJournalType.name);
-        onlineJournalNameKey = onlineJournalTypeLabel;
+        onlineJournalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineJournalType));
+        onlineJournalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineJournal().name ).cardinality(Cardinality.SINGLE));
 
 	    // Reference keys
 	    referenceType = new ReferenceType(null);
-	    referenceDateKey = raw().titanKeyForVertexPropertySingle(referenceType.date);
-
+	    referenceDateKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Reference().date ).cardinality(Cardinality.SINGLE));
 
         // ReactomeTerm keys
 	    reactomeTermType = new ReactomeTermType(reactomeTermTypeLabel);
-        reactomeTermTypeLabel = raw().titanKeyForVertexType(reactomeTermType.id);
-        reactomeTermIdKey = reactomeTermTypeLabel;
-        reactomeTermPathwayNameKey = raw().titanKeyForVertexPropertySingle(reactomeTermType.pathwayName);
+        reactomeTermTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(reactomeTermType));
+        reactomeTermIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().id ).cardinality(Cardinality.SINGLE));
+        reactomeTermPathwayNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().pathwayName ).cardinality(Cardinality.SINGLE));
 
         // Publisher keys
 	    publisherType = new PublisherType(publisherTypeLabel);
-        publisherTypeLabel = raw().titanKeyForVertexType(publisherType.name);
-        publisherNameKey = publisherTypeLabel;
+        publisherTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(publisherType));
+        publisherNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Publisher().name ).cardinality(Cardinality.SINGLE));
 
 	    // Person keys
 	    personType = new PersonType(personTypeLabel);
-	    personTypeLabel = raw().titanKeyForVertexType(personType.name);
-	    personNameKey = personTypeLabel;
+	    personTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(personType));
+	    personNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Person().name ).cardinality(Cardinality.SINGLE));
 
         // Pfam keys
 	    pfamType = new PfamType(pfamTypeLabel);
-        pfamTypeLabel = raw().titanKeyForVertexType(pfamType.id);
-        pfamIdKey = pfamTypeLabel;
-        pfamNameKey = raw().titanKeyForVertexPropertySingle(pfamType.name);
+        pfamTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pfamType));
+        pfamIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().id ).cardinality(Cardinality.SINGLE));
+        pfamNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().name ).cardinality(Cardinality.SINGLE));
 
         // Pubmed keys
 	    pubmedType = new PubmedType(pubmedTypeLabel);
-        pubmedTypeLabel = raw().titanKeyForVertexType(pubmedType.id);
-        pubmedIdKey = pubmedTypeLabel;
+        pubmedTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pubmedType));
+        pubmedIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pubmed().id ).cardinality(Cardinality.SINGLE));
 
         // Submission keys
 	    submissionType = new SubmissionType(submissionTypeLabel);
-        submissionTypeLabel = raw().titanKeyForVertexType(submissionType.title);
-        submissionTitleKey = submissionTypeLabel;
+        submissionTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(submissionType));
+        submissionTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Submission().title ).cardinality(Cardinality.SINGLE));
 
 	    // Thesis keys
 	    thesisType = new ThesisType(thesisTypeLabel);
-	    thesisTypeLabel = raw().titanKeyForVertexType(thesisType.title);
-	    thesisTitleKey = thesisTypeLabel;
+	    thesisTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(thesisType));
+	    thesisTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Thesis().title ).cardinality(Cardinality.SINGLE));
 
         // EMBL keys
 	    eMBLType = new EMBLType(eMBLTypeLabel);
-        eMBLTypeLabel = raw().titanKeyForVertexType(eMBLType.id);
-        eMBLIdKey = eMBLTypeLabel;
-        eMBLMoleculeTypeLabel = raw().titanKeyForVertexPropertySingle(eMBLType.moleculeType);
-        eMBLProteinSequenceIdKey = raw().titanKeyForVertexPropertySingle(eMBLType.proteinSequenceId);
+        eMBLTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(eMBLType));
+        eMBLIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().id ).cardinality(Cardinality.SINGLE));
+        eMBLMoleculeTypeKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().moleculeType ).cardinality(Cardinality.SINGLE));
+        eMBLProteinSequenceIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().proteinSequenceId ).cardinality(Cardinality.SINGLE));
 
         // PIR keys
 	    pIRType = new PIRType(pIRTypeLabel);
-        pIRTypeLabel = raw().titanKeyForVertexType(pIRType.id);
-        pIRIdKey = pIRTypeLabel;
-        pIREntryNameKey = raw().titanKeyForVertexPropertySingle(pIRType.entryName);
+        pIRTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pIRType));
+        pIRIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().id ).cardinality(Cardinality.SINGLE));
+        pIREntryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().entryName ).cardinality(Cardinality.SINGLE));
 
         // Patent keys
 	    patentType = new PatentType(patentTypeLabel);
