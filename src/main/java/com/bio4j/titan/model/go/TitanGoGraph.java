@@ -25,6 +25,7 @@ public final class TitanGoGraph
 
     //-------------------VERTICES----------------------------
 
+	public VertexLabel goTermLabel;
     public PropertyKey goTermTypekey;
     public PropertyKey goTermIdKey;
     public PropertyKey goTermNameKey;
@@ -34,6 +35,7 @@ public final class TitanGoGraph
     public PropertyKey goTermSynonymKey;
     public GoTermType goTermType;
 
+	public VertexLabel subOntologiesLabel;
     public PropertyKey subOntologiesTypekey;
     public PropertyKey subOntologiesNameKey;
     public SubOntologiesType subOntologiesType;
@@ -88,6 +90,7 @@ public final class TitanGoGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
         goTermType = new GoTermType(goTermTypekey);
+	    goTermLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(goTermType) );
         goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
         goTermIdKey = goTermTypekey;
         goTermNameKey = raw().titanKeyForVertexPropertySingle(GoTerm().name);

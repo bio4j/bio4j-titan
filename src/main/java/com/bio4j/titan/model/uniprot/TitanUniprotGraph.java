@@ -484,37 +484,37 @@ extends
 
       // Protein type
 	    proteinType = new ProteinType(proteinTypeLabel);
-      proteinTypeLabel = raw().createOrGet( 
-          raw().titanLabelMakerForVertexType(proteinType) 
+      proteinTypeLabel = raw().createOrGet(
+          raw().titanLabelMakerForVertexType(proteinType)
       );
       proteinAcessionKey = raw().createOrGet( 
           raw().titanPropertyMakerForVertexProperty( Protein().accession    ).cardinality(Cardinality.SINGLE)
       );
-      proteinNameKey = raw().createOrGet( 
+      proteinNameKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().name         ).cardinality(Cardinality.SINGLE)
       );
-      proteinShortNameKey = raw().createOrGet( 
+      proteinShortNameKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().shortName    ).cardinality(Cardinality.SINGLE)
       );
-      proteinFullNameKey = raw().createOrGet( 
+      proteinFullNameKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().fullName     ).cardinality(Cardinality.SINGLE)
       );
-      proteinModifiedDateKey = raw().createOrGet( 
+      proteinModifiedDateKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().modifiedDate ).cardinality(Cardinality.SINGLE)
       );
-      proteinCreatedDateKey = raw().createOrGet( 
+      proteinCreatedDateKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().createdDate  ).cardinality(Cardinality.SINGLE)
       );
-      proteinMassKey = raw().createOrGet( 
+      proteinMassKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().mass         ).cardinality(Cardinality.SINGLE)
       );
-      proteinVersionKey = raw().createOrGet( 
+      proteinVersionKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().version      ).cardinality(Cardinality.SINGLE)
       );
-      proteinLengthKey = raw().createOrGet( 
+      proteinLengthKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().length       ).cardinality(Cardinality.SINGLE)
       );
-      proteinSequenceKey = raw().createOrGet( 
+      proteinSequenceKey = raw().createOrGet(
           raw().titanPropertyMakerForVertexProperty( Protein().sequence     ).cardinality(Cardinality.SINGLE)
       );
 
@@ -530,10 +530,10 @@ extends
 
       // Article keys
 	    articleType = new ArticleType(articleTypeLabel);
-      articleTypeLabel = raw().createOrGet( 
-        raw().titanLabelMakerForVertexType(articleType) 
+      articleTypeLabel = raw().createOrGet(
+        raw().titanLabelMakerForVertexType(articleType)
       );
-      articleTitleKey = raw().createOrGet( 
+      articleTitleKey = raw().createOrGet(
         raw().titanPropertyMakerForVertexProperty( Article().title  ).cardinality(Cardinality.SINGLE)
       );
       articleDoIdKey = raw().createOrGet( 
@@ -549,56 +549,56 @@ extends
         raw().titanPropertyMakerForVertexProperty( Book().name ).cardinality(Cardinality.SINGLE)
       );
 
-      // TODO: keep going
+
       // City keys
 	    cityType = new CityType(cityTypeLabel);
-	    cityTypeLabel = raw().titanKeyForVertexType(cityType.name);
-	    cityNameKey = cityTypeLabel;
+	    cityTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(cityType));
+	    cityNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( City().name ).cardinality(Cardinality.SINGLE));
 
 	    // GeneLocation keys
 	    geneLocationType = new GeneLocationType(geneLocationTypeLabel);
-	    geneLocationTypeLabel = raw().titanKeyForVertexType(geneLocationType.name);
-	    geneLocationNameKey = geneLocationTypeLabel;
+	    geneLocationTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(geneLocationType));
+	    geneLocationNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( GeneLocation().name ).cardinality(Cardinality.SINGLE));
 
 	    // Consortium keys
 	    consortiumType = new ConsortiumType(consortiumTypeLabel);
-	    consortiumTypeLabel = raw().titanKeyForVertexType(consortiumType.name);
-	    consortiumNameKey = consortiumTypeLabel;
+	    consortiumTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(consortiumType));
+	    consortiumNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Consortium().name ).cardinality(Cardinality.SINGLE));
 
         // Country keys
 	    countryType = new CountryType(countryTypeLabel);
-        countryTypeLabel = raw().titanKeyForVertexType(countryType.name);
-        countryNameKey = countryTypeLabel;
+        countryTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(countryType));
+        countryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Country().name ).cardinality(Cardinality.SINGLE));
 
         // DB keys
 	    dbType = new DBType(dbTypeLabel);
-        dbTypeLabel = raw().titanKeyForVertexType(dbType.name);
-        dbNameKey = dbTypeLabel;
+        dbTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(dbType));
+        dbNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( DB().name ).cardinality(Cardinality.SINGLE));
 
         // Dataset keys
 	    datasetType = new DatasetType(datasetTypeLabel);
-        datasetTypeLabel = raw().titanKeyForVertexType(datasetType.name);
-        datasetNameKey = datasetTypeLabel;
+        datasetTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(datasetType));
+        datasetNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Dataset().name ).cardinality(Cardinality.SINGLE));
 
 	    // Disease keys
 	    diseaseType = new DiseaseType(diseaseTypeLabel);
-	    diseaseTypeLabel = raw().titanKeyForVertexType(diseaseType.id);
-	    diseaseIdKey = diseaseTypeLabel;
-	    diseaseNameKey = raw().titanKeyForVertexPropertySingle(diseaseType.name);
-	    diseaseAcronymKey = raw().titanKeyForVertexPropertySingle(diseaseType.acronym);
-	    diseaseDescriptionKey = raw().titanKeyForVertexPropertySingle(diseaseType.description);
+	    diseaseTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(diseaseType));
+	    diseaseIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().id ).cardinality(Cardinality.SINGLE));
+	    diseaseNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().name ).cardinality(Cardinality.SINGLE));
+	    diseaseAcronymKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().acronym ).cardinality(Cardinality.SINGLE));
+	    diseaseDescriptionKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().description ).cardinality(Cardinality.SINGLE));
 
         // Institute keys
 	    instituteType = new InstituteType(instituteTypeLabel);
-        instituteTypeLabel = raw().titanKeyForVertexType(instituteType.name);
-        instituteNameKey = instituteTypeLabel;
+        instituteTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(instituteType));
+        instituteNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Institute().name ).cardinality(Cardinality.SINGLE));
 
         // Organism keys
 	    organismType = new OrganismType(organismTypeLabel);
-        organismTypeLabel = raw().titanKeyForVertexType(organismType.scientificName);
-        organismScientificNameKey = organismTypeLabel;
-        organismCommonNameKey = raw().titanKeyForVertexPropertySingle(organismType.commonName);
-        organismSynonymNameKey = raw().titanKeyForVertexPropertySingle(organismType.synonymName);
+        organismTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(organismType));
+        organismScientificNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().scientificName ).cardinality(Cardinality.SINGLE));
+        organismCommonNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().commonName ).cardinality(Cardinality.SINGLE));
+        organismSynonymNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().synonymName ).cardinality(Cardinality.SINGLE));
 
         // Keyword keys
 	    keywordType = new KeywordType(keywordTypeLabel);
@@ -748,6 +748,8 @@ extends
         //---UnpublishedObservation
         unpublishedObservationType = new UnpublishedObservationType(null);
 	    unpublishedObservationScopeKey = raw().titanKeyForVertexPropertySingle(unpublishedObservationType.scope);
+
+	  // TODO: keep going
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------EDGES--------------------------------------------
