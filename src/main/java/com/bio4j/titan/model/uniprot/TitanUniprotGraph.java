@@ -21,8 +21,8 @@ import com.thinkaurelius.titan.core.schema.*;
   Implementing the types with Titan
 */
 public final class TitanUniprotGraph
-        extends
-        UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+extends
+    UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
 
     private DefaultTitanGraph rawGraph;
 
@@ -32,203 +32,209 @@ public final class TitanUniprotGraph
 	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
 
 
-    //-------------------VERTICES----------------------------
+  //-------------------VERTICES----------------------------
 
-    public PropertyKey proteinTypekey;
-    public PropertyKey proteinAcessionKey;
-    public PropertyKey proteinNameKey;
-    public PropertyKey proteinShortNameKey;
-    public PropertyKey proteinFullNameKey;
-    public PropertyKey proteinModifiedDateKey;
-    public PropertyKey proteinCreatedDateKey;
-    public PropertyKey proteinMassKey;
-    public PropertyKey proteinVersionKey;
-    public PropertyKey proteinLengthKey;
-    public PropertyKey proteinSequenceKey;
-    public ProteinType proteinType;
+  // protein
+  public VertexLabel proteinTypeLabel;
+  public PropertyKey proteinAcessionKey;
+  public PropertyKey proteinNameKey;
+  public PropertyKey proteinShortNameKey;
+  public PropertyKey proteinFullNameKey;
+  public PropertyKey proteinModifiedDateKey;
+  public PropertyKey proteinCreatedDateKey;
+  public PropertyKey proteinMassKey;
+  public PropertyKey proteinVersionKey;
+  public PropertyKey proteinLengthKey;
+  public PropertyKey proteinSequenceKey;
+  public ProteinType proteinType;
 
 	//---AlternativeProduct---
-	public PropertyKey alternativeProductTypeKey;
+	public VertexLabel alternativeProductTypeLabel;
 	public PropertyKey alternativeProductNameKey;
 	public AlternativeProductType alternativeProductType;
-    //---Article---
-    public PropertyKey articleTypeKey;
-    public PropertyKey articleTitleKey;
-    public PropertyKey articleDoIdKey;
-    public ArticleType articleType;
-    //---Db---
-    public PropertyKey dbTypeKey;
-    public PropertyKey dbNameKey;
-    public DBType dbType;
-    //---Book---
-    public PropertyKey bookTypeKey;
-    public PropertyKey bookNameKey;
-    public BookType bookType;
-    //---city---
-    public PropertyKey cityTypeKey;
-    public PropertyKey cityNameKey;
-    public CityType cityType;
+  //---Article---
+  public VertexLabel articleTypeLabel;
+  public PropertyKey articleTitleKey;
+  public PropertyKey articleDoIdKey;
+  public ArticleType articleType;
+  //---Db---
+  public VertexLabel dbTypeLabel;
+  public PropertyKey dbNameKey;
+  public DBType dbType;
+  //---Book---
+  public VertexLabel bookTypeLabel;
+  public PropertyKey bookNameKey;
+  public BookType bookType;
+  //---city---
+  public VertexLabel cityTypeLabel;
+  public PropertyKey cityNameKey;
+  public CityType cityType;
 	//---consortium---
-	public PropertyKey consortiumTypeKey;
+	public VertexLabel consortiumTypeLabel;
 	public PropertyKey consortiumNameKey;
 	public ConsortiumType consortiumType;
-    //---country---
-    public PropertyKey countryTypeKey;
-    public PropertyKey countryNameKey;
-    public CountryType countryType;
-    //---dataset---
-    public PropertyKey datasetTypeKey;
-    public PropertyKey datasetNameKey;
-    public DatasetType datasetType;
+  //---country---
+  public VertexLabel countryTypeLabel;
+  public PropertyKey countryNameKey;
+  public CountryType countryType;
+  //---dataset---
+  public VertexLabel datasetTypeLabel;
+  public PropertyKey datasetNameKey;
+  public DatasetType datasetType;
 	//---gene location---
-	public PropertyKey geneLocationTypeKey;
+	public VertexLabel geneLocationTypeLabel;
 	public PropertyKey geneLocationNameKey;
 	public GeneLocationType geneLocationType;
 	//---disease---
-	public PropertyKey diseaseTypeKey;
+	public VertexLabel diseaseTypeLabel;
 	public PropertyKey diseaseNameKey;
 	public PropertyKey diseaseIdKey;
 	public PropertyKey diseaseAcronymKey;
 	public PropertyKey diseaseDescriptionKey;
 	public DiseaseType diseaseType;
-    //---organism---
-    public PropertyKey organismTypeKey;
-    public PropertyKey organismScientificNameKey;
-    public PropertyKey organismCommonNameKey;
-    public PropertyKey organismSynonymNameKey;
-    public OrganismType organismType;
-    //---keyword---
-    public PropertyKey keywordTypeKey;
-    public PropertyKey keywordNameKey;
-    public PropertyKey keywordIdKey;
-    public KeywordType keywordType;
-    //---interpro---
-    public PropertyKey interproTypeKey;
-    public PropertyKey interproNameKey;
-    public PropertyKey interproIdKey;
-    public InterproType interproType;
+  //---organism---
+  public VertexLabel organismTypeLabel;
+  public PropertyKey organismScientificNameKey;
+  public PropertyKey organismCommonNameKey;
+  public PropertyKey organismSynonymNameKey;
+  public OrganismType organismType;
+  //---keyword---
+  public VertexLabel keywordTypeLabel;
+  public PropertyKey keywordNameKey;
+  public PropertyKey keywordIdKey;
+  public KeywordType keywordType;
+  //---interpro---
+  public VertexLabel interproTypeLabel;
+  public PropertyKey interproNameKey;
+  public PropertyKey interproIdKey;
+  public InterproType interproType;
 	//---interpro---
-	public PropertyKey isoformTypeKey;
+	public VertexLabel isoformTypeLabel;
 	public PropertyKey isoformNameKey;
 	public PropertyKey isoformIdKey;
 	public PropertyKey isoformSequenceKey;
 	public PropertyKey isoformNoteKey;
 	public IsoformType isoformType;
-    //----institute-----
-    public PropertyKey instituteTypeKey;
-    public PropertyKey instituteNameKey;
-    public InstituteType instituteType;
-    //---journal---
-    public PropertyKey journalTypeKey;
-    public PropertyKey journalNameKey;
-    public JournalType journalType;
+  //----institute-----
+  public VertexLabel instituteTypeLabel;
+  public PropertyKey instituteNameKey;
+  public InstituteType instituteType;
+  //---journal---
+  public VertexLabel journalTypeLabel;
+  public PropertyKey journalNameKey;
+  public JournalType journalType;
 	//---person---
-	public PropertyKey personTypeKey;
+	public VertexLabel personTypeLabel;
 	public PropertyKey personNameKey;
 	public PersonType personType;
-    //---publisher---
-    public PropertyKey publisherTypeKey;
-    public PropertyKey publisherNameKey;
-    public PublisherType publisherType;
-    //---pubmed---
-    public PropertyKey pubmedTypeKey;
-    public PropertyKey pubmedIdKey;
-    public PubmedType pubmedType;
-    //---reactome term---
-    public PropertyKey reactomeTermTypeKey;
-    public PropertyKey reactomeTermPathwayNameKey;
-    public PropertyKey reactomeTermIdKey;
-    public ReactomeTermType reactomeTermType;
-    //---pfam---
-    public PropertyKey pfamTypeKey;
-    public PropertyKey pfamNameKey;
-    public PropertyKey pfamIdKey;
-    public PfamType pfamType;
-    //---kegg---
-    public PropertyKey keggTypeKey;
-    public PropertyKey keggIdKey;
-    public KeggType keggType;
-    //---EMBL---
-    public PropertyKey eMBLTypeKey;
-    public PropertyKey eMBLIdKey;
-    public PropertyKey eMBLMoleculeTypeKey;
-    public PropertyKey eMBLProteinSequenceIdKey;
-    public EMBLType eMBLType;
-    //---Patent---
-    public PropertyKey patentTypeKey;
-    public PropertyKey patentTitleKey;
-    public PropertyKey patentNumberKey;
-    public PatentType patentType;
-    //---PIR---
-    public PropertyKey pIRTypeKey;
-    public PropertyKey pIRIdKey;
-    public PropertyKey pIREntryNameKey;
-    public PIRType pIRType;
-    //---UniGene---
-    public PropertyKey uniGeneTypeKey;
-    public PropertyKey uniGeneIdKey;
-    public UniGeneType uniGeneType;
-    //---Ensembl---
-    public PropertyKey ensemblTypeKey;
-    public PropertyKey ensemblIdKey;
-    public PropertyKey ensemblMoleculeIdKey;
-    public PropertyKey ensemblProteinSequenceIdKey;
-    public PropertyKey ensemblGeneIdKey;
-    public EnsemblType ensemblType;
-    //---Taxon---
-    public PropertyKey taxonTypeKey;
-    public PropertyKey taxonNameKey;
-    public TaxonType taxonType;
-    //---Thesis---
-    public PropertyKey thesisTypeKey;
-    public PropertyKey thesisTitleKey;
-    public ThesisType thesisType;
-    //----OnlineArticle-----
-    public PropertyKey onlineArticleTypeKey;
-    public PropertyKey onlineArticleTitleKey;
-    public OnlineArticleType onlineArticleType;
-    //----OnlineJournal-----
-    public PropertyKey onlineJournalTypeKey;
-    public PropertyKey onlineJournalNameKey;
-    public OnlineJournalType onlineJournalType;
-    //---RefSeq---
-    public PropertyKey refSeqTypeKey;
-    public PropertyKey refSeqIdKey;
-    public PropertyKey refSeqNucleotideSequenceIdKey;
-    public RefSeqType refSeqType;
-    //---Reference---
-    public PropertyKey referenceDateKey;
-    public ReferenceType referenceType;
+  //---publisher---
+  public VertexLabel publisherTypeLabel;
+  public PropertyKey publisherNameKey;
+  public PublisherType publisherType;
+  //---pubmed---
+  public VertexLabel pubmedTypeLabel;
+  public PropertyKey pubmedIdKey;
+  public PubmedType pubmedType;
+  //---reactome term---
+  public VertexLabel reactomeTermTypeLabel;
+  public PropertyKey reactomeTermPathwayNameKey;
+  public PropertyKey reactomeTermIdKey;
+  public ReactomeTermType reactomeTermType;
+  //---pfam---
+  public VertexLabel pfamTypeLabel;
+  public PropertyKey pfamNameKey;
+  public PropertyKey pfamIdKey;
+  public PfamType pfamType;
+  //---kegg---
+  public VertexLabel keggTypeLabel;
+  public PropertyKey keggIdKey;
+  public KeggType keggType;
+  //---EMBL---
+  public VertexLabel eMBLTypeLabel;
+  public PropertyKey eMBLIdKey;
+  public PropertyKey eMBLMoleculeTypeKey;
+  public PropertyKey eMBLProteinSequenceIdKey;
+  public EMBLType eMBLType;
+  //---Patent---
+  public VertexLabel patentTypeLabel;
+  public PropertyKey patentTitleKey;
+  public PropertyKey patentNumberKey;
+  public PatentType patentType;
+  //---PIR---
+  public VertexLabel pIRTypeLabel;
+  public PropertyKey pIRIdKey;
+  public PropertyKey pIREntryNameKey;
+  public PIRType pIRType;
+  //---UniGene---
+  public VertexLabel uniGeneTypeLabel;
+  public PropertyKey uniGeneIdKey;
+  public UniGeneType uniGeneType;
+  //---Ensembl---
+  public VertexLabel ensemblTypeLabel;
+  public PropertyKey ensemblIdKey;
+  public PropertyKey ensemblMoleculeIdKey;
+  public PropertyKey ensemblProteinSequenceIdKey;
+  public PropertyKey ensemblGeneIdKey;
+  public EnsemblType ensemblType;
+  //---Taxon---
+  public VertexLabel taxonTypeLabel;
+  public PropertyKey taxonNameKey;
+  public TaxonType taxonType;
+  //---Thesis---
+  public VertexLabel thesisTypeLabel;
+  public PropertyKey thesisTitleKey;
+  public ThesisType thesisType;
+  //----OnlineArticle-----
+  public VertexLabel onlineArticleTypeLabel;
+  public PropertyKey onlineArticleTitleKey;
+  public OnlineArticleType onlineArticleType;
+  //----OnlineJournal-----
+  public VertexLabel onlineJournalTypeLabel;
+  public PropertyKey onlineJournalNameKey;
+  public OnlineJournalType onlineJournalType;
+  //---RefSeq---
+  public VertexLabel refSeqTypeLabel;
+  public PropertyKey refSeqIdKey;
+  public PropertyKey refSeqNucleotideSequenceIdKey;
+  public RefSeqType refSeqType;
+  //---Reference---
+  public PropertyKey referenceDateKey;
+  public ReferenceType referenceType;
 	//---SequenceCaution----
-	public PropertyKey sequenceCautionTypeKey;
+	public VertexLabel sequenceCautionTypeLabel;
 	public PropertyKey sequenceCautionNameKey;
 	public SequenceCautionType sequenceCautionType;
-    //---SubcellularLocation----
-    public PropertyKey subcellularLocationTypeKey;
-    public PropertyKey subcellularLocationNameKey;
-    public SubcellularLocationType subcellularLocationType;
-    //---Submission----
-    public PropertyKey submissionTypeKey;
-    public PropertyKey submissionTitleKey;
-    public SubmissionType submissionType;
-    //---FeatureType---
-    public PropertyKey featureTypeTypeKey;
-    public PropertyKey featureTypeNameKey;
-    public FeatureTypeType featureTypeType;
-    //---CommentType---
-    public PropertyKey commentTypeTypeKey;
-    public PropertyKey commentTypeNameKey;
-    public CommentTypeType commentTypeType;
-    //---UnpublishedObservation----
-    public PropertyKey unpublishedObservationScopeKey;
-    public UnpublishedObservationType unpublishedObservationType;
+  //---SubcellularLocation----
+  public VertexLabel subcellularLocationTypeLabel;
+  public PropertyKey subcellularLocationNameKey;
+  public SubcellularLocationType subcellularLocationType;
+  //---Submission----
+  public VertexLabel submissionTypeLabel;
+  public PropertyKey submissionTitleKey;
+  public SubmissionType submissionType;
+  //---FeatureType---
+  public VertexLabel featureTypeTypeLabel;
+  public PropertyKey featureTypeNameKey;
+  public FeatureTypeType featureTypeType;
+  //---CommentType---
+  public VertexLabel commentTypeTypeLabel;
+  public PropertyKey commentTypeNameKey;
+  public CommentTypeType commentTypeType;
+  //---UnpublishedObservation----
+  public VertexLabel unpublishedObservationScopeKey;
+  public UnpublishedObservationType unpublishedObservationType;
 
 
     //------------------INDICES----------------
     //-----------------------------------------
     //---------------INDICES---------------------------
 
-    public TitanTypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> proteinAccessionIndex;
+    public TitanTypedVertexIndex.Unique<
+        Protein<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ProteinType, 
+        ProteinType.accession, String, 
+        UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph
+    > proteinAccessionIndex;
+
     public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> datasetNameIndex;
     public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> organismScientificNameIndex;
     public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> keywordIdIndex;
@@ -271,66 +277,66 @@ public final class TitanUniprotGraph
 
 
 	//-----------------------------------------------------------------------------------------
-    //--------------------------------RELATIONSHIPS--------------------------------------------
+  //--------------------------------RELATIONSHIPS--------------------------------------------
 
 	// isoformEventGenerator
 	public EdgeLabel isoformEventGeneratorLabel;
 	public IsoformEventGeneratorType isoformEventGeneratorType;
-    // proteinDataset
-    public EdgeLabel proteinDatasetLabel;
-    public ProteinDatasetType proteinDatasetType;
-    // proteinOrganism
-    public EdgeLabel proteinOrganismLabel;
-    public ProteinOrganismType proteinOrganismType;
-    // proteinKeyword
-    public EdgeLabel proteinKeywordLabel;
-    public ProteinKeywordType proteinKeywordType;
-    // proteinReactomeTerm
-    public EdgeLabel proteinReactomeTermLabel;
-    public ProteinReactomeTermType proteinReactomeTermType;
-    // proteinInterpro
-    public EdgeLabel proteinInterproLabel;
-    public ProteinInterproType proteinInterproType;
-    // proteinPfam
-    public EdgeLabel proteinPfamLabel;
-    public ProteinPfamType proteinPfamType;
-    // proteinKegg
-    public EdgeLabel proteinKeggLabel;
-    public ProteinKeggType proteinKeggType;
-    // proteinEMBL
-    public EdgeLabel proteinEMBLLabel;
-    public ProteinEMBLType proteinEMBLType;
-    // proteinPIR
-    public EdgeLabel proteinPIRLabel;
-    public ProteinPIRType proteinPIRType;
-    // proteinUniGene
-    public EdgeLabel proteinUniGeneLabel;
-    public ProteinUniGeneType proteinUniGeneType;
-    // proteinEnsembl
-    public EdgeLabel proteinEnsemblLabel;
-    public ProteinEnsemblType proteinEnsemblType;
-    // proteinRefSeq
-    public EdgeLabel proteinRefSeqLabel;
-    public ProteinRefSeqType proteinRefSeqType;
+  // proteinDataset
+  public EdgeLabel proteinDatasetLabel;
+  public ProteinDatasetType proteinDatasetType;
+  // proteinOrganism
+  public EdgeLabel proteinOrganismLabel;
+  public ProteinOrganismType proteinOrganismType;
+  // proteinKeyword
+  public EdgeLabel proteinKeywordLabel;
+  public ProteinKeywordType proteinKeywordType;
+  // proteinReactomeTerm
+  public EdgeLabel proteinReactomeTermLabel;
+  public ProteinReactomeTermType proteinReactomeTermType;
+  // proteinInterpro
+  public EdgeLabel proteinInterproLabel;
+  public ProteinInterproType proteinInterproType;
+  // proteinPfam
+  public EdgeLabel proteinPfamLabel;
+  public ProteinPfamType proteinPfamType;
+  // proteinKegg
+  public EdgeLabel proteinKeggLabel;
+  public ProteinKeggType proteinKeggType;
+  // proteinEMBL
+  public EdgeLabel proteinEMBLLabel;
+  public ProteinEMBLType proteinEMBLType;
+  // proteinPIR
+  public EdgeLabel proteinPIRLabel;
+  public ProteinPIRType proteinPIRType;
+  // proteinUniGene
+  public EdgeLabel proteinUniGeneLabel;
+  public ProteinUniGeneType proteinUniGeneType;
+  // proteinEnsembl
+  public EdgeLabel proteinEnsemblLabel;
+  public ProteinEnsemblType proteinEnsemblType;
+  // proteinRefSeq
+  public EdgeLabel proteinRefSeqLabel;
+  public ProteinRefSeqType proteinRefSeqType;
 	// proteinGeneLocation
 	public EdgeLabel proteinGeneLocationLabel;
 	public PropertyKey proteinGeneLocationNameKey;
 	public ProteinGeneLocationType proteinGeneLocationType;
-    // proteinFeature
-    public EdgeLabel proteinFeatureLabel;
-    public PropertyKey proteinFeatureIdKey;
-    public PropertyKey proteinFeatureDescriptionKey;
-    public PropertyKey proteinFeatureEvidenceKey;
-    public PropertyKey proteinFeatureStatusKey;
-    public PropertyKey proteinFeatureBeginKey;
-    public PropertyKey proteinFeatureEndKey;
-    public PropertyKey proteinFeatureOriginalKey;
-    public PropertyKey proteinFeatureVariationKey;
-    public PropertyKey proteinFeatureRefKey;
-    public ProteinFeatureType proteinFeatureType;
-    // proteinComment
-    public EdgeLabel proteinCommentLabel;
-    public ProteinCommentType proteinCommentType;
+  // proteinFeature
+  public EdgeLabel proteinFeatureLabel;
+  public PropertyKey proteinFeatureIdKey;
+  public PropertyKey proteinFeatureDescriptionKey;
+  public PropertyKey proteinFeatureEvidenceKey;
+  public PropertyKey proteinFeatureStatusKey;
+  public PropertyKey proteinFeatureBeginKey;
+  public PropertyKey proteinFeatureEndKey;
+  public PropertyKey proteinFeatureOriginalKey;
+  public PropertyKey proteinFeatureVariationKey;
+  public PropertyKey proteinFeatureRefKey;
+  public ProteinFeatureType proteinFeatureType;
+  // proteinComment
+  public EdgeLabel proteinCommentLabel;
+  public ProteinCommentType proteinCommentType;
 	public PropertyKey proteinCommentTextKey;
 	public PropertyKey proteinCommentStatusKey;
 	public PropertyKey proteinCommentEvidenceKey;
@@ -365,12 +371,12 @@ public final class TitanUniprotGraph
 	public PropertyKey proteinDiseaseTextKey;
 	public PropertyKey proteinDiseaseStatusKey;
 	public PropertyKey proteinDiseaseEvidenceKey;
-    // proteinReference
-    public EdgeLabel proteinReferenceLabel;
-    public ProteinReferenceType proteinReferenceType;
-    // proteinSubcellularLocation
-    public EdgeLabel proteinSubcellularLocationLabel;
-    public ProteinSubcellularLocationType proteinSubcellularLocationType;
+  // proteinReference
+  public EdgeLabel proteinReferenceLabel;
+  public ProteinReferenceType proteinReferenceType;
+  // proteinSubcellularLocation
+  public EdgeLabel proteinSubcellularLocationLabel;
+  public ProteinSubcellularLocationType proteinSubcellularLocationType;
 	public PropertyKey proteinSubcellularLocationStatusKey;
 	public PropertyKey proteinSubcellularLocationEvidenceKey;
 	public PropertyKey proteinSubcellularLocationTopologyKey;
@@ -386,36 +392,36 @@ public final class TitanUniprotGraph
 	public PropertyKey proteinSequenceCautionVersionKey;
 	public PropertyKey proteinSequenceCautionPositionKey;
 
-    // articlePubmed
-    public EdgeLabel articlePubmedLabel;
-    public ArticlePubmedType articlePubmedType;
-    // articleJournal
-    public EdgeLabel articleJournalLabel;
-    public ArticleJournalType articleJournalType;
+  // articlePubmed
+  public EdgeLabel articlePubmedLabel;
+  public ArticlePubmedType articlePubmedType;
+  // articleJournal
+  public EdgeLabel articleJournalLabel;
+  public ArticleJournalType articleJournalType;
 	public PropertyKey articleJournalVolumeKey;
 	public PropertyKey articleJournalFirstKey;
 	public PropertyKey articleJournalLastKey;
-    // bookCity
-    public EdgeLabel bookCityLabel;
-    public BookCityType bookCityType;
+  // bookCity
+  public EdgeLabel bookCityLabel;
+  public BookCityType bookCityType;
 	// bookEditor
 	public EdgeLabel bookEditorLabel;
 	public BookEditorType bookEditorType;
-    // bookPublisher
-    public EdgeLabel bookPublisherLabel;
-    public BookPublisherType bookPublisherType;
-    // instituteCountry
-    public EdgeLabel instituteCountryLabel;
-    public InstituteCountryType instituteCountryType;
-    // taxonParent
-    public EdgeLabel taxonParentLabel;
-    public TaxonParentType taxonParentType;
-    // organismTaxon
-    public EdgeLabel organismTaxonLabel;
-    public OrganismTaxonType organismTaxonType;
-    // onlineArticleOnlineJournal
-    public EdgeLabel onlineArticleOnlineJournalLabel;
-    public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
+  // bookPublisher
+  public EdgeLabel bookPublisherLabel;
+  public BookPublisherType bookPublisherType;
+  // instituteCountry
+  public EdgeLabel instituteCountryLabel;
+  public InstituteCountryType instituteCountryType;
+  // taxonParent
+  public EdgeLabel taxonParentLabel;
+  public TaxonParentType taxonParentType;
+  // organismTaxon
+  public EdgeLabel organismTaxonLabel;
+  public OrganismTaxonType organismTaxonType;
+  // onlineArticleOnlineJournal
+  public EdgeLabel onlineArticleOnlineJournalLabel;
+  public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
 	public PropertyKey onlineArticleOnlineJournalLocatorKey;
 	// referenceAuthorPerson
 	public EdgeLabel referenceAuthorPersonLabel;
@@ -423,171 +429,211 @@ public final class TitanUniprotGraph
 	// referenceAuthorConsortium
 	public EdgeLabel referenceAuthorConsortiumLabel;
 	public ReferenceAuthorConsortiumType referenceAuthorConsortiumType;
-    // referenceArticle
-    public EdgeLabel referenceArticleLabel;
-    public ReferenceArticleType referenceArticleType;
-    // referenceBook
-    public EdgeLabel referenceBookLabel;
-    public ReferenceBookType referenceBookType;
-    // referenceThesis
-    public EdgeLabel referenceThesisLabel;
-    public ReferenceThesisType referenceThesisType;
-    // referenceSubmission
-    public EdgeLabel referenceSubmissionLabel;
-    public ReferenceSubmissionType referenceSubmissionType;
-    // referencePatent
-    public EdgeLabel referencePatentLabel;
-    public ReferencePatentType referencePatentType;
-    // referenceOnlineArticle
-    public EdgeLabel referenceOnlineArticleLabel;
-    public ReferenceOnlineArticleType referenceOnlineArticleType;
-    // referenceUnpublishedObservation
-    public EdgeLabel referenceUnpublishedObservationLabel;
-    public ReferenceUnpublishedObservationType referenceUnpublishedObservationType;
-    // thesisInstitute
-    public EdgeLabel thesisInstituteLabel;
-    public ThesisInstituteType thesisInstituteType;
-    // submissionDB
-    public EdgeLabel submissionDBLabel;
-    public SubmissionDBType submissionDBType;
-    // subcellularLocation
-    public EdgeLabel subcellularLocationParentLabel;
-    public SubcellularLocationParentType subcellularLocationParentType;
+  // referenceArticle
+  public EdgeLabel referenceArticleLabel;
+  public ReferenceArticleType referenceArticleType;
+  // referenceBook
+  public EdgeLabel referenceBookLabel;
+  public ReferenceBookType referenceBookType;
+  // referenceThesis
+  public EdgeLabel referenceThesisLabel;
+  public ReferenceThesisType referenceThesisType;
+  // referenceSubmission
+  public EdgeLabel referenceSubmissionLabel;
+  public ReferenceSubmissionType referenceSubmissionType;
+  // referencePatent
+  public EdgeLabel referencePatentLabel;
+  public ReferencePatentType referencePatentType;
+  // referenceOnlineArticle
+  public EdgeLabel referenceOnlineArticleLabel;
+  public ReferenceOnlineArticleType referenceOnlineArticleType;
+  // referenceUnpublishedObservation
+  public EdgeLabel referenceUnpublishedObservationLabel;
+  public ReferenceUnpublishedObservationType referenceUnpublishedObservationType;
+  // thesisInstitute
+  public EdgeLabel thesisInstituteLabel;
+  public ThesisInstituteType thesisInstituteType;
+  // submissionDB
+  public EdgeLabel submissionDBLabel;
+  public SubmissionDBType submissionDBType;
+  // subcellularLocation
+  public EdgeLabel subcellularLocationParentLabel;
+  public SubcellularLocationParentType subcellularLocationParentType;
 
 
 
-    public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
-        super(rawGraph);
-        this.rawGraph = rawGraph;
-        initTypes();
-        initIndices();
-    }
+  public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
 
-    @Override
-    public DefaultTitanGraph raw() {
-        return rawGraph;
-    }
+      super(rawGraph);
+      // TODO: I don't see the point of rawGraph; it's already in super!
+      this.rawGraph = rawGraph;
+      initTypes();
+      initIndices();
+  }
 
-    private void initTypes() {
+  @Override
+  public DefaultTitanGraph raw() {
+      return rawGraph;
+  }
 
-        //-----------------------------------------------------------------------------------------
-        //--------------------------------VERTICES--------------------------------------------
+  private void initTypes() {
+
+      //-----------------------------------------------------------------------------------------
+      //--------------------------------VERTICES--------------------------------------------
 
 
-        // Protein keys
-	    proteinType = new ProteinType((PropertyKey) null);
-        proteinTypekey = raw().titanKeyForVertexType(proteinType.accession);
-        proteinAcessionKey = proteinTypekey;
-        proteinNameKey = raw().titanKeyForVertexPropertySingle(proteinType.name);
-        proteinShortNameKey = raw().titanKeyForVertexPropertySingle(proteinType.shortName);
-        proteinFullNameKey = raw().titanKeyForVertexPropertySingle(proteinType.fullName);
-        proteinModifiedDateKey = raw().titanKeyForVertexPropertySingle(proteinType.modifiedDate);
-        proteinCreatedDateKey = raw().titanKeyForVertexPropertySingle(proteinType.createdDate);
-        proteinMassKey = raw().titanKeyForVertexPropertySingle(proteinType.mass);
-        proteinVersionKey = raw().titanKeyForVertexPropertySingle(proteinType.version);
-        proteinLengthKey = raw().titanKeyForVertexPropertySingle(proteinType.length);
-        proteinSequenceKey = raw().titanKeyForVertexPropertySingle(proteinType.sequence);
+      // Protein type
+	    proteinType = new ProteinType(proteinTypeLabel);
+      proteinTypeLabel = raw().createOrGet( 
+          raw().titanLabelMakerForVertexType(proteinType) 
+      );
+      proteinAcessionKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().accession    ).cardinality(Cardinality.SINGLE)
+      );
+      proteinNameKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().name         ).cardinality(Cardinality.SINGLE)
+      );
+      proteinShortNameKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().shortName    ).cardinality(Cardinality.SINGLE)
+      );
+      proteinFullNameKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().fullName     ).cardinality(Cardinality.SINGLE)
+      );
+      proteinModifiedDateKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().modifiedDate ).cardinality(Cardinality.SINGLE)
+      );
+      proteinCreatedDateKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().createdDate  ).cardinality(Cardinality.SINGLE)
+      );
+      proteinMassKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().mass         ).cardinality(Cardinality.SINGLE)
+      );
+      proteinVersionKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().version      ).cardinality(Cardinality.SINGLE)
+      );
+      proteinLengthKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().length       ).cardinality(Cardinality.SINGLE)
+      );
+      proteinSequenceKey = raw().createOrGet( 
+          raw().titanPropertyMakerForVertexProperty( Protein().sequence     ).cardinality(Cardinality.SINGLE)
+      );
 
-	    // Alternative Product keys
-	    alternativeProductType = new AlternativeProductType(cityTypeKey);
-	    alternativeProductTypeKey = raw().titanKeyForVertexType(alternativeProductType.name);
-	    alternativeProductNameKey = alternativeProductTypeKey;
+	    // Alternative Product type
+	    alternativeProductType       = new AlternativeProductType(alternativeProductTypeLabel);
+	    alternativeProductTypeLabel  = raw().createOrGet(
+        raw().titanLabelMakerForVertexType(alternativeProductType)
+      );
+      // alternative product props
+	    alternativeProductNameKey = raw().createOrGet( 
+        raw().titanPropertyMakerForVertexProperty( AlternativeProduct().name ).cardinality(Cardinality.SINGLE)
+      );
 
-        // Article keys
-	    articleType = new ArticleType(articleTypeKey);
-        articleTypeKey = raw().titanKeyForVertexType(articleType.title);
-        articleTitleKey = articleTypeKey;
-        articleDoIdKey = raw().titanKeyForVertexPropertySingle(articleType.doId);
+      // Article keys
+	    articleType = new ArticleType(articleTypeLabel);
+      articleTypeLabel = raw().createOrGet( 
+        raw().titanLabelMakerForVertexType(articleType) 
+      );
+      articleTitleKey = raw().createOrGet( 
+        raw().titanPropertyMakerForVertexProperty( Article().title  ).cardinality(Cardinality.SINGLE)
+      );
+      articleDoIdKey = raw().createOrGet( 
+        raw().titanPropertyMakerForVertexProperty( Article().doId   ).cardinality(Cardinality.SINGLE)
+      );
 
-        // Book keys
-	    bookType = new BookType(bookTypeKey);
-        bookTypeKey = raw().titanKeyForVertexType(bookType.name);
-        bookNameKey = bookTypeKey;
+      // Book keys
+	    bookType = new BookType(bookTypeLabel);
+      bookTypeLabel = raw().createOrGet( 
+        raw().titanLabelMakerForVertexType(bookType) 
+      );
+      bookNameKey = raw().createOrGet( 
+        raw().titanPropertyMakerForVertexProperty( Book().name ).cardinality(Cardinality.SINGLE)
+      );
 
-        // City keys
-	    cityType = new CityType(cityTypeKey);
-	    cityTypeKey = raw().titanKeyForVertexType(cityType.name);
-	    cityNameKey = cityTypeKey;
+      // TODO: keep going
+      // City keys
+	    cityType = new CityType(cityTypeLabel);
+	    cityTypeLabel = raw().titanKeyForVertexType(cityType.name);
+	    cityNameKey = cityTypeLabel;
 
 	    // GeneLocation keys
-	    geneLocationType = new GeneLocationType(geneLocationTypeKey);
-	    geneLocationTypeKey = raw().titanKeyForVertexType(geneLocationType.name);
-	    geneLocationNameKey = geneLocationTypeKey;
+	    geneLocationType = new GeneLocationType(geneLocationTypeLabel);
+	    geneLocationTypeLabel = raw().titanKeyForVertexType(geneLocationType.name);
+	    geneLocationNameKey = geneLocationTypeLabel;
 
 	    // Consortium keys
-	    consortiumType = new ConsortiumType(consortiumTypeKey);
-	    consortiumTypeKey = raw().titanKeyForVertexType(consortiumType.name);
-	    consortiumNameKey = consortiumTypeKey;
+	    consortiumType = new ConsortiumType(consortiumTypeLabel);
+	    consortiumTypeLabel = raw().titanKeyForVertexType(consortiumType.name);
+	    consortiumNameKey = consortiumTypeLabel;
 
         // Country keys
-	    countryType = new CountryType(countryTypeKey);
-        countryTypeKey = raw().titanKeyForVertexType(countryType.name);
-        countryNameKey = countryTypeKey;
+	    countryType = new CountryType(countryTypeLabel);
+        countryTypeLabel = raw().titanKeyForVertexType(countryType.name);
+        countryNameKey = countryTypeLabel;
 
         // DB keys
-	    dbType = new DBType(dbTypeKey);
-        dbTypeKey = raw().titanKeyForVertexType(dbType.name);
-        dbNameKey = dbTypeKey;
+	    dbType = new DBType(dbTypeLabel);
+        dbTypeLabel = raw().titanKeyForVertexType(dbType.name);
+        dbNameKey = dbTypeLabel;
 
         // Dataset keys
-	    datasetType = new DatasetType(datasetTypeKey);
-        datasetTypeKey = raw().titanKeyForVertexType(datasetType.name);
-        datasetNameKey = datasetTypeKey;
+	    datasetType = new DatasetType(datasetTypeLabel);
+        datasetTypeLabel = raw().titanKeyForVertexType(datasetType.name);
+        datasetNameKey = datasetTypeLabel;
 
 	    // Disease keys
-	    diseaseType = new DiseaseType(diseaseTypeKey);
-	    diseaseTypeKey = raw().titanKeyForVertexType(diseaseType.id);
-	    diseaseIdKey = diseaseTypeKey;
+	    diseaseType = new DiseaseType(diseaseTypeLabel);
+	    diseaseTypeLabel = raw().titanKeyForVertexType(diseaseType.id);
+	    diseaseIdKey = diseaseTypeLabel;
 	    diseaseNameKey = raw().titanKeyForVertexPropertySingle(diseaseType.name);
 	    diseaseAcronymKey = raw().titanKeyForVertexPropertySingle(diseaseType.acronym);
 	    diseaseDescriptionKey = raw().titanKeyForVertexPropertySingle(diseaseType.description);
 
         // Institute keys
-	    instituteType = new InstituteType(instituteTypeKey);
-        instituteTypeKey = raw().titanKeyForVertexType(instituteType.name);
-        instituteNameKey = instituteTypeKey;
+	    instituteType = new InstituteType(instituteTypeLabel);
+        instituteTypeLabel = raw().titanKeyForVertexType(instituteType.name);
+        instituteNameKey = instituteTypeLabel;
 
         // Organism keys
-	    organismType = new OrganismType(organismTypeKey);
-        organismTypeKey = raw().titanKeyForVertexType(organismType.scientificName);
-        organismScientificNameKey = organismTypeKey;
+	    organismType = new OrganismType(organismTypeLabel);
+        organismTypeLabel = raw().titanKeyForVertexType(organismType.scientificName);
+        organismScientificNameKey = organismTypeLabel;
         organismCommonNameKey = raw().titanKeyForVertexPropertySingle(organismType.commonName);
         organismSynonymNameKey = raw().titanKeyForVertexPropertySingle(organismType.synonymName);
 
         // Keyword keys
-	    keywordType = new KeywordType(keywordTypeKey);
-        keywordTypeKey = raw().titanKeyForVertexType(keywordType.id);
-        keywordIdKey = keywordTypeKey;
+	    keywordType = new KeywordType(keywordTypeLabel);
+        keywordTypeLabel = raw().titanKeyForVertexType(keywordType.id);
+        keywordIdKey = keywordTypeLabel;
         keywordNameKey = raw().titanKeyForVertexPropertySingle(keywordType.name);
 
         // Interpro keys
-	    interproType = new InterproType(interproTypeKey);
-        interproTypeKey = raw().titanKeyForVertexType(interproType.id);
-        interproIdKey = interproTypeKey;
+	    interproType = new InterproType(interproTypeLabel);
+        interproTypeLabel = raw().titanKeyForVertexType(interproType.id);
+        interproIdKey = interproTypeLabel;
         interproNameKey = raw().titanKeyForVertexPropertySingle(interproType.name);
 
 	    // Isoform keys
-	    isoformType = new IsoformType(isoformTypeKey);
-	    isoformTypeKey = raw().titanKeyForVertexType(isoformType.id);
-	    isoformIdKey = isoformTypeKey;
+	    isoformType = new IsoformType(isoformTypeLabel);
+	    isoformTypeLabel = raw().titanKeyForVertexType(isoformType.id);
+	    isoformIdKey = isoformTypeLabel;
 	    isoformNameKey = raw().titanKeyForVertexPropertySingle(isoformType.name);
 	    isoformSequenceKey = raw().titanKeyForVertexPropertySingle(isoformType.sequence);
 	    isoformNoteKey = raw().titanKeyForVertexPropertySingle(isoformType.note);
 
         // Journal keys
-	    journalType = new JournalType(journalTypeKey);
-        journalTypeKey = raw().titanKeyForVertexType(journalType.name);
-        journalNameKey = journalTypeKey;
+	    journalType = new JournalType(journalTypeLabel);
+        journalTypeLabel = raw().titanKeyForVertexType(journalType.name);
+        journalNameKey = journalTypeLabel;
 
         // OnlineArticle keys
-	    onlineArticleType = new OnlineArticleType(onlineArticleTypeKey);
-        onlineArticleTypeKey = raw().titanKeyForVertexType(onlineArticleType.title);
-        onlineArticleTitleKey = onlineArticleTypeKey;
+	    onlineArticleType = new OnlineArticleType(onlineArticleTypeLabel);
+        onlineArticleTypeLabel = raw().titanKeyForVertexType(onlineArticleType.title);
+        onlineArticleTitleKey = onlineArticleTypeLabel;
 
         // OnlineJournal keys
-	    onlineJournalType = new OnlineJournalType(onlineJournalTypeKey);
-        onlineJournalTypeKey = raw().titanKeyForVertexType(onlineJournalType.name);
-        onlineJournalNameKey = onlineJournalTypeKey;
+	    onlineJournalType = new OnlineJournalType(onlineJournalTypeLabel);
+        onlineJournalTypeLabel = raw().titanKeyForVertexType(onlineJournalType.name);
+        onlineJournalNameKey = onlineJournalTypeLabel;
 
 	    // Reference keys
 	    referenceType = new ReferenceType(null);
@@ -595,109 +641,109 @@ public final class TitanUniprotGraph
 
 
         // ReactomeTerm keys
-	    reactomeTermType = new ReactomeTermType(reactomeTermTypeKey);
-        reactomeTermTypeKey = raw().titanKeyForVertexType(reactomeTermType.id);
-        reactomeTermIdKey = reactomeTermTypeKey;
+	    reactomeTermType = new ReactomeTermType(reactomeTermTypeLabel);
+        reactomeTermTypeLabel = raw().titanKeyForVertexType(reactomeTermType.id);
+        reactomeTermIdKey = reactomeTermTypeLabel;
         reactomeTermPathwayNameKey = raw().titanKeyForVertexPropertySingle(reactomeTermType.pathwayName);
 
         // Publisher keys
-	    publisherType = new PublisherType(publisherTypeKey);
-        publisherTypeKey = raw().titanKeyForVertexType(publisherType.name);
-        publisherNameKey = publisherTypeKey;
+	    publisherType = new PublisherType(publisherTypeLabel);
+        publisherTypeLabel = raw().titanKeyForVertexType(publisherType.name);
+        publisherNameKey = publisherTypeLabel;
 
 	    // Person keys
-	    personType = new PersonType(personTypeKey);
-	    personTypeKey = raw().titanKeyForVertexType(personType.name);
-	    personNameKey = personTypeKey;
+	    personType = new PersonType(personTypeLabel);
+	    personTypeLabel = raw().titanKeyForVertexType(personType.name);
+	    personNameKey = personTypeLabel;
 
         // Pfam keys
-	    pfamType = new PfamType(pfamTypeKey);
-        pfamTypeKey = raw().titanKeyForVertexType(pfamType.id);
-        pfamIdKey = pfamTypeKey;
+	    pfamType = new PfamType(pfamTypeLabel);
+        pfamTypeLabel = raw().titanKeyForVertexType(pfamType.id);
+        pfamIdKey = pfamTypeLabel;
         pfamNameKey = raw().titanKeyForVertexPropertySingle(pfamType.name);
 
         // Pubmed keys
-	    pubmedType = new PubmedType(pubmedTypeKey);
-        pubmedTypeKey = raw().titanKeyForVertexType(pubmedType.id);
-        pubmedIdKey = pubmedTypeKey;
+	    pubmedType = new PubmedType(pubmedTypeLabel);
+        pubmedTypeLabel = raw().titanKeyForVertexType(pubmedType.id);
+        pubmedIdKey = pubmedTypeLabel;
 
         // Submission keys
-	    submissionType = new SubmissionType(submissionTypeKey);
-        submissionTypeKey = raw().titanKeyForVertexType(submissionType.title);
-        submissionTitleKey = submissionTypeKey;
+	    submissionType = new SubmissionType(submissionTypeLabel);
+        submissionTypeLabel = raw().titanKeyForVertexType(submissionType.title);
+        submissionTitleKey = submissionTypeLabel;
 
 	    // Thesis keys
-	    thesisType = new ThesisType(thesisTypeKey);
-	    thesisTypeKey = raw().titanKeyForVertexType(thesisType.title);
-	    thesisTitleKey = thesisTypeKey;
+	    thesisType = new ThesisType(thesisTypeLabel);
+	    thesisTypeLabel = raw().titanKeyForVertexType(thesisType.title);
+	    thesisTitleKey = thesisTypeLabel;
 
         // EMBL keys
-	    eMBLType = new EMBLType(eMBLTypeKey);
-        eMBLTypeKey = raw().titanKeyForVertexType(eMBLType.id);
-        eMBLIdKey = eMBLTypeKey;
-        eMBLMoleculeTypeKey = raw().titanKeyForVertexPropertySingle(eMBLType.moleculeType);
+	    eMBLType = new EMBLType(eMBLTypeLabel);
+        eMBLTypeLabel = raw().titanKeyForVertexType(eMBLType.id);
+        eMBLIdKey = eMBLTypeLabel;
+        eMBLMoleculeTypeLabel = raw().titanKeyForVertexPropertySingle(eMBLType.moleculeType);
         eMBLProteinSequenceIdKey = raw().titanKeyForVertexPropertySingle(eMBLType.proteinSequenceId);
 
         // PIR keys
-	    pIRType = new PIRType(pIRTypeKey);
-        pIRTypeKey = raw().titanKeyForVertexType(pIRType.id);
-        pIRIdKey = pIRTypeKey;
+	    pIRType = new PIRType(pIRTypeLabel);
+        pIRTypeLabel = raw().titanKeyForVertexType(pIRType.id);
+        pIRIdKey = pIRTypeLabel;
         pIREntryNameKey = raw().titanKeyForVertexPropertySingle(pIRType.entryName);
 
         // Patent keys
-	    patentType = new PatentType(patentTypeKey);
-        patentTypeKey = raw().titanKeyForVertexType(patentType.number);
-        patentNumberKey = patentTypeKey;
+	    patentType = new PatentType(patentTypeLabel);
+        patentTypeLabel = raw().titanKeyForVertexType(patentType.number);
+        patentNumberKey = patentTypeLabel;
         patentTitleKey = raw().titanKeyForVertexPropertySingle(patentType.title);
 
         // Ensembl keys
-	    ensemblType = new EnsemblType(ensemblTypeKey);
-        ensemblTypeKey = raw().titanKeyForVertexType(ensemblType.id);
-        ensemblIdKey = ensemblTypeKey;
+	    ensemblType = new EnsemblType(ensemblTypeLabel);
+        ensemblTypeLabel = raw().titanKeyForVertexType(ensemblType.id);
+        ensemblIdKey = ensemblTypeLabel;
         ensemblMoleculeIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.moleculeId);
         ensemblProteinSequenceIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.proteinSequenceId);
         ensemblGeneIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.geneId);
 
         //---UniGene---
-	    uniGeneType = new UniGeneType(uniGeneTypeKey);
-        uniGeneTypeKey = raw().titanKeyForVertexType(uniGeneType.id);
-        uniGeneIdKey = uniGeneTypeKey;
+	    uniGeneType = new UniGeneType(uniGeneTypeLabel);
+        uniGeneTypeLabel = raw().titanKeyForVertexType(uniGeneType.id);
+        uniGeneIdKey = uniGeneTypeLabel;
 
         //---SubcellularLocation---
-	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeKey);
-        subcellularLocationTypeKey = raw().titanKeyForVertexType(subcellularLocationType.name);
-        subcellularLocationNameKey = subcellularLocationTypeKey;
+	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeLabel);
+        subcellularLocationTypeLabel = raw().titanKeyForVertexType(subcellularLocationType.name);
+        subcellularLocationNameKey = subcellularLocationTypeLabel;
 
         //---Kegg---
-	    keggType = new KeggType(keggTypeKey);
-        keggTypeKey = raw().titanKeyForVertexType(keggType.id);
-        keggIdKey = keggTypeKey;
+	    keggType = new KeggType(keggTypeLabel);
+        keggTypeLabel = raw().titanKeyForVertexType(keggType.id);
+        keggIdKey = keggTypeLabel;
 
         //---Taxon---
-	    taxonType = new TaxonType(taxonTypeKey);
-        taxonTypeKey = raw().titanKeyForVertexType(taxonType.name);
-        taxonNameKey = taxonTypeKey;
+	    taxonType = new TaxonType(taxonTypeLabel);
+        taxonTypeLabel = raw().titanKeyForVertexType(taxonType.name);
+        taxonNameKey = taxonTypeLabel;
 
         //---RefSeq---
-	    refSeqType = new RefSeqType(refSeqTypeKey);
-        refSeqTypeKey = raw().titanKeyForVertexType(refSeqType.id);
-        refSeqIdKey = refSeqTypeKey;
+	    refSeqType = new RefSeqType(refSeqTypeLabel);
+        refSeqTypeLabel = raw().titanKeyForVertexType(refSeqType.id);
+        refSeqIdKey = refSeqTypeLabel;
         refSeqNucleotideSequenceIdKey = raw().titanKeyForVertexPropertySingle(refSeqType.nucleotideSequenceId);
 
 	    //---SequenceCaution---
-	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeKey);
-	    sequenceCautionTypeKey = raw().titanKeyForVertexType(sequenceCautionType.name);
-	    sequenceCautionNameKey = sequenceCautionTypeKey;
+	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeLabel);
+	    sequenceCautionTypeLabel = raw().titanKeyForVertexType(sequenceCautionType.name);
+	    sequenceCautionNameKey = sequenceCautionTypeLabel;
 
         //---Comment---
-	    commentTypeType = new CommentTypeType(commentTypeTypeKey);
-        commentTypeTypeKey = raw().titanKeyForVertexType(commentTypeType.name);
-        commentTypeNameKey = commentTypeTypeKey;
+	    commentTypeType = new CommentTypeType(commentTypeTypeLabel);
+        commentTypeTypeLabel = raw().titanKeyForVertexType(commentTypeType.name);
+        commentTypeNameKey = commentTypeTypeLabel;
 
         //---Feature---
-	    featureTypeType = new FeatureTypeType(featureTypeTypeKey);
-        featureTypeTypeKey = raw().titanKeyForVertexType(featureTypeType.name);
-        featureTypeNameKey = featureTypeTypeKey;
+	    featureTypeType = new FeatureTypeType(featureTypeTypeLabel);
+        featureTypeTypeLabel = raw().titanKeyForVertexType(featureTypeType.name);
+        featureTypeNameKey = featureTypeTypeLabel;
 
         //---UnpublishedObservation
         unpublishedObservationType = new UnpublishedObservationType(null);
