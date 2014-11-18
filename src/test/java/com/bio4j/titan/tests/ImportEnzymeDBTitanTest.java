@@ -10,17 +10,15 @@ import java.util.ArrayList;
  */
 public class ImportEnzymeDBTitanTest {
 
-	public static void main(String[] args){
-
-		ImportEnzymeDBTitanTest importEnzymeDBTitanTest = new ImportEnzymeDBTitanTest();
+	public void importEnzymeDBTitanTest(String dbFolder){
 
 		ImportEnzymeDBTitan importEnzymeDBTitan = new ImportEnzymeDBTitan();
-		String enzymeDataFile = importEnzymeDBTitanTest.getEnzymeDBDataFile().getAbsolutePath();
+
+		String enzymeDataFile = getEnzymeDBDataFile().getAbsolutePath();
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(enzymeDataFile);
-		arguments.add("bio4j_test");
+		arguments.add(dbFolder);
 		importEnzymeDBTitan.execute(arguments);
-
 	}
 
 	private File getEnzymeDBDataFile() {
