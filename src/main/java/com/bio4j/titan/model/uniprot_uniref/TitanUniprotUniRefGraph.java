@@ -57,20 +57,20 @@ public final class TitanUniprotUniRefGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        uniRef50MemberLabel = raw().titanLabelForEdgeType(new UniRef50MemberType((EdgeLabel) null));
-        uniRef50MemberType = new UniRef50MemberType(uniRef50MemberLabel);
-        uniRef90MemberLabel = raw().titanLabelForEdgeType(new UniRef90MemberType((EdgeLabel) null));
-        uniRef90MemberType = new UniRef90MemberType(uniRef90MemberLabel);
-        uniRef100MemberLabel = raw().titanLabelForEdgeType(new UniRef100MemberType((EdgeLabel) null));
-        uniRef100MemberType = new UniRef100MemberType(uniRef100MemberLabel);
+        // uniRef50MemberLabel = raw().titanLabelForEdgeType(new UniRef50MemberType((EdgeLabel) null));
+        // uniRef50MemberType = new UniRef50MemberType(uniRef50MemberLabel);
+        // uniRef90MemberLabel = raw().titanLabelForEdgeType(new UniRef90MemberType((EdgeLabel) null));
+        // uniRef90MemberType = new UniRef90MemberType(uniRef90MemberLabel);
+        // uniRef100MemberLabel = raw().titanLabelForEdgeType(new UniRef100MemberType((EdgeLabel) null));
+        // uniRef100MemberType = new UniRef100MemberType(uniRef100MemberLabel);
 
 
-        uniRef50RepresentantLabel = raw().titanLabelForEdgeType(new UniRef50RepresentantType((EdgeLabel) null));
-        uniRef50RepresentantType = new UniRef50RepresentantType(uniRef50RepresentantLabel);
-        uniRef90RepresentantLabel = raw().titanLabelForEdgeType(new UniRef90RepresentantType((EdgeLabel) null));
-        uniRef90RepresentantType = new UniRef90RepresentantType(uniRef90RepresentantLabel);
-        uniRef100RepresentantLabel = raw().titanLabelForEdgeType(new UniRef100RepresentantType((EdgeLabel) null));
-        uniRef100RepresentantType = new UniRef100RepresentantType(uniRef100RepresentantLabel);
+        // uniRef50RepresentantLabel = raw().titanLabelForEdgeType(new UniRef50RepresentantType((EdgeLabel) null));
+        // uniRef50RepresentantType = new UniRef50RepresentantType(uniRef50RepresentantLabel);
+        // uniRef90RepresentantLabel = raw().titanLabelForEdgeType(new UniRef90RepresentantType((EdgeLabel) null));
+        // uniRef90RepresentantType = new UniRef90RepresentantType(uniRef90RepresentantLabel);
+        // uniRef100RepresentantLabel = raw().titanLabelForEdgeType(new UniRef100RepresentantType((EdgeLabel) null));
+        // uniRef100RepresentantType = new UniRef100RepresentantType(uniRef100RepresentantLabel);
 
     }
 

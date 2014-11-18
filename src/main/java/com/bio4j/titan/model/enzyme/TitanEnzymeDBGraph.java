@@ -54,8 +54,13 @@ public final class TitanEnzymeDBGraph
 	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
         this.rawGraph = rawGraph;
-        initTypes();
-        initIndices();
+
+        // First get a titanMgmt instance, that will be used throughout
+        TitanManagement mgmt = raw().managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+        mgmt.commit();
     }
 
     @Override
@@ -73,45 +78,45 @@ public final class TitanEnzymeDBGraph
         return enzymeType;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
         // the tricky part is initializing the label part
         // first init the label
-        enzymeTypeLabel = raw().createOrGet( 
-            raw().titanLabelMakerForVertexType(new EnzymeType(null)) // null is OK here :-/
+        enzymeTypeLabel = raw().createOrGet( mgmt,
+            raw().titanLabelMakerForVertexType( mgmt, new EnzymeType(null)) // null is OK here :-/
         );
         // then create the type with a ref to the label
         enzymeType = new EnzymeType(enzymeTypeLabel);
         // init properties
-        enzymeIdkey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().id ).cardinality(Cardinality.SINGLE) 
+        enzymeIdkey = raw().createOrGet( mgmt,
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().id ).cardinality(Cardinality.SINGLE) 
         );
-        enzymeCofactorskey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().cofactors ).cardinality(Cardinality.SINGLE) 
+        enzymeCofactorskey = raw().createOrGet( mgmt,
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().cofactors ).cardinality(Cardinality.SINGLE) 
         );
-        enzymeOfficialNamekey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().officialName ).cardinality(Cardinality.SINGLE) 
+        enzymeOfficialNamekey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().officialName ).cardinality(Cardinality.SINGLE) 
         );
-        enzymeAlternateNameskey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().alternateNames ).cardinality(Cardinality.SINGLE) 
+        enzymeAlternateNameskey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().alternateNames ).cardinality(Cardinality.SINGLE) 
         );
-        enzymeCommentkey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().comment ).cardinality(Cardinality.SINGLE) 
+        enzymeCommentkey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().comment ).cardinality(Cardinality.SINGLE) 
         );
-        enzymeCatalyticActivitykey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().catalyticActivity ).cardinality(Cardinality.SINGLE) 
+        enzymeCatalyticActivitykey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().catalyticActivity ).cardinality(Cardinality.SINGLE) 
         );
-        enzymePrositeCrossReferenceskey = raw().createOrGet( 
-            raw().titanPropertyMakerForVertexProperty( Enzyme().prositeCrossReferences ).cardinality(Cardinality.SINGLE) 
+        enzymePrositeCrossReferenceskey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().prositeCrossReferences ).cardinality(Cardinality.SINGLE) 
         );
 
     }
 
-    private void initIndices() {
+    private void initIndices(TitanManagement mgmt) {
         
-        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Enzyme().id);
+        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, Enzyme().id);
     }
 
 	/*

@@ -50,8 +50,8 @@ public final class TitanUniprotEnzymeGraph
 	    //-----------------------------------------------------------------------------------------
 	    //--------------------------------RELATIONSHIPS--------------------------------------------
 
-	    enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((EdgeLabel) null));
-	    enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityLabel);
+	    // enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((EdgeLabel) null));
+	    // enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityLabel);
 
     }
 

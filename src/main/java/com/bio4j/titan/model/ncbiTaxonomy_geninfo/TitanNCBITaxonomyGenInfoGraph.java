@@ -47,8 +47,8 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
 
-		genInfoNCBITaxonLabel = raw().titanLabelForEdgeType(new GenInfoNCBITaxonType((EdgeLabel) null));
-		genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonLabel);
+		// genInfoNCBITaxonLabel = raw().titanLabelForEdgeType(new GenInfoNCBITaxonType((EdgeLabel) null));
+		// genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonLabel);
 
 	}
 

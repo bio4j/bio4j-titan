@@ -46,8 +46,8 @@ public final class TitanUniprotNCBITaxonomyGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        proteinNCBITaxonLabel = raw().titanLabelForEdgeType(new ProteinNCBITaxonType((EdgeLabel) null));
-        proteinNCBITaxonType = new ProteinNCBITaxonType(proteinNCBITaxonLabel);
+        // proteinNCBITaxonLabel = raw().titanLabelForEdgeType(new ProteinNCBITaxonType((EdgeLabel) null));
+        // proteinNCBITaxonType = new ProteinNCBITaxonType(proteinNCBITaxonLabel);
 
     }
 

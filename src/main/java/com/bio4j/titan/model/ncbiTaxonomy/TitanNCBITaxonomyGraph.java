@@ -88,14 +88,14 @@ public final class TitanNCBITaxonomyGraph
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
-		nCBITaxonParentLabel = raw().titanLabelForEdgeType(new NCBITaxonParentType((EdgeLabel) null));
-		ncbiTaxonParentType = new NCBITaxonParentType(nCBITaxonParentLabel);
+		// nCBITaxonParentLabel = raw().titanLabelForEdgeType(new NCBITaxonParentType((EdgeLabel) null));
+		// ncbiTaxonParentType = new NCBITaxonParentType(nCBITaxonParentLabel);
 
 
     }
 
     private void initIndices() {
-        nCBITaxonIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, NCBITaxon().id);
+        // nCBITaxonIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, NCBITaxon().id);
     }
 
 

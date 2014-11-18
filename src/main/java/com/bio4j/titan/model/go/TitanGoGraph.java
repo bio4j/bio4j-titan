@@ -109,27 +109,27 @@ public final class TitanGoGraph
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
 
-        isALabel = raw().titanLabelForEdgeType(new IsAType((EdgeLabel) null));
-        isAType = new IsAType(isALabel);
-        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
-        partOfType = new PartOfType(partOfLabel);
-        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
-        hasPartOfType = new HasPartOfType(hasPartOfLabel);
-        regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
-        regulatesType = new RegulatesType(regulatesLabel);
-        positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
-        positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
-        negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
-        negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
+        // isALabel = raw().titanLabelForEdgeType(new IsAType((EdgeLabel) null));
+        // isAType = new IsAType(isALabel);
+        // partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
+        // partOfType = new PartOfType(partOfLabel);
+        // hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
+        // hasPartOfType = new HasPartOfType(hasPartOfLabel);
+        // regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
+        // regulatesType = new RegulatesType(regulatesLabel);
+        // positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
+        // positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
+        // negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
+        // negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
 
-        subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
-        subOntologyType = new SubOntologyType(subOntologyLabel);
+        // subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
+        // subOntologyType = new SubOntologyType(subOntologyLabel);
 
     }
 
     private void initIndices() {
-        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, GoTerm().id);
-        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, SubOntologies().name);
+        // goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, GoTerm().id);
+        // subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, SubOntologies().name);
     }
 
     @Override

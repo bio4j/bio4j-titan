@@ -76,7 +76,7 @@ public final class TitanGenInfoGraph
 	}
 
 	private void initIndices() {
-		genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GenInfo().id);
+		// genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GenInfo().id);
 	}
 
 	/*

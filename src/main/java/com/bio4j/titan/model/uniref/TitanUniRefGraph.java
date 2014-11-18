@@ -109,9 +109,9 @@ public final class TitanUniRefGraph
     }
 
     private void initIndices() {
-        uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, UniRef100Cluster().id);
-        uniRef90ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, UniRef90Cluster().id);
-        uniRef50ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, UniRef50Cluster().id);
+        // uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, UniRef100Cluster().id);
+        // uniRef90ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, UniRef90Cluster().id);
+        // uniRef50ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, UniRef50Cluster().id);
     }
 
 

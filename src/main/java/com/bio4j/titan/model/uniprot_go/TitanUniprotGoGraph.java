@@ -47,8 +47,8 @@ public final class TitanUniprotGoGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        goAnnotationLabel = raw().titanLabelForEdgeType(new GoAnnotationType((EdgeLabel) null));
-        goAnnotationType = new GoAnnotationType(goAnnotationLabel);
+        // goAnnotationLabel = raw().titanLabelForEdgeType(new GoAnnotationType((EdgeLabel) null));
+        // goAnnotationType = new GoAnnotationType(goAnnotationLabel);
 
     }
 
