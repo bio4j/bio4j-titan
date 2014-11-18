@@ -23,6 +23,10 @@ public final class TitanEnzymeDBGraph
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotEnzymeGraph uniprotEnzymeGraph = null;
 
+    private TitanManagement mgmt;
+
+    public TitanManagement managementSystem() { return this.mgmt; } 
+
 
     //-------------------VERTICES----------------------------
 
@@ -56,11 +60,11 @@ public final class TitanEnzymeDBGraph
         this.rawGraph = rawGraph;
 
         // First get a titanMgmt instance, that will be used throughout
-        TitanManagement mgmt = raw().managementSystem();
+        this.mgmt = rawGraph.managementSystem();
         initTypes(mgmt);
         initIndices(mgmt);
 
-        mgmt.commit();
+        // mgmt.commit();
     }
 
     @Override
