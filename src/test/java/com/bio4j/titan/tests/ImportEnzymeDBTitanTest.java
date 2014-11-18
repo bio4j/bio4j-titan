@@ -25,8 +25,6 @@ public class ImportEnzymeDBTitanTest {
 
 	private File getEnzymeDBDataFile() {
 
-		StringBuilder result = new StringBuilder("");
-
 		//Get file from resources folder
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("file/enzyme.dat").getFile());
