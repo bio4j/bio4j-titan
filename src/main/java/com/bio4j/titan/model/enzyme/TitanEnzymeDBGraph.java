@@ -77,12 +77,13 @@ public final class TitanEnzymeDBGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-        // first create the type with a ref to the yet uninitialized label
-	    enzymeType = new EnzymeType(enzymeTypeLabel);
-        // init the label
+        // the tricky part is initializing the label part
+        // first init the label
         enzymeTypeLabel = raw().createOrGet( 
-            raw().titanLabelMakerForVertexType(enzymeType) 
+            raw().titanLabelMakerForVertexType(new EnzymeType(null)) // null is OK here :-/
         );
+        // then create the type with a ref to the label
+        enzymeType = new EnzymeType(enzymeTypeLabel);
         // init properties
         enzymeIdkey = raw().createOrGet( 
             raw().titanPropertyMakerForVertexProperty( Enzyme().id ).cardinality(Cardinality.SINGLE) 
