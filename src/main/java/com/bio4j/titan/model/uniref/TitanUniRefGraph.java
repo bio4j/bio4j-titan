@@ -19,7 +19,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanUniRefGraph
         extends
-        UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+        UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotUniRefGraph uniprotUniRefGraph;
@@ -50,24 +50,24 @@ public final class TitanUniRefGraph
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.DefaultUnique<
-            UniRef100Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniRef100Cluster<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             UniRef100ClusterType,
             UniRef100ClusterType.id, String,
-            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > uniRef100ClusterIdIndex;
     TitanTypedVertexIndex.DefaultUnique<
-            UniRef90Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniRef90Cluster<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             UniRef90ClusterType,
             UniRef90ClusterType.id, String,
-            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > uniRef90ClusterIdIndex;
     TitanTypedVertexIndex.DefaultUnique<
-            UniRef50Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniRef50Cluster<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             UniRef50ClusterType,
             UniRef50ClusterType.id, String,
-            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > uniRef50ClusterIdIndex;
 
@@ -116,22 +116,22 @@ public final class TitanUniRefGraph
 
 
     @Override
-    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotUniRefGraph() {
+    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotUniRefGraph() {
         return uniprotUniRefGraph;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<UniRef50Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniRef50ClusterType, UniRef50ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRef50ClusterIdIndex() {
+	public TypedVertexIndex.Unique<UniRef50Cluster<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, UniRef50ClusterType, UniRef50ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRef50ClusterIdIndex() {
 		return uniRef50ClusterIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<UniRef90Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniRef90ClusterType, UniRef90ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRef90ClusterIdIndex() {
+	public TypedVertexIndex.Unique<UniRef90Cluster<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, UniRef90ClusterType, UniRef90ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRef90ClusterIdIndex() {
 		return uniRef90ClusterIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<UniRef100Cluster<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniRef100ClusterType, UniRef100ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRef100ClusterIdIndex() {
+	public TypedVertexIndex.Unique<UniRef100Cluster<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, UniRef100ClusterType, UniRef100ClusterType.id, String, UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRef100ClusterIdIndex() {
 		return uniRef100ClusterIdIndex;
 	}
 

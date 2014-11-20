@@ -29,8 +29,8 @@ public class IndexTest {
 
 		String idSt = "NP_505817.1";
 
-		RefSeq<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> refSeq = null;
-		EMBL<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> embl = null;
+		RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> refSeq = null;
+		EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> embl = null;
 
 
 
@@ -42,14 +42,14 @@ public class IndexTest {
 		embl.set(graph.EMBL().id, idSt);
 		//graph.raw().commit();
 
-		Optional<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>> optionalRefSeq = graph.refSeqIdIndex().getVertex(idSt);
+		Optional<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>> optionalRefSeq = graph.refSeqIdIndex().getVertex(idSt);
 		if(!optionalRefSeq.isPresent()){
 			System.out.println("ERROR: The REfSEq id was not found... :(");
 		}else{
 			System.out.println("Element found! :)");
 		}
 
-		Optional<EMBL<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>> optionalEMBL = graph.eMBLIdIndex().getVertex(idSt);
+		Optional<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>> optionalEMBL = graph.eMBLIdIndex().getVertex(idSt);
 		if(!optionalEMBL.isPresent()){
 			System.out.println("ERROR: The EMBL id was not found... :(");
 		}else{

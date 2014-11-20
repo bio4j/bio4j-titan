@@ -16,7 +16,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanNCBITaxonomyGenInfoGraph
 		extends
-		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
 	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGraph ncbiTaxonomyRawGraph;
@@ -58,12 +58,12 @@ public final class TitanNCBITaxonomyGenInfoGraph
 
 
 	@Override
-	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGraph() {
+	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGraph() {
 		return ncbiTaxonomyRawGraph;
 	}
 
 	@Override
-	public GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> genInfoGraph() {
+	public GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> genInfoGraph() {
 		return genInfoRawGraph;
 	}
 

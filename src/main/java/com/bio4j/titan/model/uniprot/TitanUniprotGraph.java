@@ -22,7 +22,7 @@ import com.thinkaurelius.titan.core.schema.*;
 */
 public final class TitanUniprotGraph
 extends
-    UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+    UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private DefaultTitanGraph rawGraph;
 
@@ -230,48 +230,48 @@ extends
     //---------------INDICES---------------------------
 
     public TitanTypedVertexIndex.Unique<
-        Protein<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ProteinType, 
+        Protein<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ProteinType, 
         ProteinType.accession, String, 
-        UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph
+        UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph
     > proteinAccessionIndex;
 
-    public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> datasetNameIndex;
-    public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> organismScientificNameIndex;
-    public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> keywordIdIndex;
-    public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> reactomeTermIdIndex;
-    public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> interproIdIndex;
-    public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> pfamIdIndex;
-    public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> keggIdIndex;
-    public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> eMBLIdIndex;
-    public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> pIRIdIndex;
-    public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> uniGeneIdIndex;
-    public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> ensemblIdIndex;
-    public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> taxonNameIndex;
-    public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> refSeqIdIndex;
-    public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> commentTypeNameIndex;
-    public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> featureTypeNameIndex;
-	public TitanTypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> journalNameIndex;
-	public TitanTypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> articleTitleIndex;
-	public TitanTypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> onlineJournalNameIndex;
-	public TitanTypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> onlineArticleTitleIndex;
-	public TitanTypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> pubmedIdIndex;
-	public TitanTypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> personNameIndex;
-	public TitanTypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> thesisTitleIndex;
-	public TitanTypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> consortiumNameIndex;
-	public TitanTypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> instituteNameIndex;
-	public TitanTypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> submissionTitleIndex;
-	public TitanTypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> patentNumberIndex;
-	public TitanTypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> cityNameIndex;
-	public TitanTypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> countryNameIndex;
-	public TitanTypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> publisherNameIndex;
-	public TitanTypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> bookNameIndex;
-	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> dbNameIndex;
-	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> diseaseIdIndex;
-	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> subcellularLocationNameIndex;
-	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> isoformIdIndex;
-	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> sequenceCautionNameIndex;
-	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> geneLocationNameIndex;
-	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph> alternativeProductNameIndex;
+    public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> datasetNameIndex;
+    public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> organismScientificNameIndex;
+    public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keywordIdIndex;
+    public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> reactomeTermIdIndex;
+    public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> interproIdIndex;
+    public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pfamIdIndex;
+    public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keggIdIndex;
+    public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> eMBLIdIndex;
+    public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pIRIdIndex;
+    public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> uniGeneIdIndex;
+    public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> ensemblIdIndex;
+    public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> taxonNameIndex;
+    public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> refSeqIdIndex;
+    public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> commentTypeNameIndex;
+    public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> featureTypeNameIndex;
+	public TitanTypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> journalNameIndex;
+	public TitanTypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> articleTitleIndex;
+	public TitanTypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> onlineJournalNameIndex;
+	public TitanTypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> onlineArticleTitleIndex;
+	public TitanTypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pubmedIdIndex;
+	public TitanTypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> personNameIndex;
+	public TitanTypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> thesisTitleIndex;
+	public TitanTypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> consortiumNameIndex;
+	public TitanTypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> instituteNameIndex;
+	public TitanTypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> submissionTitleIndex;
+	public TitanTypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> patentNumberIndex;
+	public TitanTypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> cityNameIndex;
+	public TitanTypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> countryNameIndex;
+	public TitanTypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> publisherNameIndex;
+	public TitanTypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> bookNameIndex;
+	public TitanTypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> dbNameIndex;
+	public TitanTypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> diseaseIdIndex;
+	public TitanTypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> subcellularLocationNameIndex;
+	public TitanTypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> isoformIdIndex;
+	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> sequenceCautionNameIndex;
+	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> geneLocationNameIndex;
+	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> alternativeProductNameIndex;
 
 
 
@@ -1163,226 +1163,226 @@ extends
 
 
     @Override
-    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotUniRefGraph() {
+    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotUniRefGraph() {
         return uniprotUniRefGraph;
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGoGraph() {
+    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
     @Override
-    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotEnzymeDBGraph() {
+    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
         return uniprotEnzymeGraph;
     }
 
     @Override
-    public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotNCBITaxonomyGraph() {
+    public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotNCBITaxonomyGraph() {
         return uniprotNCBITaxonomyGraph;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> alternativeProductNameIndex() {
+	public TypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> alternativeProductNameIndex() {
 		return alternativeProductNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> geneLocationNameIndex() {
+	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> geneLocationNameIndex() {
 		return geneLocationNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> diseaseIdIndex() {
+	public TypedVertexIndex.Unique<Disease<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DiseaseType, DiseaseType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> diseaseIdIndex() {
 		return diseaseIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> journalNameIndex() {
+	public TypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> journalNameIndex() {
 		return journalNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> articleTitleIndex() {
+	public TypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> articleTitleIndex() {
 		return articleTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> onlineJournalNameIndex() {
+	public TypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> onlineJournalNameIndex() {
 		return onlineJournalNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> onlineArticleTitleIndex() {
+	public TypedVertexIndex.Unique<OnlineArticle<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OnlineArticleType, OnlineArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> onlineArticleTitleIndex() {
 		return onlineArticleTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> cityNameIndex() {
+	public TypedVertexIndex.Unique<City<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CityType, CityType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> cityNameIndex() {
 		return cityNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> publisherNameIndex() {
+	public TypedVertexIndex.Unique<Publisher<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PublisherType, PublisherType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> publisherNameIndex() {
 		return publisherNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> bookNameIndex() {
+	public TypedVertexIndex.Unique<Book<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, BookType, BookType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> bookNameIndex() {
 		return bookNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> dbNameIndex() {
+	public TypedVertexIndex.Unique<DB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DBType, DBType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> dbNameIndex() {
 		return dbNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> countryNameIndex() {
+	public TypedVertexIndex.Unique<Country<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CountryType, CountryType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> countryNameIndex() {
 		return countryNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> patentNumberIndex() {
+	public TypedVertexIndex.Unique<Patent<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PatentType, PatentType.number, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> patentNumberIndex() {
 		return patentNumberIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> sequenceCautionNameIndex() {
+	public TypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> sequenceCautionNameIndex() {
 		return sequenceCautionNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> submissionTitleIndex() {
+	public TypedVertexIndex.Unique<Submission<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SubmissionType, SubmissionType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> submissionTitleIndex() {
 		return submissionTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> subcellularLocationNameIndex() {
+	public TypedVertexIndex.Unique<SubcellularLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SubcellularLocationType, SubcellularLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> subcellularLocationNameIndex() {
 		return subcellularLocationNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> instituteNameIndex() {
+	public TypedVertexIndex.Unique<Institute<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InstituteType, InstituteType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> instituteNameIndex() {
 		return instituteNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> isoformIdIndex() {
+	public TypedVertexIndex.Unique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, IsoformType, IsoformType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> isoformIdIndex() {
 		return isoformIdIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> consortiumNameIndex() {
+	public TypedVertexIndex.Unique<Consortium<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ConsortiumType, ConsortiumType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> consortiumNameIndex() {
 		return consortiumNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> thesisTitleIndex() {
+	public TypedVertexIndex.Unique<Thesis<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ThesisType, ThesisType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> thesisTitleIndex() {
 		return thesisTitleIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> personNameIndex() {
+	public TypedVertexIndex.Unique<Person<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PersonType, PersonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> personNameIndex() {
 		return personNameIndex;
 	}
 
 	@Override
-	public TypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> proteinAccessionIndex() {
+	public TypedVertexIndex.Unique<Protein<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ProteinType, ProteinType.accession, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> proteinAccessionIndex() {
 		return proteinAccessionIndex;
 	}
 
 	@Override
-    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ensemblIdIndex() {
+    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ensemblIdIndex() {
         return ensemblIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> pIRIdIndex() {
+    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pIRIdIndex() {
         return pIRIdIndex;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> pubmedIdIndex() {
+	public TypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pubmedIdIndex() {
 		return pubmedIdIndex;
 	}
 
 	@Override
-    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniGeneIdIndex() {
+    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniGeneIdIndex() {
         return uniGeneIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> keggIdIndex() {
+    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> keggIdIndex() {
         return keggIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> eMBLIdIndex() {
+    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> eMBLIdIndex() {
         return eMBLIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> refSeqIdIndex() {
+    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> refSeqIdIndex() {
         return refSeqIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> reactomeTermIdIndex() {
+    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> reactomeTermIdIndex() {
         return reactomeTermIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> datasetNameIndex() {
+    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> datasetNameIndex() {
         return datasetNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> keywordIdIndex() {
+    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> keywordIdIndex() {
         return keywordIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> interproIdIndex() {
+    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> interproIdIndex() {
         return interproIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> pfamIdIndex() {
+    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pfamIdIndex() {
         return pfamIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> organismScientificNameIndex() {
+    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> organismScientificNameIndex() {
         return organismScientificNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> taxonNameIndex() {
+    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> taxonNameIndex() {
         return taxonNameIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
-            FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> featureTypeNameIndex() {
+    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+            FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> featureTypeNameIndex() {
         return featureTypeNameIndex;
     }
 
 	@Override
-	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> commentTypeNameIndex() {
+	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> commentTypeNameIndex() {
 		return commentTypeNameIndex;
 	}
 

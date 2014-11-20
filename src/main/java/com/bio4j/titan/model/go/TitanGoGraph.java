@@ -18,7 +18,7 @@ import com.thinkaurelius.titan.core.schema.*;
 */
 public final class TitanGoGraph
         extends
-        GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+        GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotGoGraph uniprotGoGraph = null;
@@ -60,16 +60,16 @@ public final class TitanGoGraph
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.Unique<
-            GoTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             GoTermType,
             GoTermType.id, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > goTermIdIndex;
-    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             SubOntologiesType,
             SubOntologiesType.name, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph> subOntologiesNameIndex;
 
 
@@ -184,17 +184,17 @@ public final class TitanGoGraph
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGoGraph() {
+    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
     @Override
-    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> goTermIdIndex() {
+    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> goTermIdIndex() {
         return goTermIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> subontologiesNameIndex() {
+    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> subontologiesNameIndex() {
         return subOntologiesNameIndex;
     }
 

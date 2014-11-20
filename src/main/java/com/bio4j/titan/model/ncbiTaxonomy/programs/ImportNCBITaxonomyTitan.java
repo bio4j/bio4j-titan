@@ -34,10 +34,10 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> implements Executable {
+public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> config(String dbFolder) {
+	protected NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);

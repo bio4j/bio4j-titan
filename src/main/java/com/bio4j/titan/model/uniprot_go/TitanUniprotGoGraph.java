@@ -16,7 +16,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanUniprotGoGraph
         extends
-        UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+        UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private DefaultTitanGraph rawGraph;
     private TitanUniprotGraph uniprotRawGraph;
@@ -58,12 +58,12 @@ public final class TitanUniprotGoGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public GoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> goGraph() {
+    public GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> goGraph() {
         return goRawGraph;
     }
 

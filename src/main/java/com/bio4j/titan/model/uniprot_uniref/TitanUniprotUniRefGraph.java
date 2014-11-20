@@ -16,11 +16,11 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanUniprotUniRefGraph
         extends
-        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotRawGraph;
-    private UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRefRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
+    private UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRefRawGraph;
 
     //---------------RELATIONSHIPS---------------------------
 
@@ -80,12 +80,12 @@ public final class TitanUniprotUniRefGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniRefGraph() {
+    public UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRefGraph() {
         return uniRefRawGraph;
     }
 

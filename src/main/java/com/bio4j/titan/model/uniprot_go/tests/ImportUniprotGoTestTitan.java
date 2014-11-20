@@ -17,10 +17,10 @@ import java.util.ArrayList;
 /**
  * Created by ppareja on 11/5/2014.
  */
-public class ImportUniprotGoTestTitan extends ImportUniprotGoTest<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> implements Executable {
+public class ImportUniprotGoTestTitan extends ImportUniprotGoTest<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> config(String dbFolder) {
+	protected UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);

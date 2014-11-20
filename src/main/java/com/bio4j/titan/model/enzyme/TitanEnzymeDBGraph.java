@@ -17,7 +17,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanEnzymeDBGraph
     extends
-    EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+    EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     // why this?
     private DefaultTitanGraph rawGraph;
@@ -43,15 +43,15 @@ public final class TitanEnzymeDBGraph
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.DefaultUnique<
-            Enzyme<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            Enzyme<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             EnzymeType,
             EnzymeType.id, String,
-            EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > enzymeIdIndex;
 
 	@Override
-	public TypedVertexIndex.Unique<Enzyme<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, EnzymeType, EnzymeType.id, String, EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> enzymeIdIndex() {
+	public TypedVertexIndex.Unique<Enzyme<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EnzymeType, EnzymeType.id, String, EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeIdIndex() {
 		return enzymeIdIndex;
 	}
 
@@ -64,7 +64,8 @@ public final class TitanEnzymeDBGraph
         initTypes(mgmt);
         initIndices(mgmt);
 
-        // mgmt.commit();
+        // this should work now
+        mgmt.commit();
     }
 
     @Override
@@ -73,7 +74,7 @@ public final class TitanEnzymeDBGraph
     }
 
     @Override
-    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotEnzymeDBGraph() {
+    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
         return uniprotEnzymeGraph;
     }
 
@@ -87,16 +88,16 @@ public final class TitanEnzymeDBGraph
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
         // the tricky part is initializing the label part
-        // first init the label
-        enzymeTypeLabel = raw().createOrGet( mgmt,
-            raw().titanLabelMakerForVertexType( mgmt, new EnzymeType(null)) // null is OK here :-/
-        );
+        // first create all label and prop makers
+        VertexLabelMaker enzymeTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new EnzymeType(null));
         // then create the type with a ref to the label
-        enzymeType = new EnzymeType(enzymeTypeLabel);
+        enzymeType = new EnzymeType(enzymeTypeLabelMaker);
         // init properties
         enzymeIdkey = raw().createOrGet( mgmt,
-            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().id ).cardinality(Cardinality.SINGLE) 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().id )
+                .cardinality(Cardinality.SINGLE)
         );
+
         enzymeCofactorskey = raw().createOrGet( mgmt,
             raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().cofactors ).cardinality(Cardinality.SINGLE) 
         );
@@ -116,11 +117,16 @@ public final class TitanEnzymeDBGraph
             raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().prositeCrossReferences ).cardinality(Cardinality.SINGLE) 
         );
 
+        // create everything
+        this.enzymeTypeLabel = raw().createOrGet(mgmt, enzymeType.raw());
+
     }
 
     private void initIndices(TitanManagement mgmt) {
         
-        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, Enzyme().id);
+        enzymeIdIndex = (new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, Enzyme().id));
+
+        enzymeIdIndex.make(enzymeTypeLabel);
     }
 
 	/*

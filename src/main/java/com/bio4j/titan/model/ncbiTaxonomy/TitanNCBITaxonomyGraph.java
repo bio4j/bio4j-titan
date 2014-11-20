@@ -18,7 +18,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanNCBITaxonomyGraph
         extends
-        NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+        NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private DefaultTitanGraph rawGraph;
 	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
@@ -41,10 +41,10 @@ public final class TitanNCBITaxonomyGraph
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.DefaultUnique<
-            NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             NCBITaxonType,
             NCBITaxonType.id, String,
-            NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+            NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > nCBITaxonIdIndex;
 
@@ -61,17 +61,17 @@ public final class TitanNCBITaxonomyGraph
     }
 
 	@Override
-	public TypedVertexIndex.Unique<NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, NCBITaxonType, NCBITaxonType.id, String, NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> nCBITaxonIdIndex() {
+	public TypedVertexIndex.Unique<NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, NCBITaxonType, NCBITaxonType.id, String, NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> nCBITaxonIdIndex() {
 		return nCBITaxonIdIndex;
 	}
 
 	@Override
-	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> uniprotNCBITaxonomyGraph() {
+	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
 	@Override
-	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGenInfoGraph() {
+	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGenInfoGraph() {
 		return ncbiTaxonomyGenInfoGraph();
 	}
 

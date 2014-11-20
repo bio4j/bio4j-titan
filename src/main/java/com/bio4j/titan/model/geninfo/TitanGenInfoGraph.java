@@ -16,7 +16,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanGenInfoGraph
 		extends
-		GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> {
+		GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
 	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
@@ -31,15 +31,15 @@ public final class TitanGenInfoGraph
 	//---------------INDICES---------------------------
 
 	TitanTypedVertexIndex.DefaultUnique<
-			GenInfo<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+			GenInfo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
 			GenInfoType,
 			GenInfoType.id, String,
-			GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>,
+			GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
 			DefaultTitanGraph
 			> genInfoIdIndex;
 
 	@Override
-	public TypedVertexIndex.Unique<GenInfo<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, GenInfoType, GenInfoType.id, String, GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel>, DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> genInfoIdIndex() {
+	public TypedVertexIndex.Unique<GenInfo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GenInfoType, GenInfoType.id, String, GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> genInfoIdIndex() {
 		return genInfoIdIndex;
 	}
 
@@ -56,7 +56,7 @@ public final class TitanGenInfoGraph
 	}
 
 	@Override
-	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabel, TitanEdge, EdgeLabel> ncbiTaxonomyGenInfoGraph() {
+	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGenInfoGraph() {
 		return null;
 	}
 
