@@ -496,7 +496,7 @@ public final class TitanUniprotGraph
         proteinSequenceKey = raw().titanKeyForVertexPropertySingle(proteinType.sequence);
 
 	    // Alternative Product keys
-	    alternativeProductType = new AlternativeProductType(cityTypeKey);
+	    alternativeProductType = new AlternativeProductType(alternativeProductTypeKey);
 	    alternativeProductTypeKey = raw().titanKeyForVertexType(alternativeProductType.name);
 	    alternativeProductNameKey = alternativeProductTypeKey;
 

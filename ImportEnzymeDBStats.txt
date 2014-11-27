@@ -1,0 +1,4 @@
+Statistics for program ImportEnzymeDB:
+Input file: enzyme.dat
+There were 6577 enzymes inserted.
+The elapsed time was: 0h 0m 31s
