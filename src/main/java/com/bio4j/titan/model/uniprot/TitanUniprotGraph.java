@@ -589,78 +589,90 @@ public final class TitanUniprotGraph
 		diseaseDescriptionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().description).cardinality(Cardinality.SINGLE));
 		datasetTypeLabel = raw().createOrGet(mgmt, diseaseType.raw());
 
-		//    // Institute keys
-		// instituteType = new InstituteType(instituteTypeLabel);
-		//    instituteTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(instituteType));
-		//    instituteNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Institute().name ).cardinality(Cardinality.SINGLE));
+		//------------------ Institute keys--------------------
+		VertexLabelMaker instituteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new InstituteType(null));
+		instituteType = new InstituteType(instituteTypeLabelMaker);
+		instituteNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Institute().name).cardinality(Cardinality.SINGLE));
+		instituteTypeLabel = raw().createOrGet(mgmt, instituteType.raw());
 
-		//    // Organism keys
-		// organismType = new OrganismType(organismTypeLabel);
-		//    organismTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(organismType));
-		//    organismScientificNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().scientificName ).cardinality(Cardinality.SINGLE));
-		//    organismCommonNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().commonName ).cardinality(Cardinality.SINGLE));
-		//    organismSynonymNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().synonymName ).cardinality(Cardinality.SINGLE));
+		//---------------- Organism keys-------------------------
+		VertexLabelMaker organismTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new OrganismType(null));
+		organismType = new OrganismType(organismTypeLabelMaker);
+		organismScientificNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Organism().scientificName).cardinality(Cardinality.SINGLE));
+		organismCommonNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Organism().commonName).cardinality(Cardinality.SINGLE));
+		organismSynonymNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Organism().synonymName).cardinality(Cardinality.SINGLE));
+		organismTypeLabel = raw().createOrGet(mgmt, organismType.raw());
 
-		//    // Keyword keys
-		// keywordType = new KeywordType(keywordTypeLabel);
-		//    keywordTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(keywordType));
-		//    keywordIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().id ).cardinality(Cardinality.SINGLE));
-		//    keywordNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().name ).cardinality(Cardinality.SINGLE));
+		//---------------- Keyword keys----------------------
+		VertexLabelMaker keyboardTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new KeywordType(null));
+		keywordType = new KeywordType(keyboardTypeLabelMaker);
+		keywordIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Keyword().id).cardinality(Cardinality.SINGLE));
+		keywordNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Keyword().name).cardinality(Cardinality.SINGLE));
+		keywordTypeLabel = raw().createOrGet(mgmt, keywordType.raw());
 
-		//    // Interpro keys
-		// interproType = new InterproType(interproTypeLabel);
-		//    interproTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(interproType));
-		//    interproIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().id ).cardinality(Cardinality.SINGLE));
-		//    interproNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().name ).cardinality(Cardinality.SINGLE));
+		//----------------- Interpro keys------------------------
+		VertexLabelMaker interproTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new InterproType(null));
+		interproType = new InterproType(interproTypeLabelMaker);
+		interproIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Interpro().id).cardinality(Cardinality.SINGLE));
+		interproNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Interpro().name).cardinality(Cardinality.SINGLE));
+		interproTypeLabel = raw().createOrGet(mgmt, interproType.raw());
 
-		// // Isoform keys
-		// isoformType = new IsoformType(isoformTypeLabel);
-		// isoformTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(isoformType));
-		// isoformIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().id ).cardinality(Cardinality.SINGLE));
-		// isoformNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().name ).cardinality(Cardinality.SINGLE));
-		// isoformSequenceKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().sequence ).cardinality(Cardinality.SINGLE));
-		// isoformNoteKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().note ).cardinality(Cardinality.SINGLE));
+		//----------------- Isoform keys--------------------------
+		VertexLabelMaker isoformTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new IsoformType(null));
+		isoformType = new IsoformType(isoformTypeLabelMaker);
+		isoformIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Isoform().id).cardinality(Cardinality.SINGLE));
+		isoformNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Isoform().name).cardinality(Cardinality.SINGLE));
+		isoformSequenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Isoform().sequence).cardinality(Cardinality.SINGLE));
+		isoformNoteKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Isoform().note).cardinality(Cardinality.SINGLE));
+		isoformTypeLabel = raw().createOrGet(mgmt, isoformType.raw());
 
-		//    // Journal keys
-		// journalType = new JournalType(journalTypeLabel);
-		//    journalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(journalType));
-		//    journalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Journal().name ).cardinality(Cardinality.SINGLE));
+		//---------------- Journal keys------------------------
+		VertexLabelMaker journalTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new JournalType(null));
+		journalType = new JournalType(journalTypeLabelMaker);
+		journalNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Journal().name).cardinality(Cardinality.SINGLE));
+		journalTypeLabel = raw().createOrGet(mgmt, journalType.raw());
 
-		//    // OnlineArticle keys
-		// onlineArticleType = new OnlineArticleType(onlineArticleTypeLabel);
-		//    onlineArticleTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineArticleType));
-		//    onlineArticleTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineArticle().title ).cardinality(Cardinality.SINGLE));
+		// ---------------- OnlineArticle keys-----------------------
+		VertexLabelMaker onlineArticleTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new OnlineArticleType(null));
+		onlineArticleType = new OnlineArticleType(onlineArticleTypeLabelMaker);
+		onlineArticleTitleKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, OnlineArticle().title).cardinality(Cardinality.SINGLE));
+		onlineArticleTypeLabel = raw().createOrGet(mgmt, onlineArticleType.raw());
 
-		//    // OnlineJournal keys
-		// onlineJournalType = new OnlineJournalType(onlineJournalTypeLabel);
-		//    onlineJournalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineJournalType));
-		//    onlineJournalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineJournal().name ).cardinality(Cardinality.SINGLE));
+		//------------------- OnlineJournal keys------------------------
+		VertexLabelMaker onlineJournalTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new OnlineJournalType(null));
+		onlineJournalType = new OnlineJournalType(onlineJournalTypeLabelMaker);
+		onlineJournalNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, OnlineJournal().name).cardinality(Cardinality.SINGLE));
+		onlineJournalTypeLabel = raw().createOrGet(mgmt, onlineJournalType.raw());
 
-		// // Reference keys
-		// referenceType = new ReferenceType(null);
-		// referenceDateKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Reference().date ).cardinality(Cardinality.SINGLE));
+		//------------ Reference keys-----------------
+		referenceType = new ReferenceType(null);
+		referenceDateKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Reference().date).cardinality(Cardinality.SINGLE));
 
-		//    // ReactomeTerm keys
-		// reactomeTermType = new ReactomeTermType(reactomeTermTypeLabel);
-		//    reactomeTermTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(reactomeTermType));
-		//    reactomeTermIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().id ).cardinality(Cardinality.SINGLE));
-		//    reactomeTermPathwayNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().pathwayName ).cardinality(Cardinality.SINGLE));
+		//------------ ReactomeTerm keys----------------------
+		VertexLabelMaker reactomeTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ReactomeTermType(null));
+		reactomeTermType = new ReactomeTermType(reactomeTypeLabelMaker);
+		reactomeTermIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, ReactomeTerm().id).cardinality(Cardinality.SINGLE));
+		reactomeTermPathwayNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, ReactomeTerm().pathwayName).cardinality(Cardinality.SINGLE));
+		reactomeTermTypeLabel = raw().createOrGet(mgmt, reactomeTermType.raw());
 
-		//    // Publisher keys
-		// publisherType = new PublisherType(publisherTypeLabel);
-		//    publisherTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(publisherType));
-		//    publisherNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Publisher().name ).cardinality(Cardinality.SINGLE));
+		//------------------- Publisher keys ----------------------------
+		VertexLabelMaker publisherTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new PublisherType(null));
+		publisherType = new PublisherType(publisherTypeLabelMaker);
+		publisherNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Publisher().name).cardinality(Cardinality.SINGLE));
+		publisherTypeLabel = raw().createOrGet(mgmt, publisherType.raw());
 
-		// // Person keys
-		// personType = new PersonType(personTypeLabel);
-		// personTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(personType));
-		// personNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Person().name ).cardinality(Cardinality.SINGLE));
+		// ----------------------- Person keys --------------------------
+		VertexLabelMaker personTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new PersonType(null));
+		personType = new PersonType(personTypeLabelMaker);
+		personNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Person().name).cardinality(Cardinality.SINGLE));
+		personTypeLabel = raw().createOrGet(mgmt, personType.raw());
 
-		//    // Pfam keys
-		// pfamType = new PfamType(pfamTypeLabel);
-		//    pfamTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pfamType));
-		//    pfamIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().id ).cardinality(Cardinality.SINGLE));
-		//    pfamNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().name ).cardinality(Cardinality.SINGLE));
+		//----------------- Pfam keys ------------------------------
+		VertexLabelMaker pfamTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new PfamType(null));
+		pfamType = new PfamType(pfamTypeLabelMaker);
+		pfamIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Pfam().id).cardinality(Cardinality.SINGLE));
+		pfamNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Pfam().name).cardinality(Cardinality.SINGLE));
+		pfamTypeLabel = raw().createOrGet(mgmt, pfamType.raw());
 
 		//    // Pubmed keys
 		// pubmedType = new PubmedType(pubmedTypeLabel);
