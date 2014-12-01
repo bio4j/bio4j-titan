@@ -713,24 +713,27 @@ public final class TitanUniprotGraph
         patentNumberKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Patent().number).cardinality(Cardinality.SINGLE));
         patentTitleKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Patent().title).cardinality(Cardinality.SINGLE));
 		patentTypeLabel = raw().createOrGet(mgmt, patentType.raw());
-//
-//        // Ensembl keys
-//	    ensemblType = new EnsemblType(ensemblTypeLabel);
-//        ensemblTypeLabel = raw().titanKeyForVertexType(ensemblType.id);
-//        ensemblIdKey = ensemblTypeLabel;
-//        ensemblMoleculeIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.moleculeId);
-//        ensemblProteinSequenceIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.proteinSequenceId);
-//        ensemblGeneIdKey = raw().titanKeyForVertexPropertySingle(ensemblType.geneId);
-//
-//        //---UniGene---
-//	    uniGeneType = new UniGeneType(uniGeneTypeLabel);
-//        uniGeneTypeLabel = raw().titanKeyForVertexType(uniGeneType.id);
-//        uniGeneIdKey = uniGeneTypeLabel;
-//
-//        //---SubcellularLocation---
-//	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeLabel);
-//        subcellularLocationTypeLabel = raw().titanKeyForVertexType(subcellularLocationType.name);
-//        subcellularLocationNameKey = subcellularLocationTypeLabel;
+
+        // -------------------  Ensembl keys-------------------------
+		VertexLabelMaker ensemblTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new EnsemblType(null));
+	    ensemblType = new EnsemblType(ensemblTypeLabelMaker);
+        ensemblIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Ensembl().id).cardinality(Cardinality.SINGLE));
+        ensemblMoleculeIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Ensembl().moleculeId).cardinality(Cardinality.SINGLE));
+        ensemblProteinSequenceIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Ensembl().proteinSequenceId).cardinality(Cardinality.SINGLE));
+        ensemblGeneIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Ensembl().geneId).cardinality(Cardinality.SINGLE));
+		ensemblTypeLabel = raw().createOrGet(mgmt, ensemblType.raw());
+
+        //----------UniGene------------------
+		VertexLabelMaker uniGeneTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniGeneType(null));
+	    uniGeneType = new UniGeneType(uniGeneTypeLabelMaker);
+        uniGeneIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniGene().id).cardinality(Cardinality.SINGLE));
+		uniGeneTypeLabel = raw().createOrGet(mgmt, uniGeneType.raw());
+
+        //-------- --SubcellularLocation----------------------
+		VertexLabelMaker subcellularLocationTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new SubcellularLocationType(null));
+	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeLabelMaker);
+        subcellularLocationNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, SubcellularLocation().name).cardinality(Cardinality.SINGLE));
+		subcellularLocationTypeLabel = raw().createOrGet(mgmt, subcellularLocationType.raw());
 //
 //        //---Kegg---
 //	    keggType = new KeggType(keggTypeLabel);
