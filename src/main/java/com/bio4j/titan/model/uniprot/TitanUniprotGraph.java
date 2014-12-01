@@ -884,27 +884,30 @@ public final class TitanUniprotGraph
         proteinEnsemblLabel = raw().createOrGet(mgmt, proteinEnsemblType.raw());
 
         // proteinRefSeq
-        proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
-        proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqLabel);
+		EdgeLabelMaker proteinRefSeqTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinRefSeqType(null));
+		proteinRefSeqType = new ProteinRefSeqType(proteinRefSeqTypeLabelMaker);
+        proteinRefSeqLabel = raw().createOrGet(mgmt, proteinRefSeqType.raw());
 
 	    // proteinSequenceCaution
-	    proteinSequenceCautionLabel = raw().titanLabelForEdgeType(this.new ProteinSequenceCautionType(null));
-	    proteinSequenceCautionType = new ProteinSequenceCautionType(proteinSequenceCautionLabel);
-	    proteinSequenceCautionStatusKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.status);
-	    proteinSequenceCautionIdKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.id);
-	    proteinSequenceCautionEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.evidence);
-	    proteinSequenceCautionVersionKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.version);
-	    proteinSequenceCautionPositionKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.position);
-	    proteinSequenceCautionResourceKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.resource);
-	    proteinSequenceCautionTextKey = raw().titanKeyForEdgePropertySingle(proteinSequenceCautionType.text);
+		EdgeLabelMaker proteinSequenceCautionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinSequenceCautionType(null));
+	    proteinSequenceCautionType = new ProteinSequenceCautionType(proteinSequenceCautionTypeLabelMaker);
+	    proteinSequenceCautionStatusKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().status).cardinality(Cardinality.SINGLE));
+	    proteinSequenceCautionIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().id).cardinality(Cardinality.SINGLE));
+	    proteinSequenceCautionEvidenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().evidence).cardinality(Cardinality.SINGLE));
+	    proteinSequenceCautionVersionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().version).cardinality(Cardinality.SINGLE));
+	    proteinSequenceCautionPositionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().position).cardinality(Cardinality.SINGLE));
+	    proteinSequenceCautionResourceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().resource).cardinality(Cardinality.SINGLE));
+	    proteinSequenceCautionTextKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSequenceCaution().text).cardinality(Cardinality.SINGLE));
+		proteinSequenceCautionLabel = raw().createOrGet(mgmt, proteinSequenceCautionType.raw());
 
 	    // proteinSubcellularLocation
-	    proteinSubcellularLocationLabel = raw().titanLabelForEdgeType(this.new ProteinSubcellularLocationType(null));
-	    proteinSubcellularLocationType = new ProteinSubcellularLocationType(proteinSubcellularLocationLabel);
-	    proteinSubcellularLocationStatusKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.status);
-	    proteinSubcellularLocationEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.evidence);
-	    proteinSubcellularLocationTopologyKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.topology);
-	    proteinSubcellularLocationTopologyStatusKey = raw().titanKeyForEdgePropertySingle(proteinSubcellularLocationType.topologyStatus);
+		EdgeLabelMaker proteinSubcellularLocationTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinSubcellularLocationType(null));
+	    proteinSubcellularLocationType = new ProteinSubcellularLocationType(proteinSubcellularLocationTypeLabelMaker);
+	    proteinSubcellularLocationStatusKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSubcellularLocation().status).cardinality(Cardinality.SINGLE));
+	    proteinSubcellularLocationEvidenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSubcellularLocation().evidence).cardinality(Cardinality.SINGLE));
+	    proteinSubcellularLocationTopologyKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSubcellularLocation().topology).cardinality(Cardinality.SINGLE));
+	    proteinSubcellularLocationTopologyStatusKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinSubcellularLocation().topologyStatus).cardinality(Cardinality.SINGLE));
+		proteinSubcellularLocationLabel = raw().createOrGet(mgmt, proteinSubcellularLocationType.raw());
 
         // proteinUnigene
         proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
