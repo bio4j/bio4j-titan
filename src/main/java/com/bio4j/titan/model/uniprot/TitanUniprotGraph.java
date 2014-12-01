@@ -26,19 +26,6 @@ public final class TitanUniprotGraph
 		extends
 		UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanUniprotGoGraph uniprotGoGraph;
-	private TitanUniprotUniRefGraph uniprotUniRefGraph;
-	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
-	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
-
-	private TitanManagement mgmt;
-
-	public TitanManagement managementSystem() {
-		return this.mgmt;
-	}
-
-	//-------------------VERTICES----------------------------
-
 	// protein
 	public VertexLabel proteinTypeLabel;
 	public PropertyKey proteinAcessionKey;
@@ -46,13 +33,14 @@ public final class TitanUniprotGraph
 	public PropertyKey proteinShortNameKey;
 	public PropertyKey proteinFullNameKey;
 	public PropertyKey proteinModifiedDateKey;
+
+	//-------------------VERTICES----------------------------
 	public PropertyKey proteinCreatedDateKey;
 	public PropertyKey proteinMassKey;
 	public PropertyKey proteinVersionKey;
 	public PropertyKey proteinLengthKey;
 	public PropertyKey proteinSequenceKey;
 	public ProteinType proteinType;
-
 	//---AlternativeProduct---
 	public VertexLabel alternativeProductTypeLabel;
 	public PropertyKey alternativeProductNameKey;
@@ -228,23 +216,21 @@ public final class TitanUniprotGraph
 	//---UnpublishedObservation----
 	public VertexLabel unpublishedObservationScopeKey;
 	public UnpublishedObservationType unpublishedObservationType;
-
-
-	//------------------INDICES----------------
-	//-----------------------------------------
-	//---------------INDICES---------------------------
-
 	public TitanTypedVertexIndex.Unique<
 			Protein<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ProteinType,
 			ProteinType.accession, String,
 			UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph
 			> proteinAccessionIndex;
-
 	public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> datasetNameIndex;
 	public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> organismScientificNameIndex;
 	public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keywordIdIndex;
 	public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> reactomeTermIdIndex;
 	public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> interproIdIndex;
+
+
+	//------------------INDICES----------------
+	//-----------------------------------------
+	//---------------INDICES---------------------------
 	public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pfamIdIndex;
 	public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keggIdIndex;
 	public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> eMBLIdIndex;
@@ -277,11 +263,6 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SequenceCautionType, SequenceCautionType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> sequenceCautionNameIndex;
 	public TitanTypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneLocationType, GeneLocationType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> geneLocationNameIndex;
 	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> alternativeProductNameIndex;
-
-
-	//-----------------------------------------------------------------------------------------
-	//--------------------------------RELATIONSHIPS--------------------------------------------
-
 	// isoformEventGenerator
 	public EdgeLabel isoformEventGeneratorLabel;
 	public IsoformEventGeneratorType isoformEventGeneratorType;
@@ -291,6 +272,10 @@ public final class TitanUniprotGraph
 	// proteinOrganism
 	public EdgeLabel proteinOrganismLabel;
 	public ProteinOrganismType proteinOrganismType;
+
+
+	//-----------------------------------------------------------------------------------------
+	//--------------------------------RELATIONSHIPS--------------------------------------------
 	// proteinKeyword
 	public EdgeLabel proteinKeywordLabel;
 	public ProteinKeywordType proteinKeywordType;
@@ -355,7 +340,6 @@ public final class TitanUniprotGraph
 	public PropertyKey proteinCommentRedoxPotentialKey;
 	public PropertyKey proteinCommentRedoxPotentialEvidenceKey;
 	public PropertyKey proteinCommentTemperatureDependenceKey;
-
 	// proteinProteinInteraction
 	public EdgeLabel proteinProteinInteractionLabel;
 	public ProteinProteinInteractionType proteinProteinInteractionType;
@@ -394,7 +378,6 @@ public final class TitanUniprotGraph
 	public PropertyKey proteinSequenceCautionResourceKey;
 	public PropertyKey proteinSequenceCautionVersionKey;
 	public PropertyKey proteinSequenceCautionPositionKey;
-
 	// articlePubmed
 	public EdgeLabel articlePubmedLabel;
 	public ArticlePubmedType articlePubmedType;
@@ -462,7 +445,11 @@ public final class TitanUniprotGraph
 	// subcellularLocation
 	public EdgeLabel subcellularLocationParentLabel;
 	public SubcellularLocationParentType subcellularLocationParentType;
-
+	private TitanUniprotGoGraph uniprotGoGraph;
+	private TitanUniprotUniRefGraph uniprotUniRefGraph;
+	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
+	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
+	private TitanManagement mgmt;
 
 	public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
 
@@ -472,6 +459,10 @@ public final class TitanUniprotGraph
 		this.mgmt = rawGraph.managementSystem();
 		initTypes(mgmt);
 		initIndices(mgmt);
+	}
+
+	public TitanManagement managementSystem() {
+		return this.mgmt;
 	}
 
 	@Override
@@ -491,69 +482,66 @@ public final class TitanUniprotGraph
 		//Protein type
 		proteinType = new ProteinType(proteinTypeLabelMaker);
 		proteinAcessionKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().accession).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().accession).cardinality(Cardinality.SINGLE)
 		);
 		proteinNameKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().name).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().name).cardinality(Cardinality.SINGLE)
 		);
 		proteinShortNameKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().shortName).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().shortName).cardinality(Cardinality.SINGLE)
 		);
 		proteinFullNameKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().fullName).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().fullName).cardinality(Cardinality.SINGLE)
 		);
 		proteinModifiedDateKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().modifiedDate).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().modifiedDate).cardinality(Cardinality.SINGLE)
 		);
 		proteinCreatedDateKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().createdDate).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().createdDate).cardinality(Cardinality.SINGLE)
 		);
 		proteinMassKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().mass).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().mass).cardinality(Cardinality.SINGLE)
 		);
 		proteinVersionKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().version).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().version).cardinality(Cardinality.SINGLE)
 		);
 		proteinLengthKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().length).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().length).cardinality(Cardinality.SINGLE)
 		);
 		proteinSequenceKey = raw().createOrGet(mgmt,
-				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().sequence).cardinality(Cardinality.SINGLE)
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().sequence).cardinality(Cardinality.SINGLE)
 		);
 
 		// create everything
 		this.proteinTypeLabel = raw().createOrGet(mgmt, proteinType.raw());
 
-		// // Alternative Product type
-		// alternativeProductType       = new AlternativeProductType(alternativeProductTypeLabel);
-		// alternativeProductTypeLabel  = raw().createOrGet(
-		//    raw().titanLabelMakerForVertexType(alternativeProductType)
-		//  );
-		//  // alternative product props
-		// alternativeProductNameKey = raw().createOrGet(
-		//    raw().titanPropertyMakerForVertexProperty( AlternativeProduct().name ).cardinality(Cardinality.SINGLE)
-		//  );
+		//--------- Alternative Product type-------------
+		VertexLabelMaker alternativeProductTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new AlternativeProductType(null));
+		alternativeProductType = new AlternativeProductType(alternativeProductTypeLabelMaker);
+		// alternative product props
+		alternativeProductNameKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, AlternativeProduct().name).cardinality(Cardinality.SINGLE)
+		);
+		this.alternativeProductTypeLabel = raw().createOrGet(mgmt, alternativeProductType.raw());
 
-		//  // Article keys
-		// articleType = new ArticleType(articleTypeLabel);
-		//  articleTypeLabel = raw().createOrGet(
-		//    raw().titanLabelMakerForVertexType(articleType)
-		//  );
-		//  articleTitleKey = raw().createOrGet(
-		//    raw().titanPropertyMakerForVertexProperty( Article().title  ).cardinality(Cardinality.SINGLE)
-		//  );
-		//  articleDoIdKey = raw().createOrGet(
-		//    raw().titanPropertyMakerForVertexProperty( Article().doId   ).cardinality(Cardinality.SINGLE)
-		//  );
+		//--------- Article keys-------------
+		VertexLabelMaker articleTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ArticleType(null));
+		articleType = new ArticleType(articleTypeLabelMaker);
+		articleTitleKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Article().title).cardinality(Cardinality.SINGLE)
+		);
+		articleDoIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Article().doId).cardinality(Cardinality.SINGLE)
+		);
+		articleTypeLabel = raw().createOrGet(mgmt, articleType.raw());
 
-		//  // Book keys
-		// bookType = new BookType(bookTypeLabel);
-		//  bookTypeLabel = raw().createOrGet(
-		//    raw().titanLabelMakerForVertexType(bookType)
-		//  );
-		//  bookNameKey = raw().createOrGet(
-		//    raw().titanPropertyMakerForVertexProperty( Book().name ).cardinality(Cardinality.SINGLE)
-		//  );
+		//------------- Book keys---------------
+		VertexLabelMaker bookTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new BookType(null));
+		bookType = new BookType(bookTypeLabelMaker);
+		bookNameKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Book().name).cardinality(Cardinality.SINGLE)
+		);
+		bookTypeLabel = raw().createOrGet(mgmt, bookType.raw());
 
 
 		//  // City keys
@@ -987,7 +975,7 @@ public final class TitanUniprotGraph
 
 	}
 
-	private void initIndices() {
+	private void initIndices(TitanManagement mgmt) {
 
 		//    proteinAccessionIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Protein().accession);
 		//    datasetNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Dataset().name);
