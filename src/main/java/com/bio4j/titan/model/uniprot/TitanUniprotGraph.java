@@ -674,27 +674,31 @@ public final class TitanUniprotGraph
 		pfamNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Pfam().name).cardinality(Cardinality.SINGLE));
 		pfamTypeLabel = raw().createOrGet(mgmt, pfamType.raw());
 
-		//    // Pubmed keys
-		// pubmedType = new PubmedType(pubmedTypeLabel);
-		//    pubmedTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pubmedType));
-		//    pubmedIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pubmed().id ).cardinality(Cardinality.SINGLE));
+		//--------------- Pubmed keys ---------------------
+		VertexLabelMaker pubmedTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new PubmedType(null));
+		pubmedType = new PubmedType(pubmedTypeLabelMaker);
+		pubmedIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Pubmed().id).cardinality(Cardinality.SINGLE));
+		pubmedTypeLabel = raw().createOrGet(mgmt, pubmedType.raw());
 
-		//    // Submission keys
-		// submissionType = new SubmissionType(submissionTypeLabel);
-		//    submissionTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(submissionType));
-		//    submissionTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Submission().title ).cardinality(Cardinality.SINGLE));
+		//----------------- Submission keys ------------------------
+		VertexLabelMaker submissionTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new SubmissionType(null));
+		submissionType = new SubmissionType(submissionTypeLabelMaker);
+		submissionTitleKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Submission().title).cardinality(Cardinality.SINGLE));
+		submissionTypeLabel = raw().createOrGet(mgmt, submissionType.raw());
 
-		// // Thesis keys
-		// thesisType = new ThesisType(thesisTypeLabel);
-		// thesisTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(thesisType));
-		// thesisTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Thesis().title ).cardinality(Cardinality.SINGLE));
+		//------------------- Thesis keys ---------------------
+		VertexLabelMaker thesisTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ThesisType(null));
+		thesisType = new ThesisType(thesisTypeLabelMaker);
+		thesisTitleKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Thesis().title).cardinality(Cardinality.SINGLE));
+		thesisTypeLabel = raw().createOrGet(mgmt, thesisType.raw());
 
-		//    // EMBL keys
-		// eMBLType = new EMBLType(eMBLTypeLabel);
-		//    eMBLTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(eMBLType));
-		//    eMBLIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().id ).cardinality(Cardinality.SINGLE));
-		//    eMBLMoleculeTypeKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().moleculeType ).cardinality(Cardinality.SINGLE));
-		//    eMBLProteinSequenceIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().proteinSequenceId ).cardinality(Cardinality.SINGLE));
+		//-------------------- EMBL keys --------------------------
+		VertexLabelMaker eMBLTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new EMBLType(null));
+		eMBLType = new EMBLType(eMBLTypeLabelMaker);
+		eMBLIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, EMBL().id).cardinality(Cardinality.SINGLE));
+		eMBLMoleculeTypeKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, EMBL().moleculeType).cardinality(Cardinality.SINGLE));
+		eMBLProteinSequenceIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, EMBL().proteinSequenceId).cardinality(Cardinality.SINGLE));
+		eMBLTypeLabel = raw().createOrGet(mgmt, eMBLType.raw());
 
 		//    // PIR keys
 		// pIRType = new PIRType(pIRTypeLabel);
