@@ -123,7 +123,6 @@ public final class TitanEnzymeDBGraph
     private void initIndices(TitanManagement mgmt) {
         
         enzymeIdIndex = (new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, Enzyme().id));
-
         enzymeIdIndex.make(enzymeTypeLabel);
     }
 
