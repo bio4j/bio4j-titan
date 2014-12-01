@@ -983,18 +983,15 @@ public final class TitanUniprotGraph
 		proteinReferenceType = new ProteinReferenceType(proteinReferenceTypeLabelMaker);
         proteinReferenceLabel = raw().createOrGet(mgmt, proteinReferenceType.raw());
 
-
-	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
-	    proteinGeneLocationNameKey = raw().titanKeyForEdgePropertySingle(proteinGeneLocationType.name);
-	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
-
-		    // referenceArticle
-		    referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));
-		    referenceArticleType = new ReferenceArticleType(referenceArticleLabel);
+		// referenceArticle
+		EdgeLabelMaker referenceArticleTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ReferenceArticleType(null));
+		referenceArticleType = new ReferenceArticleType(referenceArticleTypeLabelMaker);
+		referenceArticleLabel = raw().createOrGet(mgmt, referenceArticleType.raw());
 
 		// referenceAuthorPerson
-		referenceAuthorPersonLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorPersonType(null));
-		referenceAuthorPersonType = new ReferenceAuthorPersonType(referenceAuthorPersonLabel);
+		EdgeLabelMaker referenceAuthorPersonTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ReferenceAuthorPersonType(null));
+		referenceAuthorPersonType = new ReferenceAuthorPersonType(referenceAuthorPersonTypeLabelMaker);
+		referenceAuthorPersonLabel = raw().createOrGet(mgmt, referenceAuthorPersonType.raw());
 
 		// referenceAuthorConsortium
 		referenceAuthorConsortiumLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorConsortiumType(null));
