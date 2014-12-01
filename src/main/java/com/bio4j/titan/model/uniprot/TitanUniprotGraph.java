@@ -844,36 +844,44 @@ public final class TitanUniprotGraph
         proteinKeywordLabel = raw().createOrGet(mgmt, proteinKeywordType.raw());
 
 	    // proteinGeneLocation
-	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
-	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
+		EdgeLabelMaker proteinGeneLocationTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinGeneLocationType(null));
+	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationTypeLabelMaker);
+		proteinGeneLocationLabel = raw().createOrGet(mgmt, proteinGeneLocationType.raw());
 
         // proteinInterpro
-        proteinInterproLabel = raw().titanLabelForEdgeType(this.new ProteinInterproType(null));
-        proteinInterproType = new ProteinInterproType(proteinInterproLabel);
+		EdgeLabelMaker proteinInterproTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinInterproType(null));
+		proteinInterproType = new ProteinInterproType(proteinInterproTypeLabelMaker);
+        proteinInterproLabel = raw().createOrGet(mgmt, proteinInterproType.raw());
 
         // proteinReactomeTerm
-        proteinReactomeTermLabel = raw().titanLabelForEdgeType(this.new ProteinReactomeTermType(null));
-        proteinReactomeTermType = new ProteinReactomeTermType(proteinReactomeTermLabel);
+		EdgeLabelMaker proteinReactomeTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinReactomeTermType(null));
+		proteinReactomeTermType = new ProteinReactomeTermType(proteinReactomeTypeLabelMaker);
+        proteinReactomeTermLabel = raw().createOrGet(mgmt, proteinReactomeTermType.raw());
 
         // proteinPfam
-        proteinPfamLabel = raw().titanLabelForEdgeType(this.new ProteinPfamType(null));
-        proteinPfamType = new ProteinPfamType(proteinPfamLabel);
+		EdgeLabelMaker proteinPfamTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinPfamType(null));
+		proteinPfamType = new ProteinPfamType(proteinPfamTypeLabelMaker);
+        proteinPfamLabel = raw().createOrGet(mgmt, proteinPfamType.raw());
 
         // proteinKegg
-        proteinKeggLabel = raw().titanLabelForEdgeType(this.new ProteinKeggType(null));
-        proteinKeggType = new ProteinKeggType(proteinKeggLabel);
+		EdgeLabelMaker proteinKeggTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinKeggType(null));
+		proteinKeggType = new ProteinKeggType(proteinKeggTypeLabelMaker);
+        proteinKeggLabel = raw().createOrGet(mgmt, proteinKeggType.raw());
 
         // proteinKegg
-        proteinPIRLabel = raw().titanLabelForEdgeType(this.new ProteinPIRType(null));
-        proteinPIRType = new ProteinPIRType(proteinPIRLabel);
+		EdgeLabelMaker proteinPIRTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinPIRType(null));
+		proteinPIRType = new ProteinPIRType(proteinPIRTypeLabelMaker);
+        proteinPIRLabel = raw().createOrGet(mgmt, proteinPIRType.raw());
 
         // proteinEMBL
-        proteinEMBLLabel = raw().titanLabelForEdgeType(this.new ProteinEMBLType(null));
-        proteinEMBLType = new ProteinEMBLType(proteinEMBLLabel);
+		EdgeLabelMaker proteinEMBLTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinEMBLType(null));
+		proteinEMBLType = new ProteinEMBLType(proteinEMBLTypeLabelMaker);
+        proteinEMBLLabel = raw().createOrGet(mgmt, proteinEMBLType.raw());
 
         // proteinEnsembl
-        proteinEnsemblLabel = raw().titanLabelForEdgeType(this.new ProteinEnsemblType(null));
-        proteinEnsemblType = new ProteinEnsemblType(proteinEnsemblLabel);
+		EdgeLabelMaker proteinEnsemblTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinEnsemblType(null));
+		proteinEnsemblType = new ProteinEnsemblType(proteinEnsemblTypeLabelMaker);
+        proteinEnsemblLabel = raw().createOrGet(mgmt, proteinEnsemblType.raw());
 
         // proteinRefSeq
         proteinRefSeqLabel = raw().titanLabelForEdgeType(this.new ProteinRefSeqType(null));
