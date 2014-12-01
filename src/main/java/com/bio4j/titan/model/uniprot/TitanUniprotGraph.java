@@ -553,38 +553,41 @@ public final class TitanUniprotGraph
 		//------------ GeneLocation keys-----------------------
 		VertexLabelMaker geneLocationTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new GeneLocationType(null));
 		geneLocationType = new GeneLocationType(geneLocationTypeLabelMaker);
-		geneLocationNameKey = raw().createOrGet(mgmt,raw().titanPropertyMakerForVertexProperty(mgmt, GeneLocation().name ).cardinality(Cardinality.SINGLE));
+		geneLocationNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, GeneLocation().name).cardinality(Cardinality.SINGLE));
 		geneLocationTypeLabel = raw().createOrGet(mgmt, geneLocationType.raw());
 
 		//------------ Consortium keys---------------------------
 		VertexLabelMaker consortiumTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ConsortiumType(null));
 		consortiumType = new ConsortiumType(consortiumTypeLabelMaker);
-		consortiumNameKey = raw().createOrGet(mgmt,raw().titanPropertyMakerForVertexProperty(mgmt, Consortium().name ).cardinality(Cardinality.SINGLE));
+		consortiumNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Consortium().name).cardinality(Cardinality.SINGLE));
 		consortiumTypeLabel = raw().createOrGet(mgmt, consortiumType.raw());
 
 		//------------ Country keys ------------------------
 		VertexLabelMaker countryTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new CountryType(null));
 		countryType = new CountryType(countryTypeLabelMaker);
-		countryNameKey = raw().createOrGet(mgmt,raw().titanPropertyMakerForVertexProperty(mgmt, Country().name ).cardinality(Cardinality.SINGLE));
+		countryNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Country().name).cardinality(Cardinality.SINGLE));
 		countryTypeLabel = raw().createOrGet(mgmt, countryType.raw());
 
-		//    // DB keys
-		// dbType = new DBType(dbTypeLabel);
-		//    dbTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(dbType));
-		//    dbNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( DB().name ).cardinality(Cardinality.SINGLE));
+		//--------------- DB keys---------------------------
+		VertexLabelMaker dbTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new DBType(null));
+		dbType = new DBType(dbTypeLabelMaker);
+		dbNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, DB().name).cardinality(Cardinality.SINGLE));
+		dbTypeLabel = raw().createOrGet(mgmt, dbType.raw());
 
-		//    // Dataset keys
-		// datasetType = new DatasetType(datasetTypeLabel);
-		//    datasetTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(datasetType));
-		//    datasetNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Dataset().name ).cardinality(Cardinality.SINGLE));
+		//------------ Dataset keys----------------------
+		VertexLabelMaker datasetTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new DatasetType(null));
+		datasetType = new DatasetType(datasetTypeLabelMaker);
+		datasetNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Dataset().name).cardinality(Cardinality.SINGLE));
+		datasetTypeLabel = raw().createOrGet(mgmt, datasetType.raw());
 
-		// // Disease keys
-		// diseaseType = new DiseaseType(diseaseTypeLabel);
-		// diseaseTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(diseaseType));
-		// diseaseIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().id ).cardinality(Cardinality.SINGLE));
-		// diseaseNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().name ).cardinality(Cardinality.SINGLE));
-		// diseaseAcronymKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().acronym ).cardinality(Cardinality.SINGLE));
-		// diseaseDescriptionKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().description ).cardinality(Cardinality.SINGLE));
+		//----------------- Disease keys----------------------
+		VertexLabelMaker diseaseTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new DiseaseType(null));
+		diseaseType = new DiseaseType(diseaseTypeLabelMaker);
+		diseaseIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().id).cardinality(Cardinality.SINGLE));
+		diseaseNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().name).cardinality(Cardinality.SINGLE));
+		diseaseAcronymKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().acronym).cardinality(Cardinality.SINGLE));
+		diseaseDescriptionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().description).cardinality(Cardinality.SINGLE));
+		datasetTypeLabel = raw().createOrGet(mgmt, diseaseType.raw());
 
 		//    // Institute keys
 		// instituteType = new InstituteType(instituteTypeLabel);
