@@ -544,25 +544,29 @@ public final class TitanUniprotGraph
 		bookTypeLabel = raw().createOrGet(mgmt, bookType.raw());
 
 
-		//  // City keys
-		// cityType = new CityType(cityTypeLabel);
-		// cityTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(cityType));
-		// cityNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( City().name ).cardinality(Cardinality.SINGLE));
+		//------------- City keys--------------------
+		VertexLabelMaker cityTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new CityType(null));
+		cityType = new CityType(cityTypeLabelMaker);
+		cityNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, City().name).cardinality(Cardinality.SINGLE));
+		cityTypeLabel = raw().createOrGet(mgmt, cityType.raw());
 
-		// // GeneLocation keys
-		// geneLocationType = new GeneLocationType(geneLocationTypeLabel);
-		// geneLocationTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(geneLocationType));
-		// geneLocationNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( GeneLocation().name ).cardinality(Cardinality.SINGLE));
+		//------------ GeneLocation keys-----------------------
+		VertexLabelMaker geneLocationTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new GeneLocationType(null));
+		geneLocationType = new GeneLocationType(geneLocationTypeLabelMaker);
+		geneLocationNameKey = raw().createOrGet(mgmt,raw().titanPropertyMakerForVertexProperty(mgmt, GeneLocation().name ).cardinality(Cardinality.SINGLE));
+		geneLocationTypeLabel = raw().createOrGet(mgmt, geneLocationType.raw());
 
-		// // Consortium keys
-		// consortiumType = new ConsortiumType(consortiumTypeLabel);
-		// consortiumTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(consortiumType));
-		// consortiumNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Consortium().name ).cardinality(Cardinality.SINGLE));
+		//------------ Consortium keys---------------------------
+		VertexLabelMaker consortiumTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ConsortiumType(null));
+		consortiumType = new ConsortiumType(consortiumTypeLabelMaker);
+		consortiumNameKey = raw().createOrGet(mgmt,raw().titanPropertyMakerForVertexProperty(mgmt, Consortium().name ).cardinality(Cardinality.SINGLE));
+		consortiumTypeLabel = raw().createOrGet(mgmt, consortiumType.raw());
 
-		//    // Country keys
-		// countryType = new CountryType(countryTypeLabel);
-		//    countryTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(countryType));
-		//    countryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Country().name ).cardinality(Cardinality.SINGLE));
+		//------------ Country keys ------------------------
+		VertexLabelMaker countryTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new CountryType(null));
+		countryType = new CountryType(countryTypeLabelMaker);
+		countryNameKey = raw().createOrGet(mgmt,raw().titanPropertyMakerForVertexProperty(mgmt, Country().name ).cardinality(Cardinality.SINGLE));
+		countryTypeLabel = raw().createOrGet(mgmt, countryType.raw());
 
 		//    // DB keys
 		// dbType = new DBType(dbTypeLabel);
