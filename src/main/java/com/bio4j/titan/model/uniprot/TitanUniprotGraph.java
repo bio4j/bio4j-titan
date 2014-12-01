@@ -782,19 +782,22 @@ public final class TitanUniprotGraph
 		articlePubmedLabel = raw().createOrGet(mgmt, articlePubmedType.raw());
 
 		// articleJournal
-		articleJournalLabel = raw().titanLabelForEdgeType(this.new ArticleJournalType(null));
-		articleJournalType = new ArticleJournalType(articleJournalLabel);
-	    articleJournalVolumeKey = raw().titanKeyForEdgePropertySingle(articleJournalType.volume);
-	    articleJournalFirstKey = raw().titanKeyForEdgePropertySingle(articleJournalType.first);
-	    articleJournalLastKey = raw().titanKeyForEdgePropertySingle(articleJournalType.last);
+		EdgeLabelMaker articleJournalTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ArticleJournalType(null));
+		articleJournalType = new ArticleJournalType(articleJournalTypeLabelMaker);
+	    articleJournalVolumeKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ArticleJournal().volume).cardinality(Cardinality.SINGLE));
+	    articleJournalFirstKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ArticleJournal().first).cardinality(Cardinality.SINGLE));
+	    articleJournalLastKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ArticleJournal().last).cardinality(Cardinality.SINGLE));
+		articleJournalLabel = raw().createOrGet(mgmt, articleJournalType.raw());
 
         // bookCity
-        bookCityLabel = raw().titanLabelForEdgeType(this.new BookCityType(null));
-        bookCityType = new BookCityType(bookCityLabel);
+		EdgeLabelMaker bookCityTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new BookCityType(null));
+		bookCityType = new BookCityType(bookCityTypeLabelMaker);
+        bookCityLabel = raw().createOrGet(mgmt, bookCityType.raw());
 
 	    // bookEditor
-	    bookEditorLabel = raw().titanLabelForEdgeType(this.new BookEditorType(null));
-	    bookEditorType = new BookEditorType(bookEditorLabel);
+		EdgeLabelMaker bookEditorTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new BookEditorType(null));
+	    bookEditorType = new BookEditorType(bookEditorTypeLabelMaker);
+		bookEditorLabel = raw().createOrGet(mgmt, bookEditorType.raw());
 
         // bookPublisher
         bookPublisherLabel = raw().titanLabelForEdgeType(this.new BookPublisherType(null));
