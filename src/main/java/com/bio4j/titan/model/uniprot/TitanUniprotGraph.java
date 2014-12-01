@@ -910,48 +910,53 @@ public final class TitanUniprotGraph
 		proteinSubcellularLocationLabel = raw().createOrGet(mgmt, proteinSubcellularLocationType.raw());
 
         // proteinUnigene
-        proteinUniGeneLabel = raw().titanLabelForEdgeType(this.new ProteinUniGeneType(null));
-        proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneLabel);
+		EdgeLabelMaker proteinUniGeneTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinUniGeneType(null));
+        proteinUniGeneType = new ProteinUniGeneType(proteinUniGeneTypeLabelMaker);
+		proteinUniGeneLabel = raw().createOrGet(mgmt, proteinUniGeneType.raw());
 
         // taxonParent
-        taxonParentLabel = raw().titanLabelForEdgeType(this.new TaxonParentType(null));
-        taxonParentType = new TaxonParentType(taxonParentLabel);
+		EdgeLabelMaker taxonParentTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new TaxonParentType(null));
+        taxonParentType = new TaxonParentType(taxonParentTypeLabelMaker);
+		taxonParentLabel = raw().createOrGet(mgmt, taxonParentType.raw());
 
         // organismTaxon
-        organismTaxonLabel = raw().titanLabelForEdgeType(this.new OrganismTaxonType(null));
-        organismTaxonType = new OrganismTaxonType(organismTaxonLabel);
+		EdgeLabelMaker organismTaxonTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new OrganismTaxonType(null));
+		organismTaxonType = new OrganismTaxonType(organismTaxonTypeLabelMaker);
+        organismTaxonLabel = raw().createOrGet(mgmt, organismTaxonType.raw());
 
         // proteinComment
-        proteinCommentLabel = raw().titanLabelForEdgeType(this.new ProteinCommentType(null));
-        proteinCommentType = new ProteinCommentType(proteinCommentLabel);
-	    proteinCommentEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.evidence);
-	    proteinCommentStatusKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.status);
-	    proteinCommentTextKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.text);
-	    proteinCommentBeginKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.begin);
-	    proteinCommentEndKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.end);
-	    proteinCommentMassKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.mass);
-	    proteinCommentMethodKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.method);
-	    proteinCommentAbsorptionMaxKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.absorptionMax);
-	    proteinCommentAbsorptionTextKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.absorptionText);
-	    proteinCommentKineticsXMLKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.kineticsXML);
-	    proteinCommentPhDependenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.phDependence);
-	    proteinCommentPositionKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.position);
-	    proteinCommentRedoxPotentialKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.redoxPotential);
-	    proteinCommentRedoxPotentialEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.redoxPotentialEvidence);
-	    proteinCommentTemperatureDependenceKey = raw().titanKeyForEdgePropertySingle(proteinCommentType.temperatureDependence);
+		EdgeLabelMaker proteinCommentTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new OrganismTaxonType(null));
+        proteinCommentType = new ProteinCommentType(proteinCommentTypeLabelMaker);
+	    proteinCommentEvidenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().evidence).cardinality(Cardinality.SINGLE));
+	    proteinCommentStatusKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().status).cardinality(Cardinality.SINGLE));
+	    proteinCommentTextKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().text).cardinality(Cardinality.SINGLE));
+	    proteinCommentBeginKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().begin).cardinality(Cardinality.SINGLE));
+	    proteinCommentEndKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().end).cardinality(Cardinality.SINGLE));
+	    proteinCommentMassKey = rraw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().mass).cardinality(Cardinality.SINGLE));
+	    proteinCommentMethodKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().method).cardinality(Cardinality.SINGLE));
+	    proteinCommentAbsorptionMaxKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().absorptionMax).cardinality(Cardinality.SINGLE));
+	    proteinCommentAbsorptionTextKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().absorptionText).cardinality(Cardinality.SINGLE));
+	    proteinCommentKineticsXMLKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().kineticsXML).cardinality(Cardinality.SINGLE));
+	    proteinCommentPhDependenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().phDependence).cardinality(Cardinality.SINGLE));
+	    proteinCommentPositionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().position).cardinality(Cardinality.SINGLE));
+	    proteinCommentRedoxPotentialKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().redoxPotential).cardinality(Cardinality.SINGLE));
+	    proteinCommentRedoxPotentialEvidenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().redoxPotentialEvidence).cardinality(Cardinality.SINGLE));
+	    proteinCommentTemperatureDependenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().temperatureDependence).cardinality(Cardinality.SINGLE));
+		proteinCommentLabel = raw().createOrGet(mgmt, proteinCommentType.raw());
 
         // proteinFeature
-        proteinFeatureLabel = raw().titanLabelForEdgeType(this.new ProteinFeatureType(null));
-	    proteinFeatureType = new ProteinFeatureType(proteinFeatureLabel);
-        proteinFeatureIdKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.id);
-        proteinFeatureDescriptionKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.description);
-        proteinFeatureEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.evidence);
-        proteinFeatureStatusKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.status);
-        proteinFeatureBeginKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.begin);
-        proteinFeatureEndKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.end);
-        proteinFeatureOriginalKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.original);
-        proteinFeatureVariationKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.variation);
-        proteinFeatureRefKey = raw().titanKeyForEdgePropertySingle(proteinFeatureType.ref);
+		EdgeLabelMaker proteinFeatureTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinFeatureType(null));
+	    proteinFeatureType = new ProteinFeatureType(proteinFeatureTypeLabelMaker);
+        proteinFeatureIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().id).cardinality(Cardinality.SINGLE));
+        proteinFeatureDescriptionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().description).cardinality(Cardinality.SINGLE));
+        proteinFeatureEvidenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().evidence).cardinality(Cardinality.SINGLE));
+        proteinFeatureStatusKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().status).cardinality(Cardinality.SINGLE));
+        proteinFeatureBeginKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().begin).cardinality(Cardinality.SINGLE));
+        proteinFeatureEndKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().end).cardinality(Cardinality.SINGLE));
+        proteinFeatureOriginalKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().original).cardinality(Cardinality.SINGLE));
+        proteinFeatureVariationKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().variation).cardinality(Cardinality.SINGLE));
+        proteinFeatureRefKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().ref).cardinality(Cardinality.SINGLE));
+		proteinFeatureLabel = raw().createOrGet(mgmt, proteinFeatureType.raw());
 
         proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
         proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
