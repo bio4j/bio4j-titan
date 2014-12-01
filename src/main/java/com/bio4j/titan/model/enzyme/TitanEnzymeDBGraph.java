@@ -19,8 +19,6 @@ public final class TitanEnzymeDBGraph
     extends
     EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    // why this?
-    private DefaultTitanGraph rawGraph;
 	private TitanUniprotEnzymeGraph uniprotEnzymeGraph = null;
 
     private TitanManagement mgmt;
@@ -57,7 +55,7 @@ public final class TitanEnzymeDBGraph
 
 	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
+        this.raw = rawGraph;
 
         // First get a titanMgmt instance, that will be used throughout
         this.mgmt = rawGraph.managementSystem();
@@ -70,7 +68,7 @@ public final class TitanEnzymeDBGraph
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
     @Override

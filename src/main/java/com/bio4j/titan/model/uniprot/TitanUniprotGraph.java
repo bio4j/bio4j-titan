@@ -14,73 +14,78 @@ import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
-import com.thinkaurelius.titan.core.schema.*;
+import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
+import com.thinkaurelius.titan.core.schema.TitanManagement;
+import com.thinkaurelius.titan.core.schema.VertexLabelMaker;
 
 
 /*
   Implementing the types with Titan
 */
 public final class TitanUniprotGraph
-extends
-    UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
-
-    private DefaultTitanGraph rawGraph;
+		extends
+		UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
 	private TitanUniprotGoGraph uniprotGoGraph;
 	private TitanUniprotUniRefGraph uniprotUniRefGraph;
 	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph;
 	private TitanUniprotEnzymeGraph uniprotEnzymeGraph;
 
+	private TitanManagement mgmt;
 
-  //-------------------VERTICES----------------------------
+	public TitanManagement managementSystem() {
+		return this.mgmt;
+	}
 
-  // protein
-  public VertexLabel proteinTypeLabel;
-  public PropertyKey proteinAcessionKey;
-  public PropertyKey proteinNameKey;
-  public PropertyKey proteinShortNameKey;
-  public PropertyKey proteinFullNameKey;
-  public PropertyKey proteinModifiedDateKey;
-  public PropertyKey proteinCreatedDateKey;
-  public PropertyKey proteinMassKey;
-  public PropertyKey proteinVersionKey;
-  public PropertyKey proteinLengthKey;
-  public PropertyKey proteinSequenceKey;
-  public ProteinType proteinType;
+	//-------------------VERTICES----------------------------
+
+	// protein
+	public VertexLabel proteinTypeLabel;
+	public PropertyKey proteinAcessionKey;
+	public PropertyKey proteinNameKey;
+	public PropertyKey proteinShortNameKey;
+	public PropertyKey proteinFullNameKey;
+	public PropertyKey proteinModifiedDateKey;
+	public PropertyKey proteinCreatedDateKey;
+	public PropertyKey proteinMassKey;
+	public PropertyKey proteinVersionKey;
+	public PropertyKey proteinLengthKey;
+	public PropertyKey proteinSequenceKey;
+	public ProteinType proteinType;
 
 	//---AlternativeProduct---
 	public VertexLabel alternativeProductTypeLabel;
 	public PropertyKey alternativeProductNameKey;
 	public AlternativeProductType alternativeProductType;
-  //---Article---
-  public VertexLabel articleTypeLabel;
-  public PropertyKey articleTitleKey;
-  public PropertyKey articleDoIdKey;
-  public ArticleType articleType;
-  //---Db---
-  public VertexLabel dbTypeLabel;
-  public PropertyKey dbNameKey;
-  public DBType dbType;
-  //---Book---
-  public VertexLabel bookTypeLabel;
-  public PropertyKey bookNameKey;
-  public BookType bookType;
-  //---city---
-  public VertexLabel cityTypeLabel;
-  public PropertyKey cityNameKey;
-  public CityType cityType;
+	//---Article---
+	public VertexLabel articleTypeLabel;
+	public PropertyKey articleTitleKey;
+	public PropertyKey articleDoIdKey;
+	public ArticleType articleType;
+	//---Db---
+	public VertexLabel dbTypeLabel;
+	public PropertyKey dbNameKey;
+	public DBType dbType;
+	//---Book---
+	public VertexLabel bookTypeLabel;
+	public PropertyKey bookNameKey;
+	public BookType bookType;
+	//---city---
+	public VertexLabel cityTypeLabel;
+	public PropertyKey cityNameKey;
+	public CityType cityType;
 	//---consortium---
 	public VertexLabel consortiumTypeLabel;
 	public PropertyKey consortiumNameKey;
 	public ConsortiumType consortiumType;
-  //---country---
-  public VertexLabel countryTypeLabel;
-  public PropertyKey countryNameKey;
-  public CountryType countryType;
-  //---dataset---
-  public VertexLabel datasetTypeLabel;
-  public PropertyKey datasetNameKey;
-  public DatasetType datasetType;
+	//---country---
+	public VertexLabel countryTypeLabel;
+	public PropertyKey countryNameKey;
+	public CountryType countryType;
+	//---dataset---
+	public VertexLabel datasetTypeLabel;
+	public PropertyKey datasetNameKey;
+	public DatasetType datasetType;
 	//---gene location---
 	public VertexLabel geneLocationTypeLabel;
 	public PropertyKey geneLocationNameKey;
@@ -92,22 +97,22 @@ extends
 	public PropertyKey diseaseAcronymKey;
 	public PropertyKey diseaseDescriptionKey;
 	public DiseaseType diseaseType;
-  //---organism---
-  public VertexLabel organismTypeLabel;
-  public PropertyKey organismScientificNameKey;
-  public PropertyKey organismCommonNameKey;
-  public PropertyKey organismSynonymNameKey;
-  public OrganismType organismType;
-  //---keyword---
-  public VertexLabel keywordTypeLabel;
-  public PropertyKey keywordNameKey;
-  public PropertyKey keywordIdKey;
-  public KeywordType keywordType;
-  //---interpro---
-  public VertexLabel interproTypeLabel;
-  public PropertyKey interproNameKey;
-  public PropertyKey interproIdKey;
-  public InterproType interproType;
+	//---organism---
+	public VertexLabel organismTypeLabel;
+	public PropertyKey organismScientificNameKey;
+	public PropertyKey organismCommonNameKey;
+	public PropertyKey organismSynonymNameKey;
+	public OrganismType organismType;
+	//---keyword---
+	public VertexLabel keywordTypeLabel;
+	public PropertyKey keywordNameKey;
+	public PropertyKey keywordIdKey;
+	public KeywordType keywordType;
+	//---interpro---
+	public VertexLabel interproTypeLabel;
+	public PropertyKey interproNameKey;
+	public PropertyKey interproIdKey;
+	public InterproType interproType;
 	//---interpro---
 	public VertexLabel isoformTypeLabel;
 	public PropertyKey isoformNameKey;
@@ -115,141 +120,141 @@ extends
 	public PropertyKey isoformSequenceKey;
 	public PropertyKey isoformNoteKey;
 	public IsoformType isoformType;
-  //----institute-----
-  public VertexLabel instituteTypeLabel;
-  public PropertyKey instituteNameKey;
-  public InstituteType instituteType;
-  //---journal---
-  public VertexLabel journalTypeLabel;
-  public PropertyKey journalNameKey;
-  public JournalType journalType;
+	//----institute-----
+	public VertexLabel instituteTypeLabel;
+	public PropertyKey instituteNameKey;
+	public InstituteType instituteType;
+	//---journal---
+	public VertexLabel journalTypeLabel;
+	public PropertyKey journalNameKey;
+	public JournalType journalType;
 	//---person---
 	public VertexLabel personTypeLabel;
 	public PropertyKey personNameKey;
 	public PersonType personType;
-  //---publisher---
-  public VertexLabel publisherTypeLabel;
-  public PropertyKey publisherNameKey;
-  public PublisherType publisherType;
-  //---pubmed---
-  public VertexLabel pubmedTypeLabel;
-  public PropertyKey pubmedIdKey;
-  public PubmedType pubmedType;
-  //---reactome term---
-  public VertexLabel reactomeTermTypeLabel;
-  public PropertyKey reactomeTermPathwayNameKey;
-  public PropertyKey reactomeTermIdKey;
-  public ReactomeTermType reactomeTermType;
-  //---pfam---
-  public VertexLabel pfamTypeLabel;
-  public PropertyKey pfamNameKey;
-  public PropertyKey pfamIdKey;
-  public PfamType pfamType;
-  //---kegg---
-  public VertexLabel keggTypeLabel;
-  public PropertyKey keggIdKey;
-  public KeggType keggType;
-  //---EMBL---
-  public VertexLabel eMBLTypeLabel;
-  public PropertyKey eMBLIdKey;
-  public PropertyKey eMBLMoleculeTypeKey;
-  public PropertyKey eMBLProteinSequenceIdKey;
-  public EMBLType eMBLType;
-  //---Patent---
-  public VertexLabel patentTypeLabel;
-  public PropertyKey patentTitleKey;
-  public PropertyKey patentNumberKey;
-  public PatentType patentType;
-  //---PIR---
-  public VertexLabel pIRTypeLabel;
-  public PropertyKey pIRIdKey;
-  public PropertyKey pIREntryNameKey;
-  public PIRType pIRType;
-  //---UniGene---
-  public VertexLabel uniGeneTypeLabel;
-  public PropertyKey uniGeneIdKey;
-  public UniGeneType uniGeneType;
-  //---Ensembl---
-  public VertexLabel ensemblTypeLabel;
-  public PropertyKey ensemblIdKey;
-  public PropertyKey ensemblMoleculeIdKey;
-  public PropertyKey ensemblProteinSequenceIdKey;
-  public PropertyKey ensemblGeneIdKey;
-  public EnsemblType ensemblType;
-  //---Taxon---
-  public VertexLabel taxonTypeLabel;
-  public PropertyKey taxonNameKey;
-  public TaxonType taxonType;
-  //---Thesis---
-  public VertexLabel thesisTypeLabel;
-  public PropertyKey thesisTitleKey;
-  public ThesisType thesisType;
-  //----OnlineArticle-----
-  public VertexLabel onlineArticleTypeLabel;
-  public PropertyKey onlineArticleTitleKey;
-  public OnlineArticleType onlineArticleType;
-  //----OnlineJournal-----
-  public VertexLabel onlineJournalTypeLabel;
-  public PropertyKey onlineJournalNameKey;
-  public OnlineJournalType onlineJournalType;
-  //---RefSeq---
-  public VertexLabel refSeqTypeLabel;
-  public PropertyKey refSeqIdKey;
-  public PropertyKey refSeqNucleotideSequenceIdKey;
-  public RefSeqType refSeqType;
-  //---Reference---
-  public PropertyKey referenceDateKey;
-  public ReferenceType referenceType;
+	//---publisher---
+	public VertexLabel publisherTypeLabel;
+	public PropertyKey publisherNameKey;
+	public PublisherType publisherType;
+	//---pubmed---
+	public VertexLabel pubmedTypeLabel;
+	public PropertyKey pubmedIdKey;
+	public PubmedType pubmedType;
+	//---reactome term---
+	public VertexLabel reactomeTermTypeLabel;
+	public PropertyKey reactomeTermPathwayNameKey;
+	public PropertyKey reactomeTermIdKey;
+	public ReactomeTermType reactomeTermType;
+	//---pfam---
+	public VertexLabel pfamTypeLabel;
+	public PropertyKey pfamNameKey;
+	public PropertyKey pfamIdKey;
+	public PfamType pfamType;
+	//---kegg---
+	public VertexLabel keggTypeLabel;
+	public PropertyKey keggIdKey;
+	public KeggType keggType;
+	//---EMBL---
+	public VertexLabel eMBLTypeLabel;
+	public PropertyKey eMBLIdKey;
+	public PropertyKey eMBLMoleculeTypeKey;
+	public PropertyKey eMBLProteinSequenceIdKey;
+	public EMBLType eMBLType;
+	//---Patent---
+	public VertexLabel patentTypeLabel;
+	public PropertyKey patentTitleKey;
+	public PropertyKey patentNumberKey;
+	public PatentType patentType;
+	//---PIR---
+	public VertexLabel pIRTypeLabel;
+	public PropertyKey pIRIdKey;
+	public PropertyKey pIREntryNameKey;
+	public PIRType pIRType;
+	//---UniGene---
+	public VertexLabel uniGeneTypeLabel;
+	public PropertyKey uniGeneIdKey;
+	public UniGeneType uniGeneType;
+	//---Ensembl---
+	public VertexLabel ensemblTypeLabel;
+	public PropertyKey ensemblIdKey;
+	public PropertyKey ensemblMoleculeIdKey;
+	public PropertyKey ensemblProteinSequenceIdKey;
+	public PropertyKey ensemblGeneIdKey;
+	public EnsemblType ensemblType;
+	//---Taxon---
+	public VertexLabel taxonTypeLabel;
+	public PropertyKey taxonNameKey;
+	public TaxonType taxonType;
+	//---Thesis---
+	public VertexLabel thesisTypeLabel;
+	public PropertyKey thesisTitleKey;
+	public ThesisType thesisType;
+	//----OnlineArticle-----
+	public VertexLabel onlineArticleTypeLabel;
+	public PropertyKey onlineArticleTitleKey;
+	public OnlineArticleType onlineArticleType;
+	//----OnlineJournal-----
+	public VertexLabel onlineJournalTypeLabel;
+	public PropertyKey onlineJournalNameKey;
+	public OnlineJournalType onlineJournalType;
+	//---RefSeq---
+	public VertexLabel refSeqTypeLabel;
+	public PropertyKey refSeqIdKey;
+	public PropertyKey refSeqNucleotideSequenceIdKey;
+	public RefSeqType refSeqType;
+	//---Reference---
+	public PropertyKey referenceDateKey;
+	public ReferenceType referenceType;
 	//---SequenceCaution----
 	public VertexLabel sequenceCautionTypeLabel;
 	public PropertyKey sequenceCautionNameKey;
 	public SequenceCautionType sequenceCautionType;
-  //---SubcellularLocation----
-  public VertexLabel subcellularLocationTypeLabel;
-  public PropertyKey subcellularLocationNameKey;
-  public SubcellularLocationType subcellularLocationType;
-  //---Submission----
-  public VertexLabel submissionTypeLabel;
-  public PropertyKey submissionTitleKey;
-  public SubmissionType submissionType;
-  //---FeatureType---
-  public VertexLabel featureTypeTypeLabel;
-  public PropertyKey featureTypeNameKey;
-  public FeatureTypeType featureTypeType;
-  //---CommentType---
-  public VertexLabel commentTypeTypeLabel;
-  public PropertyKey commentTypeNameKey;
-  public CommentTypeType commentTypeType;
-  //---UnpublishedObservation----
-  public VertexLabel unpublishedObservationScopeKey;
-  public UnpublishedObservationType unpublishedObservationType;
+	//---SubcellularLocation----
+	public VertexLabel subcellularLocationTypeLabel;
+	public PropertyKey subcellularLocationNameKey;
+	public SubcellularLocationType subcellularLocationType;
+	//---Submission----
+	public VertexLabel submissionTypeLabel;
+	public PropertyKey submissionTitleKey;
+	public SubmissionType submissionType;
+	//---FeatureType---
+	public VertexLabel featureTypeTypeLabel;
+	public PropertyKey featureTypeNameKey;
+	public FeatureTypeType featureTypeType;
+	//---CommentType---
+	public VertexLabel commentTypeTypeLabel;
+	public PropertyKey commentTypeNameKey;
+	public CommentTypeType commentTypeType;
+	//---UnpublishedObservation----
+	public VertexLabel unpublishedObservationScopeKey;
+	public UnpublishedObservationType unpublishedObservationType;
 
 
-    //------------------INDICES----------------
-    //-----------------------------------------
-    //---------------INDICES---------------------------
+	//------------------INDICES----------------
+	//-----------------------------------------
+	//---------------INDICES---------------------------
 
-    public TitanTypedVertexIndex.Unique<
-        Protein<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ProteinType, 
-        ProteinType.accession, String, 
-        UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph
-    > proteinAccessionIndex;
+	public TitanTypedVertexIndex.Unique<
+			Protein<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ProteinType,
+			ProteinType.accession, String,
+			UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph
+			> proteinAccessionIndex;
 
-    public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> datasetNameIndex;
-    public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> organismScientificNameIndex;
-    public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keywordIdIndex;
-    public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> reactomeTermIdIndex;
-    public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> interproIdIndex;
-    public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pfamIdIndex;
-    public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keggIdIndex;
-    public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> eMBLIdIndex;
-    public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pIRIdIndex;
-    public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> uniGeneIdIndex;
-    public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> ensemblIdIndex;
-    public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> taxonNameIndex;
-    public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> refSeqIdIndex;
-    public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> commentTypeNameIndex;
-    public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> featureTypeNameIndex;
+	public TitanTypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> datasetNameIndex;
+	public TitanTypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> organismScientificNameIndex;
+	public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keywordIdIndex;
+	public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> reactomeTermIdIndex;
+	public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> interproIdIndex;
+	public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pfamIdIndex;
+	public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keggIdIndex;
+	public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> eMBLIdIndex;
+	public TitanTypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pIRIdIndex;
+	public TitanTypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> uniGeneIdIndex;
+	public TitanTypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> ensemblIdIndex;
+	public TitanTypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> taxonNameIndex;
+	public TitanTypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> refSeqIdIndex;
+	public TitanTypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> commentTypeNameIndex;
+	public TitanTypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> featureTypeNameIndex;
 	public TitanTypedVertexIndex.Unique<Journal<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, JournalType, JournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> journalNameIndex;
 	public TitanTypedVertexIndex.Unique<Article<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ArticleType, ArticleType.title, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> articleTitleIndex;
 	public TitanTypedVertexIndex.Unique<OnlineJournal<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, OnlineJournalType, OnlineJournalType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> onlineJournalNameIndex;
@@ -274,69 +279,67 @@ extends
 	public TitanTypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> alternativeProductNameIndex;
 
 
-
-
 	//-----------------------------------------------------------------------------------------
-  //--------------------------------RELATIONSHIPS--------------------------------------------
+	//--------------------------------RELATIONSHIPS--------------------------------------------
 
 	// isoformEventGenerator
 	public EdgeLabel isoformEventGeneratorLabel;
 	public IsoformEventGeneratorType isoformEventGeneratorType;
-  // proteinDataset
-  public EdgeLabel proteinDatasetLabel;
-  public ProteinDatasetType proteinDatasetType;
-  // proteinOrganism
-  public EdgeLabel proteinOrganismLabel;
-  public ProteinOrganismType proteinOrganismType;
-  // proteinKeyword
-  public EdgeLabel proteinKeywordLabel;
-  public ProteinKeywordType proteinKeywordType;
-  // proteinReactomeTerm
-  public EdgeLabel proteinReactomeTermLabel;
-  public ProteinReactomeTermType proteinReactomeTermType;
-  // proteinInterpro
-  public EdgeLabel proteinInterproLabel;
-  public ProteinInterproType proteinInterproType;
-  // proteinPfam
-  public EdgeLabel proteinPfamLabel;
-  public ProteinPfamType proteinPfamType;
-  // proteinKegg
-  public EdgeLabel proteinKeggLabel;
-  public ProteinKeggType proteinKeggType;
-  // proteinEMBL
-  public EdgeLabel proteinEMBLLabel;
-  public ProteinEMBLType proteinEMBLType;
-  // proteinPIR
-  public EdgeLabel proteinPIRLabel;
-  public ProteinPIRType proteinPIRType;
-  // proteinUniGene
-  public EdgeLabel proteinUniGeneLabel;
-  public ProteinUniGeneType proteinUniGeneType;
-  // proteinEnsembl
-  public EdgeLabel proteinEnsemblLabel;
-  public ProteinEnsemblType proteinEnsemblType;
-  // proteinRefSeq
-  public EdgeLabel proteinRefSeqLabel;
-  public ProteinRefSeqType proteinRefSeqType;
+	// proteinDataset
+	public EdgeLabel proteinDatasetLabel;
+	public ProteinDatasetType proteinDatasetType;
+	// proteinOrganism
+	public EdgeLabel proteinOrganismLabel;
+	public ProteinOrganismType proteinOrganismType;
+	// proteinKeyword
+	public EdgeLabel proteinKeywordLabel;
+	public ProteinKeywordType proteinKeywordType;
+	// proteinReactomeTerm
+	public EdgeLabel proteinReactomeTermLabel;
+	public ProteinReactomeTermType proteinReactomeTermType;
+	// proteinInterpro
+	public EdgeLabel proteinInterproLabel;
+	public ProteinInterproType proteinInterproType;
+	// proteinPfam
+	public EdgeLabel proteinPfamLabel;
+	public ProteinPfamType proteinPfamType;
+	// proteinKegg
+	public EdgeLabel proteinKeggLabel;
+	public ProteinKeggType proteinKeggType;
+	// proteinEMBL
+	public EdgeLabel proteinEMBLLabel;
+	public ProteinEMBLType proteinEMBLType;
+	// proteinPIR
+	public EdgeLabel proteinPIRLabel;
+	public ProteinPIRType proteinPIRType;
+	// proteinUniGene
+	public EdgeLabel proteinUniGeneLabel;
+	public ProteinUniGeneType proteinUniGeneType;
+	// proteinEnsembl
+	public EdgeLabel proteinEnsemblLabel;
+	public ProteinEnsemblType proteinEnsemblType;
+	// proteinRefSeq
+	public EdgeLabel proteinRefSeqLabel;
+	public ProteinRefSeqType proteinRefSeqType;
 	// proteinGeneLocation
 	public EdgeLabel proteinGeneLocationLabel;
 	public PropertyKey proteinGeneLocationNameKey;
 	public ProteinGeneLocationType proteinGeneLocationType;
-  // proteinFeature
-  public EdgeLabel proteinFeatureLabel;
-  public PropertyKey proteinFeatureIdKey;
-  public PropertyKey proteinFeatureDescriptionKey;
-  public PropertyKey proteinFeatureEvidenceKey;
-  public PropertyKey proteinFeatureStatusKey;
-  public PropertyKey proteinFeatureBeginKey;
-  public PropertyKey proteinFeatureEndKey;
-  public PropertyKey proteinFeatureOriginalKey;
-  public PropertyKey proteinFeatureVariationKey;
-  public PropertyKey proteinFeatureRefKey;
-  public ProteinFeatureType proteinFeatureType;
-  // proteinComment
-  public EdgeLabel proteinCommentLabel;
-  public ProteinCommentType proteinCommentType;
+	// proteinFeature
+	public EdgeLabel proteinFeatureLabel;
+	public PropertyKey proteinFeatureIdKey;
+	public PropertyKey proteinFeatureDescriptionKey;
+	public PropertyKey proteinFeatureEvidenceKey;
+	public PropertyKey proteinFeatureStatusKey;
+	public PropertyKey proteinFeatureBeginKey;
+	public PropertyKey proteinFeatureEndKey;
+	public PropertyKey proteinFeatureOriginalKey;
+	public PropertyKey proteinFeatureVariationKey;
+	public PropertyKey proteinFeatureRefKey;
+	public ProteinFeatureType proteinFeatureType;
+	// proteinComment
+	public EdgeLabel proteinCommentLabel;
+	public ProteinCommentType proteinCommentType;
 	public PropertyKey proteinCommentTextKey;
 	public PropertyKey proteinCommentStatusKey;
 	public PropertyKey proteinCommentEvidenceKey;
@@ -371,12 +374,12 @@ extends
 	public PropertyKey proteinDiseaseTextKey;
 	public PropertyKey proteinDiseaseStatusKey;
 	public PropertyKey proteinDiseaseEvidenceKey;
-  // proteinReference
-  public EdgeLabel proteinReferenceLabel;
-  public ProteinReferenceType proteinReferenceType;
-  // proteinSubcellularLocation
-  public EdgeLabel proteinSubcellularLocationLabel;
-  public ProteinSubcellularLocationType proteinSubcellularLocationType;
+	// proteinReference
+	public EdgeLabel proteinReferenceLabel;
+	public ProteinReferenceType proteinReferenceType;
+	// proteinSubcellularLocation
+	public EdgeLabel proteinSubcellularLocationLabel;
+	public ProteinSubcellularLocationType proteinSubcellularLocationType;
 	public PropertyKey proteinSubcellularLocationStatusKey;
 	public PropertyKey proteinSubcellularLocationEvidenceKey;
 	public PropertyKey proteinSubcellularLocationTopologyKey;
@@ -392,36 +395,36 @@ extends
 	public PropertyKey proteinSequenceCautionVersionKey;
 	public PropertyKey proteinSequenceCautionPositionKey;
 
-  // articlePubmed
-  public EdgeLabel articlePubmedLabel;
-  public ArticlePubmedType articlePubmedType;
-  // articleJournal
-  public EdgeLabel articleJournalLabel;
-  public ArticleJournalType articleJournalType;
+	// articlePubmed
+	public EdgeLabel articlePubmedLabel;
+	public ArticlePubmedType articlePubmedType;
+	// articleJournal
+	public EdgeLabel articleJournalLabel;
+	public ArticleJournalType articleJournalType;
 	public PropertyKey articleJournalVolumeKey;
 	public PropertyKey articleJournalFirstKey;
 	public PropertyKey articleJournalLastKey;
-  // bookCity
-  public EdgeLabel bookCityLabel;
-  public BookCityType bookCityType;
+	// bookCity
+	public EdgeLabel bookCityLabel;
+	public BookCityType bookCityType;
 	// bookEditor
 	public EdgeLabel bookEditorLabel;
 	public BookEditorType bookEditorType;
-  // bookPublisher
-  public EdgeLabel bookPublisherLabel;
-  public BookPublisherType bookPublisherType;
-  // instituteCountry
-  public EdgeLabel instituteCountryLabel;
-  public InstituteCountryType instituteCountryType;
-  // taxonParent
-  public EdgeLabel taxonParentLabel;
-  public TaxonParentType taxonParentType;
-  // organismTaxon
-  public EdgeLabel organismTaxonLabel;
-  public OrganismTaxonType organismTaxonType;
-  // onlineArticleOnlineJournal
-  public EdgeLabel onlineArticleOnlineJournalLabel;
-  public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
+	// bookPublisher
+	public EdgeLabel bookPublisherLabel;
+	public BookPublisherType bookPublisherType;
+	// instituteCountry
+	public EdgeLabel instituteCountryLabel;
+	public InstituteCountryType instituteCountryType;
+	// taxonParent
+	public EdgeLabel taxonParentLabel;
+	public TaxonParentType taxonParentType;
+	// organismTaxon
+	public EdgeLabel organismTaxonLabel;
+	public OrganismTaxonType organismTaxonType;
+	// onlineArticleOnlineJournal
+	public EdgeLabel onlineArticleOnlineJournalLabel;
+	public OnlineArticleOnlineJournalType onlineArticleOnlineJournalType;
 	public PropertyKey onlineArticleOnlineJournalLocatorKey;
 	// referenceAuthorPerson
 	public EdgeLabel referenceAuthorPersonLabel;
@@ -429,274 +432,271 @@ extends
 	// referenceAuthorConsortium
 	public EdgeLabel referenceAuthorConsortiumLabel;
 	public ReferenceAuthorConsortiumType referenceAuthorConsortiumType;
-  // referenceArticle
-  public EdgeLabel referenceArticleLabel;
-  public ReferenceArticleType referenceArticleType;
-  // referenceBook
-  public EdgeLabel referenceBookLabel;
-  public ReferenceBookType referenceBookType;
-  // referenceThesis
-  public EdgeLabel referenceThesisLabel;
-  public ReferenceThesisType referenceThesisType;
-  // referenceSubmission
-  public EdgeLabel referenceSubmissionLabel;
-  public ReferenceSubmissionType referenceSubmissionType;
-  // referencePatent
-  public EdgeLabel referencePatentLabel;
-  public ReferencePatentType referencePatentType;
-  // referenceOnlineArticle
-  public EdgeLabel referenceOnlineArticleLabel;
-  public ReferenceOnlineArticleType referenceOnlineArticleType;
-  // referenceUnpublishedObservation
-  public EdgeLabel referenceUnpublishedObservationLabel;
-  public ReferenceUnpublishedObservationType referenceUnpublishedObservationType;
-  // thesisInstitute
-  public EdgeLabel thesisInstituteLabel;
-  public ThesisInstituteType thesisInstituteType;
-  // submissionDB
-  public EdgeLabel submissionDBLabel;
-  public SubmissionDBType submissionDBType;
-  // subcellularLocation
-  public EdgeLabel subcellularLocationParentLabel;
-  public SubcellularLocationParentType subcellularLocationParentType;
+	// referenceArticle
+	public EdgeLabel referenceArticleLabel;
+	public ReferenceArticleType referenceArticleType;
+	// referenceBook
+	public EdgeLabel referenceBookLabel;
+	public ReferenceBookType referenceBookType;
+	// referenceThesis
+	public EdgeLabel referenceThesisLabel;
+	public ReferenceThesisType referenceThesisType;
+	// referenceSubmission
+	public EdgeLabel referenceSubmissionLabel;
+	public ReferenceSubmissionType referenceSubmissionType;
+	// referencePatent
+	public EdgeLabel referencePatentLabel;
+	public ReferencePatentType referencePatentType;
+	// referenceOnlineArticle
+	public EdgeLabel referenceOnlineArticleLabel;
+	public ReferenceOnlineArticleType referenceOnlineArticleType;
+	// referenceUnpublishedObservation
+	public EdgeLabel referenceUnpublishedObservationLabel;
+	public ReferenceUnpublishedObservationType referenceUnpublishedObservationType;
+	// thesisInstitute
+	public EdgeLabel thesisInstituteLabel;
+	public ThesisInstituteType thesisInstituteType;
+	// submissionDB
+	public EdgeLabel submissionDBLabel;
+	public SubmissionDBType submissionDBType;
+	// subcellularLocation
+	public EdgeLabel subcellularLocationParentLabel;
+	public SubcellularLocationParentType subcellularLocationParentType;
 
 
+	public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
 
-  public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
+		super(rawGraph);
 
-      super(rawGraph);
-      // TODO: I don't see the point of rawGraph; it's already in super!
-      this.rawGraph = rawGraph;
-      initTypes();
-      initIndices();
-  }
+		// First get a titanMgmt instance, that will be used throughout
+		this.mgmt = rawGraph.managementSystem();
+		initTypes(mgmt);
+		initIndices(mgmt);
+	}
 
-  @Override
-  public DefaultTitanGraph raw() {
-      return rawGraph;
-  }
+	@Override
+	public DefaultTitanGraph raw() {
+		return raw;
+	}
 
-  private void initTypes() {
+	private void initTypes(TitanManagement mgmt) {
 
-      //-----------------------------------------------------------------------------------------
-      //--------------------------------VERTICES--------------------------------------------
-
-
-      // Protein type
-	    // proteinType = new ProteinType(proteinTypeLabel);
-     //  proteinTypeLabel = raw().createOrGet(
-     //      raw().titanLabelMakerForVertexType(proteinType)
-     //  );
-     //  proteinAcessionKey = raw().createOrGet( 
-     //      raw().titanPropertyMakerForVertexProperty( Protein().accession    ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinNameKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().name         ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinShortNameKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().shortName    ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinFullNameKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().fullName     ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinModifiedDateKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().modifiedDate ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinCreatedDateKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().createdDate  ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinMassKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().mass         ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinVersionKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().version      ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinLengthKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().length       ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  proteinSequenceKey = raw().createOrGet(
-     //      raw().titanPropertyMakerForVertexProperty( Protein().sequence     ).cardinality(Cardinality.SINGLE)
-     //  );
-
-	    // // Alternative Product type
-	    // alternativeProductType       = new AlternativeProductType(alternativeProductTypeLabel);
-	    // alternativeProductTypeLabel  = raw().createOrGet(
-     //    raw().titanLabelMakerForVertexType(alternativeProductType)
-     //  );
-     //  // alternative product props
-	    // alternativeProductNameKey = raw().createOrGet( 
-     //    raw().titanPropertyMakerForVertexProperty( AlternativeProduct().name ).cardinality(Cardinality.SINGLE)
-     //  );
-
-     //  // Article keys
-	    // articleType = new ArticleType(articleTypeLabel);
-     //  articleTypeLabel = raw().createOrGet(
-     //    raw().titanLabelMakerForVertexType(articleType)
-     //  );
-     //  articleTitleKey = raw().createOrGet(
-     //    raw().titanPropertyMakerForVertexProperty( Article().title  ).cardinality(Cardinality.SINGLE)
-     //  );
-     //  articleDoIdKey = raw().createOrGet( 
-     //    raw().titanPropertyMakerForVertexProperty( Article().doId   ).cardinality(Cardinality.SINGLE)
-     //  );
-
-     //  // Book keys
-	    // bookType = new BookType(bookTypeLabel);
-     //  bookTypeLabel = raw().createOrGet( 
-     //    raw().titanLabelMakerForVertexType(bookType) 
-     //  );
-     //  bookNameKey = raw().createOrGet( 
-     //    raw().titanPropertyMakerForVertexProperty( Book().name ).cardinality(Cardinality.SINGLE)
-     //  );
+		//-----------------------------------------------------------------------------------------
+		//--------------------------------VERTICES--------------------------------------------
 
 
-     //  // City keys
-	    // cityType = new CityType(cityTypeLabel);
-	    // cityTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(cityType));
-	    // cityNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( City().name ).cardinality(Cardinality.SINGLE));
+		// the tricky part is initializing the label part
+		// first create all label and prop makers
+		VertexLabelMaker proteinTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ProteinType(null));
+		//Protein type
+		proteinType = new ProteinType(proteinTypeLabelMaker);
+		proteinAcessionKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().accession).cardinality(Cardinality.SINGLE)
+		);
+		proteinNameKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().name).cardinality(Cardinality.SINGLE)
+		);
+		proteinShortNameKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().shortName).cardinality(Cardinality.SINGLE)
+		);
+		proteinFullNameKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().fullName).cardinality(Cardinality.SINGLE)
+		);
+		proteinModifiedDateKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().modifiedDate).cardinality(Cardinality.SINGLE)
+		);
+		proteinCreatedDateKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().createdDate).cardinality(Cardinality.SINGLE)
+		);
+		proteinMassKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().mass).cardinality(Cardinality.SINGLE)
+		);
+		proteinVersionKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().version).cardinality(Cardinality.SINGLE)
+		);
+		proteinLengthKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().length).cardinality(Cardinality.SINGLE)
+		);
+		proteinSequenceKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt,Protein().sequence).cardinality(Cardinality.SINGLE)
+		);
 
-	    // // GeneLocation keys
-	    // geneLocationType = new GeneLocationType(geneLocationTypeLabel);
-	    // geneLocationTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(geneLocationType));
-	    // geneLocationNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( GeneLocation().name ).cardinality(Cardinality.SINGLE));
+		// create everything
+		this.proteinTypeLabel = raw().createOrGet(mgmt, proteinType.raw());
 
-	    // // Consortium keys
-	    // consortiumType = new ConsortiumType(consortiumTypeLabel);
-	    // consortiumTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(consortiumType));
-	    // consortiumNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Consortium().name ).cardinality(Cardinality.SINGLE));
+		// // Alternative Product type
+		// alternativeProductType       = new AlternativeProductType(alternativeProductTypeLabel);
+		// alternativeProductTypeLabel  = raw().createOrGet(
+		//    raw().titanLabelMakerForVertexType(alternativeProductType)
+		//  );
+		//  // alternative product props
+		// alternativeProductNameKey = raw().createOrGet(
+		//    raw().titanPropertyMakerForVertexProperty( AlternativeProduct().name ).cardinality(Cardinality.SINGLE)
+		//  );
 
-     //    // Country keys
-	    // countryType = new CountryType(countryTypeLabel);
-     //    countryTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(countryType));
-     //    countryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Country().name ).cardinality(Cardinality.SINGLE));
+		//  // Article keys
+		// articleType = new ArticleType(articleTypeLabel);
+		//  articleTypeLabel = raw().createOrGet(
+		//    raw().titanLabelMakerForVertexType(articleType)
+		//  );
+		//  articleTitleKey = raw().createOrGet(
+		//    raw().titanPropertyMakerForVertexProperty( Article().title  ).cardinality(Cardinality.SINGLE)
+		//  );
+		//  articleDoIdKey = raw().createOrGet(
+		//    raw().titanPropertyMakerForVertexProperty( Article().doId   ).cardinality(Cardinality.SINGLE)
+		//  );
 
-     //    // DB keys
-	    // dbType = new DBType(dbTypeLabel);
-     //    dbTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(dbType));
-     //    dbNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( DB().name ).cardinality(Cardinality.SINGLE));
-
-     //    // Dataset keys
-	    // datasetType = new DatasetType(datasetTypeLabel);
-     //    datasetTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(datasetType));
-     //    datasetNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Dataset().name ).cardinality(Cardinality.SINGLE));
-
-	    // // Disease keys
-	    // diseaseType = new DiseaseType(diseaseTypeLabel);
-	    // diseaseTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(diseaseType));
-	    // diseaseIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().id ).cardinality(Cardinality.SINGLE));
-	    // diseaseNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().name ).cardinality(Cardinality.SINGLE));
-	    // diseaseAcronymKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().acronym ).cardinality(Cardinality.SINGLE));
-	    // diseaseDescriptionKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().description ).cardinality(Cardinality.SINGLE));
-
-     //    // Institute keys
-	    // instituteType = new InstituteType(instituteTypeLabel);
-     //    instituteTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(instituteType));
-     //    instituteNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Institute().name ).cardinality(Cardinality.SINGLE));
-
-     //    // Organism keys
-	    // organismType = new OrganismType(organismTypeLabel);
-     //    organismTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(organismType));
-     //    organismScientificNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().scientificName ).cardinality(Cardinality.SINGLE));
-     //    organismCommonNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().commonName ).cardinality(Cardinality.SINGLE));
-     //    organismSynonymNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().synonymName ).cardinality(Cardinality.SINGLE));
-
-     //    // Keyword keys
-	    // keywordType = new KeywordType(keywordTypeLabel);
-     //    keywordTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(keywordType));
-     //    keywordIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().id ).cardinality(Cardinality.SINGLE));
-     //    keywordNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().name ).cardinality(Cardinality.SINGLE));
-
-     //    // Interpro keys
-	    // interproType = new InterproType(interproTypeLabel);
-     //    interproTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(interproType));
-     //    interproIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().id ).cardinality(Cardinality.SINGLE));
-     //    interproNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().name ).cardinality(Cardinality.SINGLE));
-
-	    // // Isoform keys
-	    // isoformType = new IsoformType(isoformTypeLabel);
-	    // isoformTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(isoformType));
-	    // isoformIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().id ).cardinality(Cardinality.SINGLE));
-	    // isoformNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().name ).cardinality(Cardinality.SINGLE));
-	    // isoformSequenceKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().sequence ).cardinality(Cardinality.SINGLE));
-	    // isoformNoteKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().note ).cardinality(Cardinality.SINGLE));
-
-     //    // Journal keys
-	    // journalType = new JournalType(journalTypeLabel);
-     //    journalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(journalType));
-     //    journalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Journal().name ).cardinality(Cardinality.SINGLE));
-
-     //    // OnlineArticle keys
-	    // onlineArticleType = new OnlineArticleType(onlineArticleTypeLabel);
-     //    onlineArticleTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineArticleType));
-     //    onlineArticleTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineArticle().title ).cardinality(Cardinality.SINGLE));
-
-     //    // OnlineJournal keys
-	    // onlineJournalType = new OnlineJournalType(onlineJournalTypeLabel);
-     //    onlineJournalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineJournalType));
-     //    onlineJournalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineJournal().name ).cardinality(Cardinality.SINGLE));
-
-	    // // Reference keys
-	    // referenceType = new ReferenceType(null);
-	    // referenceDateKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Reference().date ).cardinality(Cardinality.SINGLE));
-
-     //    // ReactomeTerm keys
-	    // reactomeTermType = new ReactomeTermType(reactomeTermTypeLabel);
-     //    reactomeTermTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(reactomeTermType));
-     //    reactomeTermIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().id ).cardinality(Cardinality.SINGLE));
-     //    reactomeTermPathwayNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().pathwayName ).cardinality(Cardinality.SINGLE));
-
-     //    // Publisher keys
-	    // publisherType = new PublisherType(publisherTypeLabel);
-     //    publisherTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(publisherType));
-     //    publisherNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Publisher().name ).cardinality(Cardinality.SINGLE));
-
-	    // // Person keys
-	    // personType = new PersonType(personTypeLabel);
-	    // personTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(personType));
-	    // personNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Person().name ).cardinality(Cardinality.SINGLE));
-
-     //    // Pfam keys
-	    // pfamType = new PfamType(pfamTypeLabel);
-     //    pfamTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pfamType));
-     //    pfamIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().id ).cardinality(Cardinality.SINGLE));
-     //    pfamNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().name ).cardinality(Cardinality.SINGLE));
-
-     //    // Pubmed keys
-	    // pubmedType = new PubmedType(pubmedTypeLabel);
-     //    pubmedTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pubmedType));
-     //    pubmedIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pubmed().id ).cardinality(Cardinality.SINGLE));
-
-     //    // Submission keys
-	    // submissionType = new SubmissionType(submissionTypeLabel);
-     //    submissionTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(submissionType));
-     //    submissionTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Submission().title ).cardinality(Cardinality.SINGLE));
-
-	    // // Thesis keys
-	    // thesisType = new ThesisType(thesisTypeLabel);
-	    // thesisTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(thesisType));
-	    // thesisTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Thesis().title ).cardinality(Cardinality.SINGLE));
-
-     //    // EMBL keys
-	    // eMBLType = new EMBLType(eMBLTypeLabel);
-     //    eMBLTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(eMBLType));
-     //    eMBLIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().id ).cardinality(Cardinality.SINGLE));
-     //    eMBLMoleculeTypeKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().moleculeType ).cardinality(Cardinality.SINGLE));
-     //    eMBLProteinSequenceIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().proteinSequenceId ).cardinality(Cardinality.SINGLE));
-
-     //    // PIR keys
-	    // pIRType = new PIRType(pIRTypeLabel);
-     //    pIRTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pIRType));
-     //    pIRIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().id ).cardinality(Cardinality.SINGLE));
-     //    pIREntryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().entryName ).cardinality(Cardinality.SINGLE));
+		//  // Book keys
+		// bookType = new BookType(bookTypeLabel);
+		//  bookTypeLabel = raw().createOrGet(
+		//    raw().titanLabelMakerForVertexType(bookType)
+		//  );
+		//  bookNameKey = raw().createOrGet(
+		//    raw().titanPropertyMakerForVertexProperty( Book().name ).cardinality(Cardinality.SINGLE)
+		//  );
 
 
+		//  // City keys
+		// cityType = new CityType(cityTypeLabel);
+		// cityTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(cityType));
+		// cityNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( City().name ).cardinality(Cardinality.SINGLE));
+
+		// // GeneLocation keys
+		// geneLocationType = new GeneLocationType(geneLocationTypeLabel);
+		// geneLocationTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(geneLocationType));
+		// geneLocationNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( GeneLocation().name ).cardinality(Cardinality.SINGLE));
+
+		// // Consortium keys
+		// consortiumType = new ConsortiumType(consortiumTypeLabel);
+		// consortiumTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(consortiumType));
+		// consortiumNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Consortium().name ).cardinality(Cardinality.SINGLE));
+
+		//    // Country keys
+		// countryType = new CountryType(countryTypeLabel);
+		//    countryTypeLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(countryType));
+		//    countryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Country().name ).cardinality(Cardinality.SINGLE));
+
+		//    // DB keys
+		// dbType = new DBType(dbTypeLabel);
+		//    dbTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(dbType));
+		//    dbNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( DB().name ).cardinality(Cardinality.SINGLE));
+
+		//    // Dataset keys
+		// datasetType = new DatasetType(datasetTypeLabel);
+		//    datasetTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(datasetType));
+		//    datasetNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Dataset().name ).cardinality(Cardinality.SINGLE));
+
+		// // Disease keys
+		// diseaseType = new DiseaseType(diseaseTypeLabel);
+		// diseaseTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(diseaseType));
+		// diseaseIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().id ).cardinality(Cardinality.SINGLE));
+		// diseaseNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().name ).cardinality(Cardinality.SINGLE));
+		// diseaseAcronymKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().acronym ).cardinality(Cardinality.SINGLE));
+		// diseaseDescriptionKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Disease().description ).cardinality(Cardinality.SINGLE));
+
+		//    // Institute keys
+		// instituteType = new InstituteType(instituteTypeLabel);
+		//    instituteTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(instituteType));
+		//    instituteNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Institute().name ).cardinality(Cardinality.SINGLE));
+
+		//    // Organism keys
+		// organismType = new OrganismType(organismTypeLabel);
+		//    organismTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(organismType));
+		//    organismScientificNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().scientificName ).cardinality(Cardinality.SINGLE));
+		//    organismCommonNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().commonName ).cardinality(Cardinality.SINGLE));
+		//    organismSynonymNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Organism().synonymName ).cardinality(Cardinality.SINGLE));
+
+		//    // Keyword keys
+		// keywordType = new KeywordType(keywordTypeLabel);
+		//    keywordTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(keywordType));
+		//    keywordIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().id ).cardinality(Cardinality.SINGLE));
+		//    keywordNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Keyword().name ).cardinality(Cardinality.SINGLE));
+
+		//    // Interpro keys
+		// interproType = new InterproType(interproTypeLabel);
+		//    interproTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(interproType));
+		//    interproIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().id ).cardinality(Cardinality.SINGLE));
+		//    interproNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Interpro().name ).cardinality(Cardinality.SINGLE));
+
+		// // Isoform keys
+		// isoformType = new IsoformType(isoformTypeLabel);
+		// isoformTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(isoformType));
+		// isoformIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().id ).cardinality(Cardinality.SINGLE));
+		// isoformNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().name ).cardinality(Cardinality.SINGLE));
+		// isoformSequenceKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().sequence ).cardinality(Cardinality.SINGLE));
+		// isoformNoteKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Isoform().note ).cardinality(Cardinality.SINGLE));
+
+		//    // Journal keys
+		// journalType = new JournalType(journalTypeLabel);
+		//    journalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(journalType));
+		//    journalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Journal().name ).cardinality(Cardinality.SINGLE));
+
+		//    // OnlineArticle keys
+		// onlineArticleType = new OnlineArticleType(onlineArticleTypeLabel);
+		//    onlineArticleTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineArticleType));
+		//    onlineArticleTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineArticle().title ).cardinality(Cardinality.SINGLE));
+
+		//    // OnlineJournal keys
+		// onlineJournalType = new OnlineJournalType(onlineJournalTypeLabel);
+		//    onlineJournalTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(onlineJournalType));
+		//    onlineJournalNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( OnlineJournal().name ).cardinality(Cardinality.SINGLE));
+
+		// // Reference keys
+		// referenceType = new ReferenceType(null);
+		// referenceDateKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Reference().date ).cardinality(Cardinality.SINGLE));
+
+		//    // ReactomeTerm keys
+		// reactomeTermType = new ReactomeTermType(reactomeTermTypeLabel);
+		//    reactomeTermTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(reactomeTermType));
+		//    reactomeTermIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().id ).cardinality(Cardinality.SINGLE));
+		//    reactomeTermPathwayNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( ReactomeTerm().pathwayName ).cardinality(Cardinality.SINGLE));
+
+		//    // Publisher keys
+		// publisherType = new PublisherType(publisherTypeLabel);
+		//    publisherTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(publisherType));
+		//    publisherNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Publisher().name ).cardinality(Cardinality.SINGLE));
+
+		// // Person keys
+		// personType = new PersonType(personTypeLabel);
+		// personTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(personType));
+		// personNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Person().name ).cardinality(Cardinality.SINGLE));
+
+		//    // Pfam keys
+		// pfamType = new PfamType(pfamTypeLabel);
+		//    pfamTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pfamType));
+		//    pfamIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().id ).cardinality(Cardinality.SINGLE));
+		//    pfamNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pfam().name ).cardinality(Cardinality.SINGLE));
+
+		//    // Pubmed keys
+		// pubmedType = new PubmedType(pubmedTypeLabel);
+		//    pubmedTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pubmedType));
+		//    pubmedIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Pubmed().id ).cardinality(Cardinality.SINGLE));
+
+		//    // Submission keys
+		// submissionType = new SubmissionType(submissionTypeLabel);
+		//    submissionTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(submissionType));
+		//    submissionTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Submission().title ).cardinality(Cardinality.SINGLE));
+
+		// // Thesis keys
+		// thesisType = new ThesisType(thesisTypeLabel);
+		// thesisTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(thesisType));
+		// thesisTitleKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( Thesis().title ).cardinality(Cardinality.SINGLE));
+
+		//    // EMBL keys
+		// eMBLType = new EMBLType(eMBLTypeLabel);
+		//    eMBLTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(eMBLType));
+		//    eMBLIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().id ).cardinality(Cardinality.SINGLE));
+		//    eMBLMoleculeTypeKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().moleculeType ).cardinality(Cardinality.SINGLE));
+		//    eMBLProteinSequenceIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( EMBL().proteinSequenceId ).cardinality(Cardinality.SINGLE));
+
+		//    // PIR keys
+		// pIRType = new PIRType(pIRTypeLabel);
+		//    pIRTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pIRType));
+		//    pIRIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().id ).cardinality(Cardinality.SINGLE));
+		//    pIREntryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().entryName ).cardinality(Cardinality.SINGLE));
 
 
-
-
-    
-
-        // Patent keys
+		// Patent keys
 //	    patentType = new PatentType(patentTypeLabel);
 //        patentTypeLabel = raw().titanKeyForVertexType(patentType.number);
 //        patentNumberKey = patentTypeLabel;
@@ -755,18 +755,18 @@ extends
 //        unpublishedObservationType = new UnpublishedObservationType(null);
 //	    unpublishedObservationScopeKey = raw().titanKeyForVertexPropertySingle(unpublishedObservationType.scope);
 
-	  // TODO: keep going
+		// TODO: keep going
 
-        //-----------------------------------------------------------------------------------------
-        //--------------------------------EDGES--------------------------------------------
+		//-----------------------------------------------------------------------------------------
+		//--------------------------------EDGES--------------------------------------------
 
-        // articlePubmed
-        // articlePubmedLabel = raw().titanLabelForEdgeType(this.new ArticlePubmedType(null));
-        // articlePubmedType = new ArticlePubmedType(articlePubmedLabel);
+		// articlePubmed
+		// articlePubmedLabel = raw().titanLabelForEdgeType(this.new ArticlePubmedType(null));
+		// articlePubmedType = new ArticlePubmedType(articlePubmedLabel);
 
-        // articleJournal
-        // articleJournalLabel = raw().titanLabelForEdgeType(this.new ArticleJournalType(null));
-        // articleJournalType = new ArticleJournalType(articleJournalLabel);
+		// articleJournal
+		// articleJournalLabel = raw().titanLabelForEdgeType(this.new ArticleJournalType(null));
+		// articleJournalType = new ArticleJournalType(articleJournalLabel);
 //	    articleJournalVolumeKey = raw().titanKeyForEdgePropertySingle(articleJournalType.volume);
 //	    articleJournalFirstKey = raw().titanKeyForEdgePropertySingle(articleJournalType.first);
 //	    articleJournalLastKey = raw().titanKeyForEdgePropertySingle(articleJournalType.last);
@@ -936,115 +936,114 @@ extends
 //	    proteinGeneLocationNameKey = raw().titanKeyForEdgePropertySingle(proteinGeneLocationType.name);
 //	    proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationLabel);
 
-     //    // referenceArticle
-     //    referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));
-     //    referenceArticleType = new ReferenceArticleType(referenceArticleLabel);
+		//    // referenceArticle
+		//    referenceArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceArticleType(null));
+		//    referenceArticleType = new ReferenceArticleType(referenceArticleLabel);
 
-	    // // referenceAuthorPerson
-	    // referenceAuthorPersonLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorPersonType(null));
-	    // referenceAuthorPersonType = new ReferenceAuthorPersonType(referenceAuthorPersonLabel);
+		// // referenceAuthorPerson
+		// referenceAuthorPersonLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorPersonType(null));
+		// referenceAuthorPersonType = new ReferenceAuthorPersonType(referenceAuthorPersonLabel);
 
-	    // // referenceAuthorConsortium
-	    // referenceAuthorConsortiumLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorConsortiumType(null));
-	    // referenceAuthorConsortiumType = new ReferenceAuthorConsortiumType(referenceAuthorConsortiumLabel);
+		// // referenceAuthorConsortium
+		// referenceAuthorConsortiumLabel = raw().titanLabelForEdgeType(this.new ReferenceAuthorConsortiumType(null));
+		// referenceAuthorConsortiumType = new ReferenceAuthorConsortiumType(referenceAuthorConsortiumLabel);
 
-     //    // referenceThesis
-     //    referenceThesisLabel = raw().titanLabelForEdgeType(this.new ReferenceThesisType(null));
-     //    referenceThesisType = new ReferenceThesisType(referenceThesisLabel);
+		//    // referenceThesis
+		//    referenceThesisLabel = raw().titanLabelForEdgeType(this.new ReferenceThesisType(null));
+		//    referenceThesisType = new ReferenceThesisType(referenceThesisLabel);
 
-     //    // referenceSubmission
-     //    referenceSubmissionLabel = raw().titanLabelForEdgeType(this.new ReferenceSubmissionType(null));
-     //    referenceSubmissionType = new ReferenceSubmissionType(referenceSubmissionLabel);
+		//    // referenceSubmission
+		//    referenceSubmissionLabel = raw().titanLabelForEdgeType(this.new ReferenceSubmissionType(null));
+		//    referenceSubmissionType = new ReferenceSubmissionType(referenceSubmissionLabel);
 
-     //    // referenceOnlineArticle
-     //    referenceOnlineArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceOnlineArticleType(null));
-     //    referenceOnlineArticleType = new ReferenceOnlineArticleType(referenceOnlineArticleLabel);
+		//    // referenceOnlineArticle
+		//    referenceOnlineArticleLabel = raw().titanLabelForEdgeType(this.new ReferenceOnlineArticleType(null));
+		//    referenceOnlineArticleType = new ReferenceOnlineArticleType(referenceOnlineArticleLabel);
 
-     //    // referencePatent
-     //    referencePatentLabel = raw().titanLabelForEdgeType(this.new ReferencePatentType(null));
-     //    referencePatentType = new ReferencePatentType(referencePatentLabel);
+		//    // referencePatent
+		//    referencePatentLabel = raw().titanLabelForEdgeType(this.new ReferencePatentType(null));
+		//    referencePatentType = new ReferencePatentType(referencePatentLabel);
 
-     //    // referenceBook
-     //    referenceBookLabel = raw().titanLabelForEdgeType(this.new ReferenceBookType(null));
-     //    referenceBookType = new ReferenceBookType(referenceBookLabel);
+		//    // referenceBook
+		//    referenceBookLabel = raw().titanLabelForEdgeType(this.new ReferenceBookType(null));
+		//    referenceBookType = new ReferenceBookType(referenceBookLabel);
 
-     //    // referenceUnpublishedObservation
-     //    referenceUnpublishedObservationLabel = raw().titanLabelForEdgeType(this.new ReferenceUnpublishedObservationType(null));
-     //    referenceUnpublishedObservationType = new ReferenceUnpublishedObservationType(referenceUnpublishedObservationLabel);
+		//    // referenceUnpublishedObservation
+		//    referenceUnpublishedObservationLabel = raw().titanLabelForEdgeType(this.new ReferenceUnpublishedObservationType(null));
+		//    referenceUnpublishedObservationType = new ReferenceUnpublishedObservationType(referenceUnpublishedObservationLabel);
 
-     //    // thesisInstitute
-     //    thesisInstituteLabel = raw().titanLabelForEdgeType(this.new ThesisInstituteType(null));
-     //    thesisInstituteType = new ThesisInstituteType(thesisInstituteLabel);
+		//    // thesisInstitute
+		//    thesisInstituteLabel = raw().titanLabelForEdgeType(this.new ThesisInstituteType(null));
+		//    thesisInstituteType = new ThesisInstituteType(thesisInstituteLabel);
 
-     //    // subcellularLocationParent
-     //    subcellularLocationParentLabel = raw().titanLabelForEdgeType(this.new SubcellularLocationParentType(null));
-     //    subcellularLocationParentType = new SubcellularLocationParentType(subcellularLocationParentLabel);
+		//    // subcellularLocationParent
+		//    subcellularLocationParentLabel = raw().titanLabelForEdgeType(this.new SubcellularLocationParentType(null));
+		//    subcellularLocationParentType = new SubcellularLocationParentType(subcellularLocationParentLabel);
 
-	    // // submissionDB
-	    // submissionDBLabel = raw().titanLabelForEdgeType(this.new SubmissionDBType(null));
-	    // submissionDBType = new SubmissionDBType(submissionDBLabel);
+		// // submissionDB
+		// submissionDBLabel = raw().titanLabelForEdgeType(this.new SubmissionDBType(null));
+		// submissionDBType = new SubmissionDBType(submissionDBLabel);
 
 
+	}
 
-    }
+	private void initIndices() {
 
-    private void initIndices() {
+		//    proteinAccessionIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Protein().accession);
+		//    datasetNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Dataset().name);
+		//    organismScientificNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Organism().scientificName);
+		//    keywordIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Keyword().id);
+		//    interproIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Interpro().id);
+		//    reactomeTermIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, ReactomeTerm().id);
+		//    pfamIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Pfam().id);
+		//    keggIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Kegg().id);
+		//    eMBLIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, EMBL().id);
+		//    pIRIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, PIR().id);
+		//    uniGeneIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, UniGene().id);
+		//    ensemblIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Ensembl().id);
+		//    taxonNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Taxon().name);
+		//    refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, RefSeq().id);
+		//    commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, CommentType().name);
+		//    featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, FeatureType().name);
+		// consortiumNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Consortium().name);
+		// personNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Person().name);
+		// patentNumberIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Patent().number);
+		// submissionTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Submission().title);
+		// instituteNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Institute().name);
+		// thesisTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Thesis().title);
+		// onlineArticleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, OnlineArticle().title);
+		// onlineJournalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, OnlineJournal().name);
+		// pubmedIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Pubmed().id);
+		// cityNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, City().name);
+		// countryNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Country().name);
+		// publisherNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Publisher().name);
+		// bookNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Book().name);
+		// dbNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, DB().name);
+		// articleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Article().title);
+		// journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Journal().name);
+		// diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Disease().id);
+		// subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
+		// isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().id);
+		// sequenceCautionNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SequenceCaution().name);
+		// geneLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GeneLocation().name);
+		// alternativeProductNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, AlternativeProduct().name);
 
-     //    proteinAccessionIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Protein().accession);
-     //    datasetNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Dataset().name);
-     //    organismScientificNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, Organism().scientificName);
-     //    keywordIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Keyword().id);
-     //    interproIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Interpro().id);
-     //    reactomeTermIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, ReactomeTerm().id);
-     //    pfamIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Pfam().id);
-     //    keggIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Kegg().id);
-     //    eMBLIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, EMBL().id);
-     //    pIRIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, PIR().id);
-     //    uniGeneIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, UniGene().id);
-     //    ensemblIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Ensembl().id);
-     //    taxonNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Taxon().name);
-     //    refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, RefSeq().id);
-     //    commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, CommentType().name);
-     //    featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, FeatureType().name);
-	    // consortiumNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Consortium().name);
-	    // personNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Person().name);
-	    // patentNumberIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Patent().number);
-	    // submissionTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Submission().title);
-	    // instituteNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Institute().name);
-	    // thesisTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Thesis().title);
-	    // onlineArticleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, OnlineArticle().title);
-	    // onlineJournalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, OnlineJournal().name);
-	    // pubmedIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Pubmed().id);
-	    // cityNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, City().name);
-	    // countryNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Country().name);
-	    // publisherNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Publisher().name);
-	    // bookNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Book().name);
-	    // dbNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, DB().name);
-	    // articleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Article().title);
-	    // journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Journal().name);
-	    // diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Disease().id);
-	    // subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SubcellularLocation().name);
-	    // isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Isoform().id);
-	    // sequenceCautionNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, SequenceCaution().name);
-	    // geneLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GeneLocation().name);
-	    // alternativeProductNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, AlternativeProduct().name);
+	}
 
-    }
+	@Override
+	public ProteinOrganismType ProteinOrganism() {
+		return proteinOrganismType;
+	}
 
-    @Override
-    public ProteinOrganismType ProteinOrganism() {
-        return proteinOrganismType;
-    }
+	@Override
+	public ProteinPfamType ProteinPfam() {
+		return proteinPfamType;
+	}
 
-    @Override
-    public ProteinPfamType ProteinPfam() {
-        return proteinPfamType;
-    }
-
-    @Override
-    public ProteinPIRType ProteinPIR() {
-        return proteinPIRType;
-    }
+	@Override
+	public ProteinPIRType ProteinPIR() {
+		return proteinPIRType;
+	}
 
 	@Override
 	public ProteinProteinInteractionType ProteinProteinInteraction() {
@@ -1067,29 +1066,29 @@ extends
 	}
 
 	@Override
-    public ProteinReactomeTermType ProteinReactomeTerm() {
-        return proteinReactomeTermType;
-    }
+	public ProteinReactomeTermType ProteinReactomeTerm() {
+		return proteinReactomeTermType;
+	}
 
-    @Override
-    public ProteinSubcellularLocationType ProteinSubcellularLocation() {
-        return proteinSubcellularLocationType;
-    }
+	@Override
+	public ProteinSubcellularLocationType ProteinSubcellularLocation() {
+		return proteinSubcellularLocationType;
+	}
 
-    @Override
-    public ProteinUniGeneType ProteinUniGene() {
-        return proteinUniGeneType;
-    }
+	@Override
+	public ProteinUniGeneType ProteinUniGene() {
+		return proteinUniGeneType;
+	}
 
-    @Override
-    public ProteinRefSeqType ProteinRefSeq() {
-        return proteinRefSeqType;
-    }
+	@Override
+	public ProteinRefSeqType ProteinRefSeq() {
+		return proteinRefSeqType;
+	}
 
-    @Override
-    public ProteinReferenceType ProteinReference() {
-        return proteinReferenceType;
-    }
+	@Override
+	public ProteinReferenceType ProteinReference() {
+		return proteinReferenceType;
+	}
 
 	@Override
 	public ProteinSequenceCautionType ProteinSequenceCaution() {
@@ -1107,80 +1106,80 @@ extends
 	}
 
 	@Override
-    public ReferenceArticleType ReferenceArticle() {
-        return referenceArticleType;
-    }
+	public ReferenceArticleType ReferenceArticle() {
+		return referenceArticleType;
+	}
 
-    @Override
-    public ReferenceBookType ReferenceBook() {
-        return referenceBookType;
-    }
+	@Override
+	public ReferenceBookType ReferenceBook() {
+		return referenceBookType;
+	}
 
-    @Override
-    public ReferenceOnlineArticleType ReferenceOnlineArticle() {
-        return referenceOnlineArticleType;
-    }
+	@Override
+	public ReferenceOnlineArticleType ReferenceOnlineArticle() {
+		return referenceOnlineArticleType;
+	}
 
-    @Override
-    public ReferencePatentType ReferencePatent() {
-        return referencePatentType;
-    }
+	@Override
+	public ReferencePatentType ReferencePatent() {
+		return referencePatentType;
+	}
 
-    @Override
-    public ReferenceThesisType ReferenceThesis() {
-        return referenceThesisType;
-    }
+	@Override
+	public ReferenceThesisType ReferenceThesis() {
+		return referenceThesisType;
+	}
 
-    @Override
-    public ReferenceSubmissionType ReferenceSubmission() {
-        return referenceSubmissionType;
-    }
+	@Override
+	public ReferenceSubmissionType ReferenceSubmission() {
+		return referenceSubmissionType;
+	}
 
-    @Override
-    public ReferenceUnpublishedObservationType ReferenceUnpublishedObservation() {
-        return referenceUnpublishedObservationType;
-    }
+	@Override
+	public ReferenceUnpublishedObservationType ReferenceUnpublishedObservation() {
+		return referenceUnpublishedObservationType;
+	}
 
-    @Override
-    public SubmissionDBType SubmissionDB() {
-        return submissionDBType;
-    }
+	@Override
+	public SubmissionDBType SubmissionDB() {
+		return submissionDBType;
+	}
 
-    @Override
-    public SubcellularLocationParentType SubcellularLocationParent() {
-        return subcellularLocationParentType;
-    }
+	@Override
+	public SubcellularLocationParentType SubcellularLocationParent() {
+		return subcellularLocationParentType;
+	}
 
-    @Override
-    public TaxonParentType TaxonParent() {
-        return taxonParentType;
-    }
+	@Override
+	public TaxonParentType TaxonParent() {
+		return taxonParentType;
+	}
 
-    @Override
-    public ThesisInstituteType ThesisInstitute() {
-        return thesisInstituteType;
-    }
+	@Override
+	public ThesisInstituteType ThesisInstitute() {
+		return thesisInstituteType;
+	}
 
 
-    @Override
-    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotUniRefGraph() {
-        return uniprotUniRefGraph;
-    }
+	@Override
+	public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotUniRefGraph() {
+		return uniprotUniRefGraph;
+	}
 
-    @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
-        return uniprotGoGraph;
-    }
+	@Override
+	public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
+		return uniprotGoGraph;
+	}
 
-    @Override
-    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
-        return uniprotEnzymeGraph;
-    }
+	@Override
+	public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
+		return uniprotEnzymeGraph;
+	}
 
-    @Override
-    public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotNCBITaxonomyGraph() {
-        return uniprotNCBITaxonomyGraph;
-    }
+	@Override
+	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotNCBITaxonomyGraph() {
+		return uniprotNCBITaxonomyGraph;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> alternativeProductNameIndex() {
@@ -1293,16 +1292,16 @@ extends
 	}
 
 	@Override
-    public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ensemblIdIndex() {
-        return ensemblIdIndex;
-    }
+	public TypedVertexIndex.Unique<Ensembl<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			EnsemblType, EnsemblType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ensemblIdIndex() {
+		return ensemblIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pIRIdIndex() {
-        return pIRIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<PIR<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			PIRType, PIRType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pIRIdIndex() {
+		return pIRIdIndex;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<Pubmed<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PubmedType, PubmedType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pubmedIdIndex() {
@@ -1310,76 +1309,76 @@ extends
 	}
 
 	@Override
-    public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniGeneIdIndex() {
-        return uniGeneIdIndex;
-    }
+	public TypedVertexIndex.Unique<UniGene<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			UniGeneType, UniGeneType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniGeneIdIndex() {
+		return uniGeneIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> keggIdIndex() {
-        return keggIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> keggIdIndex() {
+		return keggIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> eMBLIdIndex() {
-        return eMBLIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> eMBLIdIndex() {
+		return eMBLIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> refSeqIdIndex() {
-        return refSeqIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			RefSeqType, RefSeqType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> refSeqIdIndex() {
+		return refSeqIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> reactomeTermIdIndex() {
-        return reactomeTermIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> reactomeTermIdIndex() {
+		return reactomeTermIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> datasetNameIndex() {
-        return datasetNameIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Dataset<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			DatasetType, DatasetType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> datasetNameIndex() {
+		return datasetNameIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> keywordIdIndex() {
-        return keywordIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> keywordIdIndex() {
+		return keywordIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> interproIdIndex() {
-        return interproIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> interproIdIndex() {
+		return interproIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pfamIdIndex() {
-        return pfamIdIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> pfamIdIndex() {
+		return pfamIdIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> organismScientificNameIndex() {
-        return organismScientificNameIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Organism<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			OrganismType, OrganismType.scientificName, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> organismScientificNameIndex() {
+		return organismScientificNameIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> taxonNameIndex() {
-        return taxonNameIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<Taxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			TaxonType, TaxonType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> taxonNameIndex() {
+		return taxonNameIndex;
+	}
 
-    @Override
-    public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> featureTypeNameIndex() {
-        return featureTypeNameIndex;
-    }
+	@Override
+	public TypedVertexIndex.Unique<FeatureType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			FeatureTypeType, FeatureTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> featureTypeNameIndex() {
+		return featureTypeNameIndex;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CommentTypeType, CommentTypeType.name, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> commentTypeNameIndex() {
@@ -1392,19 +1391,19 @@ extends
 	}
 
 	@Override
-    public ArticleType Article() {
-        return articleType;
-    }
+	public ArticleType Article() {
+		return articleType;
+	}
 
-    @Override
-    public BookType Book() {
-        return bookType;
-    }
+	@Override
+	public BookType Book() {
+		return bookType;
+	}
 
-    @Override
-    public CityType City() {
-        return cityType;
-    }
+	@Override
+	public CityType City() {
+		return cityType;
+	}
 
 	@Override
 	public DiseaseType Disease() {
@@ -1412,9 +1411,9 @@ extends
 	}
 
 	@Override
-    public CommentTypeType CommentType() {
-        return commentTypeType;
-    }
+	public CommentTypeType CommentType() {
+		return commentTypeType;
+	}
 
 	@Override
 	public ConsortiumType Consortium() {
@@ -1422,34 +1421,34 @@ extends
 	}
 
 	@Override
-    public DatasetType Dataset() {
-        return datasetType;
-    }
+	public DatasetType Dataset() {
+		return datasetType;
+	}
 
-    @Override
-    public CountryType Country() {
-        return countryType;
-    }
+	@Override
+	public CountryType Country() {
+		return countryType;
+	}
 
-    @Override
-    public DBType DB() {
-        return dbType;
-    }
+	@Override
+	public DBType DB() {
+		return dbType;
+	}
 
-    @Override
-    public EMBLType EMBL() {
-        return eMBLType;
-    }
+	@Override
+	public EMBLType EMBL() {
+		return eMBLType;
+	}
 
-    @Override
-    public EnsemblType Ensembl() {
-        return ensemblType;
-    }
+	@Override
+	public EnsemblType Ensembl() {
+		return ensemblType;
+	}
 
-    @Override
-    public FeatureTypeType FeatureType() {
-        return featureTypeType;
-    }
+	@Override
+	public FeatureTypeType FeatureType() {
+		return featureTypeType;
+	}
 
 	@Override
 	public GeneLocationType GeneLocation() {
@@ -1457,54 +1456,54 @@ extends
 	}
 
 	@Override
-    public InstituteType Institute() {
-        return instituteType;
-    }
+	public InstituteType Institute() {
+		return instituteType;
+	}
 
-    @Override
-    public InterproType Interpro() {
-        return interproType;
-    }
+	@Override
+	public InterproType Interpro() {
+		return interproType;
+	}
 
 	@Override
 	public IsoformType Isoform() {
 		return isoformType;
 	}
 
-    @Override
-    public JournalType Journal() {
-        return journalType;
-    }
+	@Override
+	public JournalType Journal() {
+		return journalType;
+	}
 
-    @Override
-    public KeggType Kegg() {
-        return keggType;
-    }
+	@Override
+	public KeggType Kegg() {
+		return keggType;
+	}
 
-    @Override
-    public KeywordType Keyword() {
-        return keywordType;
-    }
+	@Override
+	public KeywordType Keyword() {
+		return keywordType;
+	}
 
-    @Override
-    public OnlineArticleType OnlineArticle() {
-        return onlineArticleType;
-    }
+	@Override
+	public OnlineArticleType OnlineArticle() {
+		return onlineArticleType;
+	}
 
-    @Override
-    public OrganismType Organism() {
-        return organismType;
-    }
+	@Override
+	public OrganismType Organism() {
+		return organismType;
+	}
 
-    @Override
-    public OnlineJournalType OnlineJournal() {
-        return onlineJournalType;
-    }
+	@Override
+	public OnlineJournalType OnlineJournal() {
+		return onlineJournalType;
+	}
 
-    @Override
-    public PatentType Patent() {
-        return patentType;
-    }
+	@Override
+	public PatentType Patent() {
+		return patentType;
+	}
 
 	@Override
 	public PersonType Person() {
@@ -1517,74 +1516,74 @@ extends
 	}
 
 	@Override
-    public PfamType Pfam() {
-        return pfamType;
-    }
+	public PfamType Pfam() {
+		return pfamType;
+	}
 
-    @Override
-    public PIRType PIR() {
-        return pIRType;
-    }
+	@Override
+	public PIRType PIR() {
+		return pIRType;
+	}
 
-    @Override
-    public ProteinType Protein() {
-        return proteinType;
-    }
+	@Override
+	public ProteinType Protein() {
+		return proteinType;
+	}
 
-    @Override
-    public PublisherType Publisher() {
-        return publisherType;
-    }
+	@Override
+	public PublisherType Publisher() {
+		return publisherType;
+	}
 
-    @Override
-    public PubmedType Pubmed() {
-        return pubmedType;
-    }
+	@Override
+	public PubmedType Pubmed() {
+		return pubmedType;
+	}
 
-    @Override
-    public ReactomeTermType ReactomeTerm() {
-        return reactomeTermType;
-    }
+	@Override
+	public ReactomeTermType ReactomeTerm() {
+		return reactomeTermType;
+	}
 
-    @Override
-    public ReferenceType Reference() {
-        return referenceType;
-    }
+	@Override
+	public ReferenceType Reference() {
+		return referenceType;
+	}
 
-    @Override
-    public RefSeqType RefSeq() {
-        return refSeqType;
-    }
+	@Override
+	public RefSeqType RefSeq() {
+		return refSeqType;
+	}
 
-    @Override
-    public SubcellularLocationType SubcellularLocation() {
-        return subcellularLocationType;
-    }
+	@Override
+	public SubcellularLocationType SubcellularLocation() {
+		return subcellularLocationType;
+	}
 
-    @Override
-    public SubmissionType Submission() {
-        return submissionType;
-    }
+	@Override
+	public SubmissionType Submission() {
+		return submissionType;
+	}
 
-    @Override
-    public TaxonType Taxon() {
-        return taxonType;
-    }
+	@Override
+	public TaxonType Taxon() {
+		return taxonType;
+	}
 
-    @Override
-    public ThesisType Thesis() {
-        return thesisType;
-    }
+	@Override
+	public ThesisType Thesis() {
+		return thesisType;
+	}
 
-    @Override
-    public UniGeneType UniGene() {
-        return uniGeneType;
-    }
+	@Override
+	public UniGeneType UniGene() {
+		return uniGeneType;
+	}
 
-    @Override
-    public UnpublishedObservationType UnpublishedObservation() {
-        return unpublishedObservationType;
-    }
+	@Override
+	public UnpublishedObservationType UnpublishedObservation() {
+		return unpublishedObservationType;
+	}
 
 	@Override
 	public IsoformEventGeneratorType IsoformEventGenerator() {
@@ -1592,25 +1591,25 @@ extends
 	}
 
 	@Override
-    public ArticleJournalType ArticleJournal() {
-        return articleJournalType;
-    }
+	public ArticleJournalType ArticleJournal() {
+		return articleJournalType;
+	}
 
-    @Override
-    public ArticlePubmedType ArticlePubmed() {
-        return articlePubmedType;
-    }
+	@Override
+	public ArticlePubmedType ArticlePubmed() {
+		return articlePubmedType;
+	}
 
 
-    @Override
-    public BookCityType BookCity() {
-        return bookCityType;
-    }
+	@Override
+	public BookCityType BookCity() {
+		return bookCityType;
+	}
 
-    @Override
-    public BookPublisherType BookPublisher() {
-        return bookPublisherType;
-    }
+	@Override
+	public BookPublisherType BookPublisher() {
+		return bookPublisherType;
+	}
 
 	@Override
 	public BookEditorType BookEditor() {
@@ -1618,29 +1617,29 @@ extends
 	}
 
 	@Override
-    public InstituteCountryType InstituteCountry() {
-        return instituteCountryType;
-    }
+	public InstituteCountryType InstituteCountry() {
+		return instituteCountryType;
+	}
 
-    @Override
-    public OnlineArticleOnlineJournalType OnlineArticleOnlineJournal() {
-        return onlineArticleOnlineJournalType;
-    }
+	@Override
+	public OnlineArticleOnlineJournalType OnlineArticleOnlineJournal() {
+		return onlineArticleOnlineJournalType;
+	}
 
-    @Override
-    public OrganismTaxonType OrganismTaxon() {
-        return organismTaxonType;
-    }
+	@Override
+	public OrganismTaxonType OrganismTaxon() {
+		return organismTaxonType;
+	}
 
-    @Override
-    public ProteinCommentType ProteinComment() {
-        return proteinCommentType;
-    }
+	@Override
+	public ProteinCommentType ProteinComment() {
+		return proteinCommentType;
+	}
 
-    @Override
-    public ProteinDatasetType ProteinDataset() {
-        return proteinDatasetType;
-    }
+	@Override
+	public ProteinDatasetType ProteinDataset() {
+		return proteinDatasetType;
+	}
 
 	@Override
 	public ProteinDiseaseType ProteinDisease() {
@@ -1648,19 +1647,19 @@ extends
 	}
 
 	@Override
-    public ProteinEMBLType ProteinEMBL() {
-        return proteinEMBLType;
-    }
+	public ProteinEMBLType ProteinEMBL() {
+		return proteinEMBLType;
+	}
 
-    @Override
-    public ProteinEnsemblType ProteinEnsembl() {
-        return proteinEnsemblType;
-    }
+	@Override
+	public ProteinEnsemblType ProteinEnsembl() {
+		return proteinEnsemblType;
+	}
 
-    @Override
-    public ProteinFeatureType ProteinFeature() {
-        return proteinFeatureType;
-    }
+	@Override
+	public ProteinFeatureType ProteinFeature() {
+		return proteinFeatureType;
+	}
 
 	@Override
 	public ProteinGeneLocationType ProteinGeneLocation() {
@@ -1668,19 +1667,19 @@ extends
 	}
 
 	@Override
-    public ProteinInterproType ProteinInterpro() {
-        return proteinInterproType;
-    }
+	public ProteinInterproType ProteinInterpro() {
+		return proteinInterproType;
+	}
 
-    @Override
-    public ProteinKeggType ProteinKegg() {
-        return proteinKeggType;
-    }
+	@Override
+	public ProteinKeggType ProteinKegg() {
+		return proteinKeggType;
+	}
 
-    @Override
-    public ProteinKeywordType ProteinKeyword() {
-        return proteinKeywordType;
-    }
+	@Override
+	public ProteinKeywordType ProteinKeyword() {
+		return proteinKeywordType;
+	}
 
 	/*
 		You can use this as `uniprotGraph.withGo(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
@@ -1689,6 +1688,7 @@ extends
 		this.uniprotGoGraph = uniprotGoGraph;
 		return this;
 	}
+
 	/*
 		You can use this as `uniprotGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniprotGraph, enzymeGraph))`
 	*/
@@ -1696,6 +1696,7 @@ extends
 		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
 		return this;
 	}
+
 	/*
 		You can use this as `uniprotGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
 	*/
@@ -1703,6 +1704,7 @@ extends
 		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
 		return this;
 	}
+
 	/*
 		You can use this as `uniprotGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
 	*/
