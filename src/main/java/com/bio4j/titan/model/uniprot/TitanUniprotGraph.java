@@ -973,11 +973,16 @@ public final class TitanUniprotGraph
 		proteinIsoformType = new ProteinIsoformType(proteinIsoformTypeLabelMaker);
 	    proteinIsoformLabel = raw().createOrGet(mgmt, proteinIsoformType.raw());
 
-	    isoformProteinInteractionLabel = raw().titanLabelForEdgeType(this.new IsoformProteinInteractionType(null));
-	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionLabel);
+		// isoformProteinInteraction
+		EdgeLabelMaker isoformProteinInteractionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new IsoformProteinInteractionType(null));
+	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionTypeLabelMaker);
+		isoformProteinInteractionLabel = raw().createOrGet(mgmt, isoformProteinInteractionType.raw());
 
-        proteinReferenceLabel = raw().titanLabelForEdgeType(this.new ProteinReferenceType(null));
-	    proteinReferenceType = new ProteinReferenceType(proteinReferenceLabel);
+		// proteinReference
+		EdgeLabelMaker proteinReferenceTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinReferenceType(null));
+		proteinReferenceType = new ProteinReferenceType(proteinReferenceTypeLabelMaker);
+        proteinReferenceLabel = raw().createOrGet(mgmt, proteinReferenceType.raw());
+
 
 	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
 	    proteinGeneLocationNameKey = raw().titanKeyForEdgePropertySingle(proteinGeneLocationType.name);
