@@ -214,8 +214,12 @@ public final class TitanUniprotGraph
 	public PropertyKey commentTypeNameKey;
 	public CommentTypeType commentTypeType;
 	//---UnpublishedObservation----
-	public VertexLabel unpublishedObservationScopeKey;
+	public PropertyKey unpublishedObservationScopeKey;
 	public UnpublishedObservationType unpublishedObservationType;
+
+
+	//-----------------------------------------
+	//---------------INDICES---------------------------
 	public TitanTypedVertexIndex.Unique<
 			Protein<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ProteinType,
 			ProteinType.accession, String,
@@ -226,11 +230,6 @@ public final class TitanUniprotGraph
 	public TitanTypedVertexIndex.Unique<Keyword<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeywordType, KeywordType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keywordIdIndex;
 	public TitanTypedVertexIndex.Unique<ReactomeTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReactomeTermType, ReactomeTermType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> reactomeTermIdIndex;
 	public TitanTypedVertexIndex.Unique<Interpro<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, InterproType, InterproType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> interproIdIndex;
-
-
-	//------------------INDICES----------------
-	//-----------------------------------------
-	//---------------INDICES---------------------------
 	public TitanTypedVertexIndex.Unique<Pfam<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, PfamType, PfamType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> pfamIdIndex;
 	public TitanTypedVertexIndex.Unique<Kegg<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, KeggType, KeggType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> keggIdIndex;
 	public TitanTypedVertexIndex.Unique<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EMBLType, EMBLType.id, String, UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> eMBLIdIndex;
@@ -734,41 +733,47 @@ public final class TitanUniprotGraph
 	    subcellularLocationType = new SubcellularLocationType(subcellularLocationTypeLabelMaker);
         subcellularLocationNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, SubcellularLocation().name).cardinality(Cardinality.SINGLE));
 		subcellularLocationTypeLabel = raw().createOrGet(mgmt, subcellularLocationType.raw());
-//
-//        //---Kegg---
-//	    keggType = new KeggType(keggTypeLabel);
-//        keggTypeLabel = raw().titanKeyForVertexType(keggType.id);
-//        keggIdKey = keggTypeLabel;
-//
-//        //---Taxon---
-//	    taxonType = new TaxonType(taxonTypeLabel);
-//        taxonTypeLabel = raw().titanKeyForVertexType(taxonType.name);
-//        taxonNameKey = taxonTypeLabel;
-//
-//        //---RefSeq---
-//	    refSeqType = new RefSeqType(refSeqTypeLabel);
-//        refSeqTypeLabel = raw().titanKeyForVertexType(refSeqType.id);
-//        refSeqIdKey = refSeqTypeLabel;
-//        refSeqNucleotideSequenceIdKey = raw().titanKeyForVertexPropertySingle(refSeqType.nucleotideSequenceId);
-//
-//	    //---SequenceCaution---
-//	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeLabel);
-//	    sequenceCautionTypeLabel = raw().titanKeyForVertexType(sequenceCautionType.name);
-//	    sequenceCautionNameKey = sequenceCautionTypeLabel;
-//
-//        //---Comment---
-//	    commentTypeType = new CommentTypeType(commentTypeTypeLabel);
-//        commentTypeTypeLabel = raw().titanKeyForVertexType(commentTypeType.name);
-//        commentTypeNameKey = commentTypeTypeLabel;
-//
-//        //---Feature---
-//	    featureTypeType = new FeatureTypeType(featureTypeTypeLabel);
-//        featureTypeTypeLabel = raw().titanKeyForVertexType(featureTypeType.name);
-//        featureTypeNameKey = featureTypeTypeLabel;
-//
-//        //---UnpublishedObservation
-//        unpublishedObservationType = new UnpublishedObservationType(null);
-//	    unpublishedObservationScopeKey = raw().titanKeyForVertexPropertySingle(unpublishedObservationType.scope);
+
+        //---Kegg---
+		VertexLabelMaker keggTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new KeggType(null));
+	    keggType = new KeggType(keggTypeLabelMaker);
+        keggIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Kegg().id).cardinality(Cardinality.SINGLE));
+		keggTypeLabel =  raw().createOrGet(mgmt, keggType.raw());
+
+        //---Taxon---
+		VertexLabelMaker taxonTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new TaxonType(null));
+	    taxonType = new TaxonType(taxonTypeLabelMaker);
+        taxonNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Taxon().name).cardinality(Cardinality.SINGLE));
+		taxonTypeLabel = raw().createOrGet(mgmt, taxonType.raw());
+
+        //---RefSeq---
+		VertexLabelMaker refSeqTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new RefSeqType(null));
+	    refSeqType = new RefSeqType(refSeqTypeLabelMaker);
+        refSeqIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, RefSeq().id).cardinality(Cardinality.SINGLE));
+        refSeqNucleotideSequenceIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, RefSeq().nucleotideSequenceId).cardinality(Cardinality.SINGLE));
+		refSeqTypeLabel = raw().createOrGet(mgmt, refSeqType.raw());
+
+	    //---SequenceCaution---
+		VertexLabelMaker sequenceCautionTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new SequenceCautionType(null));
+	    sequenceCautionType = new SequenceCautionType(sequenceCautionTypeLabelMaker);
+	    sequenceCautionNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, SequenceCaution().name).cardinality(Cardinality.SINGLE));
+		sequenceCautionTypeLabel = raw().createOrGet(mgmt, sequenceCautionType.raw());
+
+        //---Comment---
+		VertexLabelMaker commentTypeTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new CommentTypeType(null));
+	    commentTypeType = new CommentTypeType(commentTypeTypeLabelMaker);
+        commentTypeNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, CommentType().name).cardinality(Cardinality.SINGLE));
+		commentTypeTypeLabel = raw().createOrGet(mgmt, commentTypeType.raw());
+
+        //---Feature---
+		VertexLabelMaker featureTypeTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new FeatureTypeType(null));
+	    featureTypeType = new FeatureTypeType(featureTypeTypeLabelMaker);
+        featureTypeNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, FeatureType().name).cardinality(Cardinality.SINGLE));
+		featureTypeTypeLabel = raw().createOrGet(mgmt, featureTypeType.raw());
+
+        //---UnpublishedObservation
+        unpublishedObservationType = new UnpublishedObservationType(null);
+	    unpublishedObservationScopeKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UnpublishedObservation().scope).cardinality(Cardinality.SINGLE));
 
 		// TODO: keep going
 
