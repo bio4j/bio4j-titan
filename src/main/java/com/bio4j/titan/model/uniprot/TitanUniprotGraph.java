@@ -958,17 +958,20 @@ public final class TitanUniprotGraph
         proteinFeatureRefKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinFeature().ref).cardinality(Cardinality.SINGLE));
 		proteinFeatureLabel = raw().createOrGet(mgmt, proteinFeatureType.raw());
 
-        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
-        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
+		// proteinProteinInteraction
+		EdgeLabelMaker proteinProteinInteractionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinProteinInteractionType(null));
+	    proteinProteinInteractionType = new ProteinProteinInteractionType(proteinProteinInteractionTypeLabelMaker);
+		proteinProteinInteractionLabel = raw().createOrGet(mgmt, proteinProteinInteractionType.raw());
 
-	    proteinProteinInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinProteinInteractionType(null));
-	    proteinProteinInteractionType = new ProteinProteinInteractionType(proteinProteinInteractionLabel);
+		// proteinIsoformInteraction
+		EdgeLabelMaker proteinIsoformInteractionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinIsoformInteractionType(null));
+		proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionTypeLabelMaker);
+	    proteinIsoformInteractionLabel = raw().createOrGet(mgmt, proteinIsoformInteractionType.raw());
 
-	    proteinIsoformInteractionLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformInteractionType(null));
-	    proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionLabel);
-
-	    proteinIsoformLabel = raw().titanLabelForEdgeType(this.new ProteinIsoformType(null));
-	    proteinIsoformType = new ProteinIsoformType(proteinIsoformLabel);
+		// proteinIsoform
+		EdgeLabelMaker proteinIsoformTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinIsoformType(null));
+		proteinIsoformType = new ProteinIsoformType(proteinIsoformTypeLabelMaker);
+	    proteinIsoformLabel = raw().createOrGet(mgmt, proteinIsoformType.raw());
 
 	    isoformProteinInteractionLabel = raw().titanLabelForEdgeType(this.new IsoformProteinInteractionType(null));
 	    isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionLabel);
