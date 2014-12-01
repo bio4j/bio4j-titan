@@ -932,7 +932,7 @@ public final class TitanUniprotGraph
 		proteinCommentTextKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().text).cardinality(Cardinality.SINGLE));
 		proteinCommentBeginKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().begin).cardinality(Cardinality.SINGLE));
 		proteinCommentEndKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().end).cardinality(Cardinality.SINGLE));
-		proteinCommentMassKey = rraw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().mass).cardinality(Cardinality.SINGLE));
+		proteinCommentMassKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().mass).cardinality(Cardinality.SINGLE));
 		proteinCommentMethodKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().method).cardinality(Cardinality.SINGLE));
 		proteinCommentAbsorptionMaxKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().absorptionMax).cardinality(Cardinality.SINGLE));
 		proteinCommentAbsorptionTextKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinComment().absorptionText).cardinality(Cardinality.SINGLE));
