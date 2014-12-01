@@ -700,18 +700,19 @@ public final class TitanUniprotGraph
 		eMBLProteinSequenceIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, EMBL().proteinSequenceId).cardinality(Cardinality.SINGLE));
 		eMBLTypeLabel = raw().createOrGet(mgmt, eMBLType.raw());
 
-		//    // PIR keys
-		// pIRType = new PIRType(pIRTypeLabel);
-		//    pIRTypeLabel = raw().createOrGet(raw().titanLabelMakerForVertexType(pIRType));
-		//    pIRIdKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().id ).cardinality(Cardinality.SINGLE));
-		//    pIREntryNameKey = raw().createOrGet(raw().titanPropertyMakerForVertexProperty( PIR().entryName ).cardinality(Cardinality.SINGLE));
+		//--------------------- PIR keys ---------------------------
+		VertexLabelMaker pIRTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new PIRType(null));
+		pIRType = new PIRType(pIRTypeLabelMaker);
+		pIRIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, PIR().id).cardinality(Cardinality.SINGLE));
+		pIREntryNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, PIR().entryName).cardinality(Cardinality.SINGLE));
+		pIRTypeLabel = raw().createOrGet(mgmt, pIRType.raw());
 
-
-		// Patent keys
-//	    patentType = new PatentType(patentTypeLabel);
-//        patentTypeLabel = raw().titanKeyForVertexType(patentType.number);
-//        patentNumberKey = patentTypeLabel;
-//        patentTitleKey = raw().titanKeyForVertexPropertySingle(patentType.title);
+		// --------------------- Patent keys--------------------------
+		VertexLabelMaker patentTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new PatentType(null));
+	    patentType = new PatentType(patentTypeLabelMaker);
+        patentNumberKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Patent().number).cardinality(Cardinality.SINGLE));
+        patentTitleKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Patent().title).cardinality(Cardinality.SINGLE));
+		patentTypeLabel = raw().createOrGet(mgmt, patentType.raw());
 //
 //        // Ensembl keys
 //	    ensemblType = new EnsemblType(ensemblTypeLabel);
