@@ -800,40 +800,48 @@ public final class TitanUniprotGraph
 		bookEditorLabel = raw().createOrGet(mgmt, bookEditorType.raw());
 
         // bookPublisher
-        bookPublisherLabel = raw().titanLabelForEdgeType(this.new BookPublisherType(null));
-        bookPublisherType = new BookPublisherType(bookPublisherLabel);
+		EdgeLabelMaker bookPublisherTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new BookPublisherType(null));
+        bookPublisherType = new BookPublisherType(bookPublisherTypeLabelMaker);
+		bookPublisherLabel = raw().createOrGet(mgmt, bookPublisherType.raw());
 
         // instituteCountry
-        instituteCountryLabel = raw().titanLabelForEdgeType(this.new InstituteCountryType(null));
-        instituteCountryType = new InstituteCountryType(instituteCountryLabel);
+		EdgeLabelMaker instituteCountryTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new InstituteCountryType(null));
+        instituteCountryType = new InstituteCountryType(instituteCountryTypeLabelMaker);
+		instituteCountryLabel = raw().createOrGet(mgmt, instituteCountryType.raw());
 
 	    // isoformEventGenerator
-	    isoformEventGeneratorLabel = raw().titanLabelForEdgeType(this.new IsoformEventGeneratorType(null));
-	    isoformEventGeneratorType = new IsoformEventGeneratorType(isoformEventGeneratorLabel);
+		EdgeLabelMaker isoformEventGeneratorTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new IsoformEventGeneratorType(null));
+		isoformEventGeneratorType = new IsoformEventGeneratorType(isoformEventGeneratorTypeLabelMaker);
+	    isoformEventGeneratorLabel = raw().createOrGet(mgmt, isoformEventGeneratorType.raw());
 
         // onlineArticleOnlineJournal
-        onlineArticleOnlineJournalLabel = raw().titanLabelForEdgeType(this.new OnlineArticleOnlineJournalType(null));
-        onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalLabel);
-	    onlineArticleOnlineJournalLocatorKey = raw().titanKeyForEdgePropertySingle(onlineArticleOnlineJournalType.locator);
+		EdgeLabelMaker onlineArticleOnlineJournalTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new OnlineArticleOnlineJournalType(null));
+		onlineArticleOnlineJournalType = new OnlineArticleOnlineJournalType(onlineArticleOnlineJournalTypeLabelMaker);
+		onlineArticleOnlineJournalLocatorKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, OnlineArticleOnlineJournal().locator).cardinality(Cardinality.SINGLE));
+        onlineArticleOnlineJournalLabel = raw().createOrGet(mgmt, onlineArticleOnlineJournalType.raw());
 
         // proteinDataset
-        proteinDatasetLabel = raw().titanLabelForEdgeType(this.new ProteinDatasetType(null));
-        proteinDatasetType = new ProteinDatasetType(proteinDatasetLabel);
+		EdgeLabelMaker proteinDatasetTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinDatasetType(null));
+		proteinDatasetType = new ProteinDatasetType(proteinDatasetTypeLabelMaker);
+        proteinDatasetLabel = raw().createOrGet(mgmt, proteinDatasetType.raw());
 
 	    // proteinDisease
-	    proteinDiseaseLabel = raw().titanLabelForEdgeType(this.new ProteinDiseaseType(null));
-	    proteinDiseaseType = new ProteinDiseaseType(proteinDiseaseLabel);
-	    proteinDiseaseTextKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.text);
-	    proteinDiseaseStatusKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.status);
-	    proteinDiseaseEvidenceKey = raw().titanKeyForEdgePropertySingle(proteinDiseaseType.evidence);
+		EdgeLabelMaker proteinDiseaseTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinDiseaseType(null));
+		proteinDiseaseType = new ProteinDiseaseType(proteinDiseaseTypeLabelMaker);
+	    proteinDiseaseTextKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinDisease().text).cardinality(Cardinality.SINGLE));
+	    proteinDiseaseStatusKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinDisease().status).cardinality(Cardinality.SINGLE));
+	    proteinDiseaseEvidenceKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinDisease().evidence).cardinality(Cardinality.SINGLE));
+		proteinDiseaseLabel = raw().createOrGet(mgmt, proteinDiseaseType.raw());
 
         // proteinOrganism
-        proteinOrganismLabel = raw().titanLabelForEdgeType(this.new ProteinOrganismType(null));
-        proteinOrganismType = new ProteinOrganismType(proteinOrganismLabel);
+		EdgeLabelMaker proteinOrganismTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinOrganismType(null));
+		proteinOrganismType = new ProteinOrganismType(proteinOrganismTypeLabelMaker);
+        proteinOrganismLabel = raw().createOrGet(mgmt, proteinOrganismType.raw());
 
         // proteinKeyword
-        proteinKeywordLabel = raw().titanLabelForEdgeType(this.new ProteinKeywordType(null));
-        proteinKeywordType = new ProteinKeywordType(proteinKeywordLabel);
+		EdgeLabelMaker proteinKeywordTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinKeywordType(null));
+		proteinKeywordType = new ProteinKeywordType(proteinKeywordTypeLabelMaker);
+        proteinKeywordLabel = raw().createOrGet(mgmt, proteinKeywordType.raw());
 
 	    // proteinGeneLocation
 	    proteinGeneLocationLabel = raw().titanLabelForEdgeType(this.new ProteinGeneLocationType(null));
