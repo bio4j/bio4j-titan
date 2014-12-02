@@ -18,9 +18,10 @@ public final class TitanUniprotGoGraph
         extends
         UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
     private TitanUniprotGraph uniprotRawGraph;
     private TitanGoGraph goRawGraph;
+
+	private TitanManagement mgmt = null;
 
     //---------------RELATIONSHIPS---------------------------
 
@@ -30,29 +31,37 @@ public final class TitanUniprotGoGraph
 
     public TitanUniprotGoGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanGoGraph titanGoGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
+        this.raw = rawGraph;
         this.uniprotRawGraph = titanUniprotGraph;
         this.goRawGraph = titanGoGraph;
-        initTypes();
-        initIndices();
+
+	    // First get a titanMgmt instance, that will be used throughout
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    // this should work now
+	    mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        // goAnnotationLabel = raw().titanLabelForEdgeType(new GoAnnotationType((EdgeLabel) null));
-        // goAnnotationType = new GoAnnotationType(goAnnotationLabel);
+	    // goAnnotation
+	    EdgeLabelMaker goAnnotationTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new GoAnnotationType(null));
+	    goAnnotationType = new GoAnnotationType(goAnnotationTypeLabelMaker);
+        goAnnotationLabel = raw().createOrGet(mgmt, goAnnotationType.raw());
 
     }
 
-    private void initIndices() {
+    private void initIndices(TitanManagement mgmt) {
 
     }
 
