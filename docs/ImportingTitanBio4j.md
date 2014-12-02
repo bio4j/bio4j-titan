@@ -133,7 +133,7 @@ Different log files will be created at jar folder level regarding the progress o
 
 Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProt) | Protein Interactions (TrEMBL) |
 --- | --- | --- | --- | --- | --- | --- | --- | 
-1m 14s | 3s | 8m 13s | 2h 22m 22s | - | 10h 37m 21s | - | - | 
+1m 14s | 3s | 8m 13s | 2h 22m 22s | - | 10h 37m 21s | 6m 28s | - | 
 
 #### SwissProt times for combined modules
 

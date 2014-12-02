@@ -43,6 +43,7 @@ public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVe
 	    conf.setProperty("storage.directory", dbFolder);
 	    conf.setProperty("storage.backend", "local");
 	    conf.setProperty("autotype", "none");
+	    //conf.setProperty("ids.block-size", "1500000");
 	    conf.setProperty("storage.transactions", "false");
 	    //-------creating graph handlers---------------------
 	    TitanGraph graph = TitanFactory.open(conf);
