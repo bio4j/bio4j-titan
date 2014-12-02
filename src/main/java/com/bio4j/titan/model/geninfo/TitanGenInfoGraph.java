@@ -18,8 +18,9 @@ public final class TitanGenInfoGraph
 		extends
 		GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
+
+	private TitanManagement mgmt;
 
 
 	//-------------------VERTICES----------------------------
@@ -45,9 +46,15 @@ public final class TitanGenInfoGraph
 
 	public TitanGenInfoGraph(DefaultTitanGraph rawGraph) {
 		super(rawGraph);
-		this.rawGraph = rawGraph;
-		initTypes();
-		initIndices();
+		this.raw = rawGraph;
+
+		// First get a titanMgmt instance, that will be used throughout
+		this.mgmt = rawGraph.managementSystem();
+		initTypes(mgmt);
+		initIndices(mgmt);
+
+		// this should work now
+		mgmt.commit();
 	}
 
 	@Override
@@ -69,9 +76,10 @@ public final class TitanGenInfoGraph
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------VERTICES--------------------------------------------
-//		genInfoType = new GenInfoType(genInfoTypeKey);
-//		genInfoTypeKey = raw().titanKeyForVertexType(GenInfo().id);
-//		genInfoIdkey = genInfoTypeKey;
+		VertexLabelMaker enzymeTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new GenInfoType(null));
+		genInfoType = new GenInfoType(genInfoTypeKey);
+		genInfoTypeKey = raw().titanKeyForVertexType(GenInfo().id);
+		genInfoIdkey = genInfoTypeKey;
 
 	}
 
