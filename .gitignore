@@ -26,3 +26,7 @@ data/out/
 
 credentials.sbt
 *credentials*
+
+# EnzymeDB data import
+ImportEnzymeDB.log
+ImportEnzymeDBStats.txt

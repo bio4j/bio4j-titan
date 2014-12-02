@@ -2,10 +2,8 @@ package com.bio4j.titan.util;
 
 import com.bio4j.angulillos.titan.TitanUntypedGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
-/**
- * Created by raquel on 26/08/14.
- */
 public final class DefaultTitanGraph implements TitanUntypedGraph {
 
     private TitanGraph titanGraph;

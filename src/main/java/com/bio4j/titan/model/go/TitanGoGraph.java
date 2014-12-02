@@ -9,6 +9,7 @@ import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -17,115 +18,145 @@ import com.thinkaurelius.titan.core.*;
 */
 public final class TitanGoGraph
         extends
-        GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
 	private TitanUniprotGoGraph uniprotGoGraph = null;
+
+	private TitanManagement mgmt;
 
     //-------------------VERTICES----------------------------
 
-    public TitanKey goTermTypekey;
-    public TitanKey goTermIdKey;
-    public TitanKey goTermNameKey;
-    public TitanKey goTermDefinitionKey;
-    public TitanKey goTermObsoleteKey;
-    public TitanKey goTermCommentKey;
-    public TitanKey goTermSynonymKey;
+	public VertexLabel goTermTypeLabel;
+    public PropertyKey goTermTypekey;
+    public PropertyKey goTermIdKey;
+    public PropertyKey goTermNameKey;
+    public PropertyKey goTermDefinitionKey;
+    public PropertyKey goTermObsoleteKey;
+    public PropertyKey goTermCommentKey;
+    public PropertyKey goTermSynonymKey;
     public GoTermType goTermType;
 
-    public TitanKey subOntologiesTypekey;
-    public TitanKey subOntologiesNameKey;
+	public VertexLabel subOntologiesTypeLabel;
+    public PropertyKey subOntologiesTypekey;
+    public PropertyKey subOntologiesNameKey;
     public SubOntologiesType subOntologiesType;
 
     //---------------RELATIONSHIPS---------------------------
 
-    private TitanLabel isALabel;
+    private EdgeLabel isALabel;
     private IsAType isAType;
-    private TitanLabel partOfLabel;
+    private EdgeLabel partOfLabel;
     private PartOfType partOfType;
-    private TitanLabel hasPartOfLabel;
+    private EdgeLabel hasPartOfLabel;
     private HasPartOfType hasPartOfType;
-    private TitanLabel regulatesLabel;
+    private EdgeLabel regulatesLabel;
     private RegulatesType regulatesType;
-    private TitanLabel positivelyRegulatesLabel;
+    private EdgeLabel positivelyRegulatesLabel;
     private PositivelyRegulatesType positivelyRegulatesType;
-    private TitanLabel negativelyRegulatesLabel;
+    private EdgeLabel negativelyRegulatesLabel;
     private NegativelyRegulatesType negativelyRegulatesType;
-    private TitanLabel subOntologyLabel;
+    private EdgeLabel subOntologyLabel;
     private SubOntologyType subOntologyType;
 
     //---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.Unique<
-            GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+    TitanTypedVertexIndex.DefaultUnique<
+            GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             GoTermType,
             GoTermType.id, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > goTermIdIndex;
-    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             SubOntologiesType,
             SubOntologiesType.name, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph> subOntologiesNameIndex;
 
 
     public TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
-        initTypes();
-        initIndices();
+        this.raw = rawGraph;
+
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    this.mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-        goTermType = new GoTermType(goTermTypekey);
-        goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
-        goTermIdKey = goTermTypekey;
-        goTermNameKey = raw().titanKeyForVertexPropertySingle(GoTerm().name);
-        goTermDefinitionKey = raw().titanKeyForVertexPropertySingle(GoTerm().definition);
-        goTermObsoleteKey = raw().titanKeyForVertexPropertySingle(GoTerm().obsolete);
-        goTermCommentKey = raw().titanKeyForVertexPropertySingle(GoTerm().comment);
-        goTermSynonymKey = raw().titanKeyForVertexPropertySingle(GoTerm().synonym);
+	    VertexLabelMaker goTermTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new GoTermType(null));
+        goTermType = new GoTermType(goTermTypeLabelMaker);
+        goTermIdKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().id ).cardinality(Cardinality.SINGLE));
+        goTermNameKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().name ).cardinality(Cardinality.SINGLE));
+        goTermDefinitionKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().definition ).cardinality(Cardinality.SINGLE));
+        goTermObsoleteKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().obsolete ).cardinality(Cardinality.SINGLE));
+        goTermCommentKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().comment ).cardinality(Cardinality.SINGLE));
+        goTermSynonymKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().synonym ).cardinality(Cardinality.SINGLE));
+	    goTermTypeLabel = raw().createOrGet(mgmt, goTermType.raw());
 
 
-        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
-        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
-        subOntologiesNameKey = subOntologiesTypekey;
+	    VertexLabelMaker subOntologiesTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new SubOntologiesType(null));
+        subOntologiesType = new SubOntologiesType(subOntologiesTypeLabelMaker);
+        subOntologiesNameKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, SubOntologies().name ).cardinality(Cardinality.SINGLE));
+	    subOntologiesTypeLabel = raw().createOrGet(mgmt, subOntologiesType.raw());
 
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
+	    // isA
+	    EdgeLabelMaker isATypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new IsAType(null));
+	    isAType = new IsAType(isATypeLabelMaker);
+        isALabel = raw().createOrGet(mgmt, isAType.raw());
 
-        isALabel = raw().titanLabelForEdgeType(new IsAType((TitanLabel) null));
-        isAType = new IsAType(isALabel);
-        partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
-        partOfType = new PartOfType(partOfLabel);
-        hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
-        hasPartOfType = new HasPartOfType(hasPartOfLabel);
-        regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
-        regulatesType = new RegulatesType(regulatesLabel);
-        positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
-        positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
-        negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
-        negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
+	    // partOf
+	    EdgeLabelMaker partOfTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new PartOfType(null));
+        partOfType = new PartOfType(partOfTypeLabelMaker);
+	    partOfLabel = raw().createOrGet(mgmt, partOfType.raw());
 
-        subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
-        subOntologyType = new SubOntologyType(subOntologyLabel);
+	    // hasPartOf
+	    EdgeLabelMaker hasPartOfTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new HasPartOfType(null));
+        hasPartOfType = new HasPartOfType(hasPartOfTypeLabelMaker);
+	    hasPartOfLabel = raw().createOrGet(mgmt, hasPartOfType.raw());
+
+	    // regulates
+	    EdgeLabelMaker regulatesTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new RegulatesType(null));
+	    regulatesType = new RegulatesType(regulatesTypeLabelMaker);
+        regulatesLabel = raw().createOrGet(mgmt, regulatesType.raw());
+
+	    // positivelyRegulates
+	    EdgeLabelMaker positivelyRegulatesTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new PositivelyRegulatesType(null));
+	    positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesTypeLabelMaker);
+        positivelyRegulatesLabel = raw().createOrGet(mgmt, positivelyRegulatesType.raw());
+
+	    // negativelyRegulates
+	    EdgeLabelMaker negativelyRegulatesTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new NegativelyRegulatesType(null));
+        negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesTypeLabelMaker);
+	    negativelyRegulatesLabel = raw().createOrGet(mgmt, negativelyRegulatesType.raw());
+
+	    // subOntology
+	    EdgeLabelMaker subOntologyTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new SubOntologyType(null));
+        subOntologyType = new SubOntologyType(subOntologyTypeLabelMaker);
+	    subOntologyLabel = raw().createOrGet(mgmt, subOntologyType.raw());
 
     }
 
-    private void initIndices() {
-        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, GoTerm().id);
-        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, SubOntologies().name);
+    private void initIndices(TitanManagement mgmt) {
+        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, GoTerm().id);
+	    goTermIdIndex.make(goTermTypeLabel);
+
+        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, SubOntologies().name);
+	    subOntologiesNameIndex.make(subOntologiesTypeLabel);
     }
 
     @Override
@@ -180,17 +211,17 @@ public final class TitanGoGraph
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGoGraph() {
+    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
     @Override
-    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> goTermIdIndex() {
+    public TypedVertexIndex.Unique<GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GoTermType, GoTermType.id, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> goTermIdIndex() {
         return goTermIdIndex;
     }
 
     @Override
-    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> subontologiesNameIndex() {
+    public TypedVertexIndex.Unique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SubOntologiesType, SubOntologiesType.name, String, GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> subontologiesNameIndex() {
         return subOntologiesNameIndex;
     }
 

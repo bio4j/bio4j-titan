@@ -7,6 +7,7 @@ import com.bio4j.titan.model.geninfo.TitanGenInfoGraph;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,54 +16,64 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanNCBITaxonomyGenInfoGraph
 		extends
-		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGraph ncbiTaxonomyRawGraph;
 	private TitanGenInfoGraph genInfoRawGraph;
 
+	private TitanManagement mgmt;
+
 	//---------------RELATIONSHIPS---------------------------
 
-	private TitanLabel genInfoNCBITaxonLabel;
+	private EdgeLabel genInfoNCBITaxonLabel;
 	private GenInfoNCBITaxonType genInfoNCBITaxonType;
 
 
 	public TitanNCBITaxonomyGenInfoGraph(DefaultTitanGraph rawGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph, TitanGenInfoGraph titanGenInfoGraph) {
 		super(rawGraph);
-		this.rawGraph = rawGraph;
+		this.raw = rawGraph;
 		this.ncbiTaxonomyRawGraph = titanNCBITaxonomyGraph;
 		this.genInfoRawGraph = titanGenInfoGraph;
-		initTypes();
-		initIndices();
+
+		// First get a titanMgmt instance, that will be used throughout
+		this.mgmt = rawGraph.managementSystem();
+		initTypes(mgmt);
+		initIndices(mgmt);
+
+		// this should work now
+		mgmt.commit();
+
 	}
 
 	@Override
 	public DefaultTitanGraph raw() {
-		return rawGraph;
+		return raw;
 	}
 
-	private void initTypes() {
+	private void initTypes(TitanManagement mgmt) {
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
 
-		genInfoNCBITaxonLabel = raw().titanLabelForEdgeType(new GenInfoNCBITaxonType((TitanLabel) null));
-		genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonLabel);
+		// genInfoNCBITaxon
+		EdgeLabelMaker genInfoNCBITaxonTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new GenInfoNCBITaxonType(null));
+		genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonTypeLabelMaker);
+		genInfoNCBITaxonLabel = raw().createOrGet(mgmt, genInfoNCBITaxonType.raw());
 
 	}
 
-	private void initIndices() {
+	private void initIndices(TitanManagement mgmt) {
 
 	}
 
 
 	@Override
-	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGraph() {
+	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGraph() {
 		return ncbiTaxonomyRawGraph;
 	}
 
 	@Override
-	public GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> genInfoGraph() {
+	public GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> genInfoGraph() {
 		return genInfoRawGraph;
 	}
 
