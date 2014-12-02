@@ -25,6 +25,7 @@ public final class TitanGenInfoGraph
 
 	//-------------------VERTICES----------------------------
 
+	public VertexLabel genInfoTypeLabel;
 	public PropertyKey genInfoTypeKey;
 	public PropertyKey genInfoIdkey;
 	public GenInfoType genInfoType;
@@ -59,7 +60,7 @@ public final class TitanGenInfoGraph
 
 	@Override
 	public DefaultTitanGraph raw() {
-		return rawGraph;
+		return raw;
 	}
 
 	@Override
@@ -72,19 +73,20 @@ public final class TitanGenInfoGraph
 		return genInfoType;
 	}
 
-	private void initTypes() {
+	private void initTypes(TitanManagement mgmt) {
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------VERTICES--------------------------------------------
 		VertexLabelMaker enzymeTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new GenInfoType(null));
-		genInfoType = new GenInfoType(genInfoTypeKey);
-		genInfoTypeKey = raw().titanKeyForVertexType(GenInfo().id);
-		genInfoIdkey = genInfoTypeKey;
+		genInfoType = new GenInfoType(enzymeTypeLabelMaker);
+		genInfoIdkey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GenInfo().id ).cardinality(Cardinality.SINGLE));
+		this.genInfoTypeLabel = raw().createOrGet(mgmt, genInfoType.raw());
 
 	}
 
-	private void initIndices() {
-		// genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GenInfo().id);
+	private void initIndices(TitanManagement mgmt) {
+		genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, GenInfo().id);
+		genInfoIdIndex.make(genInfoTypeLabel);
 	}
 
 	/*
