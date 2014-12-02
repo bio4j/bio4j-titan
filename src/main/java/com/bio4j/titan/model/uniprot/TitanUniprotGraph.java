@@ -344,6 +344,10 @@ public final class TitanUniprotGraph
 	// proteinIsoformInteraction
 	public EdgeLabel proteinIsoformInteractionLabel;
 	public ProteinIsoformInteractionType proteinIsoformInteractionType;
+	public PropertyKey proteinIsoformInteractionExperimentsKey;
+	public PropertyKey proteinIsoformInteractionOrganismsDifferKey;
+	public PropertyKey proteinIsoformInteractionIntActId1Key;
+	public PropertyKey proteinIsoformInteractionIntActId2Key;
 	// isoformProteinInteraction
 	public EdgeLabel isoformProteinInteractionLabel;
 	public IsoformProteinInteractionType isoformProteinInteractionType;
@@ -966,6 +970,10 @@ public final class TitanUniprotGraph
 		// proteinIsoformInteraction
 		EdgeLabelMaker proteinIsoformInteractionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinIsoformInteractionType(null));
 		proteinIsoformInteractionType = new ProteinIsoformInteractionType(proteinIsoformInteractionTypeLabelMaker);
+		proteinIsoformInteractionExperimentsKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinIsoformInteraction().experiments).cardinality(Cardinality.SINGLE));
+		proteinIsoformInteractionOrganismsDifferKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinIsoformInteraction().organismsDiffer).cardinality(Cardinality.SINGLE));
+		proteinIsoformInteractionIntActId1Key = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinIsoformInteraction().intActId1).cardinality(Cardinality.SINGLE));
+		proteinIsoformInteractionIntActId2Key = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinIsoformInteraction().intActId2).cardinality(Cardinality.SINGLE));
 		proteinIsoformInteractionLabel = raw().createOrGet(mgmt, proteinIsoformInteractionType.raw());
 
 		// proteinIsoform
