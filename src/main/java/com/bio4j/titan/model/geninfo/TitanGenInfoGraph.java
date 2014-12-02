@@ -26,7 +26,6 @@ public final class TitanGenInfoGraph
 	//-------------------VERTICES----------------------------
 
 	public VertexLabel genInfoTypeLabel;
-	public PropertyKey genInfoTypeKey;
 	public PropertyKey genInfoIdkey;
 	public GenInfoType genInfoType;
 

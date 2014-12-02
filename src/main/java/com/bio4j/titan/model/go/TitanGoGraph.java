@@ -20,12 +20,13 @@ public final class TitanGoGraph
         extends
         GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
 	private TitanUniprotGoGraph uniprotGoGraph = null;
+
+	private TitanManagement mgmt;
 
     //-------------------VERTICES----------------------------
 
-	public VertexLabel goTermLabel;
+	public VertexLabel goTermTypeLabel;
     public PropertyKey goTermTypekey;
     public PropertyKey goTermIdKey;
     public PropertyKey goTermNameKey;
@@ -35,7 +36,7 @@ public final class TitanGoGraph
     public PropertyKey goTermSynonymKey;
     public GoTermType goTermType;
 
-	public VertexLabel subOntologiesLabel;
+	public VertexLabel subOntologiesTypeLabel;
     public PropertyKey subOntologiesTypekey;
     public PropertyKey subOntologiesNameKey;
     public SubOntologiesType subOntologiesType;
@@ -59,7 +60,7 @@ public final class TitanGoGraph
 
     //---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.Unique<
+    TitanTypedVertexIndex.DefaultUnique<
             GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             GoTermType,
             GoTermType.id, String,
@@ -75,61 +76,87 @@ public final class TitanGoGraph
 
     public TitanGoGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
-        initTypes();
-        initIndices();
+        this.raw = rawGraph;
+
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    this.mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-//        goTermType = new GoTermType(goTermTypekey);
-//	    goTermLabel = raw().createOrGet( raw().titanLabelMakerForVertexType(goTermType) );
-//        goTermTypekey = raw().titanKeyForVertexType(GoTerm().id);
-//        goTermIdKey = goTermTypekey;
-//        goTermNameKey = raw().titanKeyForVertexPropertySingle(GoTerm().name);
-//        goTermDefinitionKey = raw().titanKeyForVertexPropertySingle(GoTerm().definition);
-//        goTermObsoleteKey = raw().titanKeyForVertexPropertySingle(GoTerm().obsolete);
-//        goTermCommentKey = raw().titanKeyForVertexPropertySingle(GoTerm().comment);
-//        goTermSynonymKey = raw().titanKeyForVertexPropertySingle(GoTerm().synonym);
-//
-//
-//        subOntologiesType = new SubOntologiesType(subOntologiesTypekey);
-//        subOntologiesTypekey = raw().titanKeyForVertexType(SubOntologies().name);
-//        subOntologiesNameKey = subOntologiesTypekey;
+	    VertexLabelMaker goTermTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new GoTermType(null));
+        goTermType = new GoTermType(goTermTypeLabelMaker);
+        goTermIdKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().id ).cardinality(Cardinality.SINGLE));
+        goTermNameKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().name ).cardinality(Cardinality.SINGLE));
+        goTermDefinitionKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().definition ).cardinality(Cardinality.SINGLE));
+        goTermObsoleteKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().obsolete ).cardinality(Cardinality.SINGLE));
+        goTermCommentKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().comment ).cardinality(Cardinality.SINGLE));
+        goTermSynonymKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().synonym ).cardinality(Cardinality.SINGLE));
+	    goTermTypeLabel = raw().createOrGet(mgmt, goTermType.raw());
+
+
+	    VertexLabelMaker subOntologiesTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new SubOntologiesType(null));
+        subOntologiesType = new SubOntologiesType(subOntologiesTypeLabelMaker);
+        subOntologiesNameKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, SubOntologies().name ).cardinality(Cardinality.SINGLE));
+	    subOntologiesTypeLabel = raw().createOrGet(mgmt, subOntologiesType.raw());
 
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
+	    // isA
+	    EdgeLabelMaker isATypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new IsAType(null));
+	    isAType = new IsAType(isATypeLabelMaker);
+        isALabel = raw().createOrGet(mgmt, isAType.raw());
 
-        // isALabel = raw().titanLabelForEdgeType(new IsAType((EdgeLabel) null));
-        // isAType = new IsAType(isALabel);
-        // partOfLabel = raw().titanLabelForEdgeType(this.new PartOfType(null));
-        // partOfType = new PartOfType(partOfLabel);
-        // hasPartOfLabel = raw().titanLabelForEdgeType(this.new HasPartOfType(null));
-        // hasPartOfType = new HasPartOfType(hasPartOfLabel);
-        // regulatesLabel = raw().titanLabelForEdgeType(this.new RegulatesType(null));
-        // regulatesType = new RegulatesType(regulatesLabel);
-        // positivelyRegulatesLabel = raw().titanLabelForEdgeType(this.new PositivelyRegulatesType(null));
-        // positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesLabel);
-        // negativelyRegulatesLabel = raw().titanLabelForEdgeType(this.new NegativelyRegulatesType(null));
-        // negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesLabel);
+	    // partOf
+	    EdgeLabelMaker partOfTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new PartOfType(null));
+        partOfType = new PartOfType(partOfTypeLabelMaker);
+	    partOfLabel = raw().createOrGet(mgmt, partOfType.raw());
 
-        // subOntologyLabel = raw().titanLabelForEdgeType(this.new SubOntologyType(null));
-        // subOntologyType = new SubOntologyType(subOntologyLabel);
+	    // hasPartOf
+	    EdgeLabelMaker hasPartOfTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new HasPartOfType(null));
+        hasPartOfType = new HasPartOfType(hasPartOfTypeLabelMaker);
+	    hasPartOfLabel = raw().createOrGet(mgmt, hasPartOfType.raw());
+
+	    // regulates
+	    EdgeLabelMaker regulatesTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new RegulatesType(null));
+	    regulatesType = new RegulatesType(regulatesTypeLabelMaker);
+        regulatesLabel = raw().createOrGet(mgmt, regulatesType.raw());
+
+	    // positivelyRegulates
+	    EdgeLabelMaker positivelyRegulatesTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new PositivelyRegulatesType(null));
+	    positivelyRegulatesType = new PositivelyRegulatesType(positivelyRegulatesTypeLabelMaker);
+        positivelyRegulatesLabel = raw().createOrGet(mgmt, positivelyRegulatesType.raw());
+
+	    // negativelyRegulates
+	    EdgeLabelMaker negativelyRegulatesTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new NegativelyRegulatesType(null));
+        negativelyRegulatesType = new NegativelyRegulatesType(negativelyRegulatesTypeLabelMaker);
+	    negativelyRegulatesLabel = raw().createOrGet(mgmt, negativelyRegulatesType.raw());
+
+	    // subOntology
+	    EdgeLabelMaker subOntologyTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new SubOntologyType(null));
+        subOntologyType = new SubOntologyType(subOntologyTypeLabelMaker);
+	    subOntologyLabel = raw().createOrGet(mgmt, subOntologyType.raw());
 
     }
 
-    private void initIndices() {
-        // goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, GoTerm().id);
-        // subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, SubOntologies().name);
+    private void initIndices(TitanManagement mgmt) {
+        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, GoTerm().id);
+	    goTermIdIndex.make(goTermTypeLabel);
+
+        subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, SubOntologies().name);
+	    subOntologiesNameIndex.make(subOntologiesTypeLabel);
     }
 
     @Override
