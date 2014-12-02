@@ -9,28 +9,30 @@ import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
-import com.thinkaurelius.titan.core.schema.*;
+import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
+import com.thinkaurelius.titan.core.schema.TitanManagement;
+import com.thinkaurelius.titan.core.schema.VertexLabelMaker;
 
 
 /**
- Implementing the types with Titan
- @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
+ * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
 public final class TitanNCBITaxonomyGraph
-        extends
-        NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
+		extends
+		NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
 	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
 
+	private TitanManagement mgmt = null;
 
-    //-------------------VERTICES----------------------------
+	//-------------------VERTICES----------------------------
 
-    public PropertyKey nCBITaxonTypekey;
-    public PropertyKey nCBITaxonIdkey;
+	public VertexLabel nCBITaxonTypeLabel;
+	public PropertyKey nCBITaxonTypekey;
+	public PropertyKey nCBITaxonIdkey;
 	public PropertyKey nCBITaxonScientificNamekey;
 	public PropertyKey nCBITaxonTaxonomicRankkey;
-    public NCBITaxonType nCBITaxonType;
+	public NCBITaxonType nCBITaxonType;
 
 	//---------------RELATIONSHIPS---------------------------
 
@@ -38,27 +40,34 @@ public final class TitanNCBITaxonomyGraph
 	private NCBITaxonParentType ncbiTaxonParentType;
 
 
-    //---------------INDICES---------------------------
+	//---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.DefaultUnique<
-            NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            NCBITaxonType,
-            NCBITaxonType.id, String,
-            NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            DefaultTitanGraph
-            > nCBITaxonIdIndex;
+	TitanTypedVertexIndex.DefaultUnique<
+			NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			NCBITaxonType,
+			NCBITaxonType.id, String,
+			NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+			DefaultTitanGraph
+			> nCBITaxonIdIndex;
 
-    public TitanNCBITaxonomyGraph(DefaultTitanGraph rawGraph) {
-        super(rawGraph);
-        this.rawGraph = rawGraph;
-        initTypes();
-        initIndices();
-    }
+	public TitanNCBITaxonomyGraph(DefaultTitanGraph rawGraph) {
 
-    @Override
-    public DefaultTitanGraph raw() {
-        return rawGraph;
-    }
+		super(rawGraph);
+		this.raw = rawGraph;
+
+		// First get a titanMgmt instance, that will be used throughout
+		this.mgmt = rawGraph.managementSystem();
+		initTypes(mgmt);
+		initIndices(mgmt);
+
+		// this should work now
+		mgmt.commit();
+	}
+
+	@Override
+	public DefaultTitanGraph raw() {
+		return raw;
+	}
 
 	@Override
 	public TypedVertexIndex.Unique<NCBITaxon<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, NCBITaxonType, NCBITaxonType.id, String, NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> nCBITaxonIdIndex() {
@@ -75,39 +84,40 @@ public final class TitanNCBITaxonomyGraph
 		return ncbiTaxonomyGenInfoGraph();
 	}
 
-	private void initTypes() {
+	private void initTypes(TitanManagement mgmt) {
 
-        //-----------------------------------------------------------------------------------------
-        //--------------------------------VERTICES--------------------------------------------
-//	    nCBITaxonType = new NCBITaxonType(nCBITaxonTypekey);
-//        nCBITaxonTypekey = raw().titanKeyForVertexType(NCBITaxon().id);
-//		nCBITaxonIdkey = nCBITaxonTypekey;
-//		nCBITaxonTaxonomicRankkey = raw().titanKeyForVertexPropertySingle(NCBITaxon().taxonomicRank);
-//		nCBITaxonScientificNamekey = raw().titanKeyForVertexPropertySingle(NCBITaxon().scientificName);
-
+		//-----------------------------------------------------------------------------------------
+		//--------------------------------VERTICES--------------------------------------------
+		VertexLabelMaker nCBITaxonTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new NCBITaxonType(null));
+		nCBITaxonType = new NCBITaxonType(nCBITaxonTypeLabelMaker);
+		nCBITaxonIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().id).cardinality(Cardinality.SINGLE));
+		nCBITaxonTaxonomicRankkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().taxonomicRank).cardinality(Cardinality.SINGLE));
+		nCBITaxonScientificNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().scientificName).cardinality(Cardinality.SINGLE));
+		nCBITaxonTypeLabel = raw().createOrGet(mgmt, nCBITaxonType.raw());
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
-		// nCBITaxonParentLabel = raw().titanLabelForEdgeType(new NCBITaxonParentType((EdgeLabel) null));
-		// ncbiTaxonParentType = new NCBITaxonParentType(nCBITaxonParentLabel);
+		// nCBITaxonParent
+		EdgeLabelMaker nCBITaxonParentTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new NCBITaxonParentType(null));
+		ncbiTaxonParentType = new NCBITaxonParentType(nCBITaxonParentTypeLabelMaker);
+		nCBITaxonParentLabel = raw().createOrGet(mgmt, ncbiTaxonParentType.raw());
+	}
+
+	private void initIndices(TitanManagement mgmt) {
+		nCBITaxonIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, NCBITaxon().id);
+		nCBITaxonIdIndex.make(nCBITaxonTypeLabel);
+	}
 
 
-    }
+	@Override
+	public NCBITaxonType NCBITaxon() {
+		return nCBITaxonType;
+	}
 
-    private void initIndices() {
-        // nCBITaxonIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(this, NCBITaxon().id);
-    }
-
-
-    @Override
-    public NCBITaxonType NCBITaxon() {
-        return nCBITaxonType;
-    }
-
-    @Override
-    public NCBITaxonParentType NCBITaxonParent() {
-        return ncbiTaxonParentType;
-    }
+	@Override
+	public NCBITaxonParentType NCBITaxonParent() {
+		return ncbiTaxonParentType;
+	}
 
 	/*
 		You can use this as `ncbiTaxonomyGraph.withUniprot(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
