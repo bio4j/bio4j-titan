@@ -14,12 +14,15 @@ description := "Titan implementation of the Bio4j model"
 
 bucketSuffix := "era7.com"
 
+scalaVersion := "2.11.2"
 
 libraryDependencies ++= Seq(
   "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
-  "bio4j" % "angulillos-titan" % "0.1.0",
-  "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.4.4",
-  "junit" % "junit" % "3.8.1" % "test"
+  "bio4j" % "angulillos-titan" % "0.2.0-SNAPSHOT",
+  "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.5.1",
+  // test deps
+  "junit" % "junit" % "3.8.1" % "test",
+  "org.scalatest" %% "scalatest" % "2.2.2" % "test"
 )
 
 dependencyOverrides ++= Set(
@@ -28,7 +31,8 @@ dependencyOverrides ++= Set(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.2",
   "com.fasterxml.jackson.core" % "jackson-annotations" % "2.1.1",
   "commons-beanutils" % "commons-beanutils" % "1.8.3",
-  "commons-beanutils" % "commons-beanutils-core" % "1.8.3"
+  "commons-beanutils" % "commons-beanutils-core" % "1.8.3",
+  "com.tinkerpop.blueprints" % "blueprints-core" % "2.5.0"
 )
 
 

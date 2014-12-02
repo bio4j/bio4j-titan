@@ -7,6 +7,7 @@ import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,53 +16,62 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotNCBITaxonomyGraph
         extends
-        UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
-    private NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
+    private NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyRawGraph;
+
+	private TitanManagement mgmt = null;
 
 
     //---------------RELATIONSHIPS---------------------------
-    private TitanLabel proteinNCBITaxonLabel;
+    private EdgeLabel proteinNCBITaxonLabel;
     private ProteinNCBITaxonType proteinNCBITaxonType;
 
     public TitanUniprotNCBITaxonomyGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
+        this.raw = rawGraph;
         this.uniprotRawGraph = titanUniprotGraph;
         this.ncbiTaxonomyRawGraph = titanNCBITaxonomyGraph;
-        initTypes();
-        initIndices();
+
+	    // First get a titanMgmt instance, that will be used throughout
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    // this should work now
+	    mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        proteinNCBITaxonLabel = raw().titanLabelForEdgeType(new ProteinNCBITaxonType((TitanLabel) null));
-        proteinNCBITaxonType = new ProteinNCBITaxonType(proteinNCBITaxonLabel);
+	    // proteinNCBITaxon
+	    EdgeLabelMaker proteinNCBITaxonTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinNCBITaxonType(null));
+	    proteinNCBITaxonType = new ProteinNCBITaxonType(proteinNCBITaxonTypeLabelMaker);
+        proteinNCBITaxonLabel = raw().createOrGet(mgmt, proteinNCBITaxonType.raw());
 
     }
 
-    private void initIndices() {
+    private void initIndices(TitanManagement mgmt) {
 
     }
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGraph() {
+    public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGraph() {
         return ncbiTaxonomyRawGraph;
     }
 

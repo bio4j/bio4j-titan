@@ -7,6 +7,7 @@ import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,57 +16,66 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotEnzymeGraph
         extends
-        UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
-    private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
+    private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeDBRawGraph;
+
+	private TitanManagement mgmt;
 
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
 
 	// enzymaticActivity
-	public TitanLabel enzymaticActivityLabel;
+	public EdgeLabel enzymaticActivityLabel;
 	public EnzymaticActivityType enzymaticActivityType;
 
 
     public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanEnzymeDBGraph titanEnzymeDBGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
+        this.raw = rawGraph;
         this.uniprotRawGraph = titanUniprotGraph;
         this.enzymeDBRawGraph = titanEnzymeDBGraph;
-        initTypes();
-        initIndices();
+
+	    // First get a titanMgmt instance, that will be used throughout
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    // this should work now
+	    mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
 	    //-----------------------------------------------------------------------------------------
 	    //--------------------------------RELATIONSHIPS--------------------------------------------
 
-	    enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((TitanLabel) null));
-	    enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityLabel);
+	    // enzymaticActivity
+	    EdgeLabelMaker enzymaticActivityTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new EnzymaticActivityType(null));
+	    enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityTypeLabelMaker);
+	    enzymaticActivityLabel = raw().createOrGet(mgmt, enzymaticActivityType.raw());
 
     }
 
-    private void initIndices() {
+    private void initIndices(TitanManagement mgmt) {
 
     }
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeDBGraph() {
+    public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeDBGraph() {
         return enzymeDBRawGraph;
     }
 

@@ -8,6 +8,7 @@ import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,54 +16,63 @@ import com.thinkaurelius.titan.core.*;
  @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
 public final class TitanEnzymeDBGraph
-        extends
-        EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+    extends
+    EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
 	private TitanUniprotEnzymeGraph uniprotEnzymeGraph = null;
+
+    private TitanManagement mgmt;
+
+    public TitanManagement managementSystem() { return this.mgmt; } 
 
 
     //-------------------VERTICES----------------------------
 
-    public TitanKey enzymeTypekey;
-    public TitanKey enzymeIdkey;
-    public TitanKey enzymeCofactorskey;
-    public TitanKey enzymeOfficialNamekey;
-    public TitanKey enzymeAlternateNameskey;
-    public TitanKey enzymeCommentkey;
-    public TitanKey enzymeCatalyticActivitykey;
-    public TitanKey enzymePrositeCrossReferenceskey;
+    public VertexLabel enzymeTypeLabel;
+    public PropertyKey enzymeIdkey;
+    public PropertyKey enzymeCofactorskey;
+    public PropertyKey enzymeOfficialNamekey;
+    public PropertyKey enzymeAlternateNameskey;
+    public PropertyKey enzymeCommentkey;
+    public PropertyKey enzymeCatalyticActivitykey;
+    public PropertyKey enzymePrositeCrossReferenceskey;
     public EnzymeType enzymeType;
 
     //---------------INDICES---------------------------
 
     TitanTypedVertexIndex.DefaultUnique<
-            Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            Enzyme<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             EnzymeType,
             EnzymeType.id, String,
-            EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+            EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
             DefaultTitanGraph
             > enzymeIdIndex;
 
 	@Override
-	public TypedVertexIndex.Unique<Enzyme<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, EnzymeType, EnzymeType.id, String, EnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> enzymeIdIndex() {
+	public TypedVertexIndex.Unique<Enzyme<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, EnzymeType, EnzymeType.id, String, EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeIdIndex() {
 		return enzymeIdIndex;
 	}
 
 	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
-        initTypes();
-        initIndices();
+        this.raw = rawGraph;
+
+        // First get a titanMgmt instance, that will be used throughout
+        this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+        // this should work now
+        mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
     @Override
-    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotEnzymeDBGraph() {
+    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
         return uniprotEnzymeGraph;
     }
 
@@ -71,24 +81,49 @@ public final class TitanEnzymeDBGraph
         return enzymeType;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-	    enzymeType = new EnzymeType(enzymeTypekey);
-        enzymeTypekey = raw().titanKeyForVertexType(Enzyme().id);
-        enzymeIdkey = enzymeTypekey;
-        enzymeCofactorskey = raw().titanKeyForVertexPropertySingle(Enzyme().cofactors);
-        enzymeOfficialNamekey = raw().titanKeyForVertexPropertySingle(Enzyme().officialName);
-        enzymeAlternateNameskey = raw().titanKeyForVertexPropertySingle(Enzyme().alternateNames);
-        enzymeCommentkey = raw().titanKeyForVertexPropertySingle(Enzyme().comment);
-        enzymeCatalyticActivitykey = raw().titanKeyForVertexPropertySingle(Enzyme().catalyticActivity);
-        enzymePrositeCrossReferenceskey = raw().titanKeyForVertexPropertySingle(Enzyme().prositeCrossReferences);
+        // the tricky part is initializing the label part
+        // first create all label and prop makers
+        VertexLabelMaker enzymeTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new EnzymeType(null));
+        // then create the type with a ref to the label
+        enzymeType = new EnzymeType(enzymeTypeLabelMaker);
+        // init properties
+        enzymeIdkey = raw().createOrGet( mgmt,
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().id )
+                .cardinality(Cardinality.SINGLE)
+        );
+
+        enzymeCofactorskey = raw().createOrGet( mgmt,
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().cofactors ).cardinality(Cardinality.SINGLE) 
+        );
+        enzymeOfficialNamekey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().officialName ).cardinality(Cardinality.SINGLE) 
+        );
+        enzymeAlternateNameskey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().alternateNames ).cardinality(Cardinality.SINGLE) 
+        );
+        enzymeCommentkey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().comment ).cardinality(Cardinality.SINGLE) 
+        );
+        enzymeCatalyticActivitykey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().catalyticActivity ).cardinality(Cardinality.SINGLE) 
+        );
+        enzymePrositeCrossReferenceskey = raw().createOrGet( mgmt, 
+            raw().titanPropertyMakerForVertexProperty( mgmt, Enzyme().prositeCrossReferences ).cardinality(Cardinality.SINGLE) 
+        );
+
+        // create everything
+        this.enzymeTypeLabel = raw().createOrGet(mgmt, enzymeType.raw());
 
     }
 
-    private void initIndices() {
-        enzymeIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, Enzyme().id);
+    private void initIndices(TitanManagement mgmt) {
+        
+        enzymeIdIndex = (new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, Enzyme().id));
+        enzymeIdIndex.make(enzymeTypeLabel);
     }
 
 	/*

@@ -4,16 +4,16 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.go.programs.ImportGOTitan</class_full_name>
     <arguments>      
-	  <argument>/mnt/disk1/go.xml</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/go.xml</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution> 
   
   <execution>
     <class_full_name>com.bio4j.titan.model.enzyme.programs.ImportEnzymeDBTitan</class_full_name>
     <arguments>      
-	  <argument>/mnt/disk1/enzyme.dat</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/enzyme.dat</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution> 
   
@@ -22,8 +22,8 @@
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_sprot.xml</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
-	  <argument>/mnt/disk1/uniprot_data.xml</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution>  
  
@@ -31,8 +31,8 @@
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-	  <argument>bio4j</argument>
-	  <argument>/mnt/disk1/uniprot_data.xml</argument>
+    <argument>bio4j</argument>
+    <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
   -->
@@ -42,7 +42,7 @@
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_sprot.xml</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>  
 
@@ -50,7 +50,7 @@
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-	  <argument>bio4j</argument>
+    <argument>bio4j</argument>
     </arguments>
   </execution>  
   
@@ -58,7 +58,7 @@
     <class_full_name>com.bio4j.titan.model.uniprot_enzyme.programs.ImportUniprotEnzymeDBTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_sprot.xml</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>  
 
@@ -69,7 +69,7 @@
     <class_full_name>com.bio4j.titan.model.uniprot_enzyme.programs.ImportUniprotEnzymeDBTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-	  <argument>bio4j</argument>
+    <argument>bio4j</argument>
     </arguments>
   </execution> 
   
@@ -77,10 +77,10 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
     <arguments>    
-	  <argument>/mnt/disk1/uniref100.xml</argument>
+    <argument>/mnt/disk1/uniref100.xml</argument>
       <argument>/mnt/disk1/uniref90.xml</argument>
-	  <argument>/mnt/disk1/uniref50.xml</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/uniref50.xml</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
    
@@ -89,10 +89,10 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy.programs.ImportNCBITaxonomyTitan</class_full_name>
     <arguments>    
-	  <argument>/mnt/disk1/nodes.dmp</argument>
+    <argument>/mnt/disk1/nodes.dmp</argument>
       <argument>/mnt/disk1/names.dmp</argument>
-	  <argument>/mnt/disk1/merged.dmp</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/merged.dmp</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
    
@@ -100,8 +100,8 @@
  <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomyTitan</class_full_name>
     <arguments>   
-	  <argument>/mnt/bio4jdb/uniprot_sprot.xml</argument>
-	  <argument>bio4j_sprot</argument>
+    <argument>/mnt/bio4jdb/uniprot_sprot.xml</argument>
+    <argument>bio4j_sprot</argument>
     </arguments>
   </execution>
    
@@ -109,8 +109,8 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomyTitan</class_full_name>
     <arguments>   
-	  <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-	  <argument>bio4j</argument>
+    <argument>/mnt/disk1/uniprot_trembl.xml</argument>
+    <argument>bio4j</argument>
     </arguments>
   </execution>
   
@@ -118,10 +118,10 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniprotUniRefTitan</class_full_name>
     <arguments>    
-	  <argument>/mnt/disk1/uniref100.xml</argument>
+    <argument>/mnt/disk1/uniref100.xml</argument>
       <argument>/mnt/disk1/uniref90.xml</argument>
-	  <argument>/mnt/disk1/uniref50.xml</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/uniref50.xml</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
   -->
@@ -131,15 +131,15 @@
     <class_full_name>com.bio4j.titan.model.uniprot_go.tests.ImportUniprotGoTestTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-	  <argument>bio4jtests</argument>
+    <argument>bio4jtests</argument>
     </arguments>
   </execution> 
     
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy_geninfo.programs.ImportGenInfoNCBITaxonIndexTitan</class_full_name>
     <arguments>   
-	  <argument>/mnt/disk1/gi_taxid_nucl.dmp</argument>
-	  <argument>bio4j_sprot_no_uniqueness</argument>
+    <argument>/mnt/disk1/gi_taxid_nucl.dmp</argument>
+    <argument>bio4j_sprot_no_uniqueness</argument>
     </arguments>
   </execution>
 -->

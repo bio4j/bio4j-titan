@@ -7,6 +7,7 @@ import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,76 +16,99 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanUniprotUniRefGraph
         extends
-        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotRawGraph;
-    private UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRefRawGraph;
+    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
+    private UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRefRawGraph;
+
+	private TitanManagement mgmt = null;
 
     //---------------RELATIONSHIPS---------------------------
 
-    private TitanLabel uniRef50MemberLabel;
+    private EdgeLabel uniRef50MemberLabel;
     private UniRef50MemberType uniRef50MemberType;
-    private TitanLabel uniRef90MemberLabel;
+    private EdgeLabel uniRef90MemberLabel;
     private UniRef90MemberType uniRef90MemberType;
-    private TitanLabel uniRef100MemberLabel;
+    private EdgeLabel uniRef100MemberLabel;
     private UniRef100MemberType uniRef100MemberType;
-    private TitanLabel uniRef50RepresentantLabel;
+    private EdgeLabel uniRef50RepresentantLabel;
     private UniRef50RepresentantType uniRef50RepresentantType;
-    private TitanLabel uniRef90RepresentantLabel;
+    private EdgeLabel uniRef90RepresentantLabel;
     private UniRef90RepresentantType uniRef90RepresentantType;
-    private TitanLabel uniRef100RepresentantLabel;
+    private EdgeLabel uniRef100RepresentantLabel;
     private UniRef100RepresentantType uniRef100RepresentantType;
 
 
     public TitanUniprotUniRefGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanUniRefGraph titanUniRefGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
+        this.raw = rawGraph;
         this.uniprotRawGraph = titanUniprotGraph;
         this.uniRefRawGraph = titanUniRefGraph;
-        initTypes();
-        initIndices();
+
+	    // First get a titanMgmt instance, that will be used throughout
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    // this should work now
+	    mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------RELATIONSHIPS--------------------------------------------
 
-        uniRef50MemberLabel = raw().titanLabelForEdgeType(new UniRef50MemberType((TitanLabel) null));
-        uniRef50MemberType = new UniRef50MemberType(uniRef50MemberLabel);
-        uniRef90MemberLabel = raw().titanLabelForEdgeType(new UniRef90MemberType((TitanLabel) null));
-        uniRef90MemberType = new UniRef90MemberType(uniRef90MemberLabel);
-        uniRef100MemberLabel = raw().titanLabelForEdgeType(new UniRef100MemberType((TitanLabel) null));
-        uniRef100MemberType = new UniRef100MemberType(uniRef100MemberLabel);
+	    // uniRef50Member
+	    EdgeLabelMaker uniRef50MemberTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new UniRef50MemberType(null));
+	    uniRef50MemberType = new UniRef50MemberType(uniRef50MemberTypeLabelMaker);
+        uniRef50MemberLabel = raw().createOrGet(mgmt, uniRef50MemberType.raw());
+
+	    // uniRef90Member
+	    EdgeLabelMaker uniRef90MemberTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new UniRef90MemberType(null));
+	    uniRef90MemberType = new UniRef90MemberType(uniRef90MemberTypeLabelMaker);
+        uniRef90MemberLabel = raw().createOrGet(mgmt, uniRef90MemberType.raw());
+
+	    // uniRef100Member
+	    EdgeLabelMaker uniRef100MemberTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new UniRef100MemberType(null));
+	    uniRef100MemberType = new UniRef100MemberType(uniRef100MemberTypeLabelMaker);
+        uniRef100MemberLabel = raw().createOrGet(mgmt, uniRef100MemberType.raw());
 
 
-        uniRef50RepresentantLabel = raw().titanLabelForEdgeType(new UniRef50RepresentantType((TitanLabel) null));
-        uniRef50RepresentantType = new UniRef50RepresentantType(uniRef50RepresentantLabel);
-        uniRef90RepresentantLabel = raw().titanLabelForEdgeType(new UniRef90RepresentantType((TitanLabel) null));
-        uniRef90RepresentantType = new UniRef90RepresentantType(uniRef90RepresentantLabel);
-        uniRef100RepresentantLabel = raw().titanLabelForEdgeType(new UniRef100RepresentantType((TitanLabel) null));
-        uniRef100RepresentantType = new UniRef100RepresentantType(uniRef100RepresentantLabel);
+	    // uniRef50Representant
+	    EdgeLabelMaker uniRef50RepresentantTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new UniRef100MemberType(null));
+	    uniRef50RepresentantType = new UniRef50RepresentantType(uniRef50RepresentantTypeLabelMaker);
+        uniRef50RepresentantLabel = raw().createOrGet(mgmt, uniRef50RepresentantType.raw());
+
+	    // uniRef90Representant
+	    EdgeLabelMaker uniRef90RepresentantTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new UniRef100MemberType(null));
+	    uniRef90RepresentantType = new UniRef90RepresentantType(uniRef90RepresentantTypeLabelMaker);
+        uniRef90RepresentantLabel = raw().createOrGet(mgmt, uniRef90RepresentantType.raw());
+
+	    // uniRef100Representant
+	    EdgeLabelMaker uniRef100RepresentantTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new UniRef100MemberType(null));
+	    uniRef100RepresentantType = new UniRef100RepresentantType(uniRef100RepresentantTypeLabelMaker);
+        uniRef100RepresentantLabel = raw().createOrGet(mgmt, uniRef100RepresentantType.raw());
 
     }
 
-    private void initIndices() {
+    private void initIndices(TitanManagement mgmt) {
 
     }
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniprotGraph() {
+    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
         return uniprotRawGraph;
     }
 
     @Override
-    public UniRefGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> uniRefGraph() {
+    public UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRefGraph() {
         return uniRefRawGraph;
     }
 

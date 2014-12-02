@@ -8,6 +8,7 @@ import com.bio4j.model.ncbiTaxonomy_geninfo.NCBITaxonomyGenInfoGraph;
 import com.bio4j.titan.model.ncbiTaxonomy_geninfo.TitanNCBITaxonomyGenInfoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 
 
 /**
@@ -15,47 +16,54 @@ import com.thinkaurelius.titan.core.*;
  */
 public final class TitanGenInfoGraph
 		extends
-		GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> {
+		GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
+
+	private TitanManagement mgmt;
 
 
 	//-------------------VERTICES----------------------------
 
-	public TitanKey genInfoTypeKey;
-	public TitanKey genInfoIdkey;
+	public VertexLabel genInfoTypeLabel;
+	public PropertyKey genInfoIdkey;
 	public GenInfoType genInfoType;
 
 	//---------------INDICES---------------------------
 
 	TitanTypedVertexIndex.DefaultUnique<
-			GenInfo<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+			GenInfo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
 			GenInfoType,
 			GenInfoType.id, String,
-			GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>,
+			GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
 			DefaultTitanGraph
 			> genInfoIdIndex;
 
 	@Override
-	public TypedVertexIndex.Unique<GenInfo<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, GenInfoType, GenInfoType.id, String, GenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>, DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> genInfoIdIndex() {
+	public TypedVertexIndex.Unique<GenInfo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GenInfoType, GenInfoType.id, String, GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> genInfoIdIndex() {
 		return genInfoIdIndex;
 	}
 
 	public TitanGenInfoGraph(DefaultTitanGraph rawGraph) {
 		super(rawGraph);
-		this.rawGraph = rawGraph;
-		initTypes();
-		initIndices();
+		this.raw = rawGraph;
+
+		// First get a titanMgmt instance, that will be used throughout
+		this.mgmt = rawGraph.managementSystem();
+		initTypes(mgmt);
+		initIndices(mgmt);
+
+		// this should work now
+		mgmt.commit();
 	}
 
 	@Override
 	public DefaultTitanGraph raw() {
-		return rawGraph;
+		return raw;
 	}
 
 	@Override
-	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> ncbiTaxonomyGenInfoGraph() {
+	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGenInfoGraph() {
 		return null;
 	}
 
@@ -64,18 +72,20 @@ public final class TitanGenInfoGraph
 		return genInfoType;
 	}
 
-	private void initTypes() {
+	private void initTypes(TitanManagement mgmt) {
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------VERTICES--------------------------------------------
-		genInfoType = new GenInfoType(genInfoTypeKey);
-		genInfoTypeKey = raw().titanKeyForVertexType(GenInfo().id);
-		genInfoIdkey = genInfoTypeKey;
+		VertexLabelMaker enzymeTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new GenInfoType(null));
+		genInfoType = new GenInfoType(enzymeTypeLabelMaker);
+		genInfoIdkey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GenInfo().id ).cardinality(Cardinality.SINGLE));
+		this.genInfoTypeLabel = raw().createOrGet(mgmt, genInfoType.raw());
 
 	}
 
-	private void initIndices() {
-		genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(this, GenInfo().id);
+	private void initIndices(TitanManagement mgmt) {
+		genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, GenInfo().id);
+		genInfoIdIndex.make(genInfoTypeLabel);
 	}
 
 	/*

@@ -5,6 +5,7 @@ import com.bio4j.model.uniprot.vertices.RefSeq;
 import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
 
@@ -28,8 +29,8 @@ public class IndexTest {
 
 		String idSt = "NP_505817.1";
 
-		RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> refSeq = null;
-		EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel> embl = null;
+		RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> refSeq = null;
+		EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> embl = null;
 
 
 
@@ -41,14 +42,14 @@ public class IndexTest {
 		embl.set(graph.EMBL().id, idSt);
 		//graph.raw().commit();
 
-		Optional<RefSeq<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> optionalRefSeq = graph.refSeqIdIndex().getVertex(idSt);
+		Optional<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>> optionalRefSeq = graph.refSeqIdIndex().getVertex(idSt);
 		if(!optionalRefSeq.isPresent()){
 			System.out.println("ERROR: The REfSEq id was not found... :(");
 		}else{
 			System.out.println("Element found! :)");
 		}
 
-		Optional<EMBL<DefaultTitanGraph, TitanVertex, TitanKey, TitanEdge, TitanLabel>> optionalEMBL = graph.eMBLIdIndex().getVertex(idSt);
+		Optional<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>> optionalEMBL = graph.eMBLIdIndex().getVertex(idSt);
 		if(!optionalEMBL.isPresent()){
 			System.out.println("ERROR: The EMBL id was not found... :(");
 		}else{
