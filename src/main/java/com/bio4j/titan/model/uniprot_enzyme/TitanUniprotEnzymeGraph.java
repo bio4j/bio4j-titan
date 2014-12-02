@@ -18,9 +18,10 @@ public final class TitanUniprotEnzymeGraph
         extends
         UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private DefaultTitanGraph rawGraph;
     private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
     private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeDBRawGraph;
+
+	private TitanManagement mgmt;
 
 
 	//-----------------------------------------------------------------------------------------
@@ -33,29 +34,37 @@ public final class TitanUniprotEnzymeGraph
 
     public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanEnzymeDBGraph titanEnzymeDBGraph) {
         super(rawGraph);
-        this.rawGraph = rawGraph;
+        this.raw = rawGraph;
         this.uniprotRawGraph = titanUniprotGraph;
         this.enzymeDBRawGraph = titanEnzymeDBGraph;
-        initTypes();
-        initIndices();
+
+	    // First get a titanMgmt instance, that will be used throughout
+	    this.mgmt = rawGraph.managementSystem();
+        initTypes(mgmt);
+        initIndices(mgmt);
+
+	    // this should work now
+	    mgmt.commit();
     }
 
     @Override
     public DefaultTitanGraph raw() {
-        return rawGraph;
+        return raw;
     }
 
-    private void initTypes() {
+    private void initTypes(TitanManagement mgmt) {
 
 	    //-----------------------------------------------------------------------------------------
 	    //--------------------------------RELATIONSHIPS--------------------------------------------
 
-	    //enzymaticActivityLabel = raw().titanLabelForEdgeType(new EnzymaticActivityType((EdgeLabel) null));
-	    //enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityLabel);
+	    // enzymaticActivity
+	    EdgeLabelMaker enzymaticActivityTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new EnzymaticActivityType(null));
+	    enzymaticActivityType = new EnzymaticActivityType(enzymaticActivityTypeLabelMaker);
+	    enzymaticActivityLabel = raw().createOrGet(mgmt, enzymaticActivityType.raw());
 
     }
 
-    private void initIndices() {
+    private void initIndices(TitanManagement mgmt) {
 
     }
 

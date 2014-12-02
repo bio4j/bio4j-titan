@@ -18,9 +18,10 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		extends
 		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private DefaultTitanGraph rawGraph;
 	private TitanNCBITaxonomyGraph ncbiTaxonomyRawGraph;
 	private TitanGenInfoGraph genInfoRawGraph;
+
+	private TitanManagement mgmt;
 
 	//---------------RELATIONSHIPS---------------------------
 
@@ -30,29 +31,38 @@ public final class TitanNCBITaxonomyGenInfoGraph
 
 	public TitanNCBITaxonomyGenInfoGraph(DefaultTitanGraph rawGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph, TitanGenInfoGraph titanGenInfoGraph) {
 		super(rawGraph);
-		this.rawGraph = rawGraph;
+		this.raw = rawGraph;
 		this.ncbiTaxonomyRawGraph = titanNCBITaxonomyGraph;
 		this.genInfoRawGraph = titanGenInfoGraph;
-		initTypes();
-		initIndices();
+
+		// First get a titanMgmt instance, that will be used throughout
+		this.mgmt = rawGraph.managementSystem();
+		initTypes(mgmt);
+		initIndices(mgmt);
+
+		// this should work now
+		mgmt.commit();
+
 	}
 
 	@Override
 	public DefaultTitanGraph raw() {
-		return rawGraph;
+		return raw;
 	}
 
-	private void initTypes() {
+	private void initTypes(TitanManagement mgmt) {
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------RELATIONSHIPS--------------------------------------------
 
-		// genInfoNCBITaxonLabel = raw().titanLabelForEdgeType(new GenInfoNCBITaxonType((EdgeLabel) null));
-		// genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonLabel);
+		// genInfoNCBITaxon
+		EdgeLabelMaker genInfoNCBITaxonTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new GenInfoNCBITaxonType(null));
+		genInfoNCBITaxonType = new GenInfoNCBITaxonType(genInfoNCBITaxonTypeLabelMaker);
+		genInfoNCBITaxonLabel = raw().createOrGet(mgmt, genInfoNCBITaxonType.raw());
 
 	}
 
-	private void initIndices() {
+	private void initIndices(TitanManagement mgmt) {
 
 	}
 
