@@ -18,8 +18,8 @@ public final class TitanUniprotGoGraph
         extends
         UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private TitanUniprotGraph uniprotRawGraph;
-    private TitanGoGraph goRawGraph;
+    private TitanUniprotGraph uniprotGraph;
+    private TitanGoGraph goGraph;
 
 	private TitanManagement mgmt = null;
 
@@ -32,8 +32,6 @@ public final class TitanUniprotGoGraph
     public TitanUniprotGoGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanGoGraph titanGoGraph) {
         super(rawGraph);
         this.raw = rawGraph;
-        this.uniprotRawGraph = titanUniprotGraph;
-        this.goRawGraph = titanGoGraph;
 
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
@@ -42,6 +40,10 @@ public final class TitanUniprotGoGraph
 
 	    // this should work now
 	    mgmt.commit();
+
+        this.goGraph        = titanGoGraph.withUniprotGoGraph(this);
+        // WAT?
+        this.uniprotGraph   = titanUniprotGraph.withUniprotGoGraph(this);
     }
 
     @Override
@@ -68,12 +70,12 @@ public final class TitanUniprotGoGraph
 
     @Override
     public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
-        return uniprotRawGraph;
+        return uniprotGraph;
     }
 
     @Override
     public GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> goGraph() {
-        return goRawGraph;
+        return goGraph;
     }
 
     @Override

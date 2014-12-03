@@ -6,7 +6,10 @@ import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
 import com.bio4j.model.ncbiTaxonomy_geninfo.NCBITaxonomyGenInfoGraph;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
+
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
+import com.bio4j.titan.model.ncbiTaxonomy_geninfo.TitanNCBITaxonomyGenInfoGraph;
+
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
 import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
@@ -22,6 +25,7 @@ public final class TitanNCBITaxonomyGraph
 		NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
 	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
+	private NCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
 
 	private TitanManagement mgmt = null;
 
@@ -122,9 +126,16 @@ public final class TitanNCBITaxonomyGraph
 	/*
 		You can use this as `ncbiTaxonomyGraph.withUniprot(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanNCBITaxonomyGraph withUniprot(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+	public TitanNCBITaxonomyGraph withUniprotNCBITaxonomyGraph(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
 
 		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
+
+		return this;
+	}
+
+	public TitanNCBITaxonomyGraph withNCBITaxonomyGenInfoGraph(TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph) {
+
+		this.ncbiTaxonomyGenInfoGraph = ncbiTaxonomyGenInfoGraph;
 
 		return this;
 	}

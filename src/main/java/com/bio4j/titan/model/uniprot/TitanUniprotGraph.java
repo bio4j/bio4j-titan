@@ -1832,6 +1832,11 @@ public final class TitanUniprotGraph
 		return this;
 	}
 
+	public TitanUniprotGraph withUniprotGoGraph(TitanUniprotGoGraph uniprotGoGraph) {
+		this.uniprotGoGraph = uniprotGoGraph;
+		return this;
+	}
+
 	/*
 		You can use this as `uniprotGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniprotGraph, enzymeGraph))`
 	*/

@@ -15,7 +15,7 @@ import com.thinkaurelius.titan.core.schema.*;
  @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
 public final class TitanGenInfoGraph
-		extends
+extends
 		GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
 	private TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
@@ -91,7 +91,7 @@ public final class TitanGenInfoGraph
 	/*
 		You can use this as `enzymeDBGraph.withUniprot(new TitanUniprotEnzymeDBGraph(raw, uniprotGraph, enzymeGraph))`
 	*/
-	public TitanGenInfoGraph withNCBITaxonomy(TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph) {
+	public TitanGenInfoGraph withNCBITaxonomyGenInfoGraph(TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph) {
 
 		this.ncbiTaxonomyGenInfoGraph = ncbiTaxonomyGenInfoGraph;
 
