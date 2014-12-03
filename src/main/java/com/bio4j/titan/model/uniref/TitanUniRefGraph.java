@@ -132,7 +132,7 @@ public final class TitanUniRefGraph
 
 
     @Override
-    public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotUniRefGraph() {
+    public TitanUniprotUniRefGraph uniprotUniRefGraph() {
         return uniprotUniRefGraph;
     }
 
@@ -169,7 +169,7 @@ public final class TitanUniRefGraph
 	/*
 		You can use this as `uniRefGraph.withUniprot(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
 	*/
-	public TitanUniRefGraph withUniprot(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+	public TitanUniRefGraph withUniprotUniRefGraph(TitanUniprotUniRefGraph uniprotUniRefGraph) {
 
 		this.uniprotUniRefGraph = uniprotUniRefGraph;
 

@@ -1305,22 +1305,22 @@ public final class TitanUniprotGraph
 
 
 	@Override
-	public UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotUniRefGraph() {
+	public TitanUniprotUniRefGraph uniprotUniRefGraph() {
 		return uniprotUniRefGraph;
 	}
 
 	@Override
-	public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
+	public TitanUniprotGoGraph uniprotGoGraph() {
 		return uniprotGoGraph;
 	}
 
 	@Override
-	public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
+	public TitanUniprotEnzymeGraph uniprotEnzymeDBGraph() {
 		return uniprotEnzymeGraph;
 	}
 
 	@Override
-	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotNCBITaxonomyGraph() {
+	public TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
@@ -1827,11 +1827,6 @@ public final class TitanUniprotGraph
 	/*
 		You can use this as `uniprotGraph.withGo(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
 	*/
-	public TitanUniprotGraph withGo(TitanUniprotGoGraph uniprotGoGraph) {
-		this.uniprotGoGraph = uniprotGoGraph;
-		return this;
-	}
-
 	public TitanUniprotGraph withUniprotGoGraph(TitanUniprotGoGraph uniprotGoGraph) {
 		this.uniprotGoGraph = uniprotGoGraph;
 		return this;
@@ -1848,7 +1843,7 @@ public final class TitanUniprotGraph
 	/*
 		You can use this as `uniprotGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanUniprotGraph withNCBITaxonomy(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+	public TitanUniprotGraph withUniprotNCBITaxonomyGraph(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
 		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
 		return this;
 	}
@@ -1856,7 +1851,7 @@ public final class TitanUniprotGraph
 	/*
 		You can use this as `uniprotGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
 	*/
-	public TitanUniprotGraph withUniRef(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+	public TitanUniprotGraph withUniprotUniRefGraph(TitanUniprotUniRefGraph uniprotUniRefGraph) {
 		this.uniprotUniRefGraph = uniprotUniRefGraph;
 		return this;
 	}

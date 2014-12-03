@@ -79,12 +79,12 @@ public final class TitanNCBITaxonomyGraph
 	}
 
 	@Override
-	public UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotNCBITaxonomyGraph() {
+	public TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
 	@Override
-	public NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGenInfoGraph() {
+	public TitanNCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph() {
 		return ncbiTaxonomyGenInfoGraph();
 	}
 

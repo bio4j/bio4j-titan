@@ -48,8 +48,8 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		mgmt.commit();
 
 		/* update dependencies */
-		this.ncbiTaxonomyGraph = titanNCBITaxonomyGraph.withNCBITaxonomyGenInfoGraph(this);
-		this.genInfoGraph = titanGenInfoGraph.withNCBITaxonomyGenInfoGraph(this);
+		this.ncbiTaxonomyGraph 	= titanNCBITaxonomyGraph.withNCBITaxonomyGenInfoGraph(this);
+		this.genInfoGraph 			= 		 titanGenInfoGraph.withNCBITaxonomyGenInfoGraph(this);
 	}
 
 	@Override

@@ -212,7 +212,7 @@ public final class TitanGoGraph
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
+    public TitanUniprotGoGraph uniprotGoGraph() {
         return uniprotGoGraph;
     }
 

@@ -32,7 +32,11 @@ public final class TitanUniprotEnzymeGraph
 	public EnzymaticActivityType enzymaticActivityType;
 
 
-    public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanEnzymeDBGraph titanEnzymeDBGraph) {
+    public TitanUniprotEnzymeGraph(
+        DefaultTitanGraph rawGraph,
+        TitanUniprotGraph titanUniprotGraph,
+        TitanEnzymeDBGraph titanEnzymeDBGraph
+    ){
         super(rawGraph);
         this.raw = rawGraph;
 
@@ -45,7 +49,7 @@ public final class TitanUniprotEnzymeGraph
 	    mgmt.commit();
 
         /* update dependencies */
-        this.uniprotGraph    = titanUniprotGraph.withUniprotEnzymeGraph(this);
+        this.uniprotGraph    =  titanUniprotGraph.withUniprotEnzymeGraph(this);
         this.enzymeDBGraph   = titanEnzymeDBGraph.withUniprotEnzymeGraph(this);
     }
 
@@ -72,12 +76,14 @@ public final class TitanUniprotEnzymeGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
+    public TitanUniprotGraph uniprotGraph() {
+
         return uniprotGraph;
     }
 
     @Override
-    public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeDBGraph() {
+    public TitanEnzymeDBGraph enzymeDBGraph() {
+        
         return enzymeDBGraph;
     }
 

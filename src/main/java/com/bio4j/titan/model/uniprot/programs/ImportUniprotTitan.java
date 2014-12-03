@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
     @Override
-    protected UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> config(String dbFolder) {
+    protected TitanUniprotGraph config(String dbFolder) {
         //----------DB configuration------------------
 	    Configuration conf = new BaseConfiguration();
 	    conf.setProperty("storage.directory", dbFolder);

@@ -41,8 +41,8 @@ public final class TitanUniprotGoGraph
 	    // this should work now
 	    mgmt.commit();
 
-        this.goGraph        = titanGoGraph.withUniprotGoGraph(this);
-        this.uniprotGraph   = titanUniprotGraph.withUniprotGoGraph(this);
+        this.goGraph        =       titanGoGraph.withUniprotGoGraph(this);
+        this.uniprotGraph   =  titanUniprotGraph.withUniprotGoGraph(this);
     }
 
     @Override
@@ -68,12 +68,14 @@ public final class TitanUniprotGoGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
+    public TitanUniprotGraph uniprotGraph() {
+
         return uniprotGraph;
     }
 
     @Override
-    public GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> goGraph() {
+    public TitanGoGraph goGraph() {
+        
         return goGraph;
     }
 
