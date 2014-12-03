@@ -90,6 +90,7 @@ public final class TitanGoGraph
         return raw;
     }
 
+    /* this method should be idempotent. This is important */
     private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
@@ -211,7 +212,7 @@ public final class TitanGoGraph
     }
 
     @Override
-    public UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGoGraph() {
+    public TitanUniprotGoGraph uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
@@ -228,7 +229,7 @@ public final class TitanGoGraph
 	/*
 		You can use this as `goGraph.withUniprot(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
 	*/
-	public TitanGoGraph withUniprot(TitanUniprotGoGraph uniprotGoGraph) {
+	public TitanGoGraph withUniprotGoGraph(TitanUniprotGoGraph uniprotGoGraph) {
 
 		this.uniprotGoGraph = uniprotGoGraph;
 

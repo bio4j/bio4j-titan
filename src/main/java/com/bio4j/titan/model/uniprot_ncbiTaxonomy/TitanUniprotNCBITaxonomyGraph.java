@@ -18,8 +18,8 @@ public final class TitanUniprotNCBITaxonomyGraph
         extends
         UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
-    private NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyRawGraph;
+    private TitanUniprotGraph uniprotGraph;
+    private TitanNCBITaxonomyGraph ncbiTaxonomyGraph;
 
 	private TitanManagement mgmt = null;
 
@@ -28,11 +28,13 @@ public final class TitanUniprotNCBITaxonomyGraph
     private EdgeLabel proteinNCBITaxonLabel;
     private ProteinNCBITaxonType proteinNCBITaxonType;
 
-    public TitanUniprotNCBITaxonomyGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph) {
+    public TitanUniprotNCBITaxonomyGraph(
+        DefaultTitanGraph rawGraph,
+        TitanUniprotGraph titanUniprotGraph,
+        TitanNCBITaxonomyGraph titanNCBITaxonomyGraph
+    ) {
         super(rawGraph);
         this.raw = rawGraph;
-        this.uniprotRawGraph = titanUniprotGraph;
-        this.ncbiTaxonomyRawGraph = titanNCBITaxonomyGraph;
 
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
@@ -41,6 +43,10 @@ public final class TitanUniprotNCBITaxonomyGraph
 
 	    // this should work now
 	    mgmt.commit();
+
+        /* update dependencies */
+        this.uniprotGraph       =      titanUniprotGraph.withUniprotNCBITaxonomyGraph(this);
+        this.ncbiTaxonomyGraph  = titanNCBITaxonomyGraph.withUniprotNCBITaxonomyGraph(this);
     }
 
     @Override
@@ -64,15 +70,14 @@ public final class TitanUniprotNCBITaxonomyGraph
 
     }
 
-
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
-        return uniprotRawGraph;
+    public TitanUniprotGraph uniprotGraph() {
+        return uniprotGraph;
     }
 
     @Override
-    public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGraph() {
-        return ncbiTaxonomyRawGraph;
+    public TitanNCBITaxonomyGraph ncbiTaxonomyGraph() {
+        return ncbiTaxonomyGraph;
     }
 
     @Override

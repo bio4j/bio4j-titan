@@ -18,8 +18,8 @@ public final class TitanUniprotUniRefGraph
         extends
         UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
-    private UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRefRawGraph;
+    private TitanUniprotGraph uniprotGraph;
+    private TitanUniRefGraph uniRefGraph;
 
 	private TitanManagement mgmt = null;
 
@@ -50,11 +50,13 @@ public final class TitanUniprotUniRefGraph
 	public PropertyKey uniRef100RepresentantProteinAccessionKey;
 
 
-    public TitanUniprotUniRefGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanUniRefGraph titanUniRefGraph) {
+    public TitanUniprotUniRefGraph(
+        DefaultTitanGraph rawGraph, 
+        TitanUniprotGraph titanUniprotGraph, 
+        TitanUniRefGraph titanUniRefGraph
+    ) {
         super(rawGraph);
         this.raw = rawGraph;
-        this.uniprotRawGraph = titanUniprotGraph;
-        this.uniRefRawGraph = titanUniRefGraph;
 
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
@@ -63,6 +65,10 @@ public final class TitanUniprotUniRefGraph
 
 	    // this should work now
 	    mgmt.commit();
+
+        /* update dependencies */
+        this.uniprotGraph   = titanUniprotGraph.withUniprotUniRefGraph(this);
+        this.uniRefGraph    =  titanUniRefGraph.withUniprotUniRefGraph(this);
     }
 
     @Override
@@ -120,13 +126,13 @@ public final class TitanUniprotUniRefGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
-        return uniprotRawGraph;
+    public TitanUniprotGraph uniprotGraph() {
+        return uniprotGraph;
     }
 
     @Override
-    public UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniRefGraph() {
-        return uniRefRawGraph;
+    public TitanUniRefGraph uniRefGraph() {
+        return uniRefGraph;
     }
 
     @Override

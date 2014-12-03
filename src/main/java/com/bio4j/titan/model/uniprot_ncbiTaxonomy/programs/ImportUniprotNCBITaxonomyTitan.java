@@ -43,7 +43,7 @@ import java.util.ArrayList;
 public class ImportUniprotNCBITaxonomyTitan extends ImportUniprotNCBITaxonomy<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected UniprotNCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> config(String dbFolder) {
+	protected TitanUniprotNCBITaxonomyGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);

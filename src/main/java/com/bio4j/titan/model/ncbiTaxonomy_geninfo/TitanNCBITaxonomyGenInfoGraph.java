@@ -18,8 +18,8 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		extends
 		NCBITaxonomyGenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanNCBITaxonomyGraph ncbiTaxonomyRawGraph;
-	private TitanGenInfoGraph genInfoRawGraph;
+	private TitanNCBITaxonomyGraph ncbiTaxonomyGraph;
+	private TitanGenInfoGraph genInfoGraph;
 
 	private TitanManagement mgmt;
 
@@ -29,11 +29,15 @@ public final class TitanNCBITaxonomyGenInfoGraph
 	private GenInfoNCBITaxonType genInfoNCBITaxonType;
 
 
-	public TitanNCBITaxonomyGenInfoGraph(DefaultTitanGraph rawGraph, TitanNCBITaxonomyGraph titanNCBITaxonomyGraph, TitanGenInfoGraph titanGenInfoGraph) {
+	public TitanNCBITaxonomyGenInfoGraph(
+		DefaultTitanGraph rawGraph, 
+		TitanNCBITaxonomyGraph titanNCBITaxonomyGraph, 
+		TitanGenInfoGraph titanGenInfoGraph
+	) {
+
+		/* assign the raw graph */
 		super(rawGraph);
 		this.raw = rawGraph;
-		this.ncbiTaxonomyRawGraph = titanNCBITaxonomyGraph;
-		this.genInfoRawGraph = titanGenInfoGraph;
 
 		// First get a titanMgmt instance, that will be used throughout
 		this.mgmt = rawGraph.managementSystem();
@@ -43,6 +47,9 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		// this should work now
 		mgmt.commit();
 
+		/* update dependencies */
+		this.ncbiTaxonomyGraph 	= titanNCBITaxonomyGraph.withNCBITaxonomyGenInfoGraph(this);
+		this.genInfoGraph 			= 		 titanGenInfoGraph.withNCBITaxonomyGenInfoGraph(this);
 	}
 
 	@Override
@@ -68,18 +75,20 @@ public final class TitanNCBITaxonomyGenInfoGraph
 
 
 	@Override
-	public NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> ncbiTaxonomyGraph() {
-		return ncbiTaxonomyRawGraph;
+	public TitanNCBITaxonomyGraph ncbiTaxonomyGraph() {
+
+		return ncbiTaxonomyGraph;
 	}
 
 	@Override
-	public GenInfoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> genInfoGraph() {
-		return genInfoRawGraph;
+	public TitanGenInfoGraph genInfoGraph() {
+		
+		return genInfoGraph;
 	}
 
 	@Override
 	public GenInfoNCBITaxonType GenInfoNCBITaxon() {
+
 		return genInfoNCBITaxonType;
 	}
-
 }

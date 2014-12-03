@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class ImportGOTitan extends ImportGO<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
     @Override
-    protected GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> config(String dbFolder) {
+    protected TitanGoGraph config(String dbFolder) {
         //----------DB configuration------------------
         Configuration conf = new BaseConfiguration();
         conf.setProperty("storage.directory", dbFolder);

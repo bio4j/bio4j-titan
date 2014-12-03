@@ -18,8 +18,8 @@ public final class TitanUniprotEnzymeGraph
         extends
         UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotRawGraph;
-    private EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeDBRawGraph;
+    private TitanUniprotGraph uniprotGraph;
+    private TitanEnzymeDBGraph enzymeDBGraph;
 
 	private TitanManagement mgmt;
 
@@ -32,11 +32,13 @@ public final class TitanUniprotEnzymeGraph
 	public EnzymaticActivityType enzymaticActivityType;
 
 
-    public TitanUniprotEnzymeGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanEnzymeDBGraph titanEnzymeDBGraph) {
+    public TitanUniprotEnzymeGraph(
+        DefaultTitanGraph rawGraph,
+        TitanUniprotGraph titanUniprotGraph,
+        TitanEnzymeDBGraph titanEnzymeDBGraph
+    ){
         super(rawGraph);
         this.raw = rawGraph;
-        this.uniprotRawGraph = titanUniprotGraph;
-        this.enzymeDBRawGraph = titanEnzymeDBGraph;
 
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
@@ -45,6 +47,10 @@ public final class TitanUniprotEnzymeGraph
 
 	    // this should work now
 	    mgmt.commit();
+
+        /* update dependencies */
+        this.uniprotGraph    =  titanUniprotGraph.withUniprotEnzymeGraph(this);
+        this.enzymeDBGraph   = titanEnzymeDBGraph.withUniprotEnzymeGraph(this);
     }
 
     @Override
@@ -70,13 +76,15 @@ public final class TitanUniprotEnzymeGraph
 
 
     @Override
-    public UniprotGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotGraph() {
-        return uniprotRawGraph;
+    public TitanUniprotGraph uniprotGraph() {
+
+        return uniprotGraph;
     }
 
     @Override
-    public EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> enzymeDBGraph() {
-        return enzymeDBRawGraph;
+    public TitanEnzymeDBGraph enzymeDBGraph() {
+        
+        return enzymeDBGraph;
     }
 
     @Override

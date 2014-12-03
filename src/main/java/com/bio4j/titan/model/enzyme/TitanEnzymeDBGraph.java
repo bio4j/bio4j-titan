@@ -54,6 +54,7 @@ public final class TitanEnzymeDBGraph
 	}
 
 	public TitanEnzymeDBGraph(DefaultTitanGraph rawGraph) {
+
         super(rawGraph);
         this.raw = rawGraph;
 
@@ -129,7 +130,7 @@ public final class TitanEnzymeDBGraph
 	/*
 		You can use this as `enzymeDBGraph.withUniprot(new TitanUniprotEnzymeDBGraph(raw, uniprotGraph, enzymeGraph))`
 	*/
-	public TitanEnzymeDBGraph withUniprot(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
+	public TitanEnzymeDBGraph withUniprotEnzymeGraph(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
 
 		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
 
