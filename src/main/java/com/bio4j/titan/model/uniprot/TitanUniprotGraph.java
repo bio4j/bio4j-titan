@@ -1840,7 +1840,7 @@ public final class TitanUniprotGraph
 	/*
 		You can use this as `uniprotGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniprotGraph, enzymeGraph))`
 	*/
-	public TitanUniprotGraph withEnzymeDB(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
+	public TitanUniprotGraph withUniprotEnzymeGraph(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
 		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
 		return this;
 	}

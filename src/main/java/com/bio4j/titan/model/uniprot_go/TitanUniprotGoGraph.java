@@ -42,7 +42,6 @@ public final class TitanUniprotGoGraph
 	    mgmt.commit();
 
         this.goGraph        = titanGoGraph.withUniprotGoGraph(this);
-        // WAT?
         this.uniprotGraph   = titanUniprotGraph.withUniprotGoGraph(this);
     }
 
