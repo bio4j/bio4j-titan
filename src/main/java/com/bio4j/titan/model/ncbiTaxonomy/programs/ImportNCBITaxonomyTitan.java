@@ -41,7 +41,7 @@ public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGrap
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "local");
+		conf.setProperty("storage.backend", "berkeleyje");
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);

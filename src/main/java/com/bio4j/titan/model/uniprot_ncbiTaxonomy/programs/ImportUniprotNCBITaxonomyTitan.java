@@ -47,7 +47,7 @@ public class ImportUniprotNCBITaxonomyTitan extends ImportUniprotNCBITaxonomy<De
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "local");
+		conf.setProperty("storage.backend", "berkeleyje");
 		conf.setProperty("autotype", "none");
 		conf.setProperty("storage.batch-loading","true"); //We can add this configuration parameter since we are not creating any nodes here
 
