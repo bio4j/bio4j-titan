@@ -5,9 +5,6 @@ import com.bio4j.titan.model.enzyme.programs.ImportEnzymeDBTitan;
 import java.io.File;
 import java.util.ArrayList;
 
-/**
- * Created by ppareja on 11/18/2014.
- */
 public class ImportEnzymeDBTitanTest {
 
 	public void importEnzymeDBTitanTest(String dbFolder){

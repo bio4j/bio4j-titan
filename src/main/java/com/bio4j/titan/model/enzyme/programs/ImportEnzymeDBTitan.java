@@ -35,15 +35,26 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportEnzymeDBTitan extends ImportEnzymeDB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
+public class ImportEnzymeDBTitan 
+extends ImportEnzymeDB<
+  DefaultTitanGraph,
+  TitanVertex,
+  VertexLabelMaker,
+  TitanEdge,
+  EdgeLabelMaker
+> 
+  implements Executable {
 
 	@Override
 	protected TitanEnzymeDBGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		conf.setProperty("autotype", "none");
+    conf.setProperty("storage.backend", "berkeleyje");
+    conf.setProperty("storage.batch-loading", "true");
+    conf.setProperty("storage.berkeleydb.cache-percentage", "80");
+    conf.setProperty("query.force-index", "true");
+    conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		return new TitanEnzymeDBGraph(new DefaultTitanGraph(graph));
