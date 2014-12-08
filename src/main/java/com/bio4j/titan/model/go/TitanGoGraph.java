@@ -75,6 +75,7 @@ public final class TitanGoGraph
 
 
     public TitanGoGraph(DefaultTitanGraph rawGraph) {
+        
         super(rawGraph);
         this.raw = rawGraph;
 
@@ -153,7 +154,8 @@ public final class TitanGoGraph
     }
 
     private void initIndices(TitanManagement mgmt) {
-        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, GoTerm().id);
+
+        goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, GoTerm().id);
 	    goTermIdIndex.make(goTermTypeLabel);
 
         subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, SubOntologies().name);
