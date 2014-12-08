@@ -5,7 +5,7 @@ import com.bio4j.titan.tests._
 class EnzymeDBTestSuite extends org.scalatest.FunSuite {
 
 
-  test("I'm so happy!") {
+  test("Importing EnzymeDB") {
 
     val javaTestClass = new ImportEnzymeDBTitanTest()
 
