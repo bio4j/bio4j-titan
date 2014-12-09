@@ -453,6 +453,7 @@ public final class TitanUniprotGraph
 	public TitanUniprotGraph(DefaultTitanGraph rawGraph) {
 
 		super(rawGraph);
+		this.raw = rawGraph;
 
 		// First get a titanMgmt instance, that will be used throughout
 		this.mgmt = rawGraph.managementSystem();
