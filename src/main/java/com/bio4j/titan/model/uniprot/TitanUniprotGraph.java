@@ -458,6 +458,8 @@ public final class TitanUniprotGraph
 		this.mgmt = rawGraph.managementSystem();
 		initTypes(mgmt);
 		initIndices(mgmt);
+
+		this.mgmt.commit();
 	}
 
 	public TitanManagement managementSystem() {
