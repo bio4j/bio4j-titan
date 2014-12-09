@@ -191,6 +191,7 @@ public final class TitanUniprotGraph
 	private PropertyKey refSeqNucleotideSequenceIdKey;
 	public RefSeqType refSeqType;
 	//---Reference---
+	private VertexLabel referenceTypeLabel;
 	private PropertyKey referenceDateKey;
 	public ReferenceType referenceType;
 	//---SequenceCaution----
@@ -214,6 +215,7 @@ public final class TitanUniprotGraph
 	private PropertyKey commentTypeNameKey;
 	public CommentTypeType commentTypeType;
 	//---UnpublishedObservation----
+	private VertexLabel unpublishedObservationTypeLabel;
 	private PropertyKey unpublishedObservationScopeKey;
 	public UnpublishedObservationType unpublishedObservationType;
 
@@ -646,8 +648,10 @@ public final class TitanUniprotGraph
 		onlineJournalTypeLabel = raw().createOrGet(mgmt, onlineJournalType.raw());
 
 		//------------ Reference keys-----------------
-		referenceType = new ReferenceType(null);
+		VertexLabelMaker referenceTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ReferenceType(null));
+		referenceType = new ReferenceType(referenceTypeLabelMaker);
 		referenceDateKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Reference().date).cardinality(Cardinality.SINGLE));
+		referenceTypeLabel = raw().createOrGet(mgmt, referenceType.raw());
 
 		//------------ ReactomeTerm keys----------------------
 		VertexLabelMaker reactomeTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ReactomeTermType(null));
@@ -774,8 +778,10 @@ public final class TitanUniprotGraph
 		featureTypeTypeLabel = raw().createOrGet(mgmt, featureTypeType.raw());
 
 		//---UnpublishedObservation
-		unpublishedObservationType = new UnpublishedObservationType(null);
+		VertexLabelMaker unpublishedObservationLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UnpublishedObservationType(null));
+		unpublishedObservationType = new UnpublishedObservationType(unpublishedObservationLabelMaker);
 		unpublishedObservationScopeKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UnpublishedObservation().scope).cardinality(Cardinality.SINGLE));
+		unpublishedObservationTypeLabel = raw().createOrGet(mgmt, unpublishedObservationType.raw());
 
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------EDGES--------------------------------------------
