@@ -586,7 +586,7 @@ public final class TitanUniprotGraph
 		diseaseNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().name).cardinality(Cardinality.SINGLE));
 		diseaseAcronymKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().acronym).cardinality(Cardinality.SINGLE));
 		diseaseDescriptionKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Disease().description).cardinality(Cardinality.SINGLE));
-		datasetTypeLabel = raw().createOrGet(mgmt, diseaseType.raw());
+		diseaseTypeLabel = raw().createOrGet(mgmt, diseaseType.raw());
 
 		//------------------ Institute keys--------------------
 		VertexLabelMaker instituteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new InstituteType(null));
