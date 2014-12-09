@@ -32,8 +32,5 @@ public class IndicesTest {
 		graph.raw().commit();
 
 		graph.raw().shutdown();
-		// .shutdown();
-
-
 	}
 }
