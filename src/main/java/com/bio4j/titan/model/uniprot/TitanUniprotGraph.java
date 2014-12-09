@@ -775,8 +775,6 @@ public final class TitanUniprotGraph
 		unpublishedObservationType = new UnpublishedObservationType(null);
 		unpublishedObservationScopeKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UnpublishedObservation().scope).cardinality(Cardinality.SINGLE));
 
-		// TODO: keep going
-
 		//-----------------------------------------------------------------------------------------
 		//--------------------------------EDGES--------------------------------------------
 

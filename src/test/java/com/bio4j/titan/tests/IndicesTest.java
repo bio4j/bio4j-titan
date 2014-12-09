@@ -1,0 +1,83 @@
+package com.bio4j.titan.tests;
+
+import com.bio4j.model.uniprot.vertices.EMBL;
+import com.bio4j.model.uniprot.vertices.FeatureType;
+import com.bio4j.model.uniprot.vertices.RefSeq;
+import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.util.DefaultTitanGraph;
+import com.thinkaurelius.titan.core.*;
+import com.thinkaurelius.titan.core.schema.*;
+import org.apache.commons.configuration.BaseConfiguration;
+import org.apache.commons.configuration.Configuration;
+
+import java.util.Optional;
+
+/**
+ * Created by ppareja on 9/8/2014.
+ */
+public class IndicesTest {
+
+	public static void main(String[] args){
+
+//		//----------DB configuration------------------
+//		Configuration conf = new BaseConfiguration();
+//		conf.setProperty("storage.directory", "IndexTestDB");
+//		conf.setProperty("storage.backend", "local");
+//		conf.setProperty("storage.transactions", "false");
+//		conf.setProperty("autotype", "none");
+//		//-------creating graph handlers---------------------
+//		TitanUniprotGraph graph = new TitanUniprotGraph(new DefaultTitanGraph(TitanFactory.open(conf)));
+//
+//		String idSt = "NP_505817.1";
+//
+//		RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> refSeq = null;
+//		EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> embl = null;
+//
+//
+//
+//		refSeq = graph.RefSeq().from(graph.raw().addVertex(null));
+//		refSeq.set(graph.RefSeq().id, idSt);
+//		//graph.raw().commit();
+//
+//		embl = graph.EMBL().from(graph.raw().addVertex(null));
+//		embl.set(graph.EMBL().id, idSt);
+//		//graph.raw().commit();
+//
+//		Optional<RefSeq<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>> optionalRefSeq = graph.refSeqIdIndex().getVertex(idSt);
+//		if(!optionalRefSeq.isPresent()){
+//			System.out.println("ERROR: The REfSEq id was not found... :(");
+//		}else{
+//			System.out.println("Element found! :)");
+//		}
+//
+//		Optional<EMBL<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>> optionalEMBL = graph.eMBLIdIndex().getVertex(idSt);
+//		if(!optionalEMBL.isPresent()){
+//			System.out.println("ERROR: The EMBL id was not found... :(");
+//		}else{
+//			System.out.println("Element found! :)");
+//		}
+//
+//		graph.raw().shutdown();
+
+	}
+
+	public void indicesTest(String dbFolder){
+
+		//----------DB configuration------------------
+		Configuration conf = new BaseConfiguration();
+		conf.setProperty("storage.directory", "IndicesTestDB");
+		conf.setProperty("storage.backend", "berkeleyje");
+		conf.setProperty("query.force-index", "true");
+		conf.setProperty("autotype", "none");
+		//-------creating graph handlers---------------------
+		TitanUniprotGraph graph = new TitanUniprotGraph(new DefaultTitanGraph(TitanFactory.open(conf)));
+
+		Optional<FeatureType<DefaultTitanGraph,TitanVertex,VertexLabelMaker,TitanEdge,EdgeLabelMaker>> optionalFeature = graph.featureTypeNameIndex().getVertex("hola");
+		Optional<FeatureType<DefaultTitanGraph,TitanVertex,VertexLabelMaker,TitanEdge,EdgeLabelMaker>> optionalFeature1 = graph.featureTypeNameIndex().getVertex("hola adios");
+		Optional<FeatureType<DefaultTitanGraph,TitanVertex,VertexLabelMaker,TitanEdge,EdgeLabelMaker>> optionalFeature2 = graph.featureTypeNameIndex().getVertex("compositionally biased region");
+
+		graph.raw().shutdown();
+
+
+	}
+}
