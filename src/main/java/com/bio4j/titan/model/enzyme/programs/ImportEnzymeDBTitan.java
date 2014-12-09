@@ -16,17 +16,18 @@
   */
 package com.bio4j.titan.model.enzyme.programs;
 
-import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.enzymedb.programs.ImportEnzymeDB;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
-import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
-import com.thinkaurelius.titan.core.*;
-import com.thinkaurelius.titan.core.schema.*;
+import com.thinkaurelius.titan.core.TitanEdge;
+import com.thinkaurelius.titan.core.TitanFactory;
+import com.thinkaurelius.titan.core.TitanGraph;
+import com.thinkaurelius.titan.core.TitanVertex;
+import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
+import com.thinkaurelius.titan.core.schema.VertexLabelMaker;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-
 
 import java.util.ArrayList;
 
@@ -35,26 +36,26 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportEnzymeDBTitan 
-extends ImportEnzymeDB<
-  DefaultTitanGraph,
-  TitanVertex,
-  VertexLabelMaker,
-  TitanEdge,
-  EdgeLabelMaker
-> 
-  implements Executable {
+public class ImportEnzymeDBTitan
+		extends ImportEnzymeDB<
+		DefaultTitanGraph,
+		TitanVertex,
+		VertexLabelMaker,
+		TitanEdge,
+		EdgeLabelMaker
+		>
+		implements Executable {
 
 	@Override
 	protected TitanEnzymeDBGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
-    conf.setProperty("storage.backend", "berkeleyje");
-    conf.setProperty("storage.batch-loading", "true");
-    conf.setProperty("storage.berkeleydb.cache-percentage", "80");
-    conf.setProperty("query.force-index", "true");
-    conf.setProperty("autotype", "none");
+		conf.setProperty("storage.backend", "berkeleyje");
+		//conf.setProperty("storage.batch-loading", "true");
+		conf.setProperty("storage.berkeleydb.cache-percentage", "80");
+		conf.setProperty("query.force-index", "true");
+		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		return new TitanEnzymeDBGraph(new DefaultTitanGraph(graph));
