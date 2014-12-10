@@ -42,7 +42,7 @@ public class ImportUniprotTitan extends ImportUniprot<DefaultTitanGraph, TitanVe
 	    Configuration conf = new BaseConfiguration();
 	    conf.setProperty("storage.directory", dbFolder);
 	    conf.setProperty("storage.backend", "berkeleyje");
-        conf.setProperty("query.force-index", "true");
+      conf.setProperty("query.force-index", "true");
 	    conf.setProperty("autotype", "none");
 	    //-------creating graph handlers---------------------
 	    TitanGraph graph = TitanFactory.open(conf);
