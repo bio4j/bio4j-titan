@@ -85,7 +85,7 @@ extends
 
 	private void initIndices(TitanManagement mgmt) {
 		genInfoIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, GenInfo().id);
-		genInfoIdIndex.make(genInfoTypeLabel);
+		genInfoIdIndex.makeOrGet(genInfoTypeLabel);
 	}
 
 	/*

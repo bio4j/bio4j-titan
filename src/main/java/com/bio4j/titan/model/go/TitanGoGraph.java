@@ -155,10 +155,10 @@ public final class TitanGoGraph
     private void initIndices(TitanManagement mgmt) {
 
         goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, GoTerm().id);
-	    goTermIdIndex.make(goTermTypeLabel);
+	    goTermIdIndex.makeOrGet(goTermTypeLabel);
 
         subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, SubOntologies().name);
-	    subOntologiesNameIndex.make(subOntologiesTypeLabel);
+	    subOntologiesNameIndex.makeOrGet(subOntologiesTypeLabel);
     }
 
     @Override
