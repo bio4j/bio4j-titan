@@ -1063,118 +1063,118 @@ public final class TitanUniprotGraph
 	private void initIndices(TitanManagement mgmt) {
 
 		proteinAccessionIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, Protein().accession);
-		proteinAccessionIndex.make(proteinTypeLabel);
+		proteinAccessionIndex.makeOrGet(proteinTypeLabel);
 
 		datasetNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Dataset().name);
-		datasetNameIndex.make(datasetTypeLabel);
+		datasetNameIndex.makeOrGet(datasetTypeLabel);
 
 		organismScientificNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Organism().scientificName);
-		organismScientificNameIndex.make(organismTypeLabel);
+		organismScientificNameIndex.makeOrGet(organismTypeLabel);
 
 		keywordIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Keyword().id);
-		keywordIdIndex.make(keywordTypeLabel);
+		keywordIdIndex.makeOrGet(keywordTypeLabel);
 
 		interproIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Interpro().id);
-		interproIdIndex.make(interproTypeLabel);
+		interproIdIndex.makeOrGet(interproTypeLabel);
 
 		reactomeTermIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, ReactomeTerm().id);
-		reactomeTermIdIndex.make(reactomeTermTypeLabel);
+		reactomeTermIdIndex.makeOrGet(reactomeTermTypeLabel);
 
 		pfamIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Pfam().id);
-		pfamIdIndex.make(pfamTypeLabel);
+		pfamIdIndex.makeOrGet(pfamTypeLabel);
 
 		keggIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Kegg().id);
-		keggIdIndex.make(keggTypeLabel);
+		keggIdIndex.makeOrGet(keggTypeLabel);
 
 		eMBLIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, EMBL().id);
-		eMBLIdIndex.make(eMBLTypeLabel);
+		eMBLIdIndex.makeOrGet(eMBLTypeLabel);
 
 		pIRIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, PIR().id);
-		pIRIdIndex.make(pIRTypeLabel);
+		pIRIdIndex.makeOrGet(pIRTypeLabel);
 
 		uniGeneIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniGene().id);
-		uniGeneIdIndex.make(uniGeneTypeLabel);
+		uniGeneIdIndex.makeOrGet(uniGeneTypeLabel);
 
 		ensemblIdIndex = (new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Ensembl().id));
-		ensemblIdIndex.make(ensemblTypeLabel);
+		ensemblIdIndex.makeOrGet(ensemblTypeLabel);
 
 		taxonNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Taxon().name);
-		taxonNameIndex.make(taxonTypeLabel);
+		taxonNameIndex.makeOrGet(taxonTypeLabel);
 
 		refSeqIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, RefSeq().id);
-		refSeqIdIndex.make(refSeqTypeLabel);
+		refSeqIdIndex.makeOrGet(refSeqTypeLabel);
 
 		commentTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, CommentType().name);
-		commentTypeNameIndex.make(commentTypeTypeLabel);
+		commentTypeNameIndex.makeOrGet(commentTypeTypeLabel);
 
 		featureTypeNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, FeatureType().name);
-		featureTypeNameIndex.make(featureTypeTypeLabel);
+		featureTypeNameIndex.makeOrGet(featureTypeTypeLabel);
 
 		consortiumNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Consortium().name);
-		consortiumNameIndex.make(consortiumTypeLabel);
+		consortiumNameIndex.makeOrGet(consortiumTypeLabel);
 
 		personNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Person().name);
-		personNameIndex.make(personTypeLabel);
+		personNameIndex.makeOrGet(personTypeLabel);
 
 		patentNumberIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Patent().number);
-		patentNumberIndex.make(patentTypeLabel);
+		patentNumberIndex.makeOrGet(patentTypeLabel);
 
 		submissionTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Submission().title);
-		submissionTitleIndex.make(submissionTypeLabel);
+		submissionTitleIndex.makeOrGet(submissionTypeLabel);
 
 		instituteNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Institute().name);
-		instituteNameIndex.make(instituteTypeLabel);
+		instituteNameIndex.makeOrGet(instituteTypeLabel);
 
 		thesisTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Thesis().title);
-		thesisTitleIndex.make(thesisTypeLabel);
+		thesisTitleIndex.makeOrGet(thesisTypeLabel);
 
 		onlineArticleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, OnlineArticle().title);
-		onlineArticleTitleIndex.make(onlineArticleTypeLabel);
+		onlineArticleTitleIndex.makeOrGet(onlineArticleTypeLabel);
 
 		onlineJournalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, OnlineJournal().name);
-		onlineJournalNameIndex.make(onlineJournalTypeLabel);
+		onlineJournalNameIndex.makeOrGet(onlineJournalTypeLabel);
 
 		pubmedIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Pubmed().id);
-		pubmedIdIndex.make(pubmedTypeLabel);
+		pubmedIdIndex.makeOrGet(pubmedTypeLabel);
 
 		cityNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, City().name);
-		cityNameIndex.make(cityTypeLabel);
+		cityNameIndex.makeOrGet(cityTypeLabel);
 
 		countryNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Country().name);
-		countryNameIndex.make(countryTypeLabel);
+		countryNameIndex.makeOrGet(countryTypeLabel);
 
 		publisherNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Publisher().name);
-		publisherNameIndex.make(publisherTypeLabel);
+		publisherNameIndex.makeOrGet(publisherTypeLabel);
 
 		bookNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Book().name);
-		bookNameIndex.make(bookTypeLabel);
+		bookNameIndex.makeOrGet(bookTypeLabel);
 
 		dbNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, DB().name);
-		dbNameIndex.make(dbTypeLabel);
+		dbNameIndex.makeOrGet(dbTypeLabel);
 
 		articleTitleIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Article().title);
-		articleTitleIndex.make(articleTypeLabel);
+		articleTitleIndex.makeOrGet(articleTypeLabel);
 
 		journalNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Journal().name);
-		journalNameIndex.make(journalTypeLabel);
+		journalNameIndex.makeOrGet(journalTypeLabel);
 
 		diseaseIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Disease().id);
-		diseaseIdIndex.make(diseaseTypeLabel);
+		diseaseIdIndex.makeOrGet(diseaseTypeLabel);
 
 		subcellularLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, SubcellularLocation().name);
-		subcellularLocationNameIndex.make(subcellularLocationTypeLabel);
+		subcellularLocationNameIndex.makeOrGet(subcellularLocationTypeLabel);
 
 		isoformIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Isoform().id);
-		isoformIdIndex.make(isoformTypeLabel);
+		isoformIdIndex.makeOrGet(isoformTypeLabel);
 
 		sequenceCautionNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, SequenceCaution().name);
-		sequenceCautionNameIndex.make(sequenceCautionTypeLabel);
+		sequenceCautionNameIndex.makeOrGet(sequenceCautionTypeLabel);
 
 		geneLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, GeneLocation().name);
-		geneLocationNameIndex.make(geneLocationTypeLabel);
+		geneLocationNameIndex.makeOrGet(geneLocationTypeLabel);
 
 		alternativeProductNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, AlternativeProduct().name);
-		alternativeProductNameIndex.make(alternativeProductTypeLabel);
+		alternativeProductNameIndex.makeOrGet(alternativeProductTypeLabel);
 
 
 	}
