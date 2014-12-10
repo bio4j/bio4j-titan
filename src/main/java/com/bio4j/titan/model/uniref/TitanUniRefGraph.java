@@ -123,11 +123,11 @@ public final class TitanUniRefGraph
 
     private void initIndices(TitanManagement mgmt) {
         uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef100Cluster().id);
-	    uniRef100ClusterIdIndex.make(uniRef100ClusterTypeLabel);
+	    uniRef100ClusterIdIndex.makeOrGet(uniRef100ClusterTypeLabel);
         uniRef90ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef90Cluster().id);
-	    uniRef90ClusterIdIndex.make(uniRef90ClusterTypeLabel);
+	    uniRef90ClusterIdIndex.makeOrGet(uniRef90ClusterTypeLabel);
         uniRef50ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef50Cluster().id);
-	    uniRef50ClusterIdIndex.make(uniRef50ClusterTypeLabel);
+	    uniRef50ClusterIdIndex.makeOrGet(uniRef50ClusterTypeLabel);
     }
 
 

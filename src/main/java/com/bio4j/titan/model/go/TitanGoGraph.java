@@ -26,19 +26,19 @@ public final class TitanGoGraph
 
     //-------------------VERTICES----------------------------
 
-	public VertexLabel goTermTypeLabel;
-    public PropertyKey goTermTypekey;
-    public PropertyKey goTermIdKey;
-    public PropertyKey goTermNameKey;
-    public PropertyKey goTermDefinitionKey;
-    public PropertyKey goTermObsoleteKey;
-    public PropertyKey goTermCommentKey;
-    public PropertyKey goTermSynonymKey;
+	private VertexLabel goTermTypeLabel;
+    private PropertyKey goTermTypekey;
+    private PropertyKey goTermIdKey;
+    private PropertyKey goTermNameKey;
+    private PropertyKey goTermDefinitionKey;
+    private PropertyKey goTermObsoleteKey;
+    private PropertyKey goTermCommentKey;
+    private PropertyKey goTermSynonymKey;
     public GoTermType goTermType;
 
-	public VertexLabel subOntologiesTypeLabel;
-    public PropertyKey subOntologiesTypekey;
-    public PropertyKey subOntologiesNameKey;
+	private VertexLabel subOntologiesTypeLabel;
+    private PropertyKey subOntologiesTypekey;
+    private PropertyKey subOntologiesNameKey;
     public SubOntologiesType subOntologiesType;
 
     //---------------RELATIONSHIPS---------------------------
@@ -60,35 +60,32 @@ public final class TitanGoGraph
 
     //---------------INDICES---------------------------
 
-    TitanTypedVertexIndex.DefaultUnique<
-            GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            GoTermType,
-            GoTermType.id, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            DefaultTitanGraph
-            > goTermIdIndex;
-    TitanTypedVertexIndex.DefaultUnique<SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            SubOntologiesType,
-            SubOntologiesType.name, String,
-            GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
-            DefaultTitanGraph> subOntologiesNameIndex;
+    private TitanTypedVertexIndex.DefaultUnique<
+        GoTerm<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+        GoTermType,
+        GoTermType.id, String,
+        GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+        DefaultTitanGraph
+    > goTermIdIndex;
+
+    private TitanTypedVertexIndex.DefaultUnique<
+        SubOntologies<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+        SubOntologiesType,
+        SubOntologiesType.name, String,
+        GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>,
+        DefaultTitanGraph
+    > subOntologiesNameIndex;
 
 
     public TitanGoGraph(DefaultTitanGraph rawGraph) {
         
         super(rawGraph);
-        this.raw = rawGraph;
 
-	    this.mgmt = rawGraph.managementSystem();
+	    this.mgmt = raw().managementSystem();
         initTypes(mgmt);
         initIndices(mgmt);
 
 	    this.mgmt.commit();
-    }
-
-    @Override
-    public DefaultTitanGraph raw() {
-        return raw;
     }
 
     /* this method should be idempotent. This is important */
@@ -96,9 +93,11 @@ public final class TitanGoGraph
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-	    VertexLabelMaker goTermTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, new GoTermType(null));
+	    VertexLabelMaker goTermTypeLabelMaker = raw().titanLabelMakerForVertexType( mgmt, 
+            new GoTermType(null)
+        );
         goTermType = new GoTermType(goTermTypeLabelMaker);
-        goTermIdKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().id ).cardinality(Cardinality.SINGLE));
+        goTermIdKey = raw().createOrGet( mgmt,raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().id ).cardinality(Cardinality.SINGLE));
         goTermNameKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().name ).cardinality(Cardinality.SINGLE));
         goTermDefinitionKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().definition ).cardinality(Cardinality.SINGLE));
         goTermObsoleteKey = raw().createOrGet( mgmt,	raw().titanPropertyMakerForVertexProperty( mgmt, GoTerm().obsolete ).cardinality(Cardinality.SINGLE));
@@ -156,10 +155,10 @@ public final class TitanGoGraph
     private void initIndices(TitanManagement mgmt) {
 
         goTermIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, GoTerm().id);
-	    goTermIdIndex.make(goTermTypeLabel);
+	    goTermIdIndex.makeOrGet(goTermTypeLabel);
 
         subOntologiesNameIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, SubOntologies().name);
-	    subOntologiesNameIndex.make(subOntologiesTypeLabel);
+	    subOntologiesNameIndex.makeOrGet(subOntologiesTypeLabel);
     }
 
     @Override

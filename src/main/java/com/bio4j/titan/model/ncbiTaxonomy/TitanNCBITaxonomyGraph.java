@@ -109,7 +109,7 @@ public final class TitanNCBITaxonomyGraph
 
 	private void initIndices(TitanManagement mgmt) {
 		nCBITaxonIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, NCBITaxon().id);
-		nCBITaxonIdIndex.make(nCBITaxonTypeLabel);
+		nCBITaxonIdIndex.makeOrGet(nCBITaxonTypeLabel);
 	}
 
 
