@@ -11,7 +11,7 @@ import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
 import com.thinkaurelius.titan.core.schema.VertexLabelMaker;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-import com.bio4j.model.uniprot.programs.ImportUniprotVertices;
+import com.bio4j.model.uniprot.programs.ImportUniProtVertices;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,12 @@ public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTit
 		conf.setProperty("storage.directory", dbFolder);
 		conf.setProperty("storage.backend", "berkeleyje");
 		conf.setProperty("storage.batch-loading","true");
+		conf.setProperty("query.force-index", "true");
+		conf.setProperty("storage.transactions", "false");
+		conf.setProperty("query.fast-property", "false");
+		conf.setProperty("storage.buffer-size", "100000");
 		conf.setProperty("autotype", "none");
+		conf.setProperty("storage.berkeleydb.cache-percentage", "80");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		return new TitanUniprotGraph(new DefaultTitanGraph(graph));
