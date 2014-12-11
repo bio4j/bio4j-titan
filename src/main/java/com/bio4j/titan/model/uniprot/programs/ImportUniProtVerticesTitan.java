@@ -31,6 +31,7 @@ public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTit
 		conf.setProperty("storage.transactions", "false");
 		conf.setProperty("query.fast-property", "false");
 		conf.setProperty("autotype", "none");
+		conf.setProperty("storage.berkeleydb.cache-percentage", "80");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		return new TitanUniprotGraph(new DefaultTitanGraph(graph));
