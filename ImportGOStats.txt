@@ -1,0 +1,4 @@
+Statistics for program ImportGeneOntology:
+Input file: go.xml
+There were 42385 terms inserted.
+The elapsed time was: 0h 0m 56s

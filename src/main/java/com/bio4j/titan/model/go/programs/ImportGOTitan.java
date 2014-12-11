@@ -42,10 +42,12 @@ public class ImportGOTitan extends ImportGO<DefaultTitanGraph, TitanVertex, Vert
         Configuration conf = new BaseConfiguration();
         conf.setProperty("storage.directory", dbFolder);
         conf.setProperty("storage.backend", "berkeleyje");
-        //conf.setProperty("storage.batch-loading", "true");
-        conf.setProperty("storage.berkeleydb.cache-percentage", "80");
+        conf.setProperty("storage.batch-loading","true");
         conf.setProperty("query.force-index", "true");
+        conf.setProperty("query.fast-property", "false");
+        conf.setProperty("storage.buffer-size", "100000");
         conf.setProperty("autotype", "none");
+        conf.setProperty("storage.berkeleydb.cache-percentage", "80");
         //-------creating graph handlers---------------------
         TitanGraph graph = TitanFactory.open(conf);
         return new TitanGoGraph(new DefaultTitanGraph(graph));

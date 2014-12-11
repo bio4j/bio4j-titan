@@ -28,7 +28,7 @@ public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTit
 		conf.setProperty("storage.backend", "berkeleyje");
 		conf.setProperty("storage.batch-loading","true");
 		conf.setProperty("query.force-index", "true");
-		conf.setProperty("storage.transactions", "false");
+		conf.setProperty("storage.transactions", "true");
 		conf.setProperty("query.fast-property", "false");
 		conf.setProperty("storage.buffer-size", "100000");
 		conf.setProperty("autotype", "none");

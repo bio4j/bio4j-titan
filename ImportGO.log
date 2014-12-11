@@ -1,0 +1,866 @@
+Dec 11, 2014 6:07:28 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: inserting subontologies nodes....
+Dec 11, 2014 6:07:29 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: inserting term nodes....
+Dec 11, 2014 6:07:29 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 100 terms inserted!!
+Dec 11, 2014 6:07:30 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 200 terms inserted!!
+Dec 11, 2014 6:07:30 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 300 terms inserted!!
+Dec 11, 2014 6:07:31 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 400 terms inserted!!
+Dec 11, 2014 6:07:31 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 500 terms inserted!!
+Dec 11, 2014 6:07:31 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 600 terms inserted!!
+Dec 11, 2014 6:07:32 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 700 terms inserted!!
+Dec 11, 2014 6:07:32 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 800 terms inserted!!
+Dec 11, 2014 6:07:32 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 900 terms inserted!!
+Dec 11, 2014 6:07:32 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1000 terms inserted!!
+Dec 11, 2014 6:07:33 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1100 terms inserted!!
+Dec 11, 2014 6:07:33 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1200 terms inserted!!
+Dec 11, 2014 6:07:33 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1300 terms inserted!!
+Dec 11, 2014 6:07:33 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1400 terms inserted!!
+Dec 11, 2014 6:07:34 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1500 terms inserted!!
+Dec 11, 2014 6:07:34 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1600 terms inserted!!
+Dec 11, 2014 6:07:34 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1700 terms inserted!!
+Dec 11, 2014 6:07:34 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1800 terms inserted!!
+Dec 11, 2014 6:07:35 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 1900 terms inserted!!
+Dec 11, 2014 6:07:35 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2000 terms inserted!!
+Dec 11, 2014 6:07:35 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2100 terms inserted!!
+Dec 11, 2014 6:07:35 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2200 terms inserted!!
+Dec 11, 2014 6:07:35 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2300 terms inserted!!
+Dec 11, 2014 6:07:35 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2400 terms inserted!!
+Dec 11, 2014 6:07:36 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2500 terms inserted!!
+Dec 11, 2014 6:07:36 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2600 terms inserted!!
+Dec 11, 2014 6:07:36 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2700 terms inserted!!
+Dec 11, 2014 6:07:36 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2800 terms inserted!!
+Dec 11, 2014 6:07:36 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 2900 terms inserted!!
+Dec 11, 2014 6:07:36 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3000 terms inserted!!
+Dec 11, 2014 6:07:37 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3100 terms inserted!!
+Dec 11, 2014 6:07:37 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3200 terms inserted!!
+Dec 11, 2014 6:07:37 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3300 terms inserted!!
+Dec 11, 2014 6:07:37 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3400 terms inserted!!
+Dec 11, 2014 6:07:37 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3500 terms inserted!!
+Dec 11, 2014 6:07:37 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3600 terms inserted!!
+Dec 11, 2014 6:07:38 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3700 terms inserted!!
+Dec 11, 2014 6:07:38 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3800 terms inserted!!
+Dec 11, 2014 6:07:38 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 3900 terms inserted!!
+Dec 11, 2014 6:07:38 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4000 terms inserted!!
+Dec 11, 2014 6:07:38 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4100 terms inserted!!
+Dec 11, 2014 6:07:38 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4200 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4300 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4400 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4500 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4600 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4700 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4800 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 4900 terms inserted!!
+Dec 11, 2014 6:07:39 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5000 terms inserted!!
+Dec 11, 2014 6:07:40 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5100 terms inserted!!
+Dec 11, 2014 6:07:40 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5200 terms inserted!!
+Dec 11, 2014 6:07:40 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5300 terms inserted!!
+Dec 11, 2014 6:07:40 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5400 terms inserted!!
+Dec 11, 2014 6:07:40 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5500 terms inserted!!
+Dec 11, 2014 6:07:40 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5600 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5700 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5800 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 5900 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6000 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6100 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6200 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6300 terms inserted!!
+Dec 11, 2014 6:07:41 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6400 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6500 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6600 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6700 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6800 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 6900 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7000 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7100 terms inserted!!
+Dec 11, 2014 6:07:42 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7200 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7300 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7400 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7500 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7600 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7700 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7800 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 7900 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8000 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8100 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8200 terms inserted!!
+Dec 11, 2014 6:07:43 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8300 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8400 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8500 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8600 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8700 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8800 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 8900 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9000 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9100 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9200 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9300 terms inserted!!
+Dec 11, 2014 6:07:44 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9400 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9500 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9600 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9700 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9800 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 9900 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10000 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10100 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10200 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10300 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10400 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10500 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10600 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10700 terms inserted!!
+Dec 11, 2014 6:07:45 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10800 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 10900 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11000 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11100 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11200 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11300 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11400 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11500 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11600 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11700 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11800 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 11900 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12000 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12100 terms inserted!!
+Dec 11, 2014 6:07:46 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12200 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12300 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12400 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12500 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12600 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12700 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12800 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 12900 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13000 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13100 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13200 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13300 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13400 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13500 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13600 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13700 terms inserted!!
+Dec 11, 2014 6:07:47 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13800 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 13900 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14000 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14100 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14200 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14300 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14400 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14500 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14600 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14700 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14800 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 14900 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15000 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15100 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15200 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15300 terms inserted!!
+Dec 11, 2014 6:07:48 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15400 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15500 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15600 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15700 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15800 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 15900 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16000 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16100 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16200 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16300 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16400 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16500 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16600 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16700 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16800 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 16900 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17000 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17100 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17200 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17300 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17400 terms inserted!!
+Dec 11, 2014 6:07:49 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17500 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17600 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17700 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17800 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 17900 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18000 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18100 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18200 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18300 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18400 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18500 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18600 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18700 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18800 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 18900 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19000 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19100 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19200 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19300 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19400 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19500 terms inserted!!
+Dec 11, 2014 6:07:50 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19600 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19700 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19800 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 19900 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20000 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20100 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20200 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20300 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20400 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20500 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20600 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20700 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20800 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 20900 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21000 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21100 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21200 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21300 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21400 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21500 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21600 terms inserted!!
+Dec 11, 2014 6:07:51 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21700 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21800 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 21900 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22000 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22100 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22200 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22300 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22400 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22500 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22600 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22700 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22800 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 22900 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23000 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23100 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23200 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23300 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23400 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23500 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23600 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23700 terms inserted!!
+Dec 11, 2014 6:07:52 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23800 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 23900 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24000 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24100 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24200 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24300 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24400 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24500 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24600 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24700 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24800 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 24900 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25000 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25100 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25200 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25300 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25400 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25500 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25600 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25700 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25800 terms inserted!!
+Dec 11, 2014 6:07:53 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 25900 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26000 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26100 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26200 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26300 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26400 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26500 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26600 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26700 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26800 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 26900 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27000 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27100 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27200 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27300 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27400 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27500 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27600 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27700 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27800 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 27900 terms inserted!!
+Dec 11, 2014 6:07:54 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28000 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28100 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28200 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28300 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28400 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28500 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28600 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28700 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28800 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 28900 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29000 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29100 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29200 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29300 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29400 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29500 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29600 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29700 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29800 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 29900 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30000 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30100 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30200 terms inserted!!
+Dec 11, 2014 6:07:55 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30300 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30400 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30500 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30600 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30700 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30800 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 30900 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31000 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31100 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31200 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31300 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31400 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31500 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31600 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31700 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31800 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 31900 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32000 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32100 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32200 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32300 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32400 terms inserted!!
+Dec 11, 2014 6:07:56 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32500 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32600 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32700 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32800 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 32900 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33000 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33100 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33200 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33300 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33400 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33500 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33600 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33700 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33800 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 33900 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34000 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34100 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34200 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34300 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34400 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34500 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34600 terms inserted!!
+Dec 11, 2014 6:07:57 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34700 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34800 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 34900 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35000 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35100 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35200 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35300 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35400 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35500 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35600 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35700 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35800 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 35900 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36000 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36100 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36200 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36300 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36400 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36500 terms inserted!!
+Dec 11, 2014 6:07:58 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36600 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36700 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36800 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 36900 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37000 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37100 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37200 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37300 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37400 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37500 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37600 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37700 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37800 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 37900 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38000 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38100 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38200 terms inserted!!
+Dec 11, 2014 6:07:59 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38300 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38400 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38500 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38600 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38700 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38800 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 38900 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39000 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39100 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39200 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39300 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39400 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39500 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39600 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39700 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39800 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 39900 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40000 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40100 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40200 terms inserted!!
+Dec 11, 2014 6:08:00 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40300 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40400 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40500 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40600 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40700 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40800 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 40900 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41000 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41100 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41200 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41300 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41400 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41500 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41600 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41700 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41800 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 41900 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 42000 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 42100 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 42200 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 42300 terms inserted!!
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: Inserting relationships....
+Dec 11, 2014 6:08:01 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 'is_a' relationships....
+Dec 11, 2014 6:08:12 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 'regulates' relationships....
+Dec 11, 2014 6:08:12 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 'negatively_regulates' relationships....
+Dec 11, 2014 6:08:13 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 'positively_regulates' relationships....
+Dec 11, 2014 6:08:14 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 'part_of' relationships....
+Dec 11, 2014 6:08:15 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: 'has_part_of' relationships....
+Dec 11, 2014 6:08:15 PM com.bio4j.model.go.programs.ImportGO importGO
+INFO: Done! :)
