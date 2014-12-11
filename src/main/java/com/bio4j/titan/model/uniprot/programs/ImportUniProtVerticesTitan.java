@@ -27,6 +27,9 @@ public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTit
 		conf.setProperty("storage.directory", dbFolder);
 		conf.setProperty("storage.backend", "berkeleyje");
 		conf.setProperty("storage.batch-loading","true");
+		conf.setProperty("query.force-index", "true");
+		conf.setProperty("storage.transactions", "false");
+		conf.setProperty("query.fast-property", "false");
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
