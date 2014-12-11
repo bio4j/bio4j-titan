@@ -11,7 +11,7 @@ import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
 import com.thinkaurelius.titan.core.schema.VertexLabelMaker;
 import org.apache.commons.configuration.BaseConfiguration;
 import org.apache.commons.configuration.Configuration;
-import com.bio4j.model.uniprot.programs.ImportUniprotVertices;
+import com.bio4j.model.uniprot.programs.ImportUniProtVertices;
 
 import java.util.ArrayList;
 
