@@ -455,10 +455,10 @@ public final class TitanUniProtGraph
 	/*
 	extension graphs
 	*/
-	private TitanUniProtGoGraph uniprotGoGraph = null;
-	private TitanUniProtUniRefGraph uniprotUniRefGraph = null;
-	private TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
-	private TitanUniProtEnzymeGraph uniprotEnzymeGraph = null;
+	private TitanUniProtGoGraph uniProtGoGraph = null;
+	private TitanUniProtUniRefGraph uniProtUniRefGraph = null;
+	private TitanUniProtNCBITaxonomyGraph uniProtNCBITaxonomyGraph = null;
+	private TitanUniProtEnzymeGraph uniProtEnzymeGraph = null;
 
 	private TitanManagement mgmt;
 
@@ -1331,23 +1331,21 @@ public final class TitanUniProtGraph
 
 
 	@Override
-	public TitanUniProtUniRefGraph uniprotUniRefGraph() {
-		return uniprotUniRefGraph;
+	public TitanUniProtUniRefGraph uniProtUniRefGraph() {
+		return uniProtUniRefGraph;
 	}
 
 	@Override
-	public TitanUniProtGoGraph uniprotGoGraph() {
-		return uniprotGoGraph;
+	public TitanUniProtGoGraph uniProtGoGraph() {		return uniProtGoGraph;	}
+
+	@Override
+	public TitanUniProtEnzymeGraph uniProtEnzymeDBGraph() {
+		return uniProtEnzymeGraph;
 	}
 
 	@Override
-	public TitanUniProtEnzymeGraph uniprotEnzymeDBGraph() {
-		return uniprotEnzymeGraph;
-	}
-
-	@Override
-	public TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
-		return uniprotNCBITaxonomyGraph;
+	public TitanUniProtNCBITaxonomyGraph uniProtNCBITaxonomyGraph() {
+		return uniProtNCBITaxonomyGraph;
 	}
 
 	@Override
@@ -1358,6 +1356,11 @@ public final class TitanUniProtGraph
 	@Override
 	public TypedVertexIndex.Unique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneLocationType, GeneLocationType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> geneLocationNameIndex() {
 		return geneLocationNameIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<GeneName<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneNameType, GeneNameType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> geneNameNameIndex() {
+		return geneNameNameIndex;
 	}
 
 	@Override
@@ -1625,6 +1628,9 @@ public final class TitanUniProtGraph
 	}
 
 	@Override
+	public GeneNameType GeneName() {    return geneNameType;	}
+
+	@Override
 	public InstituteType Institute() {
 		return instituteType;
 	}
@@ -1856,34 +1862,34 @@ public final class TitanUniProtGraph
 	}
 
 	/*
-		You can use this as `uniprotGraph.withGo(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
+		You can use this as `uniProtGraph.withGo(new TitanUniprotGoGraph(raw, uniProtGraph, goGraph))`
 	*/
-	public TitanUniProtGraph withUniprotGoGraph(TitanUniProtGoGraph uniprotGoGraph) {
-		this.uniprotGoGraph = uniprotGoGraph;
+	public TitanUniProtGraph withUniprotGoGraph(TitanUniProtGoGraph uniProtGoGraph) {
+		this.uniProtGoGraph = uniProtGoGraph;
 		return this;
 	}
 
 	/*
-		You can use this as `uniprotGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniprotGraph, enzymeGraph))`
+		You can use this as `uniProtGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniProtGraph, enzymeGraph))`
 	*/
-	public TitanUniProtGraph withUniprotEnzymeGraph(TitanUniProtEnzymeGraph uniprotEnzymeGraph) {
-		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
+	public TitanUniProtGraph withUniprotEnzymeGraph(TitanUniProtEnzymeGraph uniProtEnzymeGraph) {
+		this.uniProtEnzymeGraph = uniProtEnzymeGraph;
 		return this;
 	}
 
 	/*
-		You can use this as `uniprotGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
+		You can use this as `uniProtGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniProtGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanUniProtGraph withUniprotNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
-		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
+	public TitanUniProtGraph withUniprotNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniProtNCBITaxonomyGraph) {
+		this.uniProtNCBITaxonomyGraph = uniProtNCBITaxonomyGraph;
 		return this;
 	}
 
 	/*
-		You can use this as `uniprotGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
+		You can use this as `uniProtGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniProtGraph, uniRefGraph))`
 	*/
-	public TitanUniProtGraph withUniprotUniRefGraph(TitanUniProtUniRefGraph uniprotUniRefGraph) {
-		this.uniprotUniRefGraph = uniprotUniRefGraph;
+	public TitanUniProtGraph withUniprotUniRefGraph(TitanUniProtUniRefGraph uniProtUniRefGraph) {
+		this.uniProtUniRefGraph = uniProtUniRefGraph;
 		return this;
 	}
 
