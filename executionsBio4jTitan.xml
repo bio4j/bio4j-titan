@@ -1,4 +1,11 @@
 <scheduled_executions>
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot.programs.SplitUniProtXMLFile</class_full_name>
+    <arguments>      
+    <argument>/mnt/disk2/uniprot_trembl.xml</argument>
+    <argument>500000</argument>
+    </arguments>
+  </execution> 
    <!--
    
   <execution>
@@ -37,7 +44,7 @@
     <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
--->
+
     
 	<execution>
 		<class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniProtVerticesTitan</class_full_name>
@@ -47,7 +54,7 @@
 		  <argument>/mnt/disk1/uniprot_data.xml</argument>
 		</arguments>
   </execution> 
-	
+	-->
 <!--
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>

@@ -1,6 +1,6 @@
 package com.bio4j.titan.model.uniprot.programs;
 
-import com.era7.bioinfo.bioinfoutil.Executable;
+import com.ohnosequences.util.Executable;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
