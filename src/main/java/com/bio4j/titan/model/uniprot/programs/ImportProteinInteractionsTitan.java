@@ -18,7 +18,7 @@ package com.bio4j.titan.model.uniprot.programs;
 
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot.programs.ImportProteinInteractions;
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class ImportProteinInteractionsTitan extends ImportProteinInteractions<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniprotGraph config(String dbFolder) {
+	protected TitanUniProtGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -45,7 +45,7 @@ public class ImportProteinInteractionsTitan extends ImportProteinInteractions<De
 		conf.setProperty("autotype", "none");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanUniprotGraph(new DefaultTitanGraph(graph));
+		return new TitanUniProtGraph(new DefaultTitanGraph(graph));
 	}
 
 	@Override

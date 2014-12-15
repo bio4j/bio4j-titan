@@ -19,8 +19,8 @@ package com.bio4j.titan.model.uniprot_enzyme.programs;
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.model.uniprot_enzymedb.programs.ImportUniprotEnzymeDB;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
-import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
+import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniProtEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.*;
@@ -36,10 +36,10 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniprotEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
+public class ImportUniProtEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniprotEnzymeGraph config(String dbFolder) {
+	protected TitanUniProtEnzymeGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -50,7 +50,7 @@ public class ImportUniprotEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTit
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
-		return new TitanUniprotEnzymeGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanEnzymeDBGraph(defGraph));
+		return new TitanUniProtEnzymeGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanEnzymeDBGraph(defGraph));
 	}
 
 	@Override

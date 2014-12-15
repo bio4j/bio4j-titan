@@ -4,13 +4,9 @@ import com.bio4j.angulillos.TypedVertexIndex;
 import com.bio4j.angulillos.titan.TitanTypedVertexIndex;
 import com.bio4j.model.uniprot.UniProtGraph;
 import com.bio4j.model.uniprot.vertices.*;
-import com.bio4j.model.uniprot_enzymedb.UniProtEnzymeDBGraph;
-import com.bio4j.model.uniprot_go.UniProtGoGraph;
-import com.bio4j.model.uniprot_ncbiTaxonomy.UniProtNCBITaxonomyGraph;
-import com.bio4j.model.uniprot_uniref.UniProtUniRefGraph;
-import com.bio4j.titan.model.uniprot_enzyme.TitanUniprotEnzymeGraph;
-import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
-import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
+import com.bio4j.titan.model.uniprot_enzyme.TitanUniProtEnzymeGraph;
+import com.bio4j.titan.model.uniprot_go.TitanUniProtGoGraph;
+import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniProtNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
@@ -450,10 +446,10 @@ public final class TitanUniProtGraph
 	/*
 	extension graphs
 	*/
-	private TitanUniprotGoGraph uniprotGoGraph = null;
+	private TitanUniProtGoGraph uniprotGoGraph = null;
 	private TitanUniprotUniRefGraph uniprotUniRefGraph = null;
-	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
-	private TitanUniprotEnzymeGraph uniprotEnzymeGraph = null;
+	private TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
+	private TitanUniProtEnzymeGraph uniprotEnzymeGraph = null;
 
 	private TitanManagement mgmt;
 
@@ -1316,17 +1312,17 @@ public final class TitanUniProtGraph
 	}
 
 	@Override
-	public TitanUniprotGoGraph uniprotGoGraph() {
+	public TitanUniProtGoGraph uniprotGoGraph() {
 		return uniprotGoGraph;
 	}
 
 	@Override
-	public TitanUniprotEnzymeGraph uniprotEnzymeDBGraph() {
+	public TitanUniProtEnzymeGraph uniprotEnzymeDBGraph() {
 		return uniprotEnzymeGraph;
 	}
 
 	@Override
-	public TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
+	public TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
@@ -1833,7 +1829,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniprotGraph.withGo(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
 	*/
-	public TitanUniProtGraph withUniprotGoGraph(TitanUniprotGoGraph uniprotGoGraph) {
+	public TitanUniProtGraph withUniprotGoGraph(TitanUniProtGoGraph uniprotGoGraph) {
 		this.uniprotGoGraph = uniprotGoGraph;
 		return this;
 	}
@@ -1841,7 +1837,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniprotGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniprotGraph, enzymeGraph))`
 	*/
-	public TitanUniProtGraph withUniprotEnzymeGraph(TitanUniprotEnzymeGraph uniprotEnzymeGraph) {
+	public TitanUniProtGraph withUniprotEnzymeGraph(TitanUniProtEnzymeGraph uniprotEnzymeGraph) {
 		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
 		return this;
 	}
@@ -1849,7 +1845,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniprotGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanUniProtGraph withUniprotNCBITaxonomyGraph(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+	public TitanUniProtGraph withUniprotNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
 		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
 		return this;
 	}

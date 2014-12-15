@@ -1,10 +1,9 @@
 package com.bio4j.titan.model.uniprot_go;
 
-import com.bio4j.model.go.GoGraph;
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
 import com.bio4j.titan.model.go.TitanGoGraph;
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
 import com.thinkaurelius.titan.core.schema.*;
@@ -14,11 +13,11 @@ import com.thinkaurelius.titan.core.schema.*;
  Implementing the types with Titan
  @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public final class TitanUniprotGoGraph
+public final class TitanUniProtGoGraph
         extends
         UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private TitanUniprotGraph uniprotGraph;
+    private TitanUniProtGraph uniprotGraph;
     private TitanGoGraph goGraph;
 
 	private TitanManagement mgmt = null;
@@ -29,7 +28,7 @@ public final class TitanUniprotGoGraph
     private GoAnnotationType goAnnotationType;
 
 
-    public TitanUniprotGoGraph(DefaultTitanGraph rawGraph, TitanUniprotGraph titanUniprotGraph, TitanGoGraph titanGoGraph) {
+    public TitanUniProtGoGraph(DefaultTitanGraph rawGraph, TitanUniProtGraph titanUniProtGraph, TitanGoGraph titanGoGraph) {
         super(rawGraph);
         this.raw = rawGraph;
 
@@ -42,7 +41,7 @@ public final class TitanUniprotGoGraph
 	    mgmt.commit();
 
         this.goGraph        =       titanGoGraph.withUniprotGoGraph(this);
-        this.uniprotGraph   =  titanUniprotGraph.withUniprotGoGraph(this);
+        this.uniprotGraph   =  titanUniProtGraph.withUniprotGoGraph(this);
     }
 
     @Override
@@ -68,7 +67,7 @@ public final class TitanUniprotGoGraph
 
 
     @Override
-    public TitanUniprotGraph uniprotGraph() {
+    public TitanUniProtGraph uniprotGraph() {
 
         return uniprotGraph;
     }

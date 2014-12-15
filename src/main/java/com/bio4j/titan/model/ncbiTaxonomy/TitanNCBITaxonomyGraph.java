@@ -7,7 +7,7 @@ import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
 import com.bio4j.model.ncbiTaxonomy_geninfo.NCBITaxonomyGenInfoGraph;
 import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
 
-import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniprotNCBITaxonomyGraph;
+import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniProtNCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy_geninfo.TitanNCBITaxonomyGenInfoGraph;
 
 import com.bio4j.titan.util.DefaultTitanGraph;
@@ -24,7 +24,7 @@ public final class TitanNCBITaxonomyGraph
 		extends
 		NCBITaxonomyGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
+	private TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
 	private NCBITaxonomyGenInfoGraph ncbiTaxonomyGenInfoGraph = null;
 
 	private TitanManagement mgmt = null;
@@ -79,7 +79,7 @@ public final class TitanNCBITaxonomyGraph
 	}
 
 	@Override
-	public TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
+	public TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
@@ -126,7 +126,7 @@ public final class TitanNCBITaxonomyGraph
 	/*
 		You can use this as `ncbiTaxonomyGraph.withUniprot(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanNCBITaxonomyGraph withUniprotNCBITaxonomyGraph(TitanUniprotNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+	public TitanNCBITaxonomyGraph withUniprotNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
 
 		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
 

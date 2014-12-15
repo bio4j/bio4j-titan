@@ -2,7 +2,7 @@ package com.bio4j.titan.model.uniprot_uniref.programs;
 
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
 import com.bio4j.model.uniprot_uniref.programs.ImportUniprotUniRef;
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
@@ -34,7 +34,7 @@ public class ImportUniprotUniRefTitan extends ImportUniprotUniRef<DefaultTitanGr
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
-		return new TitanUniprotUniRefGraph(defGraph, new TitanUniprotGraph(defGraph), new TitanUniRefGraph(defGraph));
+		return new TitanUniprotUniRefGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanUniRefGraph(defGraph));
 	}
 
 	@Override

@@ -39,7 +39,7 @@
   -->
   
   <execution>
-    <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
+    <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniProtGoTitan</class_full_name>
     <arguments>      
       <argument>/mnt/disk1/uniprot_sprot.xml</argument>
 	  <argument>bio4j</argument>

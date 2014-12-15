@@ -1,10 +1,9 @@
 package com.bio4j.titan.model.uniprot_enzyme;
 
-import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.uniprot.UniprotGraph;
 import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
 import com.thinkaurelius.titan.core.schema.*;
@@ -14,11 +13,11 @@ import com.thinkaurelius.titan.core.schema.*;
  Implementing the types with Titan
  @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public final class TitanUniprotEnzymeGraph
+public final class TitanUniProtEnzymeGraph
         extends
         UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private TitanUniprotGraph uniprotGraph;
+    private TitanUniProtGraph uniprotGraph;
     private TitanEnzymeDBGraph enzymeDBGraph;
 
 	private TitanManagement mgmt;
@@ -32,10 +31,10 @@ public final class TitanUniprotEnzymeGraph
 	public EnzymaticActivityType enzymaticActivityType;
 
 
-    public TitanUniprotEnzymeGraph(
-        DefaultTitanGraph rawGraph,
-        TitanUniprotGraph titanUniprotGraph,
-        TitanEnzymeDBGraph titanEnzymeDBGraph
+    public TitanUniProtEnzymeGraph(
+            DefaultTitanGraph rawGraph,
+            TitanUniProtGraph titanUniProtGraph,
+            TitanEnzymeDBGraph titanEnzymeDBGraph
     ){
         super(rawGraph);
         this.raw = rawGraph;
@@ -49,7 +48,7 @@ public final class TitanUniprotEnzymeGraph
 	    mgmt.commit();
 
         /* update dependencies */
-        this.uniprotGraph    =  titanUniprotGraph.withUniprotEnzymeGraph(this);
+        this.uniprotGraph    =  titanUniProtGraph.withUniprotEnzymeGraph(this);
         this.enzymeDBGraph   = titanEnzymeDBGraph.withUniprotEnzymeGraph(this);
     }
 
@@ -76,7 +75,7 @@ public final class TitanUniprotEnzymeGraph
 
 
     @Override
-    public TitanUniprotGraph uniprotGraph() {
+    public TitanUniProtGraph uniprotGraph() {
 
         return uniprotGraph;
     }

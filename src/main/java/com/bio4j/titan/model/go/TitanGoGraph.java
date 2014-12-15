@@ -6,7 +6,7 @@ import com.bio4j.model.go.GoGraph;
 import com.bio4j.model.go.vertices.GoTerm;
 import com.bio4j.model.go.vertices.SubOntologies;
 import com.bio4j.model.uniprot_go.UniprotGoGraph;
-import com.bio4j.titan.model.uniprot_go.TitanUniprotGoGraph;
+import com.bio4j.titan.model.uniprot_go.TitanUniProtGoGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
 import com.thinkaurelius.titan.core.schema.*;
@@ -20,7 +20,7 @@ public final class TitanGoGraph
         extends
         GoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanUniprotGoGraph uniprotGoGraph = null;
+	private TitanUniProtGoGraph uniprotGoGraph = null;
 
 	private TitanManagement mgmt;
 
@@ -213,7 +213,7 @@ public final class TitanGoGraph
     }
 
     @Override
-    public TitanUniprotGoGraph uniprotGoGraph() {
+    public TitanUniProtGoGraph uniprotGoGraph() {
         return uniprotGoGraph;
     }
 
@@ -230,7 +230,7 @@ public final class TitanGoGraph
 	/*
 		You can use this as `goGraph.withUniprot(new TitanUniprotGoGraph(raw, uniprotGraph, goGraph))`
 	*/
-	public TitanGoGraph withUniprotGoGraph(TitanUniprotGoGraph uniprotGoGraph) {
+	public TitanGoGraph withUniprotGoGraph(TitanUniProtGoGraph uniprotGoGraph) {
 
 		this.uniprotGoGraph = uniprotGoGraph;
 

@@ -1,6 +1,6 @@
 package com.bio4j.titan.model.uniprot.programs;
 
-import com.bio4j.titan.model.uniprot.TitanUniprotGraph;
+import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
 import com.thinkaurelius.titan.core.TitanEdge;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniprotGraph config(String dbFolder) {
+	protected TitanUniProtGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -35,7 +35,7 @@ public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTit
 		conf.setProperty("storage.berkeleydb.cache-percentage", "80");
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
-		return new TitanUniprotGraph(new DefaultTitanGraph(graph));
+		return new TitanUniProtGraph(new DefaultTitanGraph(graph));
 	}
 
 	@Override
