@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.uniprot_go;
 
-import com.bio4j.model.uniprot.UniprotGraph;
-import com.bio4j.model.uniprot_go.UniprotGoGraph;
+import com.bio4j.model.uniprot.UniProtGraph;
+import com.bio4j.model.uniprot_go.UniProtGoGraph;
 import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
@@ -15,9 +15,9 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanUniProtGoGraph
         extends
-        UniprotGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
+        UniProtGoGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private TitanUniProtGraph uniprotGraph;
+    private TitanUniProtGraph uniProtGraph;
     private TitanGoGraph goGraph;
 
 	private TitanManagement mgmt = null;
@@ -40,8 +40,8 @@ public final class TitanUniProtGoGraph
 	    // this should work now
 	    mgmt.commit();
 
-        this.goGraph        =       titanGoGraph.withUniprotGoGraph(this);
-        this.uniprotGraph   =  titanUniProtGraph.withUniprotGoGraph(this);
+        this.goGraph        =       titanGoGraph.withUniProtGoGraph(this);
+        this.uniProtGraph   =  titanUniProtGraph.withUniProtGoGraph(this);
     }
 
     @Override
@@ -67,9 +67,9 @@ public final class TitanUniProtGoGraph
 
 
     @Override
-    public TitanUniProtGraph uniprotGraph() {
+    public TitanUniProtGraph uniProtGraph() {
 
-        return uniprotGraph;
+        return uniProtGraph;
     }
 
     @Override

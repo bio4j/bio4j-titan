@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.uniprot_enzyme;
 
-import com.bio4j.model.uniprot.UniprotGraph;
-import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
+import com.bio4j.model.uniprot.UniProtGraph;
+import com.bio4j.model.uniprot_enzymedb.UniProtEnzymeDBGraph;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
@@ -15,7 +15,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanUniProtEnzymeGraph
         extends
-        UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
+        UniProtEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private TitanUniProtGraph uniprotGraph;
     private TitanEnzymeDBGraph enzymeDBGraph;
@@ -48,8 +48,8 @@ public final class TitanUniProtEnzymeGraph
 	    mgmt.commit();
 
         /* update dependencies */
-        this.uniprotGraph    =  titanUniProtGraph.withUniprotEnzymeGraph(this);
-        this.enzymeDBGraph   = titanEnzymeDBGraph.withUniprotEnzymeGraph(this);
+        this.uniprotGraph    =  titanUniProtGraph.withUniProtEnzymeGraph(this);
+        this.enzymeDBGraph   = titanEnzymeDBGraph.withUniProtEnzymeGraph(this);
     }
 
     @Override

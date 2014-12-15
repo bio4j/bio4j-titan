@@ -16,10 +16,8 @@
   */
 package com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs;
 
-import com.bio4j.model.uniprot_go.UniprotGoGraph;
-import com.bio4j.model.uniprot_go.programs.ImportUniprotGo;
-import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
-import com.bio4j.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomy;
+import com.bio4j.model.uniprot_ncbiTaxonomy.UniProtNCBITaxonomyGraph;
+import com.bio4j.model.uniprot_ncbiTaxonomy.programs.ImportUniProtNCBITaxonomy;
 import com.bio4j.titan.model.ncbiTaxonomy.TitanNCBITaxonomyGraph;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniProtNCBITaxonomyGraph;
