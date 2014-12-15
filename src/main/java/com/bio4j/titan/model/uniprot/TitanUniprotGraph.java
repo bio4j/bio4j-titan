@@ -7,7 +7,7 @@ import com.bio4j.model.uniprot.vertices.*;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniProtEnzymeGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniProtGoGraph;
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniProtNCBITaxonomyGraph;
-import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniProtUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
 import com.thinkaurelius.titan.core.schema.EdgeLabelMaker;
@@ -74,6 +74,10 @@ public final class TitanUniProtGraph
 	private VertexLabel geneLocationTypeLabel;
 	private PropertyKey geneLocationNameKey;
 	public GeneLocationType geneLocationType;
+	//---gene name---
+	private VertexLabel geneNameTypeLabel;
+	private PropertyKey geneNameNameKey;
+	public GeneNameType geneNameType;
 	//---disease---
 	private VertexLabel diseaseTypeLabel;
 	private PropertyKey diseaseNameKey;
@@ -255,6 +259,7 @@ public final class TitanUniProtGraph
 	TitanTypedVertexIndex.DefaultUnique<Isoform<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, IsoformType, IsoformType.id, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> isoformIdIndex;
 	TitanTypedVertexIndex.DefaultUnique<SequenceCaution<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, SequenceCautionType, SequenceCautionType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> sequenceCautionNameIndex;
 	TitanTypedVertexIndex.DefaultUnique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneLocationType, GeneLocationType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> geneLocationNameIndex;
+	TitanTypedVertexIndex.DefaultUnique<GeneName<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneNameType, GeneNameType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> geneNameNameIndex;
 	TitanTypedVertexIndex.DefaultUnique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> alternativeProductNameIndex;
 
 	//-----------------------------------------------------------------------------------------
@@ -303,6 +308,10 @@ public final class TitanUniProtGraph
 	private EdgeLabel proteinGeneLocationLabel;
 	private PropertyKey proteinGeneLocationNameKey;
 	public ProteinGeneLocationType proteinGeneLocationType;
+	// proteinGeneName
+	private EdgeLabel proteinGeneNameLabel;
+	private PropertyKey proteinGeneNameGeneNameTypeKey;
+	public ProteinGeneNameType proteinGeneNameType;
 	// proteinFeature
 	private EdgeLabel proteinFeatureLabel;
 	private PropertyKey proteinFeatureIdKey;
@@ -447,7 +456,7 @@ public final class TitanUniProtGraph
 	extension graphs
 	*/
 	private TitanUniProtGoGraph uniprotGoGraph = null;
-	private TitanUniprotUniRefGraph uniprotUniRefGraph = null;
+	private TitanUniProtUniRefGraph uniprotUniRefGraph = null;
 	private TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph = null;
 	private TitanUniProtEnzymeGraph uniprotEnzymeGraph = null;
 
@@ -554,6 +563,12 @@ public final class TitanUniProtGraph
 		geneLocationType = new GeneLocationType(geneLocationTypeLabelMaker);
 		geneLocationNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, GeneLocation().name).cardinality(Cardinality.SINGLE));
 		geneLocationTypeLabel = raw().createOrGet(mgmt, geneLocationType.raw());
+
+		//------------ GeneName keys-----------------------
+		VertexLabelMaker geneNameTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new GeneNameType(null));
+		geneNameType = new GeneNameType(geneNameTypeLabelMaker);
+		geneNameNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, GeneName().name).cardinality(Cardinality.SINGLE));
+		geneNameTypeLabel = raw().createOrGet(mgmt, geneNameType.raw());
 
 		//------------ Consortium keys---------------------------
 		VertexLabelMaker consortiumTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ConsortiumType(null));
@@ -853,6 +868,12 @@ public final class TitanUniProtGraph
 		EdgeLabelMaker proteinGeneLocationTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinGeneLocationType(null));
 		proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationTypeLabelMaker);
 		proteinGeneLocationLabel = raw().createOrGet(mgmt, proteinGeneLocationType.raw());
+
+		// proteinGeneName
+		EdgeLabelMaker proteinGeneNameTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinGeneNameType(null));
+		proteinGeneNameType = new ProteinGeneNameType(proteinGeneNameTypeLabelMaker);
+		proteinGeneNameGeneNameTypeKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinGeneName().geneNameType).cardinality(Cardinality.SINGLE));
+		proteinGeneNameLabel = raw().createOrGet(mgmt, proteinGeneNameType.raw());
 
 		// proteinInterPro
 		EdgeLabelMaker proteinInterProTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinInterProType(null));
@@ -1169,6 +1190,9 @@ public final class TitanUniProtGraph
 		geneLocationNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, GeneLocation().name);
 		geneLocationNameIndex.makeOrGet(geneLocationTypeLabel);
 
+		geneNameNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, GeneName().name);
+		geneNameNameIndex.makeOrGet(geneNameTypeLabel);
+
 		alternativeProductNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, AlternativeProduct().name);
 		alternativeProductNameIndex.makeOrGet(alternativeProductTypeLabel);
 
@@ -1307,7 +1331,7 @@ public final class TitanUniProtGraph
 
 
 	@Override
-	public TitanUniprotUniRefGraph uniprotUniRefGraph() {
+	public TitanUniProtUniRefGraph uniprotUniRefGraph() {
 		return uniprotUniRefGraph;
 	}
 
@@ -1812,6 +1836,11 @@ public final class TitanUniProtGraph
 	}
 
 	@Override
+	public ProteinGeneNameType ProteinGeneName() {
+		return proteinGeneNameType;
+	}
+
+	@Override
 	public ProteinInterProType ProteinInterPro() {
 		return proteinInterProType;
 	}
@@ -1853,7 +1882,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniprotGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
 	*/
-	public TitanUniProtGraph withUniprotUniRefGraph(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+	public TitanUniProtGraph withUniprotUniRefGraph(TitanUniProtUniRefGraph uniprotUniRefGraph) {
 		this.uniprotUniRefGraph = uniprotUniRefGraph;
 		return this;
 	}

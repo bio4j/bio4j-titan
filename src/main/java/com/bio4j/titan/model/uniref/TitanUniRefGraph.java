@@ -7,7 +7,7 @@ import com.bio4j.model.uniref.UniRefGraph;
 import com.bio4j.model.uniref.vertices.UniRef100Cluster;
 import com.bio4j.model.uniref.vertices.UniRef50Cluster;
 import com.bio4j.model.uniref.vertices.UniRef90Cluster;
-import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniProtUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
 import com.thinkaurelius.titan.core.schema.*;
@@ -21,7 +21,7 @@ public final class TitanUniRefGraph
         extends
         UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanUniprotUniRefGraph uniprotUniRefGraph;
+	private TitanUniProtUniRefGraph uniprotUniRefGraph;
 
 	private TitanManagement mgmt = null;
 
@@ -132,7 +132,7 @@ public final class TitanUniRefGraph
 
 
     @Override
-    public TitanUniprotUniRefGraph uniprotUniRefGraph() {
+    public TitanUniProtUniRefGraph uniprotUniRefGraph() {
         return uniprotUniRefGraph;
     }
 
@@ -169,7 +169,7 @@ public final class TitanUniRefGraph
 	/*
 		You can use this as `uniRefGraph.withUniprot(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
 	*/
-	public TitanUniRefGraph withUniprotUniRefGraph(TitanUniprotUniRefGraph uniprotUniRefGraph) {
+	public TitanUniRefGraph withUniprotUniRefGraph(TitanUniProtUniRefGraph uniprotUniRefGraph) {
 
 		this.uniprotUniRefGraph = uniprotUniRefGraph;
 

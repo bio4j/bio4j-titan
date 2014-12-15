@@ -3,7 +3,7 @@ package com.bio4j.titan.model.uniprot_uniref.programs;
 import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
 import com.bio4j.model.uniprot_uniref.programs.ImportUniprotUniRef;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
-import com.bio4j.titan.model.uniprot_uniref.TitanUniprotUniRefGraph;
+import com.bio4j.titan.model.uniprot_uniref.TitanUniProtUniRefGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;
@@ -21,10 +21,10 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniprotUniRefTitan extends ImportUniprotUniRef<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
+public class ImportUniProtUniRefTitan extends ImportUniprotUniRef<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniprotUniRefGraph config(String dbFolder) {
+	protected TitanUniProtUniRefGraph config(String dbFolder) {
 		//----------DB configuration------------------
 		Configuration conf = new BaseConfiguration();
 		conf.setProperty("storage.directory", dbFolder);
@@ -34,7 +34,7 @@ public class ImportUniprotUniRefTitan extends ImportUniprotUniRef<DefaultTitanGr
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(conf);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
-		return new TitanUniprotUniRefGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanUniRefGraph(defGraph));
+		return new TitanUniProtUniRefGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanUniRefGraph(defGraph));
 	}
 
 	@Override

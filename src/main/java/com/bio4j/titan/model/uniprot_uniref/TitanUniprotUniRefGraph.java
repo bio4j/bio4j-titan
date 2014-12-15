@@ -13,7 +13,7 @@ import com.thinkaurelius.titan.core.schema.*;
  Implementing the types with Titan
  @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public final class TitanUniprotUniRefGraph
+public final class TitanUniProtUniRefGraph
         extends
         UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
@@ -49,10 +49,10 @@ public final class TitanUniprotUniRefGraph
 	public PropertyKey uniRef100RepresentantProteinAccessionKey;
 
 
-    public TitanUniprotUniRefGraph(
-        DefaultTitanGraph rawGraph, 
-        TitanUniProtGraph titanUniProtGraph,
-        TitanUniRefGraph titanUniRefGraph
+    public TitanUniProtUniRefGraph(
+            DefaultTitanGraph rawGraph,
+            TitanUniProtGraph titanUniProtGraph,
+            TitanUniRefGraph titanUniRefGraph
     ) {
         super(rawGraph);
         this.raw = rawGraph;
