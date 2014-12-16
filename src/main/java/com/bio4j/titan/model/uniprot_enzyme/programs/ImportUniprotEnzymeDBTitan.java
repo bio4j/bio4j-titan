@@ -16,8 +16,7 @@
   */
 package com.bio4j.titan.model.uniprot_enzyme.programs;
 
-import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
-import com.bio4j.model.uniprot_enzymedb.programs.ImportUniprotEnzymeDB;
+import com.bio4j.model.uniprot_enzymedb.programs.ImportUniProtEnzymeDB;
 import com.bio4j.titan.model.enzyme.TitanEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniProtEnzymeGraph;
@@ -36,7 +35,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniProtEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
+public class ImportUniProtEnzymeDBTitan extends ImportUniProtEnzymeDB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
 	protected TitanUniProtEnzymeGraph config(String dbFolder) {
@@ -59,7 +58,7 @@ public class ImportUniProtEnzymeDBTitan extends ImportUniprotEnzymeDB<DefaultTit
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importUniprotEnzymeDB(args);
+		importUniProtEnzymeDB(args);
 	}
 
 }

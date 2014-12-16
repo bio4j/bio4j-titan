@@ -16,8 +16,8 @@
   */
 package com.bio4j.titan.model.uniprot_go.programs;
 
-import com.bio4j.model.uniprot_go.UniprotGoGraph;
-import com.bio4j.model.uniprot_go.programs.ImportUniprotGo;
+import com.bio4j.model.uniprot_go.UniProtGoGraph;
+import com.bio4j.model.uniprot_go.programs.ImportUniProtGo;
 import com.bio4j.titan.model.go.TitanGoGraph;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.model.uniprot_go.TitanUniProtGoGraph;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniProtGoTitan extends ImportUniprotGo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
+public class ImportUniProtGoTitan extends ImportUniProtGo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
 	protected TitanUniProtGoGraph config(String dbFolder) {
@@ -58,7 +58,7 @@ public class ImportUniProtGoTitan extends ImportUniprotGo<DefaultTitanGraph, Tit
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importUniprotGo(args);
+		importUniProtGo(args);
 	}
 
 }

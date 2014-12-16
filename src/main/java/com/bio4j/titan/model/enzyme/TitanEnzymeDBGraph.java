@@ -4,7 +4,7 @@ import com.bio4j.angulillos.TypedVertexIndex;
 import com.bio4j.angulillos.titan.TitanTypedVertexIndex;
 import com.bio4j.model.enzymedb.EnzymeDBGraph;
 import com.bio4j.model.enzymedb.vertices.Enzyme;
-import com.bio4j.model.uniprot_enzymedb.UniprotEnzymeDBGraph;
+import com.bio4j.model.uniprot_enzymedb.UniProtEnzymeDBGraph;
 import com.bio4j.titan.model.uniprot_enzyme.TitanUniProtEnzymeGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.thinkaurelius.titan.core.*;
@@ -19,7 +19,7 @@ public final class TitanEnzymeDBGraph
     extends
     EnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanUniProtEnzymeGraph uniprotEnzymeGraph = null;
+	private TitanUniProtEnzymeGraph uniProtEnzymeGraph = null;
 
     private TitanManagement mgmt;
 
@@ -73,8 +73,8 @@ public final class TitanEnzymeDBGraph
     }
 
     @Override
-    public UniprotEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniprotEnzymeDBGraph() {
-        return uniprotEnzymeGraph;
+    public UniProtEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> uniProtEnzymeDBGraph() {
+        return uniProtEnzymeGraph;
     }
 
     @Override
@@ -130,9 +130,9 @@ public final class TitanEnzymeDBGraph
 	/*
 		You can use this as `enzymeDBGraph.withUniprot(new TitanUniprotEnzymeDBGraph(raw, uniprotGraph, enzymeGraph))`
 	*/
-	public TitanEnzymeDBGraph withUniprotEnzymeGraph(TitanUniProtEnzymeGraph uniprotEnzymeGraph) {
+	public TitanEnzymeDBGraph withUniProtEnzymeGraph(TitanUniProtEnzymeGraph uniprotEnzymeGraph) {
 
-		this.uniprotEnzymeGraph = uniprotEnzymeGraph;
+		this.uniProtEnzymeGraph = uniprotEnzymeGraph;
 
 		return this;
 	}

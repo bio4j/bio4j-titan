@@ -17,7 +17,7 @@ public final class TitanUniProtEnzymeGraph
         extends
         UniProtEnzymeDBGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-    private TitanUniProtGraph uniprotGraph;
+    private TitanUniProtGraph uniProtGraph;
     private TitanEnzymeDBGraph enzymeDBGraph;
 
 	private TitanManagement mgmt;
@@ -48,7 +48,7 @@ public final class TitanUniProtEnzymeGraph
 	    mgmt.commit();
 
         /* update dependencies */
-        this.uniprotGraph    =  titanUniProtGraph.withUniProtEnzymeGraph(this);
+        this.uniProtGraph    =  titanUniProtGraph.withUniProtEnzymeGraph(this);
         this.enzymeDBGraph   = titanEnzymeDBGraph.withUniProtEnzymeGraph(this);
     }
 
@@ -75,9 +75,9 @@ public final class TitanUniProtEnzymeGraph
 
 
     @Override
-    public TitanUniProtGraph uniprotGraph() {
+    public TitanUniProtGraph uniProtGraph() {
 
-        return uniprotGraph;
+        return uniProtGraph;
     }
 
     @Override

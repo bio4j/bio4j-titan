@@ -5,7 +5,7 @@ import com.bio4j.angulillos.titan.TitanTypedVertexIndex;
 import com.bio4j.model.ncbiTaxonomy.NCBITaxonomyGraph;
 import com.bio4j.model.ncbiTaxonomy.vertices.NCBITaxon;
 import com.bio4j.model.ncbiTaxonomy_geninfo.NCBITaxonomyGenInfoGraph;
-import com.bio4j.model.uniprot_ncbiTaxonomy.UniprotNCBITaxonomyGraph;
+import com.bio4j.model.uniprot_ncbiTaxonomy.UniProtNCBITaxonomyGraph;
 
 import com.bio4j.titan.model.uniprot_ncbiTaxonomy.TitanUniProtNCBITaxonomyGraph;
 import com.bio4j.titan.model.ncbiTaxonomy_geninfo.TitanNCBITaxonomyGenInfoGraph;
@@ -79,7 +79,7 @@ public final class TitanNCBITaxonomyGraph
 	}
 
 	@Override
-	public TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph() {
+	public TitanUniProtNCBITaxonomyGraph uniProtNCBITaxonomyGraph() {
 		return uniprotNCBITaxonomyGraph;
 	}
 
@@ -126,7 +126,7 @@ public final class TitanNCBITaxonomyGraph
 	/*
 		You can use this as `ncbiTaxonomyGraph.withUniprot(new TitanUniprotNCBITaxonomyGraph(raw, uniprotGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanNCBITaxonomyGraph withUniprotNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
+	public TitanNCBITaxonomyGraph withUniProtNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniprotNCBITaxonomyGraph) {
 
 		this.uniprotNCBITaxonomyGraph = uniprotNCBITaxonomyGraph;
 

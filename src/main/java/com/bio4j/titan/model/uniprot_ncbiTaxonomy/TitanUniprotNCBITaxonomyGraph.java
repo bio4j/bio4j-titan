@@ -30,7 +30,7 @@ public final class TitanUniProtNCBITaxonomyGraph
 
     public TitanUniProtNCBITaxonomyGraph(
             DefaultTitanGraph rawGraph,
-            TitanUniprotGraph titanUniprotGraph,
+            TitanUniProtGraph titanUniprotGraph,
             TitanNCBITaxonomyGraph titanNCBITaxonomyGraph
     ) {
         super(rawGraph);

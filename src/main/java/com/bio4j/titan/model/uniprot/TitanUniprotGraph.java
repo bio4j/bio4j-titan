@@ -1864,7 +1864,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniProtGraph.withGo(new TitanUniprotGoGraph(raw, uniProtGraph, goGraph))`
 	*/
-	public TitanUniProtGraph withUniprotGoGraph(TitanUniProtGoGraph uniProtGoGraph) {
+	public TitanUniProtGraph withUniProtGoGraph(TitanUniProtGoGraph uniProtGoGraph) {
 		this.uniProtGoGraph = uniProtGoGraph;
 		return this;
 	}
@@ -1872,7 +1872,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniProtGraph.withEnzymeDB(new TitanUniprotEnzymeGraph(raw, uniProtGraph, enzymeGraph))`
 	*/
-	public TitanUniProtGraph withUniprotEnzymeGraph(TitanUniProtEnzymeGraph uniProtEnzymeGraph) {
+	public TitanUniProtGraph withUniProtEnzymeGraph(TitanUniProtEnzymeGraph uniProtEnzymeGraph) {
 		this.uniProtEnzymeGraph = uniProtEnzymeGraph;
 		return this;
 	}
@@ -1880,7 +1880,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniProtGraph.withNCBITaxonomy(new TitanUniprotNCBITaxonomyGraph(raw, uniProtGraph, ncbiTaxonomyGraph))`
 	*/
-	public TitanUniProtGraph withUniprotNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniProtNCBITaxonomyGraph) {
+	public TitanUniProtGraph withUniProtNCBITaxonomyGraph(TitanUniProtNCBITaxonomyGraph uniProtNCBITaxonomyGraph) {
 		this.uniProtNCBITaxonomyGraph = uniProtNCBITaxonomyGraph;
 		return this;
 	}
@@ -1888,7 +1888,7 @@ public final class TitanUniProtGraph
 	/*
 		You can use this as `uniProtGraph.withUniRef(new TitanUniprotUniRefGraph(raw, uniProtGraph, uniRefGraph))`
 	*/
-	public TitanUniProtGraph withUniprotUniRefGraph(TitanUniProtUniRefGraph uniProtUniRefGraph) {
+	public TitanUniProtGraph withUniProtUniRefGraph(TitanUniProtUniRefGraph uniProtUniRefGraph) {
 		this.uniProtUniRefGraph = uniProtUniRefGraph;
 		return this;
 	}

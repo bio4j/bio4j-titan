@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.uniprot_uniref.programs;
 
-import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
-import com.bio4j.model.uniprot_uniref.programs.ImportUniprotUniRef;
+import com.bio4j.model.uniprot_uniref.UniProtUniRefGraph;
+import com.bio4j.model.uniprot_uniref.programs.ImportUniProtUniRef;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.model.uniprot_uniref.TitanUniProtUniRefGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:ppareja@era7.com">Pablo Pareja Tobes</a>
  */
-public class ImportUniProtUniRefTitan extends ImportUniprotUniRef<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
+public class ImportUniProtUniRefTitan extends ImportUniProtUniRef<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
 	protected TitanUniProtUniRefGraph config(String dbFolder) {
@@ -43,7 +43,7 @@ public class ImportUniProtUniRefTitan extends ImportUniprotUniRef<DefaultTitanGr
 		for (int i = 0; i < array.size(); i++) {
 			args[i] = array.get(i);
 		}
-		importUniprotUniRef(args);
+		importUniProtUniRef(args);
 	}
 
 }

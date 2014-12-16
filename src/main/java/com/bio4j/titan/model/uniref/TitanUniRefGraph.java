@@ -2,7 +2,7 @@ package com.bio4j.titan.model.uniref;
 
 import com.bio4j.angulillos.TypedVertexIndex;
 import com.bio4j.angulillos.titan.TitanTypedVertexIndex;
-import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
+import com.bio4j.model.uniprot_uniref.UniProtUniRefGraph;
 import com.bio4j.model.uniref.UniRefGraph;
 import com.bio4j.model.uniref.vertices.UniRef100Cluster;
 import com.bio4j.model.uniref.vertices.UniRef50Cluster;
@@ -21,7 +21,7 @@ public final class TitanUniRefGraph
         extends
         UniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
-	private TitanUniProtUniRefGraph uniprotUniRefGraph;
+	private TitanUniProtUniRefGraph uniProtUniRefGraph;
 
 	private TitanManagement mgmt = null;
 
@@ -132,8 +132,8 @@ public final class TitanUniRefGraph
 
 
     @Override
-    public TitanUniProtUniRefGraph uniprotUniRefGraph() {
-        return uniprotUniRefGraph;
+    public TitanUniProtUniRefGraph uniProtUniRefGraph() {
+        return uniProtUniRefGraph;
     }
 
 	@Override
@@ -169,9 +169,9 @@ public final class TitanUniRefGraph
 	/*
 		You can use this as `uniRefGraph.withUniprot(new TitanUniprotUniRefGraph(raw, uniprotGraph, uniRefGraph))`
 	*/
-	public TitanUniRefGraph withUniprotUniRefGraph(TitanUniProtUniRefGraph uniprotUniRefGraph) {
+	public TitanUniRefGraph withUniProtUniRefGraph(TitanUniProtUniRefGraph uniProtUniRefGraph) {
 
-		this.uniprotUniRefGraph = uniprotUniRefGraph;
+		this.uniProtUniRefGraph = uniProtUniRefGraph;
 
 		return this;
 	}

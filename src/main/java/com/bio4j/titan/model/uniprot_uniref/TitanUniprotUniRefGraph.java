@@ -1,7 +1,7 @@
 package com.bio4j.titan.model.uniprot_uniref;
 
-import com.bio4j.model.uniprot.UniprotGraph;
-import com.bio4j.model.uniprot_uniref.UniprotUniRefGraph;
+import com.bio4j.model.uniprot.UniProtGraph;
+import com.bio4j.model.uniprot_uniref.UniProtUniRefGraph;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.model.uniref.TitanUniRefGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
@@ -15,7 +15,7 @@ import com.thinkaurelius.titan.core.schema.*;
  */
 public final class TitanUniProtUniRefGraph
         extends
-        UniprotUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
+        UniProtUniRefGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> {
 
     private TitanUniProtGraph uniprotGraph;
     private TitanUniRefGraph uniRefGraph;
@@ -66,8 +66,8 @@ public final class TitanUniProtUniRefGraph
 	    mgmt.commit();
 
         /* update dependencies */
-        this.uniprotGraph   = titanUniProtGraph.withUniprotUniRefGraph(this);
-        this.uniRefGraph    =  titanUniRefGraph.withUniprotUniRefGraph(this);
+        this.uniprotGraph   = titanUniProtGraph.withUniProtUniRefGraph(this);
+        this.uniRefGraph    =  titanUniRefGraph.withUniProtUniRefGraph(this);
     }
 
     @Override
@@ -125,7 +125,7 @@ public final class TitanUniProtUniRefGraph
 
 
     @Override
-    public TitanUniProtGraph uniprotGraph() {
+    public TitanUniProtGraph uniProtGraph() {
         return uniprotGraph;
     }
 

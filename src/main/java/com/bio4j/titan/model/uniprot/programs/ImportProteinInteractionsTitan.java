@@ -16,7 +16,7 @@
   */
 package com.bio4j.titan.model.uniprot.programs;
 
-import com.bio4j.model.uniprot.UniprotGraph;
+import com.bio4j.model.uniprot.UniProtGraph;
 import com.bio4j.model.uniprot.programs.ImportProteinInteractions;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
