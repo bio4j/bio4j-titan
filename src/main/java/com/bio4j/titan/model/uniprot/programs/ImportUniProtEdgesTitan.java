@@ -16,7 +16,7 @@
   */
 package com.bio4j.titan.model.uniprot.programs;
 
-import com.bio4j.model.uniprot.programs.ImportUniProt;
+import com.bio4j.model.uniprot.programs.ImportUniProtEdges;
 import com.bio4j.titan.model.uniprot.TitanUniProtGraph;
 import com.bio4j.titan.util.DefaultTitanGraph;
 import com.ohnosequences.util.Executable;

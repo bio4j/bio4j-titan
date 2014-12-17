@@ -192,6 +192,7 @@ public final class TitanUniProtGraph
 	public RefSeqType refSeqType;
 	//---Reference---
 	private VertexLabel referenceTypeLabel;
+	private PropertyKey referenceIdKey;
 	private PropertyKey referenceDateKey;
 	public ReferenceType referenceType;
 	//---SequenceCaution----
@@ -261,6 +262,7 @@ public final class TitanUniProtGraph
 	TitanTypedVertexIndex.DefaultUnique<GeneLocation<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneLocationType, GeneLocationType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> geneLocationNameIndex;
 	TitanTypedVertexIndex.DefaultUnique<GeneName<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, GeneNameType, GeneNameType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> geneNameNameIndex;
 	TitanTypedVertexIndex.DefaultUnique<AlternativeProduct<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, AlternativeProductType, AlternativeProductType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> alternativeProductNameIndex;
+	TitanTypedVertexIndex.DefaultUnique<Reference<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReferenceType, ReferenceType.id, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph> referenceIdIndex;
 
 	//-----------------------------------------------------------------------------------------
 	//--------------------------------RELATIONSHIPS--------------------------------------------
@@ -662,6 +664,7 @@ public final class TitanUniProtGraph
 		VertexLabelMaker referenceTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new ReferenceType(null));
 		referenceType = new ReferenceType(referenceTypeLabelMaker);
 		referenceDateKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Reference().date).cardinality(Cardinality.SINGLE));
+		referenceIdKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, Reference().id).cardinality(Cardinality.SINGLE));
 		referenceTypeLabel = raw().createOrGet(mgmt, referenceType.raw());
 
 		//------------ ReactomeTerm keys----------------------
@@ -1196,6 +1199,8 @@ public final class TitanUniProtGraph
 		alternativeProductNameIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, AlternativeProduct().name);
 		alternativeProductNameIndex.makeOrGet(alternativeProductTypeLabel);
 
+		referenceIdIndex = new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, Reference().id);
+		referenceIdIndex.makeOrGet(referenceTypeLabel);
 
 	}
 
@@ -1555,6 +1560,11 @@ public final class TitanUniProtGraph
 	@Override
 	public TypedVertexIndex.Unique<CommentType<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, CommentTypeType, CommentTypeType.name, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> commentTypeNameIndex() {
 		return commentTypeNameIndex;
+	}
+
+	@Override
+	public TypedVertexIndex.Unique<Reference<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, ReferenceType, ReferenceType.id, String, UniProtGraph<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker>, DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> referenceIdIndex() {
+		return referenceIdIndex;
 	}
 
 	@Override
