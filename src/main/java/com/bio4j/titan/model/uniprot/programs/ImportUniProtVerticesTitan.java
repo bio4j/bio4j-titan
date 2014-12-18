@@ -21,20 +21,10 @@ import java.util.ArrayList;
 public class ImportUniProtVerticesTitan extends ImportUniProtVertices<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniProtGraph config(String dbFolder) {
-		//----------DB configuration------------------
-		Configuration conf = new BaseConfiguration();
-		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		conf.setProperty("storage.batch-loading","true");
-		conf.setProperty("query.force-index", "true");
-		conf.setProperty("storage.transactions", "true");
-		conf.setProperty("query.fast-property", "false");
-		conf.setProperty("storage.buffer-size", "100000");
-		conf.setProperty("autotype", "none");
-		conf.setProperty("storage.berkeleydb.cache-percentage", "80");
+	protected TitanUniProtGraph config(String dbFolder, String propertiesFile) {
+
 		//-------creating graph handlers---------------------
-		TitanGraph graph = TitanFactory.open(conf);
+		TitanGraph graph = TitanFactory.open(propertiesFile);
 		return new TitanUniProtGraph(new DefaultTitanGraph(graph));
 	}
 

@@ -14,16 +14,19 @@ public class ImportUniProtEdgesUsingFolderTitan extends ImportUniProtEdgesTitan 
 	@Override
 	public void execute(ArrayList<String> array) {
 
-		if(array.size() != 3){
+		if(array.size() != 4){
 			System.out.println("This program expects the following parameters:\n" +
 					"1. Folder name including the XML to be used \n" +
-					"2. Bio4j database folder" +
-					"3. Config XML file");
+					"2. Bio4j database folder \n" +
+					"3. Config XML file \n" +
+					"4. DB properties file (.properties)");
 		}else{
 
 			String folderSt = array.get(0);
 			String dbFolderSt = array.get(1);
 			String configFilest = array.get(2);
+			String propertiesFile = array.get(3);
+
 			File folderFile = new File(folderSt);
 
 			if(!folderFile.isDirectory()){
@@ -45,6 +48,7 @@ public class ImportUniProtEdgesUsingFolderTitan extends ImportUniProtEdgesTitan 
 					arguments.add(file.getAbsolutePath());
 					arguments.add(dbFolderSt);
 					arguments.add(configFilest);
+					arguments.add(propertiesFile);
 					super.execute(arguments);
 				}
 
