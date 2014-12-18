@@ -39,15 +39,9 @@ import java.util.ArrayList;
 public class ImportUniProtGoTitan extends ImportUniProtGo<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniProtGoGraph config(String dbFolder) {
-		//----------DB configuration------------------
-		Configuration conf = new BaseConfiguration();
-		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		conf.setProperty("autotype", "none");
-		conf.setProperty("storage.batch-loading","true"); //We can add this configuration parameter since we are not creating any nodes here
-		//-------creating graph handlers---------------------
-		TitanGraph graph = TitanFactory.open(conf);
+	protected TitanUniProtGoGraph config(String dbFolder, String propertiesFile) {
+
+		TitanGraph graph = TitanFactory.open(propertiesFile);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
 		return new TitanUniProtGoGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanGoGraph(defGraph));
 	}

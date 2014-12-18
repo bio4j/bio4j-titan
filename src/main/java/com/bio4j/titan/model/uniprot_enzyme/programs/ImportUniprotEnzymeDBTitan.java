@@ -38,16 +38,10 @@ import java.util.ArrayList;
 public class ImportUniProtEnzymeDBTitan extends ImportUniProtEnzymeDB<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniProtEnzymeGraph config(String dbFolder) {
-		//----------DB configuration------------------
-		Configuration conf = new BaseConfiguration();
-		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		conf.setProperty("autotype", "none");
-		conf.setProperty("storage.batch-loading","true"); //We can add this configuration parameter since we are not creating any nodes here
+	protected TitanUniProtEnzymeGraph config(String dbFolder, String propertiesFile) {
 
 		//-------creating graph handlers---------------------
-		TitanGraph graph = TitanFactory.open(conf);
+		TitanGraph graph = TitanFactory.open(propertiesFile);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
 		return new TitanUniProtEnzymeGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanEnzymeDBGraph(defGraph));
 	}

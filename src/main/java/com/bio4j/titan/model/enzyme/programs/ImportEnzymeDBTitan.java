@@ -47,17 +47,10 @@ public class ImportEnzymeDBTitan
 		implements Executable {
 
 	@Override
-	protected TitanEnzymeDBGraph config(String dbFolder) {
-		//----------DB configuration------------------
-		Configuration conf = new BaseConfiguration();
-		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		//conf.setProperty("storage.batch-loading", "true");
-		conf.setProperty("storage.berkeleydb.cache-percentage", "80");
-		conf.setProperty("query.force-index", "true");
-		conf.setProperty("autotype", "none");
+	protected TitanEnzymeDBGraph config(String dbFolder, String propertiesFile) {
+
 		//-------creating graph handlers---------------------
-		TitanGraph graph = TitanFactory.open(conf);
+		TitanGraph graph = TitanFactory.open(propertiesFile);
 		return new TitanEnzymeDBGraph(new DefaultTitanGraph(graph));
 	}
 

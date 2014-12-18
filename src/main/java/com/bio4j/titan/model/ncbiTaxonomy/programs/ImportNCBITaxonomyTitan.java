@@ -37,14 +37,10 @@ import java.util.ArrayList;
 public class ImportNCBITaxonomyTitan extends ImportNCBITaxonomy<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanNCBITaxonomyGraph config(String dbFolder) {
-		//----------DB configuration------------------
-		Configuration conf = new BaseConfiguration();
-		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		conf.setProperty("autotype", "none");
+	protected TitanNCBITaxonomyGraph config(String dbFolder, String propertiesFile) {
+
 		//-------creating graph handlers---------------------
-		TitanGraph graph = TitanFactory.open(conf);
+		TitanGraph graph = TitanFactory.open(propertiesFile);
 		return new TitanNCBITaxonomyGraph(new DefaultTitanGraph(graph));
 	}
 
