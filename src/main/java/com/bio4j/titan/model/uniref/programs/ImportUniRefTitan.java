@@ -37,14 +37,9 @@ import java.util.ArrayList;
 public class ImportUniRefTitan extends ImportUniRef<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniRefGraph config(String dbFolder) {
-		//----------DB configuration------------------
-		Configuration conf = new BaseConfiguration();
-		conf.setProperty("storage.directory", dbFolder);
-		conf.setProperty("storage.backend", "berkeleyje");
-		conf.setProperty("autotype", "none");
+	protected TitanUniRefGraph config(String dbFolder, String propertiesFile) {
 		//-------creating graph handlers---------------------
-		TitanGraph graph = TitanFactory.open(conf);
+		TitanGraph graph = TitanFactory.open(propertiesFile);
 		return new TitanUniRefGraph(new DefaultTitanGraph(graph));
 	}
 
