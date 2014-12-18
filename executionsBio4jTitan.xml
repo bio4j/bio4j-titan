@@ -8,9 +8,7 @@
     <argument>500000</argument>
     </arguments>
   </execution> 
-  
-  -->
-  
+    
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniProtVerticesUsingFolderTitan</class_full_name>
     <arguments>      
@@ -19,6 +17,15 @@
 		<argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
+  -->
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniProtEdgesUsingFolderTitan</class_full_name>
+    <arguments>      
+		<argument>/mnt/disk2/trembl/</argument>
+		<argument>bio4j</argument>
+		<argument>/mnt/disk1/uniprot_data.xml</argument>
+    </arguments>
+  </execution>
   
    <!--
    

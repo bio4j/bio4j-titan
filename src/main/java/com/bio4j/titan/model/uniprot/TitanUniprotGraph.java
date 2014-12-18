@@ -870,6 +870,7 @@ public final class TitanUniProtGraph
 		// proteinGeneLocation
 		EdgeLabelMaker proteinGeneLocationTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinGeneLocationType(null));
 		proteinGeneLocationType = new ProteinGeneLocationType(proteinGeneLocationTypeLabelMaker);
+		proteinGeneLocationNameKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinGeneLocation().name).cardinality(Cardinality.SINGLE));
 		proteinGeneLocationLabel = raw().createOrGet(mgmt, proteinGeneLocationType.raw());
 
 		// proteinGeneName
