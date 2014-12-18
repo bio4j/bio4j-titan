@@ -24,6 +24,7 @@
 		<argument>/mnt/disk2/trembl/</argument>
 		<argument>bio4j</argument>
 		<argument>/mnt/disk1/uniprot_data.xml</argument>
+		<argument>importUniProtEdgesTitanProperties.properties</argument>
     </arguments>
   </execution>
   
