@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class ImportUniProtUniRefTitan extends ImportUniProtUniRef<DefaultTitanGraph, TitanVertex, VertexLabelMaker, TitanEdge, EdgeLabelMaker> implements Executable {
 
 	@Override
-	protected TitanUniProtUniRefGraph config(String dbFolder, String propertiesFile) {
+	protected TitanUniProtUniRefGraph config(String propertiesFile) {
 		//-------creating graph handlers---------------------
 		TitanGraph graph = TitanFactory.open(propertiesFile);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
