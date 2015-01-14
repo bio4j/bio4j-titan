@@ -43,7 +43,10 @@ public class ImportUniProtGoTitan extends ImportUniProtGo<DefaultTitanGraph, Tit
 
 		TitanGraph graph = TitanFactory.open(propertiesFile);
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
-		return new TitanUniProtGoGraph(defGraph, new TitanUniProtGraph(defGraph), new TitanGoGraph(defGraph));
+		TitanUniProtGraph titanUniProtGraph = new TitanUniProtGraph(defGraph);
+		TitanGoGraph titanGoGraph = new TitanGoGraph(defGraph);
+		
+		return new TitanUniProtGoGraph(defGraph, titanUniProtGraph, titanGoGraph);
 	}
 
 	@Override
