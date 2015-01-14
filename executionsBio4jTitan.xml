@@ -17,7 +17,7 @@
 		<argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
-  -->
+  
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniProtEdgesUsingFolderTitan</class_full_name>
     <arguments>      
@@ -27,14 +27,15 @@
 		<argument>importUniProtEdgesTitanProperties.properties</argument>
     </arguments>
   </execution>
-  
-   <!--
+  -->
+   
    
   <execution>
     <class_full_name>com.bio4j.titan.model.go.programs.ImportGOTitan</class_full_name>
-    <arguments>      
-    <argument>/mnt/disk1/go.xml</argument>
-    <argument>bio4j</argument>
+    <arguments>  
+		<argument>/mnt/disk1/go.xml</argument>
+		<argument>bio4j</argument>
+		<argument>importGOTitanProperties.properties</argument>
     </arguments>
   </execution> 
   
@@ -42,11 +43,12 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.enzyme.programs.ImportEnzymeDBTitan</class_full_name>
     <arguments>      
-    <argument>/mnt/disk1/enzyme.dat</argument>
-    <argument>bio4j</argument>
+		<argument>/mnt/disk1/enzyme.dat</argument>
+		<argument>bio4j</argument>
+		<argument>importEnzymeDBTitanProperties.properties</argument>
     </arguments>
   </execution> 
-  
+  <!--
   
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
