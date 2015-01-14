@@ -45,7 +45,7 @@ public class ImportUniProtGoTitan extends ImportUniProtGo<DefaultTitanGraph, Tit
 		DefaultTitanGraph defGraph = new DefaultTitanGraph(graph);
 		TitanUniProtGraph titanUniProtGraph = new TitanUniProtGraph(defGraph);
 		TitanGoGraph titanGoGraph = new TitanGoGraph(defGraph);
-		
+
 		return new TitanUniProtGoGraph(defGraph, titanUniProtGraph, titanGoGraph);
 	}
 
