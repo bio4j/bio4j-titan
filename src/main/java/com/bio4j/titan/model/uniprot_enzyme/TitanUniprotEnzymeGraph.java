@@ -39,6 +39,10 @@ public final class TitanUniProtEnzymeGraph
         super(rawGraph);
         this.raw = rawGraph;
 
+        /* update dependencies */
+        this.uniProtGraph    =  titanUniProtGraph.withUniProtEnzymeGraph(this);
+        this.enzymeDBGraph   = titanEnzymeDBGraph.withUniProtEnzymeGraph(this);
+
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
         initTypes(mgmt);
@@ -46,10 +50,6 @@ public final class TitanUniProtEnzymeGraph
 
 	    // this should work now
 	    mgmt.commit();
-
-        /* update dependencies */
-        this.uniProtGraph    =  titanUniProtGraph.withUniProtEnzymeGraph(this);
-        this.enzymeDBGraph   = titanEnzymeDBGraph.withUniProtEnzymeGraph(this);
     }
 
     @Override
