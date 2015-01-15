@@ -32,6 +32,9 @@ public final class TitanUniProtGoGraph
         super(rawGraph);
         this.raw = rawGraph;
 
+        this.goGraph        =       titanGoGraph.withUniProtGoGraph(this);
+        this.uniProtGraph   =  titanUniProtGraph.withUniProtGoGraph(this);
+
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
         initTypes(mgmt);
@@ -39,9 +42,6 @@ public final class TitanUniProtGoGraph
 
 	    // this should work now
 	    mgmt.commit();
-
-        this.goGraph        =       titanGoGraph.withUniProtGoGraph(this);
-        this.uniProtGraph   =  titanUniProtGraph.withUniProtGoGraph(this);
     }
 
     @Override

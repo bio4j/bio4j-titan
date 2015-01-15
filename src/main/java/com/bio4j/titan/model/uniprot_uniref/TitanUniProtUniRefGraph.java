@@ -57,6 +57,10 @@ public final class TitanUniProtUniRefGraph
         super(rawGraph);
         this.raw = rawGraph;
 
+        /* update dependencies */
+        this.uniprotGraph   = titanUniProtGraph.withUniProtUniRefGraph(this);
+        this.uniRefGraph    =  titanUniRefGraph.withUniProtUniRefGraph(this);
+
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
         initTypes(mgmt);
@@ -65,9 +69,6 @@ public final class TitanUniProtUniRefGraph
 	    // this should work now
 	    mgmt.commit();
 
-        /* update dependencies */
-        this.uniprotGraph   = titanUniProtGraph.withUniProtUniRefGraph(this);
-        this.uniRefGraph    =  titanUniRefGraph.withUniProtUniRefGraph(this);
     }
 
     @Override

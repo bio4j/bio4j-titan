@@ -39,6 +39,10 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		super(rawGraph);
 		this.raw = rawGraph;
 
+		/* update dependencies */
+		this.ncbiTaxonomyGraph 	= titanNCBITaxonomyGraph.withNCBITaxonomyGenInfoGraph(this);
+		this.genInfoGraph 			= 		 titanGenInfoGraph.withNCBITaxonomyGenInfoGraph(this);
+
 		// First get a titanMgmt instance, that will be used throughout
 		this.mgmt = rawGraph.managementSystem();
 		initTypes(mgmt);
@@ -47,9 +51,6 @@ public final class TitanNCBITaxonomyGenInfoGraph
 		// this should work now
 		mgmt.commit();
 
-		/* update dependencies */
-		this.ncbiTaxonomyGraph 	= titanNCBITaxonomyGraph.withNCBITaxonomyGenInfoGraph(this);
-		this.genInfoGraph 			= 		 titanGenInfoGraph.withNCBITaxonomyGenInfoGraph(this);
 	}
 
 	@Override
