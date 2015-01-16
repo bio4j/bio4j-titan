@@ -49,18 +49,20 @@
     </arguments>
   </execution> 
   
-  -->
+ 
   
-  <!--
+  
   
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniprotTitan</class_full_name>
     <arguments>      
-      <argument>/mnt/disk1/uniprot_sprot.xml</argument>
-    <argument>bio4j</argument>
-    <argument>/mnt/disk1/uniprot_data.xml</argument>
+		<argument>/mnt/disk1/uniprot_sprot.xml</argument>
+		<argument>bio4j</argument>
+		<argument>/mnt/disk1/uniprot_data.xml</argument>
+		<argument>importUniProtTitanProperties.properties</argument>
     </arguments>
   </execution>  
+   
  
  
   <execution>
@@ -76,12 +78,24 @@
 	<execution>
 		<class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniProtVerticesTitan</class_full_name>
 		<arguments>      
-		  <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-		  <argument>bio4j_vertices</argument>
+		  <argument>/mnt/disk1/uniprot_sprot.xml</argument>
+		  <argument>bio4j</argument>
 		  <argument>/mnt/disk1/uniprot_data.xml</argument>
+		  <argument>importUniProtVerticesTitanProperties.properties</argument>
 		</arguments>
   </execution> 
---> 
+  
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportUniProtEdgesTitan</class_full_name>
+    <arguments>      
+		<argument>/mnt/disk1/uniprot_sprot.xml</argument>
+		<argument>bio4j</argument>
+		<argument>/mnt/disk1/uniprot_data.xml</argument>
+		<argument>importUniProtEdgesTitanProperties.properties</argument>
+    </arguments>
+  </execution>
+  -->
+<!--
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniProtGoTitan</class_full_name>
     <arguments>      
@@ -90,6 +104,7 @@
 		<argument>importUniProtGoTitanProperties.properties</argument>
     </arguments>
   </execution>  
+  --> 
 <!--
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
