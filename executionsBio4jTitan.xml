@@ -94,8 +94,8 @@
 		<argument>importUniProtEdgesTitanProperties.properties</argument>
     </arguments>
   </execution>
-  -->
-<!--
+  
+
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniProtGoTitan</class_full_name>
     <arguments>      
@@ -104,8 +104,19 @@
 		<argument>importUniProtGoTitanProperties.properties</argument>
     </arguments>
   </execution>  
-  --> 
-<!--
+  
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniProtGoUsingFolderTitan</class_full_name>
+    <arguments>      
+		<argument>/mnt/backup_volume/trembl</argument>
+		<argument>bio4j</argument>
+		<argument>importUniProtGoTitanProperties.properties</argument>
+    </arguments>
+  </execution> 
+  -->
+  <!--
+  
+
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniprotGoTitan</class_full_name>
     <arguments>      
@@ -133,18 +144,33 @@
     </arguments>
   </execution> 
   
-   
+   --> 
   <execution>
     <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
     <arguments>    
-    <argument>/mnt/disk1/uniref100.xml</argument>
-      <argument>/mnt/disk1/uniref90.xml</argument>
-    <argument>/mnt/disk1/uniref50.xml</argument>
-    <argument>bio4j</argument>
+		<argument>/mnt/disk1/uniref100.xml</argument>
+		<argument>100</argument>
+		<argument>importUniRefTitanProperties.properties</argument>
+    </arguments>
+  </execution>
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
+    <arguments>    
+		<argument>/mnt/disk1/uniref90.xml</argument>
+		<argument>90</argument>
+		<argument>importUniRefTitanProperties.properties</argument>
+    </arguments>
+  </execution>
+  <execution>
+    <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
+    <arguments>    
+		<argument>/mnt/disk1/uniref50.xml</argument>
+		<argument>50</argument>
+		<argument>importUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
    
- 
+ <!--
  
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy.programs.ImportNCBITaxonomyTitan</class_full_name>
