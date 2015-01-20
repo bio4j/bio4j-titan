@@ -29,21 +29,18 @@ public final class TitanUniRefGraph
     //-------------------VERTICES----------------------------
 
 	public VertexLabel uniRef100ClusterTypeLabel;
-    public PropertyKey uniRef100ClusterTypekey;
     public PropertyKey uniRef100ClusterIdkey;
 	public PropertyKey uniRef100ClusterNamekey;
 	public PropertyKey uniRef100ClusterUpdatedDatekey;
     public UniRef100ClusterType uniRef100ClusterType;
 
 	public VertexLabel uniRef90ClusterTypeLabel;
-    public PropertyKey uniRef90ClusterTypekey;
     public PropertyKey uniRef90ClusterIdkey;
 	public PropertyKey uniRef90ClusterNamekey;
 	public PropertyKey uniRef90ClusterUpdatedDatekey;
     public UniRef90ClusterType uniRef90ClusterType;
 
 	public VertexLabel uniRef50ClusterTypeLabel;
-    public PropertyKey uniRef50ClusterTypekey;
     public PropertyKey uniRef50ClusterIdkey;
 	public PropertyKey uniRef50ClusterNamekey;
 	public PropertyKey uniRef50ClusterUpdatedDatekey;
