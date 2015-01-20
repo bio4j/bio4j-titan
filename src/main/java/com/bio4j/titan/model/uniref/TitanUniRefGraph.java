@@ -78,7 +78,6 @@ public final class TitanUniRefGraph
 
     public TitanUniRefGraph(DefaultTitanGraph rawGraph) {
         super(rawGraph);
-        this.raw = rawGraph;
 
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
@@ -87,11 +86,6 @@ public final class TitanUniRefGraph
 
 	    // this should work now
 	    mgmt.commit();
-    }
-
-    @Override
-    public DefaultTitanGraph raw() {
-        return raw;
     }
 
     private void initTypes(TitanManagement mgmt) {
@@ -122,10 +116,13 @@ public final class TitanUniRefGraph
     }
 
     private void initIndices(TitanManagement mgmt) {
+
         uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef100Cluster().id);
 	    uniRef100ClusterIdIndex.makeOrGet(uniRef100ClusterTypeLabel);
+
         uniRef90ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef90Cluster().id);
 	    uniRef90ClusterIdIndex.makeOrGet(uniRef90ClusterTypeLabel);
+
         uniRef50ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef50Cluster().id);
 	    uniRef50ClusterIdIndex.makeOrGet(uniRef50ClusterTypeLabel);
     }

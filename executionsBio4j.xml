@@ -36,7 +36,7 @@
 	  <argument>/mnt/disk1/uniprot_data.xml</argument>
     </arguments>
   </execution> 
-  -->
+  
   
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.programs.ImportUniProtGoTitan</class_full_name>
@@ -45,6 +45,7 @@
 	  <argument>bio4j</argument>
     </arguments>
   </execution>  
+  -->
   <!--
  
   <execution>
