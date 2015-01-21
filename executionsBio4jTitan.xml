@@ -197,26 +197,27 @@
   </execution>
    -->
    
-  
+  <!--
  <execution>
-    <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomyTitan</class_full_name>
+    <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniProtNCBITaxonomyTitan</class_full_name>
     <arguments>   
-		<argument>/mnt/bio4jdb/uniprot_sprot.xml</argument>
+		<argument>/mnt/disk1/uniprot_sprot.xml</argument>
 		<argument>bio4j</argument>
 		<argument>importUniProtNCBITaxonomyTitanProperties.properties</argument>
     </arguments>
   </execution>
-  <!--
+  
    -->
-   <!-- 
+   
   <execution>
-    <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomyTitan</class_full_name>
+    <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniProtNCBITaxonomyUsingFolderTitan</class_full_name>
     <arguments>   
-    <argument>/mnt/disk1/uniprot_trembl.xml</argument>
-    <argument>bio4j</argument>
+		<argument>/mnt/backup_volume/trembl</argument>
+		<argument>bio4j</argument>
+		<argument>importUniProtNCBITaxonomyTitanProperties.properties</argument>
     </arguments>
   </execution>
-  
+  <!-- 
  
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniprotUniRefTitan</class_full_name>
