@@ -152,7 +152,7 @@
 		<argument>500000</argument>
     </arguments>
   </execution>
-  -->
+  
    
   <execution>
     <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
@@ -164,7 +164,8 @@
 		<argument>importUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
-  <!--
+  
+
   <execution>
     <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
     <arguments>    
@@ -183,18 +184,20 @@
   </execution>
    
  
- 
+
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy.programs.ImportNCBITaxonomyTitan</class_full_name>
     <arguments>    
-    <argument>/mnt/disk1/nodes.dmp</argument>
-      <argument>/mnt/disk1/names.dmp</argument>
-    <argument>/mnt/disk1/merged.dmp</argument>
-    <argument>bio4j</argument>
+		<argument>/mnt/disk1/nodes.dmp</argument>
+		<argument>/mnt/disk1/names.dmp</argument>
+		<argument>/mnt/disk1/merged.dmp</argument>
+		<argument>bio4j</argument>
+		<argument>importNCBITaxonomyTitanProperties.properties</argument>
     </arguments>
   </execution>
+   -->
    
-
+  <!--
  <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniprotNCBITaxonomyTitan</class_full_name>
     <arguments>   

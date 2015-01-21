@@ -114,6 +114,13 @@ public final class TitanUniRefGraph
 
     private void initIndices(TitanManagement mgmt) {
 
+        System.out.println(UniRef100Cluster() == null);
+        System.out.println(UniRef100Cluster().id == null);
+        System.out.println(mgmt == null);
+        System.out.println(this == null);
+        System.out.println(UniRef100Cluster().id.name());
+        System.out.println(UniRef100Cluster().name());
+
         uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef100Cluster().id);
 	    uniRef100ClusterIdIndex.makeOrGet(uniRef100ClusterTypeLabel);
 
