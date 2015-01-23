@@ -113,8 +113,8 @@
 		<argument>importUniProtGoTitanProperties.properties</argument>
     </arguments>
   </execution> 
-  -->
-  <!--
+  
+ 
   
 
   <execution>
@@ -124,15 +124,15 @@
     <argument>bio4j</argument>
     </arguments>
   </execution>  
-  
+  -->
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_enzyme.programs.ImportUniprotEnzymeDBTitan</class_full_name>
     <arguments>      
-      <argument>/mnt/disk1/uniprot_sprot.xml</argument>
-    <argument>bio4j</argument>
+		<argument>/mnt/disk1/uniprot_sprot.xml</argument>
+		<argument>bio4j</argument>
     </arguments>
   </execution>  
-
+  <!--
      
   
   
@@ -164,7 +164,7 @@
 		<argument>importUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
-  
+ 
 
   <execution>
     <class_full_name>com.bio4j.titan.model.uniref.programs.ImportUniRefTitan</class_full_name>
@@ -207,7 +207,7 @@
     </arguments>
   </execution>
   
-   -->
+   
    
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniProtNCBITaxonomyUsingFolderTitan</class_full_name>
@@ -217,6 +217,7 @@
 		<argument>importUniProtNCBITaxonomyTitanProperties.properties</argument>
     </arguments>
   </execution>
+  -->
   <!-- 
  
   <execution>
