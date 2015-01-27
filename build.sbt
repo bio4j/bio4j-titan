@@ -17,7 +17,7 @@ bucketSuffix := "era7.com"
 scalaVersion := "2.11.2"
 
 libraryDependencies ++= Seq(
-  "bio4j" % "bio4j" % "0.12.0-SNAPSHOT",
+  "bio4j" % "bio4j" % "0.12.0-RC1",
   "bio4j" % "angulillos-titan" % "0.2.1-SNAPSHOT",
   "com.thinkaurelius.titan" % "titan-berkeleyje" % "0.5.2",
   // test deps
