@@ -124,16 +124,17 @@
     <argument>bio4j</argument>
     </arguments>
   </execution>  
-  -->
+  
   <execution>
-    <class_full_name>com.bio4j.titan.model.uniprot_enzyme.programs.ImportUniprotEnzymeDBTitan</class_full_name>
+    <class_full_name>com.bio4j.titan.model.uniprot_enzyme.programs.ImportUniProtEnzymeDBUsingFolderTitan</class_full_name>
     <arguments>      
-		<argument>/mnt/disk1/uniprot_sprot.xml</argument>
+		<argument>/mnt/backup_volume/trembl</argument>
 		<argument>bio4j</argument>
+		<argument>importUniProtEnzymeDBTitanProperties.properties</argument>
     </arguments>
   </execution>  
-  <!--
-     
+  -->
+  <!--    
   
   
   <execution>
@@ -196,6 +197,14 @@
     </arguments>
   </execution>
    -->
+   <execution>
+    <class_full_name>com.bio4j.titan.model.uniprot.programs.ImportProteinInteractionsTitan</class_full_name>
+    <arguments>   
+		<argument>/mnt/disk1/uniprot_sprot.xml</argument>
+		<argument>bio4j</argument>
+		<argument>importProteinInteractionsTitanProperties.properties</argument>
+    </arguments>
+  </execution>
    
   <!--
  <execution>
