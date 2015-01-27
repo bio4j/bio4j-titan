@@ -23,8 +23,7 @@ public class ImportProteinInteractionsUsingFolderTitan extends ImportProteinInte
 
 			String folderSt = array.get(0);
 			String dbFolderSt = array.get(1);
-			String configFilest = array.get(2);
-			String propertiesFile = array.get(3);
+			String propertiesFile = array.get(2);
 
 			File folderFile = new File(folderSt);
 
@@ -46,7 +45,6 @@ public class ImportProteinInteractionsUsingFolderTitan extends ImportProteinInte
 					ArrayList<String> arguments = new ArrayList<>();
 					arguments.add(file.getAbsolutePath());
 					arguments.add(dbFolderSt);
-					arguments.add(configFilest);
 					arguments.add(propertiesFile);
 					super.execute(arguments);
 				}
