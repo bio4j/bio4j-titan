@@ -29,6 +29,9 @@ public final class TitanUniProtGraph
 	private PropertyKey proteinShortNameKey;
 	private PropertyKey proteinFullNameKey;
 	private PropertyKey proteinModifiedDateKey;
+	private PropertyKey proteinUniRef100ClusterIdKey;
+	private PropertyKey proteinUniRef90ClusterIdKey;
+	private PropertyKey proteinUniRef50ClusterIdKey;
 
 	//-------------------VERTICES----------------------------
 	private PropertyKey proteinCreatedDateKey;
@@ -528,6 +531,15 @@ public final class TitanUniProtGraph
 		);
 		proteinSequenceKey = raw().createOrGet(mgmt,
 				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().sequence).cardinality(Cardinality.SINGLE)
+		);
+		proteinUniRef100ClusterIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().uniRef100ClusterId).cardinality(Cardinality.SINGLE)
+		);
+		proteinUniRef90ClusterIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().uniRef90ClusterId).cardinality(Cardinality.SINGLE)
+		);
+		proteinUniRef50ClusterIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().uniRef50ClusterId).cardinality(Cardinality.SINGLE)
 		);
 
 		// create everything

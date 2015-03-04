@@ -32,11 +32,15 @@ public final class TitanUniRefGraph
     public PropertyKey uniRef100ClusterIdkey;
 	public PropertyKey uniRef100ClusterNamekey;
 	public PropertyKey uniRef100ClusterUpdatedDatekey;
+	public PropertyKey uniRef100ClusterMemberskey;
+	public PropertyKey uniRef100ClusterRepresentantAccessionkey;
     public UniRef100ClusterType uniRef100ClusterType;
 
 	public VertexLabel uniRef90ClusterTypeLabel;
     public PropertyKey uniRef90ClusterIdkey;
 	public PropertyKey uniRef90ClusterNamekey;
+	public PropertyKey uniRef90ClusterMemberskey;
+	public PropertyKey uniRef90ClusterRepresentantAccessionkey;
 	public PropertyKey uniRef90ClusterUpdatedDatekey;
     public UniRef90ClusterType uniRef90ClusterType;
 
@@ -44,6 +48,8 @@ public final class TitanUniRefGraph
     public PropertyKey uniRef50ClusterIdkey;
 	public PropertyKey uniRef50ClusterNamekey;
 	public PropertyKey uniRef50ClusterUpdatedDatekey;
+	public PropertyKey uniRef50ClusterMemberskey;
+	public PropertyKey uniRef50ClusterRepresentantAccessionkey;
     public UniRef50ClusterType uniRef50ClusterType;
 
 
@@ -92,12 +98,12 @@ public final class TitanUniRefGraph
         //--------------------------------VERTICES--------------------------------------------
 	    
         VertexLabelMaker uniRef100ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef100ClusterType(null));
-	    
         uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusteTypeLabelMaker);
-
         uniRef100ClusterIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().id).cardinality(Cardinality.SINGLE));
 	    uniRef100ClusterUpdatedDatekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().updatedDate).cardinality(Cardinality.SINGLE));
 	    uniRef100ClusterNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().name).cardinality(Cardinality.SINGLE));
+	    uniRef100ClusterRepresentantAccessionkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().representantAccession).cardinality(Cardinality.SINGLE));
+	    uniRef100ClusterMemberskey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().members).cardinality(Cardinality.SINGLE));
 	    uniRef100ClusterTypeLabel = raw().createOrGet(mgmt, uniRef100ClusterType.raw());
 
 	    VertexLabelMaker uniRef90ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef90ClusterType(null));
@@ -105,6 +111,8 @@ public final class TitanUniRefGraph
         uniRef90ClusterIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().id).cardinality(Cardinality.SINGLE));
 	    uniRef90ClusterUpdatedDatekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().updatedDate).cardinality(Cardinality.SINGLE));
 	    uniRef90ClusterNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().name).cardinality(Cardinality.SINGLE));
+	    uniRef90ClusterRepresentantAccessionkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().representantAccession).cardinality(Cardinality.SINGLE));
+	    uniRef90ClusterMemberskey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().members).cardinality(Cardinality.SINGLE));
 	    uniRef90ClusterTypeLabel = raw().createOrGet(mgmt, uniRef90ClusterType.raw());
 
 	    VertexLabelMaker uniRef50ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef50ClusterType(null));
@@ -112,6 +120,8 @@ public final class TitanUniRefGraph
         uniRef50ClusterIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().id).cardinality(Cardinality.SINGLE));
 	    uniRef50ClusterUpdatedDatekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().updatedDate).cardinality(Cardinality.SINGLE));
 	    uniRef50ClusterNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().name).cardinality(Cardinality.SINGLE));
+	    uniRef50ClusterRepresentantAccessionkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().representantAccession).cardinality(Cardinality.SINGLE));
+	    uniRef50ClusterMemberskey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().members).cardinality(Cardinality.SINGLE));
 	    uniRef50ClusterTypeLabel = raw().createOrGet(mgmt, uniRef50ClusterType.raw());
 
     }
