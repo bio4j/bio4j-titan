@@ -149,7 +149,7 @@ _Time spent by the following programs when using TrEMBL XML file as source file.
 
 UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
 --- | --- | --- | --- |
-- | - | - | - |
+2d 12h | - | - | - |
 
 #### Combined modules that are not imported using Uniprot XML files
 
