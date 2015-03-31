@@ -169,7 +169,7 @@
 		<argument>50000</argument>
     </arguments>
   </execution>
-  -->
+  
   
    
   <execution>
@@ -182,6 +182,7 @@
 		<argument>importUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
+  -->
   <!--
  
  
@@ -216,8 +217,8 @@
 		<argument>importProteinInteractionsTitanProperties.properties</argument>
     </arguments>
   </execution>
-   -->
-  <!--
+   
+ 
  <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_ncbiTaxonomy.programs.ImportUniProtNCBITaxonomyTitan</class_full_name>
     <arguments>   
@@ -243,13 +244,13 @@
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniProtUniRefUsingFolderTitan</class_full_name>
     <arguments>    
-		<argument>/mnt/backup_volume/uniref100/uniref100_2/</argument>
+		<argument>/mnt/backup_volume/uniref100</argument>
 		<argument>100</argument>
 		<argument>importUniProtUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
-  -->
-  <!--
+ 
+   
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniProtUniRefUsingFolderTitan</class_full_name>
     <arguments>    
@@ -258,20 +259,22 @@
 		<argument>importUniProtUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
-  
+  -->
+  <!--
   <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_uniref.programs.ImportUniProtUniRefUsingFolderTitan</class_full_name>
     <arguments>    
-		<argument>/mnt/disk1/uniref50</argument>
+		<argument>/mnt/backup_volume/uniref50</argument>
 		<argument>50</argument>
 		<argument>importUniProtUniRefTitanProperties.properties</argument>
     </arguments>
   </execution>
-  
-  
    
   -->
-   <!--
+  <!--
+   
+  
+  
   
    <execution>
     <class_full_name>com.bio4j.titan.model.uniprot_go.tests.ImportUniprotGoTestTitan</class_full_name>
@@ -280,14 +283,17 @@
     <argument>bio4jtests</argument>
     </arguments>
   </execution> 
-    
+  -->
+     
   <execution>
     <class_full_name>com.bio4j.titan.model.ncbiTaxonomy_geninfo.programs.ImportGenInfoNCBITaxonIndexTitan</class_full_name>
     <arguments>   
-    <argument>/mnt/disk1/gi_taxid_nucl.dmp</argument>
-    <argument>bio4j</argument>
+		<argument>/mnt/backup_volume/gi_taxid_nucl.dmp</argument>
+		<argument>bio4j</argument>
+		<argument>importGenInfoNCBITaxonIndexTitanProperties.properties</argument>
     </arguments>
   </execution>
+  <!--
 -->
   
 </scheduled_executions>
