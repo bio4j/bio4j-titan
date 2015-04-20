@@ -22,5 +22,5 @@ Please refer to **[this section](/docs/ImportingTitanBio4j.md)** if you want to 
 
 ### Using a pre-built release in AWS
 
-Please go to **[this section](/docs/TitanAWSReleases.md)** if you want to use an already pre-built Titan Bio4j database in Amazon Web Services. 
+Please go to **[this section](/docs/Bio4jAWSReleases.md)** if you want to use an already pre-built Titan Bio4j database in Amazon Web Services. 
 
