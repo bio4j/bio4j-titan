@@ -36,6 +36,10 @@ public final class TitanUniProtNCBITaxonomyGraph
         super(rawGraph);
         this.raw = rawGraph;
 
+        /* update dependencies */
+        this.uniProtGraph       =      titanUniprotGraph.withUniProtNCBITaxonomyGraph(this);
+        this.ncbiTaxonomyGraph  = titanNCBITaxonomyGraph.withUniProtNCBITaxonomyGraph(this);
+
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
         initTypes(mgmt);
@@ -43,10 +47,6 @@ public final class TitanUniProtNCBITaxonomyGraph
 
 	    // this should work now
 	    mgmt.commit();
-
-        /* update dependencies */
-        this.uniProtGraph       =      titanUniprotGraph.withUniProtNCBITaxonomyGraph(this);
-        this.ncbiTaxonomyGraph  = titanNCBITaxonomyGraph.withUniProtNCBITaxonomyGraph(this);
     }
 
     @Override
