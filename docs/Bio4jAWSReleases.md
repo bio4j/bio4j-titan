@@ -3,7 +3,7 @@
 This is the best way to go if you don't have the resources for importing Bio4j in your cluster or you simply think that you will be getting a better deal by using it as a service.
 
 There isn't any kind of fee required for using Bio4j in AWS, you will just be paying for the data transfer _(and obviously the instances, volumes, deployed by yourself)_
-If you have any doubt please refer to this section on **[Requester pays buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)**.
+If you have any doubt please refer to this section on **[Requester Pays Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html)**.
 
 We provide two different options:
 
