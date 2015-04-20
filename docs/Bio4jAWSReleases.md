@@ -40,6 +40,6 @@ The database files are provided as a **tar** file in the following address:
 
 ### Source files for the import
 
-The xml/txt files from the different data sources used for this specific import were downloaded on the date: **12/03/2014** and can be retrieved from the following bucket folder:
+The **XML/TXT** files from the different data sources used for this specific import were downloaded on the date **12/03/2014** and can be retrieved from the following bucket folder _(also stored in a Requester Pays Bucket)_:
 
 > s3://eu-west-1.raw.bio4j.com/
