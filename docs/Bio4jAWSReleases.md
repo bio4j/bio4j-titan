@@ -37,3 +37,9 @@ This version includes all modules and weighs **~1.2 TB**. Apart from the aforeme
 The database files are provided as a **tar** file in the following address:
 
 > s3://eu-west-1.releases.bio4j.com/2014_12_03/bio4j_whole.tar
+
+### Source files for the import
+
+The xml/txt files from the different data sources used for this specific import were downloaded on the date: **12/03/2014** and can be retrieved from the following bucket folder:
+
+> s3://eu-west-1.raw.bio4j.com/
