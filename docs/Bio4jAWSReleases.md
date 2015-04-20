@@ -23,7 +23,7 @@ This database weighs **~460 GB** and includes the following modules:
 
 ### Whole version
 
-This version includes all modules and weighs **~1.2 TB**. Apart from the aforementioned you the following modules are available :
+This version includes all modules and weighs **~1.2 TB**. Apart from the aforementioned, the following modules are available:
 
 - UniRef
 - UniProtUniRef
