@@ -21,6 +21,10 @@ This database weighs **~460 GB** and includes the following modules:
 - UniProtInteractions
 - UniProtIsoforms
 
+The database files are provided as a **tar** file in the following address:
+
+> s3://eu-west-1.releases.bio4j.com/2014_12_03/bio4j_lite.tar
+
 ### Whole version
 
 This version includes all modules and weighs **~1.2 TB**. Apart from the aforementioned, the following modules are available:
@@ -29,3 +33,7 @@ This version includes all modules and weighs **~1.2 TB**. Apart from the aforeme
 - UniProtUniRef
 - GenInfo
 - NCBITaxonomyGenInfo
+
+The database files are provided as a **tar** file in the following address:
+
+> s3://eu-west-1.releases.bio4j.com/2014_12_03/bio4j_whole.tar
