@@ -20,3 +20,7 @@ libraryDependencies += "bio4j" % "bio4j-titan" % "0.4.0-SNAPSHOT"
 
 Please refer to **[this section](/docs/ImportingTitanBio4j.md)** if you want to import your own Titan Bio4j database in Amazon Web Services.
 
+### Using a pre-built release in AWS
+
+Please go to **[this section](/docs/TitanAWSReleases.md)** if you want to use an already pre-built Titan Bio4j database in Amazon Web Services. 
+
