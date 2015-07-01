@@ -29,24 +29,27 @@ public final class TitanUniRefGraph
     //-------------------VERTICES----------------------------
 
 	public VertexLabel uniRef100ClusterTypeLabel;
-    public PropertyKey uniRef100ClusterTypekey;
     public PropertyKey uniRef100ClusterIdkey;
 	public PropertyKey uniRef100ClusterNamekey;
 	public PropertyKey uniRef100ClusterUpdatedDatekey;
+	public PropertyKey uniRef100ClusterMemberskey;
+	public PropertyKey uniRef100ClusterRepresentantAccessionkey;
     public UniRef100ClusterType uniRef100ClusterType;
 
 	public VertexLabel uniRef90ClusterTypeLabel;
-    public PropertyKey uniRef90ClusterTypekey;
     public PropertyKey uniRef90ClusterIdkey;
 	public PropertyKey uniRef90ClusterNamekey;
+	public PropertyKey uniRef90ClusterMemberskey;
+	public PropertyKey uniRef90ClusterRepresentantAccessionkey;
 	public PropertyKey uniRef90ClusterUpdatedDatekey;
     public UniRef90ClusterType uniRef90ClusterType;
 
 	public VertexLabel uniRef50ClusterTypeLabel;
-    public PropertyKey uniRef50ClusterTypekey;
     public PropertyKey uniRef50ClusterIdkey;
 	public PropertyKey uniRef50ClusterNamekey;
 	public PropertyKey uniRef50ClusterUpdatedDatekey;
+	public PropertyKey uniRef50ClusterMemberskey;
+	public PropertyKey uniRef50ClusterRepresentantAccessionkey;
     public UniRef50ClusterType uniRef50ClusterType;
 
 
@@ -77,8 +80,8 @@ public final class TitanUniRefGraph
 
 
     public TitanUniRefGraph(DefaultTitanGraph rawGraph) {
+        
         super(rawGraph);
-        this.raw = rawGraph;
 
 	    // First get a titanMgmt instance, that will be used throughout
 	    this.mgmt = rawGraph.managementSystem();
@@ -89,20 +92,18 @@ public final class TitanUniRefGraph
 	    mgmt.commit();
     }
 
-    @Override
-    public DefaultTitanGraph raw() {
-        return raw;
-    }
-
     private void initTypes(TitanManagement mgmt) {
 
         //-----------------------------------------------------------------------------------------
         //--------------------------------VERTICES--------------------------------------------
-	    VertexLabelMaker uniRef100ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef100ClusterType(null));
-	    uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusteTypeLabelMaker);
+	    
+        VertexLabelMaker uniRef100ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef100ClusterType(null));
+        uniRef100ClusterType = new UniRef100ClusterType(uniRef100ClusteTypeLabelMaker);
         uniRef100ClusterIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().id).cardinality(Cardinality.SINGLE));
 	    uniRef100ClusterUpdatedDatekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().updatedDate).cardinality(Cardinality.SINGLE));
 	    uniRef100ClusterNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().name).cardinality(Cardinality.SINGLE));
+	    uniRef100ClusterRepresentantAccessionkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().representantAccession).cardinality(Cardinality.SINGLE));
+	    uniRef100ClusterMemberskey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef100Cluster().members).cardinality(Cardinality.SINGLE));
 	    uniRef100ClusterTypeLabel = raw().createOrGet(mgmt, uniRef100ClusterType.raw());
 
 	    VertexLabelMaker uniRef90ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef90ClusterType(null));
@@ -110,6 +111,8 @@ public final class TitanUniRefGraph
         uniRef90ClusterIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().id).cardinality(Cardinality.SINGLE));
 	    uniRef90ClusterUpdatedDatekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().updatedDate).cardinality(Cardinality.SINGLE));
 	    uniRef90ClusterNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().name).cardinality(Cardinality.SINGLE));
+	    uniRef90ClusterRepresentantAccessionkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().representantAccession).cardinality(Cardinality.SINGLE));
+	    uniRef90ClusterMemberskey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef90Cluster().members).cardinality(Cardinality.SINGLE));
 	    uniRef90ClusterTypeLabel = raw().createOrGet(mgmt, uniRef90ClusterType.raw());
 
 	    VertexLabelMaker uniRef50ClusteTypeLabelMaker = raw().titanLabelMakerForVertexType(mgmt, new UniRef50ClusterType(null));
@@ -117,15 +120,20 @@ public final class TitanUniRefGraph
         uniRef50ClusterIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().id).cardinality(Cardinality.SINGLE));
 	    uniRef50ClusterUpdatedDatekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().updatedDate).cardinality(Cardinality.SINGLE));
 	    uniRef50ClusterNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().name).cardinality(Cardinality.SINGLE));
+	    uniRef50ClusterRepresentantAccessionkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().representantAccession).cardinality(Cardinality.SINGLE));
+	    uniRef50ClusterMemberskey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, UniRef50Cluster().members).cardinality(Cardinality.SINGLE));
 	    uniRef50ClusterTypeLabel = raw().createOrGet(mgmt, uniRef50ClusterType.raw());
 
     }
 
     private void initIndices(TitanManagement mgmt) {
-        uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef100Cluster().id);
+
+        uniRef100ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt, this, UniRef100Cluster().id);
 	    uniRef100ClusterIdIndex.makeOrGet(uniRef100ClusterTypeLabel);
+
         uniRef90ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef90Cluster().id);
 	    uniRef90ClusterIdIndex.makeOrGet(uniRef90ClusterTypeLabel);
+
         uniRef50ClusterIdIndex =  new TitanTypedVertexIndex.DefaultUnique<>(mgmt,this, UniRef50Cluster().id);
 	    uniRef50ClusterIdIndex.makeOrGet(uniRef50ClusterTypeLabel);
     }
@@ -152,17 +160,17 @@ public final class TitanUniRefGraph
 	}
 
 	@Override
-    public UniRef50ClusterType UniRef50Cluster() {
+    public final UniRef50ClusterType UniRef50Cluster() {
         return uniRef50ClusterType;
     }
 
     @Override
-    public UniRef90ClusterType UniRef90Cluster() {
+    public final UniRef90ClusterType UniRef90Cluster() {
         return uniRef90ClusterType;
     }
 
     @Override
-    public UniRef100ClusterType UniRef100Cluster() {
+    public final UniRef100ClusterType UniRef100Cluster() {
         return uniRef100ClusterType;
     }
 

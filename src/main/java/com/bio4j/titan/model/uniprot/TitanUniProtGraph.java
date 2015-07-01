@@ -29,6 +29,9 @@ public final class TitanUniProtGraph
 	private PropertyKey proteinShortNameKey;
 	private PropertyKey proteinFullNameKey;
 	private PropertyKey proteinModifiedDateKey;
+	private PropertyKey proteinUniRef100ClusterIdKey;
+	private PropertyKey proteinUniRef90ClusterIdKey;
+	private PropertyKey proteinUniRef50ClusterIdKey;
 
 	//-------------------VERTICES----------------------------
 	private PropertyKey proteinCreatedDateKey;
@@ -347,6 +350,10 @@ public final class TitanUniProtGraph
 	// proteinProteinInteraction
 	private EdgeLabel proteinProteinInteractionLabel;
 	public ProteinProteinInteractionType proteinProteinInteractionType;
+	private PropertyKey proteinProteinInteractionExperimentsKey;
+	private PropertyKey proteinProteinInteractionOrganismsDifferKey;
+	private PropertyKey proteinProteinInteractionIntActId1Key;
+	private PropertyKey proteinProteinInteractionIntActId2Key;
 	// proteinIsoform
 	private EdgeLabel proteinIsoformLabel;
 	public ProteinIsoformType proteinIsoformType;
@@ -360,6 +367,10 @@ public final class TitanUniProtGraph
 	// isoformProteinInteraction
 	private EdgeLabel isoformProteinInteractionLabel;
 	public IsoformProteinInteractionType isoformProteinInteractionType;
+	private PropertyKey isoformProteinInteractionExperimentsKey;
+	private PropertyKey isoformProteinInteractionOrganismsDifferKey;
+	private PropertyKey isoformProteinInteractionIntActId1Key;
+	private PropertyKey isoformProteinInteractionIntActId2Key;
 	// proteinDisease
 	private EdgeLabel proteinDiseaseLabel;
 	public ProteinDiseaseType proteinDiseaseType;
@@ -520,6 +531,15 @@ public final class TitanUniProtGraph
 		);
 		proteinSequenceKey = raw().createOrGet(mgmt,
 				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().sequence).cardinality(Cardinality.SINGLE)
+		);
+		proteinUniRef100ClusterIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().uniRef100ClusterId).cardinality(Cardinality.SINGLE)
+		);
+		proteinUniRef90ClusterIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().uniRef90ClusterId).cardinality(Cardinality.SINGLE)
+		);
+		proteinUniRef50ClusterIdKey = raw().createOrGet(mgmt,
+				raw().titanPropertyMakerForVertexProperty(mgmt, Protein().uniRef50ClusterId).cardinality(Cardinality.SINGLE)
 		);
 
 		// create everything
@@ -992,6 +1012,10 @@ public final class TitanUniProtGraph
 		// proteinProteinInteraction
 		EdgeLabelMaker proteinProteinInteractionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new ProteinProteinInteractionType(null));
 		proteinProteinInteractionType = new ProteinProteinInteractionType(proteinProteinInteractionTypeLabelMaker);
+		proteinProteinInteractionExperimentsKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinProteinInteraction().experiments).cardinality(Cardinality.SINGLE));
+		proteinProteinInteractionOrganismsDifferKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinProteinInteraction().organismsDiffer).cardinality(Cardinality.SINGLE));
+		proteinProteinInteractionIntActId1Key = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinProteinInteraction().intActId1).cardinality(Cardinality.SINGLE));
+		proteinProteinInteractionIntActId2Key = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, ProteinProteinInteraction().intActId2).cardinality(Cardinality.SINGLE));
 		proteinProteinInteractionLabel = raw().createOrGet(mgmt, proteinProteinInteractionType.raw());
 
 		// proteinIsoformInteraction
@@ -1011,6 +1035,10 @@ public final class TitanUniProtGraph
 		// isoformProteinInteraction
 		EdgeLabelMaker isoformProteinInteractionTypeLabelMaker = raw().titanLabelMakerForEdgeType(mgmt, new IsoformProteinInteractionType(null));
 		isoformProteinInteractionType = new IsoformProteinInteractionType(isoformProteinInteractionTypeLabelMaker);
+		isoformProteinInteractionExperimentsKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, IsoformProteinInteraction().experiments).cardinality(Cardinality.SINGLE));
+		isoformProteinInteractionOrganismsDifferKey = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, IsoformProteinInteraction().organismsDiffer).cardinality(Cardinality.SINGLE));
+		isoformProteinInteractionIntActId1Key = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, IsoformProteinInteraction().intActId1).cardinality(Cardinality.SINGLE));
+		isoformProteinInteractionIntActId2Key = raw().createOrGet(mgmt, raw().titanPropertyMakerForEdgeProperty(mgmt, IsoformProteinInteraction().intActId2).cardinality(Cardinality.SINGLE));
 		isoformProteinInteractionLabel = raw().createOrGet(mgmt, isoformProteinInteractionType.raw());
 
 		// proteinReference
