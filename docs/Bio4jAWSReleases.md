@@ -37,6 +37,7 @@ They are available from S3 through a [requester pays](http://docs.aws.amazon.com
 The way this is expected to be used is:
 
 1. Launch an EC2 instance in the `eu-west-1` region
+  - note that you need to use either EBS volumes or an instance type with enough of ephemeral storage (for example `i2.xlarge`)
 2. Download the binary files for either bio4j-lite or bio4j-full. You can use aws-cli for that. For example:
 
   ```bash
