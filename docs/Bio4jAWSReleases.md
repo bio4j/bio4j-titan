@@ -37,13 +37,19 @@ They are available from S3 through a [requester pays](http://docs.aws.amazon.com
 The way this is expected to be used is:
 
 1. Launch an EC2 instance in the `eu-west-1` region
-2. Download the binary files for either bio4j-lite or bio4j-full. Using aws-cli you can do it like this:
+2. Download the binary files for either bio4j-lite or bio4j-full. You can use aws-cli for that. For example:
 
   ```bash
-  aws s3api get-object --request-payer requester --bucket <bucket> --key <key> <outfile>
+  aws s3api get-object --request-payer requester --bucket eu-west-1.releases.bio4j.com --key <key> bio4j.tar
   ```
 
-3. Enjoy! Now you should check [TitanDB documentation](http://s3.thinkaurelius.com/docs/titan/0.5.2/) to learn how to connect to the database and query it.
+3. Extract the downloaded archive:
+
+  ```bash
+  tar xvf bio4j.tar
+  ```
+
+4. Enjoy! Now you should check [TitanDB documentation](http://s3.thinkaurelius.com/docs/titan/0.5.2/) to learn how to connect to the database and query it.
 
 #### IMPORTANT: AWS cost and fees
 
