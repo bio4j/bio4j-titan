@@ -8,6 +8,6 @@ class IndexTestSuite extends org.scalatest.FunSuite {
 
     val javaTestClass = new IndicesTest()
 
-    javaTestClass.indicesTest("/tmp/indices")
+    javaTestClass.indicesTest("raw/indices")
   }
 }

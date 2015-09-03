@@ -9,6 +9,6 @@ class UniProtGoTestSuite extends org.scalatest.FunSuite {
 
     val javaTestClass = new ImportUniProtGoTitanTest()
 
-    javaTestClass.importUniProtGoTitanTest("/tmp/uniprot_go")
+    javaTestClass.importUniProtGoTitanTest("raw/uniprot_go")
   }
 }
