@@ -9,6 +9,6 @@ class UniRefTestSuite extends org.scalatest.FunSuite {
 
     val javaTestClass = new ImportUniRefTitanTest()
 
-    javaTestClass.importUniRefTitanTest("/tmp/uniref")
+    javaTestClass.importUniRefTitanTest("raw/uniref")
   }
 }

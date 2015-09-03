@@ -27,6 +27,15 @@ data/out/
 credentials.sbt
 *credentials*
 
+# for import tests
+raw/
+raw/*
+ImportUniProtGo_home_edu_repos_bio4j_bio4j-titan_target_test-classes_file_uniprot_sprot.log
+ImportUniProtGoStats_uniprot_sprot.txt
+ImportUniRefStats.txt
+ImportUniRefTitan.log
+bio4j_metrics/
+
 # EnzymeDB data import
 ImportEnzymeDB.log
 ImportEnzymeDBStats.txt

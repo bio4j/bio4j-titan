@@ -1,0 +1,3 @@
+This version is a release candidate for `0.4.0`, which will be the base for bio4j 1.0. Further changes will only be bug fixes or documentation improvements.
+
+This codebase was used for a full import which is available from S3 in a requester-pays bucket.
