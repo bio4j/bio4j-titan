@@ -1,6 +1,6 @@
 ## Steps for importing Titan Bio4j 
 
-_If you are not using AWS please go directly to step 6_
+_If you are not using AWS please go directly to step 4_
 
 #### 1. Launch a new AWS instance _(preferably **hi1.4xlarge**)_
 
@@ -23,12 +23,12 @@ mount /dev/sdc /mnt/bio4jtitan
 #### 4. Download and install official Java 8 JDK
 Here's the link to the official website for downloading [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-#### 7. Get these files:
+#### 5. Get these files:
 - **bio4j-titan-0.4.0-SNAPSHOT-fat.jar** _(s3://snapshots.era7.com/bio4j/bio4j-titan/0.4.0-SNAPSHOT/bio4j-titan-0.4.0-SNAPSHOT-fat.jar)_
 - [executionsBio4j.xml](https://github.com/bio4j/bio4j-titan/blob/master/executionsBio4jTitan.xml) _(this file can be customized in order to just import a sub-set of the data available)_
 - [uniprotData.xml](https://github.com/bio4j/bio4j-titan/blob/master/uniprotData.xml) _This file will only be used in the case where you want to import Uniprot module. (Set the boolean flags included in the XML file to true/false depending on your choice of data you want to import from Uniprot)_
 
-#### 8. Import the data!
+#### 6. Import the data!
 
 + Download and execute the following bash script:
   - [DownloadAndPrepareBio4jSources.sh](/DownloadAndPrepareBio4jSources.sh)
@@ -119,7 +119,7 @@ Here's the link to the official website for downloading [Java JDK 8](http://www.
   tar -xvf taxdump.tar.gz
   ```
 
-#### 9. Launch importing process in background
+#### 7. Launch importing process in background
 
 ```  bash
 java -d64 -Xmx40G -jar bio4j-titan-0.4.0-SNAPSHOT-fat.jar executionsBio4jTitan.xml &
