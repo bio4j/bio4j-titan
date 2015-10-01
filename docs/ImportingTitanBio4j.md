@@ -27,6 +27,7 @@ Here's the link to the official website for downloading [Java JDK 8](http://www.
 - **bio4j-titan-0.4.0-SNAPSHOT-fat.jar** _(s3://snapshots.era7.com/bio4j/bio4j-titan/0.4.0-SNAPSHOT/bio4j-titan-0.4.0-SNAPSHOT-fat.jar)_
 - [executionsBio4j.xml](https://github.com/bio4j/bio4j-titan/blob/master/executionsBio4jTitan.xml) _(this file can be customized in order to just import a sub-set of the data available)_
 - [uniprotData.xml](https://github.com/bio4j/bio4j-titan/blob/master/uniprotData.xml) _This file will only be used in the case where you want to import Uniprot module. (Set the boolean flags included in the XML file to true/false depending on your choice of data you want to import from Uniprot)_
+- **importXXXXXXTitanProperties.properties** files that you need depending on the choice of modules to be imported. They are located [here](https://github.com/bio4j/bio4j-titan/tree/master/properties_files)
 
 #### 6. Import the data!
 
