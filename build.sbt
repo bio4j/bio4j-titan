@@ -6,7 +6,7 @@ description   := "Titan implementation of the Bio4j model"
 javaVersion   := "1.8"
 
 libraryDependencies ++= Seq(
-  "bio4j"                   % "bio4j"             % "0.12.0-SNAPSHOT",
+  "bio4j"                   % "bio4j"             % "0.12.0-RC3",
   "bio4j"                   % "angulillos-titan"  % "0.2.1",
   "com.thinkaurelius.titan" % "titan-berkeleyje"  % "0.5.2",
   // test deps
@@ -15,12 +15,7 @@ libraryDependencies ++= Seq(
 )
 
 dependencyOverrides ++= Set(
-  "commons-codec"               % "commons-codec"           % "1.7"
-  // "com.fasterxml.jackson.core"  % "jackson-core"            % "2.1.2",
-  // "com.fasterxml.jackson.core"  % "jackson-databind"        % "2.1.2",
-  // "com.fasterxml.jackson.core"  % "jackson-annotations"     % "2.1.1",
-  // "commons-beanutils"           % "commons-beanutils"       % "1.8.3",
-  // "commons-beanutils"           % "commons-beanutils-core"  % "1.8.3"
+  "commons-codec" % "commons-codec" % "1.7"
 )
 
 
