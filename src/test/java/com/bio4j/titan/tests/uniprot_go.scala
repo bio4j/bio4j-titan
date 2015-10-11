@@ -5,7 +5,7 @@ import com.bio4j.titan.tests._
 class UniProtGoTestSuite extends org.scalatest.FunSuite {
 
 
-  test("Importing UniProtGo") {
+  ignore("Importing UniProtGo") {
 
     val javaTestClass = new ImportUniProtGoTitanTest()
 
