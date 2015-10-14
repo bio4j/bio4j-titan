@@ -2,7 +2,7 @@
 
 _If you are not using AWS please go directly to step 4_
 
-#### 1. Launch a new AWS instance _(preferably **hi1.4xlarge**)_
+#### 1. Launch a new AWS instance (preferably `hi1.4xlarge`)
 
 #### 2. Create two folders under `/mnt`
 
@@ -48,11 +48,11 @@ Since we are only interested in some of the data sources, it wouldn't make much 
 
 #### 7. (Optional) Customize data to be imported
 
-**Bio4j is divided in modules** and so it is the importing process, that way you don't have to import the whole thing in the case where you are interested only in some of the data sources ( **Gene Ontology**, **NCBI taxonomy tree**, etc). However you must be coherent when importing a set modules, that's to say, for example it's not possible to import the **Uniref clusters** without previously importing **Uniprot KB** - otherwise there wouldn't be proteins to link to in the clusters!
+**Bio4j is divided in modules** and so is the importing process, that way you don't have to import the whole thing in the case where you are interested only in some of the data sources ( **Gene Ontology**, **NCBI taxonomy tree**, etc). However you must be coherent when importing a set modules, that's to say, for example it's not possible to import the **Uniref clusters** without previously importing **Uniprot KB** - otherwise there wouldn't be proteins to link to in the clusters!
 
 In order to customize the modules that will be imported you have to modify the file **executionsBio4jTitan.xml**.
 Let's imagine that we want a database including only the Gene Ontology, NCBI taxonomy tree and Uniprot KB (only Swiss-prot entries).
-The corresponding executions.xml file should look like this:
+The corresponding `executionsBio4jTitan.xml` file should look like this:
 
 ``` xml
 <scheduled_executions>
@@ -129,9 +129,9 @@ java -d64 -Xmx40G -jar bio4j-titan-0.4.0-SNAPSHOT-fat.jar executionsBio4jTitan.x
 
 Different log files will be created at the jar folder level.
 
-### How much will it take?
+### How long will it take?
 
-> All these tests were performed on a **hi1.4xlarge** instance using 40G of memory for the Java process. The only configuration value that was changed was "autotype" = "none"
+> All these tests were performed on a **hi1.4xlarge** instance using 40G of memory for the Java process. The only configuration value that was changed was `"autotype" = "none"`
 
 Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProt) | Protein Interactions (TrEMBL) |
 --- | --- | --- | --- | --- | --- | --- | --- |
