@@ -7,11 +7,11 @@ javaVersion   := "1.8"
 
 libraryDependencies ++= Seq(
   "bio4j"                   % "bio4j"             % "0.12.0-RC3",
-  "bio4j"                   % "angulillos-titan"  % "0.2.1",
-  "com.thinkaurelius.titan" % "titan-berkeleyje"  % "0.5.2",
+  "bio4j"                   % "angulillos-titan"  % "0.3.0",
+  "com.thinkaurelius.titan" % "titan-berkeleyje"  % "0.5.4",
   // test deps
   "junit"           %   "junit"     % "3.8.1" % "test",
-  "org.scalatest"   %%  "scalatest" % "2.2.2" % "test"
+  "org.scalatest"   %%  "scalatest" % "2.2.5" % "test"
 )
 
 dependencyOverrides ++= Set(

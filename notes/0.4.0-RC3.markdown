@@ -1,0 +1,3 @@
+This version is a release candidate for `0.4.0`, which will be the base for bio4j 1.0.
+
+The only change is update to the [titan-0.5.4](http://s3.thinkaurelius.com/docs/titan/0.5.4/changelog.html). The storage format [is claimed](http://s3.thinkaurelius.com/docs/titan/0.5.4/upgrade.html) to be compatible with 0.5.2.
