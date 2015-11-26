@@ -124,7 +124,7 @@ The corresponding `executionsBio4jTitan.xml` file should look like this:
 For example:
 
 ```  bash
-java -d64 -Xmx40G -jar bio4j-titan-0.4.0-SNAPSHOT-fat.jar executionsBio4jTitan.xml &
+java -d64 -Xmx40G -jar bio4j-titan-0.4.0-RC3-fat.jar executionsBio4jTitan.xml &
 ```
 
 Different log files will be created at the jar folder level.
