@@ -26,20 +26,20 @@ Here's the link to the official website for downloading [Java JDK 8](http://www.
 
 #### 5. Download bio4j-titan jars and configuration files
 
-You need the executable jar for the current release and some `xml` and `properties` files. For bio4j-titan `0.4.0-RC2` these are
+You need the executable jar for the current release and some `xml` and `properties` files. For bio4j-titan `0.4.0-RC3` these are
 
-- [bio4j-titan-0.4.0-RC2-fat.jar](https://s3-eu-west-1.amazonaws.com/releases.era7.com/bio4j/bio4j-titan/0.4.0-RC2/bio4j-titan-0.4.0-RC2-fat.jar) the jar that you will need to run
-- [executionsBio4jTitan.xml](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0-RC2/executionsBio4jTitan.xml) this file contains the mapping between raw data and the corresponding modules; it can be changed in order to import only a subset of the available data.
-- [uniprotData.xml](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0-RC2/uniprotData.xml) This file will only be used in the case where you want to import Uniprot module. (Set the boolean flags included in the XML file to true/false depending on your choice of data you want to import from Uniprot)
-- [property files](https://github.com/bio4j/bio4j-titan/tree/v0.4.0-RC2/properties_files) All the `.properties` files under this folder; you will need the ones corresponding to the modules you want to import.
+- [bio4j-titan-0.4.0-RC3-fat.jar](https://s3-eu-west-1.amazonaws.com/releases.era7.com/bio4j/bio4j-titan/0.4.0-RC3/bio4j-titan-0.4.0-RC3-fat.jar) the jar that you will need to run
+- [executionsBio4jTitan.xml](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0-RC3/executionsBio4jTitan.xml) this file contains the mapping between raw data and the corresponding modules; it can be changed in order to import only a subset of the available data.
+- [uniprotData.xml](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0-RC3/uniprotData.xml) This file will only be used in the case where you want to import Uniprot module. (Set the boolean flags included in the XML file to true/false depending on your choice of data you want to import from Uniprot)
+- [property files](https://github.com/bio4j/bio4j-titan/tree/v0.4.0-RC3/properties_files) All the `.properties` files under this folder; you will need the ones corresponding to the modules you want to import.
 
-For the `xml` and `properties` files, you can just clone the bio4j/bio4j-titan repo and checkout the `0.4.0-RC2` tag.
+For the `xml` and `properties` files, you can just clone the bio4j/bio4j-titan repo and checkout the `0.4.0-RC3` tag.
 
 #### 6. Get the raw input data
 
 Download and execute the following bash script:
 
-- [DownloadAndPrepareBio4jSources.sh](https://github.com/bio4j/bio4j-titan/blob/v0.4.0-RC2/DownloadAndPrepareBio4jSources.sh)
+- [DownloadAndPrepareBio4jSources.sh](https://github.com/bio4j/bio4j-titan/blob/v0.4.0-RC3/DownloadAndPrepareBio4jSources.sh)
 
 It will download and decompress all the raw data needed to build a full Bio4j distribution (Swissprot, TrEMBL, GO, etc..).
 Once the script has finished, make sure that the final file names coincide with those specified in your XML file `executionsBio4jTitan.xml`.
@@ -133,30 +133,30 @@ Different log files will be created at the jar folder level.
 
 > All these tests were performed on a **hi1.4xlarge** instance using 40G of memory for the Java process. The only configuration value that was changed was `"autotype" = "none"`
 
-Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) |  UniRef | Protein Interactions (SwissProt) | Protein Interactions (TrEMBL) |
---- | --- | --- | --- | --- | --- | --- | --- |
-1m 14s | 3s | 8m 13s | 2h 22m 22s | - | 10h 37m 21s | 8m 53s | 17h 20m |
+| Gene Ontology | Enzyme DB | NCBI Taxonomy | Uniprot (SwissProt) | Uniprot (TrEMBL) | UniRef      | Protein Interactions (SwissProt) | Protein Interactions (TrEMBL) |
+|:--------------|:----------|:--------------|:--------------------|:-----------------|:------------|:---------------------------------|:------------------------------|
+| 1m 14s        | 3s        | 8m 13s        | 2h 22m 22s          | -                | 10h 37m 21s | 8m 53s                           | 17h 20m                       |
 
 #### SwissProt times for combined modules
 
 Time spent by the following programs when using SwissProt XML file as source file.
 
-UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
---- | --- | --- | --- |
-2h 20m 35s | 6m 28s | 6m 32s | 2h 33m 35s |
+| UniprotGo  | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
+|:-----------|:----------------|:--------------------|:-----------|
+| 2h 20m 35s | 6m 28s          | 6m 32s              | 2h 33m 35s |
 
 #### TrEMBL times for combined modules
 
 Time spent by the following programs when using TrEMBL XML file as source file.
 
-UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
---- | --- | --- | --- |
-2d 12h | 12h 40m | 1d 8h 40m | 4d 1h 20m |
+| UniprotGo | UniprotEnzymeDB | UniprotNCBITaxonomy | Total time |
+|:----------|:----------------|:--------------------|:-----------|
+| 2d 12h    | 12h 40m         | 1d 8h 40m           | 4d 1h 20m  |
 
 #### Combined modules that are not imported using Uniprot XML files
 
 None of the following programs use in any way any neither SwissProt nor TrEMBL XML files.
 
-UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences | Total time |
---- | --- | --- | --- |
--| - | - | - |
+| UniprotUniRef | GenInfoNCBITaxonIndex | IsoformSequences | Total time |
+|:--------------|:----------------------|:-----------------|:-----------|
+| -             | -                     | -                | -          |
