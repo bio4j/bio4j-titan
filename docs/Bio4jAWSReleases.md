@@ -25,8 +25,8 @@ We offer two pre-imported Bio4j-titan distributions:
 
 They are available as tar-archives from S3 through a [requester-pays](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) bucket `s3://eu-west-1.releases.bio4j.com/`, in the `eu-west-1` (Ireland) region. The S3-keys are
 
-- **Bio4j-lite**: `2014_12_03/bio4j_all_but_uniref_and_gi_index.tar`
-- **Bio4j-full**: `2014_12_03/bio4j_all_plus_isoforms.tar`
+- **bio4j-lite**: `2014_12_03/bio4j_all_but_uniref_and_gi_index.tar`
+- **bio4j-full**: `2014_12_03/bio4j_all_plus_isoforms.tar`
 
 
 ## Using Bio4j with your AWS account
@@ -41,7 +41,7 @@ AWS charges fees for downloading S3 objects: [AWS S3 pricing - data transfer](ht
 
 You need to grant permissions to the user/role which you will use to download the Bio4j distribution: read access to `s3://eu-west-1.releases.bio4j.com/` is enough. The following is an IAM policy which is more than sufficient for that:
 
-``` json
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -49,25 +49,17 @@ You need to grant permissions to the user/role which you will use to download th
             "Sid": "Stmt1434711865000",
             "Effect": "Allow",
             "Action": [
-                "s3:*"
+                "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::eu-west-1.releases.bio4j.com"
-            ]
-        },
-        {
-            "Sid": "Stmt1434711990000",
-            "Effect": "Allow",
-            "Action": [
-                "s3:*"
-            ],
-            "Resource": [
+                "arn:aws:s3:::eu-west-1.releases.bio4j.com",
                 "arn:aws:s3:::eu-west-1.releases.bio4j.com/*"
             ]
         }
     ]
 }
 ```
+
 
 ### Get Bio4j from an EC2 instance
 
