@@ -23,7 +23,7 @@ We offer two pre-imported Bio4j-titan distributions:
 | **Approximate size**         | 462.4 GiB  |  1.3 TiB   |
 
 
-They are available as tar-archives from S3 through a [requester-pays](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) bucket `s3://eu-west-1.releases.bio4j.com/`, in the `eu-west-1` (Ireland) region. The S3-keys are
+They are available as tar-archives from S3 through a [requester-pays](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) bucket `s3://eu-west-1.releases.bio4j.com`, in the `eu-west-1` (Ireland) region. The S3-keys are
 
 - **bio4j-lite**: `2014_12_03/bio4j_all_but_uniref_and_gi_index.tar`
 - **bio4j-full**: `2014_12_03/bio4j_all_plus_isoforms.tar`
@@ -66,26 +66,39 @@ You need to grant permissions to the user/role which you will use to download th
 The way this is expected to be used is:
 
 1. Launch an EC2 instance in the `eu-west-1` region
-  - note that you need to use either EBS volumes or an instance type with enough of ephemeral storage (for example `i2.xlarge`)
+
+    > **Note**, that you need to use either EBS volumes or an instance type with enough of ephemeral storage
+
 2. Download the binary files for either bio4j-lite or bio4j-full. You can use aws-cli for that. For example:
 
-  ```bash
-  # get bio4j-lite
-  aws s3api get-object --request-payer requester \
-  --bucket eu-west-1.releases.bio4j.com \
-  --key 2014_12_03/bio4j_all_but_uniref_and_gi_index.tar bio4j-lite.tar
-  # get bio4j-full
-  aws s3api get-object --request-payer requester \
-  --bucket eu-west-1.releases.bio4j.com \
-  --key 2014_12_03/bio4j_all_plus_isoforms.tar bio4j-lite.tar
-  ```
+    - for bio4j-lite:
 
-  Do note that you need to put there `--request-payer requester`, not your AWS id, user or anything.
+        ```bash
+        aws s3api get-object
+          --region eu-west-1 \
+          --request-payer requester \
+          --bucket eu-west-1.releases.bio4j.com \
+          --key 2014_12_03/bio4j_all_but_uniref_and_gi_index.tar \
+          bio4j-lite.tar
+        ```
+
+    - for bio4j-full:
+
+        ```bash
+        aws s3api get-object
+          --region eu-west-1 \
+          --request-payer requester \
+          --bucket eu-west-1.releases.bio4j.com \
+          --key 2014_12_03/bio4j_all_plus_isoforms.tar \
+          bio4j-full.tar
+        ```
+
+    Do note that you need to put there `--request-payer requester` literally, not your AWS ID, username or anything else.
 
 3. Extract the downloaded archive:
 
-  ```bash
-  tar xvf bio4j.tar
-  ```
+    ```bash
+    tar xvf bio4j-lite.tar
+    ```
 
-4. Enjoy! Now you should check [TitanDB documentation](http://s3.thinkaurelius.com/docs/titan/0.5.2/) to learn how to connect to the database and query it.
+4. Enjoy! Now you should check [TitanDB documentation](http://s3.thinkaurelius.com/docs/titan/0.5.4/) to learn how to connect to the database and query it. Note, that these releases of Bio4j-titan were made using  Titan `v.0.5.4`.
