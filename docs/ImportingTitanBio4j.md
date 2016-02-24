@@ -56,7 +56,7 @@ _If you are not using AWS please go directly to the **Step 3**_.
 
 5. Get the raw input data
 
-  Download and execute the following bash script:
+  Download and execute (from `/mnt/sources/`) the following bash script:
 
   - [DownloadAndPrepareBio4jSources.sh](https://github.com/bio4j/bio4j-titan/blob/v0.4.0-RC3/DownloadAndPrepareBio4jSources.sh)
 
