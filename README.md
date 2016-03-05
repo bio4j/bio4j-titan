@@ -19,7 +19,7 @@ In the specific case of Titan, we use [Titan types](https://github.com/thinkaure
 To use it in an sbt-project, add the following to `libraryDependencies` in your `build.sbt` file:
 
 ``` scala
-"bio4j" % "bio4j-titan" % "0.4.0-RC3"
+"bio4j" % "bio4j-titan" % "<version>"
 ```
 
 

@@ -41,24 +41,24 @@ _If you are not using AWS please go directly to the **Step 3**_.
 
 4. Download bio4j-titan jars and configuration files
 
-  You need the executable jar for the current release and some `xml` and `properties` files. For bio4j-titan `0.4.0-RC3` these are
+  You need the executable jar for the current release and some `xml` and `properties` files. For bio4j-titan `0.4.0` these are
 
-  - [`bio4j-titan-0.4.0-RC3-fat.jar`](https://s3-eu-west-1.amazonaws.com/releases.era7.com/bio4j/bio4j-titan/0.4.0-RC3/bio4j-titan-0.4.0-RC3-fat.jar)  
+  - [`bio4j-titan-0.4.0-fat.jar`](https://s3-eu-west-1.amazonaws.com/releases.era7.com/bio4j/bio4j-titan/0.4.0/bio4j-titan-0.4.0-fat.jar)  
   The jar that you will need to run
-  - [`executionsBio4jTitan.xml`](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0-RC3/executionsBio4jTitan.xml)  
+  - [`executionsBio4jTitan.xml`](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0/executionsBio4jTitan.xml)  
   This file contains the mapping between raw data and the corresponding modules; it can be changed in order to import only a subset of the available data.
-  - [`uniprotData.xml`](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0-RC3/uniprotData.xml)  
+  - [`uniprotData.xml`](https://raw.githubusercontent.com/bio4j/bio4j-titan/v0.4.0/uniprotData.xml)  
   This file will only be used in the case where you want to import Uniprot module. (Set the boolean flags included in the XML file to true/false depending on your choice of data you want to import from Uniprot)
-  - [property files](https://github.com/bio4j/bio4j-titan/tree/v0.4.0-RC3/properties_files)  
+  - [property files](https://github.com/bio4j/bio4j-titan/tree/v0.4.0/properties_files)  
   All the `.properties` files under this folder; you will need the ones corresponding to the modules you want to import.
 
-  For the `xml` and `properties` files, you can just clone the bio4j/bio4j-titan repo and checkout the `0.4.0-RC3` tag.
+  For the `xml` and `properties` files, you can just clone the bio4j/bio4j-titan repo and checkout the `0.4.0` tag.
 
 5. Get the raw input data
 
   Download and execute (from `/mnt/sources/`) the following bash script:
 
-  - [DownloadAndPrepareBio4jSources.sh](https://github.com/bio4j/bio4j-titan/blob/v0.4.0-RC3/DownloadAndPrepareBio4jSources.sh)
+  - [DownloadAndPrepareBio4jSources.sh](https://github.com/bio4j/bio4j-titan/blob/v0.4.0/DownloadAndPrepareBio4jSources.sh)
 
   It will download and decompress all the raw data needed to build a full Bio4j distribution (Swissprot, TrEMBL, GO, etc..).
   Once the script has finished, make sure that the final file names coincide with those specified in your XML file `executionsBio4jTitan.xml`.
@@ -143,7 +143,7 @@ _If you are not using AWS please go directly to the **Step 3**_.
   For example:
 
   ```  bash
-  java -d64 -Xmx40G -jar bio4j-titan-0.4.0-RC3-fat.jar executionsBio4jTitan.xml &
+  java -d64 -Xmx40G -jar bio4j-titan-0.4.0-fat.jar executionsBio4jTitan.xml &
   ```
 
   Different log files will be created at the jar folder level.
