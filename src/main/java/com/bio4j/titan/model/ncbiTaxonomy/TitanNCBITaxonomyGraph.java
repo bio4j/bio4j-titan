@@ -34,7 +34,7 @@ public final class TitanNCBITaxonomyGraph
 	public VertexLabel nCBITaxonTypeLabel;
 	public PropertyKey nCBITaxonTypekey;
 	public PropertyKey nCBITaxonIdkey;
-	public PropertyKey nCBITaxonScientificNamekey;
+	public PropertyKey nCBITaxonNamekey;
 	public PropertyKey nCBITaxonTaxonomicRankkey;
 	public NCBITaxonType nCBITaxonType;
 
@@ -96,7 +96,7 @@ public final class TitanNCBITaxonomyGraph
 		nCBITaxonType = new NCBITaxonType(nCBITaxonTypeLabelMaker);
 		nCBITaxonIdkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().id).cardinality(Cardinality.SINGLE));
 		nCBITaxonTaxonomicRankkey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().taxonomicRank).cardinality(Cardinality.SINGLE));
-		nCBITaxonScientificNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().scientificName).cardinality(Cardinality.SINGLE));
+		nCBITaxonNamekey = raw().createOrGet(mgmt, raw().titanPropertyMakerForVertexProperty(mgmt, NCBITaxon().name).cardinality(Cardinality.SINGLE));
 		nCBITaxonTypeLabel = raw().createOrGet(mgmt, nCBITaxonType.raw());
 
 		//-----------------------------------------------------------------------------------------
