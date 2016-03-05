@@ -6,7 +6,7 @@ description   := "Titan implementation of the Bio4j model"
 javaVersion   := "1.8"
 
 libraryDependencies ++= Seq(
-  "bio4j"                   % "bio4j"             % "0.12.0-SNAPSHOT",
+  "bio4j"                   % "bio4j"             % "0.12.0",
   "bio4j"                   % "angulillos-titan"  % "0.3.0",
   "com.thinkaurelius.titan" % "titan-berkeleyje"  % "0.5.4",
   // test deps
