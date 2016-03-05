@@ -1,0 +1,1 @@
+This version is based on the Bio4j v0.12 and includes an important fix to the NCBITaxonomy model. See the [bio4j/bio4j-0.12.0](https://github.com/bio4j/bio4j/releases/tag/v0.12.0) release notes for details.
